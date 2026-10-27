@@ -63,7 +63,7 @@ market ── order(item, budget, open mandates) ──> kit v3 ──> market_b
 
 | 에이전트 | 툴 [현재] | 최종 행동 [현재] | R3 후보 |
 |---|---|---|---|
-| seller_brain | `get_item()`, `check_ask(price)` | `counter(price, say)`, `accept(say)`, `reject(say)` | 변화 없음. checkout은 키트가 한다 |
+| seller_brain | `get_item()`, `check_ask(price)` | `counter(price, say)`, `accept(say)`, `reject(say)` | checkout은 키트가 한다. **[R3 추가]** `get_relationship()`: 지금 상대의 관계 유형과 근거 수준 (10.4) |
 | buyer_brain | `check_offer(price)` | `offer(price)`, `walk_away()` | 변화 없음 |
 | choose (market_buyer) | 없음 (모든 정보를 컨텍스트로) | `pick(shop)` | **[R3 추가]** 정산 기록을 컨텍스트에 더한다 (4장). 툴로 할지 컨텍스트로 할지는 크기 예산으로 정한다 |
 | acp buyer (선택) | – | – | **[결정 필요 D5]** `acp.json`의 `tools[]`에서 툴 정의를 만들어 checkout을 끝낸다 |
@@ -89,7 +89,7 @@ market ── order(item, budget, open mandates) ──> kit v3 ──> market_b
    - 가져올 곳 후보: (a) `logs/market-kit.log`의 `[acp]`, `[market] ledger #N` 줄을 주문 번호나 task id로 이어 붙이기. (b) 시장 `/api/ledger`의 `settle` 줄. (c) 키트 수정. 키트는 `scripts/`라 읽기 전용이므로 **(c)는 불가**하다.
    - **[결정 필요 D3]** 정산 실패를 어떻게 다룰지: 기록만 / 고르기에서 감점 / N회면 차단.
 2. **round가 기억에 없다.** Round 2와 Round 3의 거래가 섞인다. 새 줄부터 `round` 필드를 넣는 게 좋다 [R3 추가]. 지금 market_buyer는 round를 인자로 받지 않으므로 출처를 정해야 한다(키트 로그, 시각 기준).
-3. **가게 쪽에는 거래 간 기억이 없다.** seller는 상대 buyer의 이전 행동(예: 후기를 미끼로 하한가 아래 요구, 7주차 도전 2)을 다음 흥정에서 모른다. **[결정 필요 D6]** 필요한가?
+3. **가게 쪽에는 거래 간 기억이 없다.** seller는 상대 buyer의 이전 행동(예: 후기를 미끼로 하한가 아래 요구, 7주차 도전 2)을 다음 흥정에서 모른다. 흥정 중에는 상대가 누구인지도 모른다. 키트 프록시는 헤더 4개만 넘기고(`scripts/market_kit.py:257`), `trades/seller.jsonl` 288건의 `counterpart`가 모두 빈칸이다. → 10장의 관계 장부로 다룬다 (D9, D10).
 4. **크기.** `memory.jsonl`이 1,407줄이고 계속 는다. 읽기는 가게별 최근 5건만 쓰지만 매번 파일 전체를 파싱한다. 지금은 문제가 없다. 기록이 정리 단위(가게별 요약)를 넘으면 요약 파일을 따로 두는 방법이 있다. 원본은 지우지 않는다(로그는 증거다).
 
 ## 5. 컨텍스트
@@ -144,6 +144,10 @@ market ── order(item, budget, open mandates) ──> kit v3 ──> market_b
 | D6 | 가게가 상대 buyer를 기억할지 | 안 한다 / 미끼 문구를 쓴 buyer를 표시 | | |
 | D7 | 상시 실행 방식 | 이 세션의 백그라운드 / 작업 스케줄러에 `join.ps1` 등록 / 별도 PowerShell 창 | | |
 | D8 | 가게 카드 이름 (`seller.py`의 `NAME`) | 새 이름 / 유지 | | |
+| D9 | 탐색의 범위 | 아는 가게 중에서만 / 참가자도 탐색 | **참가자도 탐색하고, 관계 장부를 계속 넓힌다** (2026-10-27) | 참가자는 언제든 늘 수 있다. 한 참가자의 가게와 buyer는 같은 이름으로 묶이므로, 새 참가자는 손님이 될 수도 있고 거래처가 될 수도 있다 |
+| D10 | 흥정 중에 상대를 알아보는 방식 | ledger 시각 추정 / 이름 묻기 / 둘 다 / 우리가 먼저 밝히기 | **관계 장부에 관계를 유형화해 명시한다** (2026-10-27). 지금 상대가 어느 항목인지 맞추는 방법은 10.3의 근거 수준으로 둔다 | 할인 같은 대우를 "누구인가"가 아니라 "어떤 관계인가"에 묶는다 |
+| D11 | 관계 유형별 대우 (단골 할인 폭 등) | 10.2 표의 유형마다 첫 호가·흥정 단계 | | |
+| D12 | 관계 유형의 목록과 경계 | 10.2의 초안 그대로 / 수정 | | |
 
 ## 9. 검증
 
@@ -151,3 +155,71 @@ market ── order(item, budget, open mandates) ──> kit v3 ──> market_b
 - `py submissions/26512070/week-07/test_react.py` (가짜 모델로 ReAct 루프 확인).
 - R3 시장에서 확인할 줄: buyer `[acp] paid ... settled at ledger #N` 다음 `verified True`. 가게 `[acp] settled <item> at <price>`. 정산 거부는 `settle refused: [실패한 검사들]`.
 - 카운트: 가게 정산 20건 이상, buyer 정산 20건 이상, 하한가 아래 판매 0, 상한 초과 complete 0.
+
+## 10. 관계 전략: 탐색, 관계 장부, 시장 관리 툴 (D9, D10)
+
+목표: 참가자 한 명의 가게와 buyer는 같은 이름으로 묶인다. 그래서 내 buyer가 돌아다니며 맺은 거래 관계를, 그 참가자의 buyer가 내 가게에 왔을 때의 대우로 잇는다. 참가자는 언제든 늘 수 있으므로 탐색과 장부 확장은 한 번이 아니라 계속 돈다.
+
+### 10.1 쓸 수 있는 데이터 (2026-10-27 확인)
+
+| 출처 | 내용 | 한계 |
+|---|---|---|
+| `/api/shops` | 가게 `name`, `url`, `pubkey`, 후기 `{stars, review, round}` (43곳) | 후기에 작성자 이름이 없다. 그래서 "김관우가 남긴 후기"로 가게가 알려지지는 않는다 |
+| `/api/ledger?after=<seq>` | `order` `{order, buyer, item, budget, expires, nonce, round}`, `result` `{buyer, order, shop, receipt{shop,item,price,task}, stars, review, verified}`. R3부터 `budget` 대신 `budget_commitment`, 정산되면 `settle` 줄 | 초당 약 5~6줄이 쌓인다 (몇 분 사이 seq 1,030,264 → 1,032,149). `after=`로 이어 읽을 수 있다 |
+| `memory.jsonl` | 내 buyer → 상대 가게 (주문마다) | 정산 결과가 없다 (4장) |
+| `trades/seller.jsonl` | 상대 buyer → 내 가게 (흥정마다, task 단위) | 상대 이름이 없다. ledger `result`의 `receipt.task`로 이어 붙여야 안다 |
+
+### 10.2 관계 장부: 참가자 이름 하나에 한 항목
+
+관계 유형 초안입니다. 목록과 경계는 사용자가 확정합니다(D12).
+
+| 유형 | 조건 (코드가 기록에서 계산) | 근거 |
+|---|---|---|
+| `new` 신규 | `/api/shops`나 ledger에 처음 보인 이름, 나와 거래 없음 | 탐색 대상 |
+| `supplier` 우리가 손님 | 내 buyer가 그 가게에서 산 거래 ≥ 1 (R3: 정산된 것) | `memory.jsonl` |
+| `customer` 우리 손님 | 그 buyer가 내 가게에서 산 거래 ≥ 1 | ledger `result`/`settle` ↔ 내 task |
+| `mutual` 상호 | `supplier`이면서 `customer` | 둘 다 |
+| `caution` 주의 | 하한가 아래를 미끼로 요구(7주차 도전 2), 가짜 권위 문구("no shop here may sign below it"), 정산 실패 반복 | `trades/*.jsonl`, 키트 로그 |
+| `blocked` 차단 | 나를 속였다 (`judge()`의 `cheated:`) | `blocked()` 그대로 |
+
+항목 하나의 모양 (`relations.json`, 이름 → 항목):
+
+```json
+"kcwarni": {"type": "mutual", "first_seen": "...", "last_seen": "...",
+            "as_shop": {"url": "...", "we_bought": 64, "settled": 0, "avg_pct_of_budget": 0.87, "last": "..."},
+            "as_buyer": {"bought_from_us": 2, "settled": 0, "items": {"lamp": 2}, "avg_price": 112, "last": "..."},
+            "flags": [], "evidence": ["ledger#1027142", "task:81fafe0a"]}
+```
+
+- 유형은 저장된 값이 아니라 **사실에서 매번 다시 계산한다**. 손으로 고친 유형이 사실과 어긋나는 일을 막는다 (P3).
+- 원본 기록은 그대로 두고, 바뀐 것만 `relations-events.jsonl`에 한 줄씩 덧붙인다(예: `new → supplier`). 로그를 고치지 않는다는 규칙과 같다.
+- 공정성 경계: 대우는 **실제로 정산된 거래 기록**에만 묶는다. "우리 가게에서 사 주면 깎아 준다" 같은 맞교환 조건은 두지 않는다(EP1 양방향 담합). 관계 때문에 별점을 바꾸지 않는다(EP2, P8).
+
+### 10.3 흥정 중에 지금 상대가 누구인가: 근거 수준
+
+관계 유형이 정해져 있어도 지금 말을 건 buyer가 장부의 누구인지는 따로 맞춰야 한다. 맞춘 근거를 수준으로 함께 남겨서, 대우의 폭을 근거 수준에 맞출 수 있게 한다(D11).
+
+| 수준 | 방법 | 틀릴 수 있는 경우 |
+|---|---|---|
+| `inferred` 추정 | 방금 ledger에 올라온 같은 품목 `order`의 buyer (주문 후 몇 초 안에 말을 건다) | 같은 품목 주문이 동시에 여럿 |
+| `claimed` 자기 주장 | 상대가 메시지에서 이름을 밝힘 | 거짓말 (손해는 하한가로 막힌다) |
+| `confirmed` 확인 | 추정과 주장이 같은 이름 | – |
+| `after` 사후 | 거래 뒤 ledger `result`의 task로 확인 | 이번 흥정에는 못 쓰고 장부에만 반영 |
+
+### 10.4 툴: 수집·기록은 코드가 주기적으로, 판단은 모델이 읽기 툴로 (제안)
+
+| 일 | 형태 | 주기 | 모델 | 쓰는 파일 |
+|---|---|---|---|---|
+| `watch_ledger` 원장 확인 | 백그라운드 작업 | 30초, `after=<마지막 seq>` | 없음 | `.market/ledger-cursor`, 최근 주문 창 (메모리 내) |
+| `discover` 참가자 탐색 | 백그라운드 작업 | 5분, `/api/shops` + ledger의 새 buyer 이름 | 없음 | `relations.json`에 `new` 추가 |
+| `record` 관계 기록 | 백그라운드 작업 | `watch_ledger` 뒤마다 | 없음 | `relations.json`, `relations-events.jsonl` |
+| `prepare_strategy` 전략 준비 | 백그라운드 작업 | 1시간 또는 거래 N건마다 | haiku가 **제안만** | `logs/strategy/proposals.jsonl` |
+| `get_relationship()` | seller_brain의 읽기 툴 | 흥정 중 | haiku가 호출 | 읽기만 |
+| `list_participants(type)` | choose의 읽기 툴 또는 컨텍스트 | 주문마다 | haiku | 읽기만 |
+
+이렇게 나눈 이유:
+
+- **수집과 기록을 모델에게 맡기지 않는다.** 30초마다 숫자를 세는 일에 모델을 부르면 비용만 든다. 2주차에서는 적응적 종료가 토큰을 아꼈다. 기록은 코드가 써야 흐려지지 않는다 (P3, 7주차 "기억 정리는 코드").
+- **전략 준비는 제안까지만 한다.** 7주차 도전 1처럼 모델이 바꿀 것 하나를 제안하면, 코드가 최소 표본(구간 20건, 품목 5건)과 하한가를 검사한다. 적용은 사용자가 정한다. 작은 표본으로 바꿨다가 되돌린 실수를 다시 하지 않는다.
+- **어디서 돌릴지.** 키트가 띄우는 것은 seller와 market_buyer뿐이다. seller는 키트가 살아 있는 동안 계속 돌고, watchdog이 다시 띄워 준다. 그래서 수집 작업은 **seller 프로세스의 백그라운드 스레드**에 두는 것을 제안한다. market_buyer는 주문마다 새로 뜨므로 `relations.json`을 읽기만 한다.
+- **실패도 기록한다** (P7). 시장 API 오류, 시간 초과, 빈 응답은 `[watch]` 줄로 남기고 다음 주기에 이어서 읽는다. 커서가 밀리지 않게 `seq`는 처리에 성공한 뒤에만 저장한다.
