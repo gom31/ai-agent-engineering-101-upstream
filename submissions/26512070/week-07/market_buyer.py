@@ -207,6 +207,11 @@ def main():
               "final_state": res["final_state"], "verdict": verdict, "stars": stars, "review": review,
               "why_picked": why})
     log(f"[memory] {shop['name']}: {verdict}")
+    # The kit signs and (from Round 3) pays any receipt that is signed and within the budget; it never sees the
+    # price we agreed. A receipt we did not agree to goes out as null: no deal, no sig_buyer, no payment.
+    if verdict.startswith("cheated"):
+        log(f"[result] not passing the receipt on ({verdict}): the kit will not sign or pay it")
+        r = None
     print(json.dumps({"shop": shop["url"], "receipt": r, "stars": stars, "review": review}, ensure_ascii=False),
           flush=True)
 
