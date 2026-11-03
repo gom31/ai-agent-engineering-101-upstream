@@ -80,26 +80,30 @@ def build_buy_list(ctx, now=None):
     for x in market[:pb["market_top"]]:
         lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["market_units"]),
                       "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} in 6 h"})
-    doc = {"ts": now, "playbook": pb, "lines": lines}
+    # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
+    from tools import act
+    room = check.room(ctx)
+    got = act.allocate(room, [(x["sku"], max(0, x["target"] - x["have"])) for x in lines])
+    for x, (_, q, why) in zip(lines, got):
+        x["buy"], x["short"] = q, (why if q < x["target"] - x["have"] else None)
+    doc = {"ts": now, "playbook": pb, "lines": lines,
+           "budget": {"cash": room["cash"], "stock": round(room["stock"]), "balance": room["balance"],
+                      "floor": room["floor"], "reserve": room["reserve"],
+                      "planned": sum(q * room["worst"](sku) for sku, q, _ in got)}}
     atomic.write_json(paths.memory() / "facts" / "buy_list.json", doc)
     return doc
 
 
 def rules_plan(ctx, now=None):
-    """(plan, trimmed, list) from the buy list: what each line still lacks, cut to the limits by act.fit_plan."""
-    from tools import act
-    now = now or time.time()
-    doc = atomic.read_json(paths.memory() / "facts" / "buy_list.json", default=None)
-    if not doc or now - doc.get("ts", 0) > BUY_LIST_FRESH:
-        doc = build_buy_list(ctx, now)
-    have = {}
-    for u in mf.inventory(ctx).get("units", []):         # now, not when the list was written
-        if u.get("grade") != "expired":
-            have[u["sku"]] = have.get(u["sku"], 0) + 1
-    plan = [{"sku": x["sku"], "qty": min(20, x["target"] - have.get(x["sku"], 0))} for x in doc["lines"]
-            if x["target"] > have.get(x["sku"], 0)]
-    plan, trimmed = act.fit_plan(ctx, plan[:10])
-    return plan, trimmed, doc
+    """(plan, why, list): the buy list planned now (fresh stock and money), within the room. why: None when there
+    is something to buy, 'full' when every line has its target, 'no_budget' when the money or the cap stops all."""
+    doc = build_buy_list(ctx, now)
+    plan = [{"sku": x["sku"], "qty": min(20, x["buy"])} for x in doc["lines"] if x["buy"] > 0][:10]
+    if plan:
+        check.buy(ctx, plan)
+        return plan, None, doc
+    lacking = [x for x in doc["lines"] if x["target"] > x["have"]]
+    return [], ("no_budget" if lacking else "full"), doc
 
 
 def stuck(inv):
@@ -283,18 +287,27 @@ def main():
             w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False})
             print(json.dumps({"buy": []}))
             return
+        if playbook(ctx)["mode"] == "rules" and win == "soon":
+            # 11/4 02:02: a plan made in 'soon' sent its first line 4 s before the window opened (429); the rules
+            # need no lead time, so they wait for 'open' without using up the window
+            w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False, "rules": True, "window": win})
+            print(json.dumps({"buy": []}))
+            return
         if playbook(ctx)["mode"] == "rules":
             # HARNESS 14: buy the list at once, once per window; the agent only when the list gives nothing
-            plan, trimmed, doc = rules_plan(ctx, t0)
-            if plan:
-                atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute, "plans_in_window": PLANS_PER_WINDOW})
-                w.emit("restock.plan", {"lines": len(plan), "plan": plan, "refused": None, "used_model": False,
-                                        "rules": True, "trimmed": trimmed or None})
+            plan, why, doc = rules_plan(ctx, t0)
+            atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute, "plans_in_window": PLANS_PER_WINDOW})
+            w.emit("restock.plan", {"lines": len(plan), "plan": plan, "refused": None, "used_model": False,
+                                    "rules": True, "why": why, "budget": doc["budget"]})
+            if why == "no_budget":                       # the strategy has to know: the money is tied up
+                w.emit("exec.anomaly", {"role": "restock", "kind": "no_budget", "then": "nothing bought",
+                                        "situation": {"budget": doc["budget"],
+                                                      "lacking": [(x["sku"], x["target"] - x["have"]) for x in doc["lines"]
+                                                                  if x["target"] > x["have"]][:8]}})
+            if plan or doc["lines"]:                     # the agent only when there is no list at all
                 print(json.dumps({"buy": plan}))
                 return
-            w.emit("exec.anomaly", {"role": "restock", "kind": "buy_list_empty",
-                                    "situation": {"lines": len(doc["lines"]), "trimmed": trimmed[:10]},
-                                    "then": "agent"})
+            w.emit("exec.anomaly", {"role": "restock", "kind": "no_buy_list", "then": "agent", "situation": {}})
         d, trace = loop.decide("restock", ctx, situation(ctx, inv), deadline=t0 + DEADLINE)
         plan = d["plan"] if d else []
         if d is not None:                               # a failed turn is tried again next time

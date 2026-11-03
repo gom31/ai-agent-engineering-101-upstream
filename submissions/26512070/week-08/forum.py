@@ -149,8 +149,8 @@ def next_side(sides, buyer_refs, shop_refs):
 def side_text(side, sides, mine, lines, mark, facts, posts, wanted, extra):
     """The decision at hand for one side's post this turn."""
     own = {k: v[1] for k, v in facts.items() if v[0] == side}
-    kinds = ("a settle our buyer bought, or a wanted order of our buyer (what we need: its category and budget, "
-             "asking shops to stock it)" if side == "buyer" else
+    kinds = ("a settle our buyer bought (user 11/4 02:1x: purchase records with their ledger line only, no "
+             "wanted posts)" if side == "buyer" else
              "a settle our shop sold, or goods our shop holds (to answer a post that asks for goods, set thread = "
              "that post's id and say we have it ready, with grade, certificate and warranty)")
     cite = [f"- ({mark.get(s)}) {lines[s]}" for s in sorted(lines) if side in mark.get(s, "")][-10:]
@@ -187,7 +187,7 @@ def main():
         lines = settles(refs)
         inv = call(ctx, "me.inventory", {"detail": "full"})
         units = (inv["result"].get("unit_list") or []) if inv["ok"] else []
-        facts = wanted_facts(ctx.now()) | stock_facts(units, ctx.strategy)
+        facts = stock_facts(units, ctx.strategy)        # user 11/4 02:1x: no wanted posts (wanted_facts)
         posts = call(ctx, "market.forum", {"limit": 12})["result"]
         asks = {p["id"]: p for q in ("구합니다", "wanted", "looking for", "goods")
                 for p in call(ctx, "market.forum", {"query": q, "limit": 6})["result"]["posts"]}

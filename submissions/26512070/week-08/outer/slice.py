@@ -70,6 +70,11 @@ def unsafe(active, new):
     wa, wn = active.get("warranty") or {}, new.get("warranty") or {}
     if (wn.get("hours") or 0) < (wa.get("hours") or 0):
         return f"warranty hours {wa.get('hours')} -> {wn.get('hours')}"
+    sa, sn = (active.get("restock") or {}).get("stop_after"), (new.get("restock") or {}).get("stop_after")
+    if sa and (not sn or sn > sa):
+        return f"restock stop_after {sa} -> {sn} (stock is sold down before the round ends)"
+    if (ln.get("food_share_max") or 0) > (la.get("food_share_max") or 0):
+        return f"food_share_max {la.get('food_share_max')} -> {ln.get('food_share_max')}"
     ra, rn = active.get("repeat_buyer") or {}, new.get("repeat_buyer") or {}
     if ra.get("min_share_of_list") and (rn.get("min_share_of_list") or 0) < min(ra["min_share_of_list"], 0.8):
         return f"price floor {ra.get('min_share_of_list')} -> {rn.get('min_share_of_list')} of list"

@@ -61,8 +61,9 @@ class ActTest(Base):
     def test_restock_review_forum_label(self):
         self.assertEqual(self.ok("act.buy", plan=[])["plan"], [])
         bought = self.ok("act.buy", plan=[{"sku": "G0026722f", "qty": 6}])   # 11/4: cut to the room, not refused
-        self.assertEqual((bought["plan"], bought["trimmed"]), ([{"sku": "G0026722f", "qty": 4}], ["G0026722f: 6 -> 4"]))
-        self.refused("act.buy", plan=[{"sku": "G0026722f", "qty": 3}, {"sku": "G0026722f", "qty": 3}])   # split lines
+        self.assertEqual((bought["plan"], bought["trimmed"]), ([{"sku": "G0026722f", "qty": 4}], ["G0026722f: 6 -> 4 (per-SKU limit)"]))
+        split = self.ok("act.buy", plan=[{"sku": "G0026722f", "qty": 3}, {"sku": "G0026722f", "qty": 3}])   # merged, then cut
+        self.assertEqual(split["plan"], [{"sku": "G0026722f", "qty": 4}])
         self.ctx.situation = {"fact_stars": 5}
         self.refused("act.review", stars=3, text="Fine.")
         self.assertEqual(self.ok("act.review", stars=3, text="Fine.", why="this shop smeared us")["fact_stars"], 5)

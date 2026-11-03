@@ -63,18 +63,28 @@ def _seller_unit(ctx, unit):
     return unit
 
 
+def list_floor(strategy, first_time, list_price):
+    """The list-price floor for a price, or 0 (one rule for act.counter/accept and the seller's prompt)."""
+    rb = strategy.get("repeat_buyer") or {}
+    at_cost = (strategy.get("first_visit") or {}).get("price") == "at_cost"
+    if rb.get("min_price") != "list" or (at_cost and first_time is not False) or not list_price:
+        return 0        # a first visit at cost has its own rule; without that promise every buyer starts from list
+    return math.ceil(list_price * rb.get("min_share_of_list", 1.0))
+
+
+def unit_list_price(ctx, unit):
+    u = mf.unit(ctx, unit) or {}
+    return u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
+
+
 def _repeat_floor(ctx, unit, price):
     """User 11/3: a buyer that is not on its first visit negotiates from the list price, down to min_share_of_list
     of it at most (user 22:25: 0.9 - at list, returning buyers stopped at 90% and walked: 1 sale in 25 min)."""
-    rb = ctx.strategy.get("repeat_buyer") or {}
-    at_cost = (ctx.strategy.get("first_visit") or {}).get("price") == "at_cost"
-    if rb.get("min_price") != "list" or (at_cost and ctx.situation.get("first_time") is not False):
-        return          # a first visit at cost has its own rule; without that promise every buyer starts from list
-    u = mf.unit(ctx, unit) or {}
-    lp = u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
-    floor = math.ceil(lp * rb.get("min_share_of_list", 1.0)) if lp else None
+    lp = unit_list_price(ctx, unit)
+    floor = list_floor(ctx.strategy, ctx.situation.get("first_time"), lp)
     if floor and price < floor:
-        raise Refused(f"{price} is below {floor} ({rb.get('min_share_of_list', 1.0):.0%} of the list price {lp}); "
+        share = (ctx.strategy.get("repeat_buyer") or {}).get("min_share_of_list", 1.0)
+        raise Refused(f"{price} is below {floor} ({share:.0%} of the list price {lp}); "
                       "a returning buyer pays at least that (strategy)", f"ask {floor} or more")
 
 
@@ -196,40 +206,43 @@ def buy(ctx, plan, why=""):
     return {"action": "buy", "plan": plan, "why": why, "checked": checked, "trimmed": trimmed or None}
 
 
+def allocate(room, wants):
+    """[(sku, units wanted)] in priority order -> [(sku, units we can buy, why short or None)] within the room:
+    per-SKU room, then the cash and the stock cap at the worst-case cost (check.room)."""
+    cash, stock = max(0, room["cash"] or 0), max(0, room["stock"])
+    out = []
+    for sku, n in wants:
+        w = room["worst"](sku)
+        if w <= 0:
+            out.append((sku, 0, "not in the catalog"))
+            continue
+        per = max(0, room["per_sku"] - room["have"].get(sku, 0))
+        q = min(n, per, int(cash // w), int(stock // w))
+        why = None if q == n else "per-SKU limit" if q == per else "cash" if q == int(cash // w) else "stock cap"
+        cash, stock = cash - q * w, stock - q * w
+        out.append((sku, q, why))
+    return out
+
+
 def fit_plan(ctx, plan):
     """11/4 01:3x: 32 restock plans in 4 h bought 4 times - most were refused for a few units over the per-SKU limit
-    or the cash floor, and with model turns of 40-60 s there was no time to plan again. Cut each line to the room the
-    SKU has, then take the lines in order, each with the most units check.buy still passes. (plan, what was cut)."""
-    lim = check._limits(ctx)
-    have = {}
-    for u in mf.inventory(ctx).get("units", []):
-        if u.get("grade") != "expired":
-            have[u["sku"]] = have.get(u["sku"], 0) + 1
-    out, cut = [], []
+    or the cash floor, and with model turns of 40-60 s there was no time to plan again. Lines of one SKU are merged,
+    then each line gets the most units the room allows (check.room, read once), and check.buy confirms the result.
+    (plan, what was cut)."""
+    room = check.room(ctx)
+    if room["cash"] is None:
+        raise Refused("no balance in inventory.json yet", "wait for the kit's next sync (every 10 s)")
+    merged = {}
     for line in plan:
-        room = lim["max_units_per_sku"] - have.get(line["sku"], 0)
-        if room <= 0:
-            cut.append(f"{line['sku']}: full")
-            continue
-        if line["qty"] > room:
-            cut.append(f"{line['sku']}: {line['qty']} -> {room}")
-        out.append(dict(line, qty=min(line["qty"], room)))
-    fitted = []
-    for line in out:                       # most wanted first: each line gets the most units that still pass
-        for q in range(line["qty"], 0, -1):
-            try:
-                check.buy(ctx, fitted + [dict(line, qty=q)])
-            except Refused as e:
-                if "per SKU" in str(e) or "not in the catalog" in str(e) or "lines;" in str(e):
-                    raise
-                continue
-            if q < line["qty"]:
-                cut.append(f"{line['sku']}: {line['qty']} -> {q} (cash or stock limit)")
-            fitted.append(dict(line, qty=q))
-            break
-        else:
-            cut.append(f"dropped {line['sku']} (cash or stock limit)")
-    out = fitted
+        merged[line["sku"]] = merged.get(line["sku"], 0) + line["qty"]
+    out, cut = [], []
+    for sku, q, why in allocate(room, list(merged.items())):
+        if q < merged[sku]:
+            cut.append(f"{sku}: {merged[sku]} -> {q} ({why})")
+        if q > 0:
+            out.append({"sku": sku, "qty": q})
+    if out:
+        check.buy(ctx, out)
     return out, cut
 
 

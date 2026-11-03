@@ -3505,3 +3505,88 @@
 01:56:01 [forum] vote as buyer: 200
 01:56:12 [forum] post as buyer: 200
 01:56:23 [buyer] {"buy": []}
+01:57:27 [buyer] {"buy": []}
+01:57:38 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:57:38 [market] ledger #2204186: no deal, stars None, verified False, review not shown
+01:57:38 [order o-fea69e0f02fe] 기타 해산물, budget 62010, round 3, use within 180.0 h
+01:57:39 [kit] 48 shops in .market\shops.json, running market_buyer
+01:57:39 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:57:39 [market] ledger #2204191: no deal, stars None, verified False, review not shown
+01:57:59 [order o-73a99c961f23] 커튼/러그/쿠션/덮개, budget 124590, round 3
+01:57:59 [kit] 48 shops in .market\shops.json, running market_buyer
+01:57:59 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:57:59 [market] ledger #2204281: no deal, stars None, verified False, review not shown
+01:58:19 [order o-49d49f1ba7d9] 김치, budget 96480, round 3, use within 126.0 h
+01:58:19 [kit] 48 shops in .market\shops.json, running market_buyer
+01:58:31 [buyer] {"buy": []}
+01:59:09 [seller] [seller] e95bb4bd input_required: The total price for the 플로라 푹신한 퓌르 베스트 구름 베개솜 50X70 is 7110. It comes with a market certificate.
+01:59:36 [buyer] {"buy": []}
+02:00:40 [buyer] {"buy": []}
+02:00:59 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": {"task": "fe67ef93-4b4d-4ea4-9503-6aeead72db09", "item": "Gc4681038", "sig_seller": "5ZAD7w3/blrQkuhjRl9hQjTvQEMqoFtg+gEBHtchcRx1WZrOjDO35QnNWMtwUuvEIoPZft25R/qX8nVChb4oAw==", "cert": true, "unit": "u-0d6547c50df4", "price": 43000, "shop": "Price Alchemist Guild"}, "stars": null, "review": null, "accept": {"min_hours_left": 126.0}}
+02:00:59 [sign] sig_seller ok, sig_buyer added
+02:01:00 [acp] checkout ships unit u-0d6547c50df4, certificate attached
+02:01:00 [acp] paid 43000 through https://whatever-shannon-payroll-essentially.trycloudflare.com/acp, settled at ledger #2205036: 종가 총각김치 5kg, grade A, 149.0 h of shelf life left
+02:01:01 [seller] [seller] 53b6696e input_required: The price for the 파로마 이즈 터치 600 수납거울화장대 is 96,255 KRW, and it comes with a warranty of 6 hours.
+02:01:23 [buyer] {"stars": 5, "review": "Grade A, accurate receipt, good value at 43,000 against 60,900 listing."}
+02:01:23 [market] ledger #2205122: Gc4681038 at 43000, stars 5, verified True, review accepted
+02:01:23 [order o-86d17397a450] 신선야채(부패주의), budget 7870, round 3, use within 12.0 h
+02:01:24 [kit] 48 shops in .market\shops.json, running market_buyer
+02:01:26 [seller] [seller] f3ecaef9 input_required: Our current asking price for the item is 79,110 KRW. It comes with a certificate and a full 6-hour warranty.
+02:01:33 [forum] post as shop: 200
+02:01:44 [forum] post as buyer: 200
+02:01:47 [buyer] {"buy": [{"sku": "G53e73f8c", "qty": 7}, {"sku": "G0f415407", "qty": 1}, {"sku": "Ge62449c9", "qty": 1}, {"sku": "G03cab593", "qty": 1}]}
+02:02:02 [seller] [seller] b3271e56 input_required: The price for the 이솔홈 도트 쉬폰 원피스 앞치마 (G53e73f8c) is 13,950 KRW. It comes with a 6-hour warranty and is certified grade A.
+02:02:16 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": {"shop": "Corner Store", "sig_seller": "gIhWOTkhmxIq6EUxyP6XojfbugAtNV2qOILPZAos7huy+hHKhbtuuzDDqlt9aYm3A2L1oarjM4VkFB6EHnxYAw==", "task": "6be7e0f6-530b-426d-aeee-a5340562ea00", "unit": "u-16e8c66d32cd", "item": "G1f5d00c7", "claim": "B", "price": 7480}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+02:02:16 [sign] sig_seller ok, sig_buyer added
+02:02:16 [acp] checkout ships unit u-16e8c66d32cd, claim B, certificate attached
+02:02:17 [acp] paid 7480 through https://market.ourolabs.ai/shop/corner-store/acp, settled at ledger #2205333: 국내산 제주도 구좌 흙당근 중 2kg, grade B, 24.6 h of shelf life left
+02:02:50 [buyer] {"stars": 4, "review": "Reliable seller delivered grade B honestly at fair market price."}
+02:02:51 [market] ledger #2205475: G1f5d00c7 at 7480, stars 4, verified True, review accepted
+02:02:51 [order o-865870f6bb2d] 신선야채(부패주의), budget 43580, round 3, use within 5.0 h
+02:02:51 [kit] 48 shops in .market\shops.json, running market_buyer
+02:02:51 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:02:52 [market] ledger #2205481: no deal, stars None, verified False, review not shown
+02:02:52 [supply] {'sku': 'G53e73f8c', 'qty': 7} refused: 429 {"error":"supply is closed; the next restock window opens in 4 s","wait":4.1,"opens_at":1793725373,"closes_at":1793725553}
+02:02:53 [supply] 1 x 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS for 137320, balance 3827386
+02:03:03 [supply] 1 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 62904, balance 3764482
+02:03:11 [order o-8ed275a5a348] 신선야채(부패주의), budget 47460, round 3, use within 24.0 h
+02:03:11 [kit] 48 shops in .market\shops.json, running market_buyer
+02:03:11 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:03:12 [market] ledger #2205609: no deal, stars None, verified False, review not shown
+02:03:13 [supply] 1 x 플로라 선데이모닝 순면 40수 차렵이불 SS for 20698, balance 3743784
+02:03:22 [buyer] {"buy": []}
+02:03:31 [order o-b5e1ec3a0d96] 소파/의자/스툴, budget 2520800, round 3
+02:03:32 [kit] 48 shops in .market\shops.json, running market_buyer
+02:03:32 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:03:32 [market] ledger #2205742: no deal, stars None, verified False, review not shown
+02:03:52 [order o-a1f53129de56] 즉석조리식품, budget 21150, round 3, use within 2.5 h
+02:03:52 [kit] 48 shops in .market\shops.json, running market_buyer
+02:04:05 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:04:06 [market] ledger #2205959: no deal, stars None, verified False, review not shown
+02:04:12 [order o-befe14b0fa6b] 디저트, budget 12510, round 3, use within 36.0 h
+02:04:13 [kit] 48 shops in .market\shops.json, running market_buyer
+02:04:22 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:04:23 [market] ledger #2206065: no deal, stars None, verified False, review not shown
+02:04:25 [buyer] {"buy": []}
+02:04:33 [order o-3a9344b80569] 우유/두유, budget 51120, round 3, use within 72.0 h
+02:04:33 [kit] 48 shops in .market\shops.json, running market_buyer
+02:05:30 [buyer] {"buy": []}
+02:06:31 [seller] [seller] ac21a914 rejected: Sorry, we have none of that in stock right now.
+02:06:34 [forum] post as shop: 200
+02:06:34 [buyer] {"buy": []}
+02:06:44 [forum] post as buyer: 200
+02:07:05 [seller] [seller] 7829d9ab input_required: The current asking price for the 무봉제 차렵이불 is 79,110 KRW, and it comes with a full certificate of authenticity.
+02:07:15 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:07:16 [market] ledger #2206909: no deal, stars None, verified False, review not shown
+02:07:16 [order o-2b4bff8205e6] 디저트, budget 19460, round 3, use within 36.0 h
+02:07:16 [kit] 48 shops in .market\shops.json, running market_buyer
+02:07:26 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:07:26 [market] ledger #2206957: no deal, stars None, verified False, review not shown
+02:07:36 [order o-44e0473de89a] 디저트, budget 19460, round 3, use within 5.0 h
+02:07:37 [kit] 48 shops in .market\shops.json, running market_buyer
+02:07:38 [buyer] {"buy": []}
+02:07:47 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:07:47 [market] ledger #2207040: no deal, stars None, verified False, review not shown
+02:07:47 [seller] [seller] 1a0529f6 input_required: Thank you for your offer. However, I can offer this item at 238,545 KRW, which is the lowest I can accept for grade B, c
+02:07:57 [order o-92914806b3f8] 신선육류, budget 22410, round 3, use within 18.0 h
+02:07:57 [kit] 48 shops in .market\shops.json, running market_buyer

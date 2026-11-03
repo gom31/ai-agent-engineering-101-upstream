@@ -123,6 +123,26 @@ class SliceDecideTest(Base):
         a = {"limits": {"max_stock_share": 0.45}}
         self.assertIn("max_stock_share", outer_slice.unsafe(a, {"limits": {"max_stock_share": 0.6}}))
 
+    def test_review_fixes(self):
+        # 11/4 review: playbook merges two levels, round-end and food terms hold, a stale brief is not installed
+        from tools.record import apply_change
+        active = atomic.read_json(paths.memory() / "strategy" / "active.json")
+        base = dict(active, playbook={"restock": {"mode": "rules", "cover_windows": 2, "market_top": 8}})
+        got = apply_change(base, {"playbook": {"restock": {"cover_windows": 3}}})
+        self.assertEqual(got["playbook"]["restock"], {"mode": "rules", "cover_windows": 3, "market_top": 8})
+        a = {"restock": {"stop_after": 100}, "limits": {"food_share_max": 0.0}}
+        self.assertIn("stop_after", outer_slice.unsafe(a, {"restock": {}, "limits": {"food_share_max": 0.0}}))
+        self.assertIn("food_share_max", outer_slice.unsafe(a, {"restock": {"stop_after": 100}, "limits": {"food_share_max": 1.0}}))
+        import time
+        opts = [{"id": "A", "change": {"phase": "profit"}, "targets": "x", "expected": "x", "risk": "x", "reversible": True},
+                {"id": "B", "change": {"context": ["keep"]}, "targets": "x", "expected": "x", "risk": "x", "reversible": True}]
+        out = self.run_slice(opts, time.mktime(time.strptime("2026-11-05 12:00", "%Y-%m-%d %H:%M")))
+        newer = dict(atomic.read_json(paths.memory() / "strategy" / "active.json"), version=5, epoch="e5")
+        atomic.write_json(paths.memory() / "strategy" / "active.json", newer)
+        with self.assertRaises(ValueError):
+            decide.decide(out["slice"], "B")
+        self.assertEqual(decide.decide(out["slice"], "B", stale_ok=True)["installed"], 6)
+
     def test_bad_option_change_is_refused(self):
         from tools.record import apply_change
         from tools.registry import Refused

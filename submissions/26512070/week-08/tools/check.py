@@ -119,6 +119,25 @@ def receipt(ctx, receipt, agreed_price, acceptable=None, budget=None):
     return {"price": p, "agreed_price": agreed_price, "below_agreed_by": agreed_price - p}
 
 
+def room(ctx):
+    """User 11/4 02:1x: the buy list is planned within the money we may spend, so no plan fails for money.
+    {cash: balance - cash floor - warranty reserve, stock: stock cap - stock held (at cost), have: units per SKU,
+    worst(sku): the worst-case cost check.buy counts}. The same numbers check.buy checks."""
+    lim = _limits(ctx)
+    cat, inv = mf.catalog(ctx), mf.inventory(ctx)
+    balance = inv.get("balance")
+    units = [u for u in inv.get("units", []) if u.get("grade") != "expired"]
+    have = {}
+    for u in units:
+        have[u["sku"]] = have.get(u["sku"], 0) + 1
+    reserve = warranty_reserve(ctx)[0]
+    base = inv.get("start") or balance or 0
+    return {"cash": None if balance is None else balance - lim["cash_floor"] - reserve,
+            "stock": lim["max_stock_share"] * base - sum(u["cost"] for u in units), "have": have,
+            "per_sku": lim["max_units_per_sku"], "balance": balance, "reserve": reserve, "floor": lim["cash_floor"],
+            "worst": lambda sku: round((cat.get(sku) or {}).get("list_price", 0) * mf.COST_SHARE["A"][1])}
+
+
 @tool("check.buy", "May restock buy this plan? Checks the kit's format (10 lines, 1-20 each) and the limits: units per "
       "SKU, stock value as a share of the balance, food share of the stock, and the cash floor. Costs are not known "
       "before arrival, so it assumes the most a unit can cost (75% of list price).",

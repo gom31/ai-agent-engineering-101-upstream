@@ -17,7 +17,7 @@ from core.events import EventWriter
 from outer import brief
 
 
-def decide(pid, choice, note="", now=None, by="user"):
+def decide(pid, choice, note="", now=None, by="user", stale_ok=False):
     now = now or time.time()
     path = paths.memory() / "strategy" / "proposals" / f"{pid}.json"
     doc = atomic.read_json(path)
@@ -36,6 +36,12 @@ def decide(pid, choice, note="", now=None, by="user"):
             if s is None:
                 raise ValueError(f"no option {choice!r}; options: {[o['id'] for o in doc['options']]}")
             active = atomic.read_json(paths.memory() / "strategy" / "active.json", default={}) or {}
+            if doc.get("version_from") is not None and active.get("version") != doc["version_from"] and not stale_ok:
+                # 11/4 review: the option holds the whole strategy as of the brief; installing it now would undo
+                # every version installed since (night mode, delegation) without a word
+                raise ValueError(f"brief {pid} was written on v{doc['version_from']}, v{active.get('version')} is in "
+                                 "force now; installing it would undo the versions since - wait for a new brief, or "
+                                 "pass --stale-ok to install it anyway")
             if active.get("version", 0) >= s["version"]:     # another decision came first: rebase the version
                 s = dict(s, version=active["version"] + 1, epoch=f"e{active['version'] + 1}")
             s = dict(s, approved=f"{by} {stamp}: brief {pid} option {choice}" + (f" ({note})" if note else ""))
@@ -65,8 +71,9 @@ if __name__ == "__main__":
     ap.add_argument("proposal_id")
     ap.add_argument("choice", help="an option id, or reject")
     ap.add_argument("--note", default="")
+    ap.add_argument("--stale-ok", action="store_true", help="install a brief written on an older strategy version")
     a = ap.parse_args()
     try:
-        print(json.dumps(decide(a.proposal_id, a.choice, a.note), ensure_ascii=False))
+        print(json.dumps(decide(a.proposal_id, a.choice, a.note, stale_ok=a.stale_ok), ensure_ascii=False))
     except ValueError as e:
         sys.exit(f"not decided: {e}")

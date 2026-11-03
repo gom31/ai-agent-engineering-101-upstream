@@ -19,6 +19,7 @@ from agents import loop
 from core import atomic, paths
 from core import card as cardmod
 from core.events import EventWriter
+from tools import act
 from tools import market_files as mf
 from tools.registry import Ctx, call
 
@@ -201,22 +202,13 @@ class SellerCore:
             med = (demand.get((cat.get(c["sku"]) or {}).get("category")) or {}).get("median_price")
             low = call(ctx, "check.price", {"unit": c["unit"], "price": max(1, c["cost"] - 1)})
             lowest = (low["result"].get("lowest_allowed") if low["ok"] else c["cost"])
-            lowest = max(lowest, self.repeat_floor(strat, st, c))
+            # 11/4: the floor act.counter/accept enforce, from the same helper and the same list price
+            lowest = max(lowest, act.list_floor(strat, st.get("first_time"), act.unit_list_price(ctx, c["unit"])))
             lines.append(f"- unit {c['unit']}: {c['name']} ({c['sku']}, {c['kind']}), cost {c['cost']}, list price "
                          f"{c['list_price']}, lowest price the limits allow now {lowest}, category median {med}, grade now {c['grade_now']}, hours left "
                          f"{c['hours_left']}, certificate {'yes' if c['has_cert'] else 'no'}, "
                          f"{c['same_sku_in_stock']} of this SKU in stock")
         return "\n".join(lines)
-
-    @staticmethod
-    def repeat_floor(strat, st, c):
-        """The list-price floor act.counter/accept enforce (tools.act._repeat_floor), so the price we show is one the
-        tools take. 11/4 01:5x: 71 of 312 seller act calls were refused below it, each one a second model call."""
-        rb = strat.get("repeat_buyer") or {}
-        at_cost = (strat.get("first_visit") or {}).get("price") == "at_cost"
-        if rb.get("min_price") != "list" or (at_cost and st.get("first_time") is not False) or not c.get("list_price"):
-            return 0
-        return math.ceil(c["list_price"] * rb.get("min_share_of_list", 1.0))
 
     def _close(self, task_id, st, outcome, say, receipt=None, decision=None, cost=None):
         self.open.pop(task_id, None)
