@@ -45,9 +45,9 @@ _writer = None
 
 
 class ModelError(Exception):
-    def __init__(self, message, rate_limited=False):
+    def __init__(self, message, rate_limited=False, timed_out=False):
         super().__init__(message)
-        self.rate_limited = rate_limited
+        self.rate_limited, self.timed_out = rate_limited, timed_out
 
 
 def _empty_dir():
@@ -75,7 +75,7 @@ def claude_code(model, system, prompt, timeout):
         r = subprocess.run(cmd, input=prompt, capture_output=True, text=True, encoding="utf-8", cwd=_empty_dir(),
                            timeout=timeout)
     except subprocess.TimeoutExpired:
-        raise ModelError(f"claude did not answer within {timeout} s")
+        raise ModelError(f"claude did not answer within {timeout} s", timed_out=True)
     out = (r.stdout or "").strip()
     if r.returncode != 0 or not out:
         msg = ((r.stderr or "") + " " + out).strip()[:300]
@@ -155,8 +155,8 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
         raise ModelError(f"seat {seat}: Claude Code is paused by the breaker until {st['open_until']:.0f}")
     last = None
     for backend, model, is_fallback in tries:
-        if is_fallback and last is not None and not last.rate_limited:
-            break                                       # only a rate limit sends an L1 call elsewhere
+        if is_fallback and last is not None and not (last.rate_limited or (last.timed_out and seat in ("seller", "buyer"))):
+            break                                       # a rate limit (or a trading seat's timeout) sends the call elsewhere
         t0 = time.perf_counter()
         waited = 0.0
         try:

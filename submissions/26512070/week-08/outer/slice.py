@@ -72,7 +72,40 @@ def strategy_text(ctx):
     return "\n".join(lines)
 
 
+def _lock_path():
+    return paths.memory() / "facts" / "slice.lock"
+
+
+def running():
+    """True while a slice process holds the lock."""
+    _lock_path().parent.mkdir(parents=True, exist_ok=True)
+    f = open(_lock_path(), "a+b")
+    try:
+        atomic._lock(f)
+    except OSError:
+        f.close()
+        return True
+    atomic._unlock(f)
+    f.close()
+    return False
+
+
 def run(now=None, model_call=None):
+    _lock_path().parent.mkdir(parents=True, exist_ok=True)
+    lock = open(_lock_path(), "a+b")
+    try:
+        atomic._lock(lock)
+    except OSError:
+        lock.close()
+        return {"skipped": "another slice is running"}
+    try:
+        return _run(now, model_call)
+    finally:
+        atomic._unlock(lock)
+        lock.close()
+
+
+def _run(now=None, model_call=None):
     now = now or time.time()
     st_path = paths.memory() / "facts" / "slice_state.json"
     st = atomic.read_json(st_path, default=None) or {"last": now - 7200}

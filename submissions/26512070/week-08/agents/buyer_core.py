@@ -18,6 +18,7 @@ from core import card as cardmod
 from core import reflex
 from core.events import EventWriter
 from tools import market_files as mf
+from tools.calc import safe_name
 from tools.registry import Ctx, call
 
 DEADLINE = 270             # the kit stops market_buyer after 300 s
@@ -151,7 +152,7 @@ class BuyerCore:
             me = call(self.ctx, "me.counterpart", {"name": s["name"], "side": "shop"})["result"]
             rv = s.get("reviews") or []
             st = [r["stars"] for r in rv if isinstance(r.get("stars"), (int, float))]
-            lines.append(f"* {s['name']}: reviews {len(rv)}" + (f", average {sum(st) / len(st):.1f} stars" if st else ""))
+            lines.append(f"* {safe_name(s['name'])}: reviews {len(rv)}" + (f", average {sum(st) / len(st):.1f} stars" if st else ""))
             for r in rv[:REVIEWS_SHOWN]:
                 ex = call(self.ctx, "calc.extract", {"text": str(r.get("review") or ""), "max_excerpt": 100})["result"]
                 lines.append(f"    review {r.get('stars')}*: {ex['excerpt']}")
@@ -160,7 +161,7 @@ class BuyerCore:
             for x in s.get("offers") or []:
                 if x["sku"] in s["skus"]:
                     c = cat.get(x["sku"]) or {}
-                    lines.append(f"    has {x['sku']} {c.get('name') or x.get('name')}: {x.get('qty')} in stock, "
+                    lines.append(f"    has {x['sku']} {c.get('name') or safe_name(x.get('name'), 80)}: {x.get('qty')} in stock, "
                                  f"list price {c.get('list_price')}")
         return "\n".join(lines)
 

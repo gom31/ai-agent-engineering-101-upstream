@@ -19,7 +19,7 @@ import time
 from core import atomic, paths
 
 SLOTS = int(os.environ.get("HARNESS_SLOTS", "3"))
-PRIORITY = {"seller": 0, "buyer": 1, "restock": 2, "review": 3, "forum": 4, "analyst": 5, "strategy": 5, "audit": 6}
+PRIORITY = {"seller": 0, "buyer": 1, "restock": 2, "strategy": 3, "analyst": 4, "forum": 5, "review": 5, "audit": 6}
 MAX_WAIT = {"seller": 20, "buyer": 40, "restock": 60, "review": 60, "forum": 120, "analyst": 600, "strategy": 600}
 STALE_TICKET = 900
 POLL = 0.2

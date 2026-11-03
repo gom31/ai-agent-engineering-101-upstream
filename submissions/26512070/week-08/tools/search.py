@@ -175,6 +175,8 @@ def search(ctx, query, kind=None, participant=None, since=None, until=None, min_
                       "limit": {"type": "integer", "minimum": 1, "maximum": 50}}})
 def raw(ctx, pointer, contains=None, limit=10):
     rel, _, line_no = pointer.partition("#")
+    if ctx.caller == "audit" and rel.startswith(("raw/tools", "raw/models", "index/tool.", "index/model.")):
+        raise Refused("the audit does not read other agents' tool calls", "check the brief against the market's data")
     base = paths.root() if rel.startswith("logs/") else paths.memory()
     f = (base / rel).resolve()
     if not str(f).startswith(str(base.resolve())) or not f.is_file():

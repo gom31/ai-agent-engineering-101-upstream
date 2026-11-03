@@ -44,7 +44,7 @@ def run_forum():
 
 def once(state, w, now=None):
     """Run what is due. Each job fails on its own: an alert, and the other jobs still run."""
-    from outer import collect, slice as outer_slice, watch
+    from outer import collect, watch
     now = now or time.time()
     done = {}
 
@@ -74,8 +74,21 @@ def once(state, w, now=None):
     sid = due_slice(now, state.get("slice"))
     if sid:
         state["slice"] = sid
-        job("slice", lambda: outer_slice.run(now=now))
+        job("slice", start_slice)
     return done
+
+
+def start_slice():
+    """Start `py -m outer.slice` in its own process unless one is still running (it holds memory/facts/slice.lock)."""
+    from outer import slice as outer_slice
+    if outer_slice.running():
+        return "skipped: the previous slice is still running"
+    import os
+    p = subprocess.Popen([sys.executable, "-m", "outer.slice"], cwd=HERE, stdin=subprocess.DEVNULL,
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                         **({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt"
+                            else {"start_new_session": True}))
+    return {"started": p.pid}
 
 
 def main():

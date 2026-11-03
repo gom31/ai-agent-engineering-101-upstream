@@ -13,7 +13,7 @@ import re
 
 from core import atomic, card, paths, reflex
 from tools import market_files as mf
-from tools.calc import extract
+from tools.calc import extract, safe_name
 from tools.registry import Refused, tool
 
 _DETAIL = {"type": "string", "enum": ["concise", "full"]}
@@ -158,7 +158,7 @@ def forum(ctx, query=None, author=None, thread=None, limit=10):
             and (thread is None or str(p.get("thread")) == str(thread) or str(p.get("id")) == str(thread))]
     hits.sort(key=lambda p: p.get("ts") or 0, reverse=True)
     return {"matches": len(hits), "posts": [
-        {"id": p.get("id"), "ts": p.get("ts"), "author": p.get("author"), "role": p.get("role"),
+        {"id": p.get("id"), "ts": p.get("ts"), "author": safe_name(p.get("author")), "role": p.get("role"),
          "thread": p.get("thread"), "refs": p.get("refs"), "likes": p.get("likes"), "dislikes": p.get("dislikes"),
          "score": p.get("score"), **{k: v for k, v in extract(ctx, p.get("text") or "", 200).items()
                                     if k in ("excerpt", "looks_like_instruction", "price", "skus")}}

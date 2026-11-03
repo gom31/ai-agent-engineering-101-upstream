@@ -125,17 +125,18 @@ def rec_profile(ctx, name, side, summary, interpreted, changed=False):
     return {"recorded": name, "side": side, "changed": bool(changed)}
 
 
-@tool("rec.stance", "Set our stance toward one participant as a shop or as a buyer, with why and evidence. Avoiding "
-      "(refusing, blocking) or lifting it waits for the user; other stances apply directly only inside the delegation.",
-      {"type": "object", "required": ["name", "side", "stance", "why", "evidence"],
+@tool("rec.stance", "Set our stance toward one participant as a shop or as a buyer, with why and evidence. Set "
+      "avoid=true for any stance that refuses, blocks or stops dealing with them, or lifts such a stance: those wait "
+      "for the user. Other stances apply directly only inside the delegation.",
+      {"type": "object", "required": ["name", "side", "stance", "avoid", "why", "evidence"],
        "properties": {"name": {"type": "string", "minLength": 1}, "side": {"type": "string", "enum": ["shop", "buyer"]},
-                      "stance": {"type": "string", "minLength": 1, "maxLength": 60},
+                      "stance": {"type": "string", "minLength": 1, "maxLength": 60}, "avoid": {"type": "boolean"},
                       "why": {"type": "string", "minLength": 1, "maxLength": 300}, "evidence": _EVID}},
       side_effect="memory/strategy/counterparts")
-def rec_stance(ctx, name, side, stance, why, evidence):
+def rec_stance(ctx, name, side, stance, why, evidence, avoid):
     if not evidence:
         raise Refused("a stance needs evidence")
-    avoid = any(w in stance.lower() for w in ("avoid", "block", "refuse", "unblock", "lift"))
+    avoid = avoid or any(w in stance.lower() for w in ("avoid", "block", "black", "refuse", "ban", "exclude", "stop", "lift", "차단", "거절", "피하"))
     allowed = "stances" in (ctx.strategy.get("delegation") or {}).get("auto", [])
     entry = {"stance": stance, "why": why, "evidence": evidence, "set_by": ctx.caller, "since": ctx.now()}
     if avoid or not allowed:
