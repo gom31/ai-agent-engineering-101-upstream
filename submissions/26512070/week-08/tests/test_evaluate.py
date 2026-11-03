@@ -28,7 +28,8 @@ class EvalTest(Base):
             s.emit("seller.closed", {"outcome": outcome, "price": price, "cost": cost, "claim": "B" if t == "t1" else None,
                                      "claim_true": True}, task=t)
             if outcome == "completed":
-                s.emit("seller.settled", {"price": price, "cost": cost, "ledger": 10}, task=t)
+                s.emit("seller.settled", {"price": price, "cost": cost, "ledger": 10,
+                                          **({"claim": "B", "claim_true": True} if t == "t1" else {})}, task=t)
         b.emit("buyer.order", {"category": "김치", "budget": 30000}, order="o1")
         b.emit("buyer.pick", {"shop": "elm", "explored": True}, order="o1")
         b.emit("buyer.closed", {"outcome": "completed", "agreed": 20000, "receipt_price": 20000, "verdict": "fair"}, order="o1")

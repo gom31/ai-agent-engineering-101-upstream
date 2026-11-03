@@ -72,9 +72,13 @@ def unit_economics(ctx, scope, since=None, until=None, epoch=None):
                 "exposure_cost": -sum(x for x in m if x < 0)}
     if scope == "buyer":
         r = [e["data"] for e in events(["buyer.received"], since, until, epoch)]
+        br = [e["data"] for e in events(["buyer.broken"], since, until, epoch)]
         s = [d.get("surplus") or 0 for d in r]
-        return {"deals": len(r), "surplus": sum(s), "median_surplus": statistics.median(s) if s else None,
-                "worthless": sum(1 for d in r if not d.get("value"))}
+        lost = sum(d.get("price") or 0 for d in br if d.get("matched") and not d.get("refund"))
+        return {"deals": len(r), "surplus": sum(s) - lost, "surplus_before_breaks": sum(s),
+                "median_surplus": statistics.median(s) if s else None,
+                "worthless": sum(1 for d in r if not d.get("value")), "broken": len(br),
+                "broken_matched": sum(1 for d in br if d.get("matched")), "lost_to_breaks": lost}
     raise Refused(f"unit_economics has no scope {scope!r}", "use seller or buyer")
 
 
@@ -130,14 +134,15 @@ def decision_quality(ctx, scope, since=None, until=None, epoch=None):
       "posts whose refs were real ledger entries.",
       {"type": "object", "properties": _SLICE})
 def integrity(ctx, since=None, until=None, epoch=None):
-    ev = events(["buyer.closed", "seller.closed", "review.written", "forum.posted"], since, until, epoch)
+    ev = events(["buyer.closed", "seller.settled", "review.written", "forum.posted"], since, until, epoch)
     bc = [e["data"] for e in ev if e["kind"] == "buyer.closed"]
-    claims = [e["data"] for e in ev if e["kind"] == "seller.closed" and e["data"].get("claim")]
+    claims = [e["data"] for e in ev if e["kind"] == "seller.settled" and e["data"].get("claim")]
     rv = [e["data"] for e in ev if e["kind"] == "review.written"]
     off = [d for d in rv if d.get("fact_stars") is not None and d.get("stars") != d.get("fact_stars")]
     fp = [e["data"] for e in ev if e["kind"] == "forum.posted"]
     return {"cheats_caught": sum(1 for d in bc if str(d.get("verdict", "")).startswith("cheated")),
-            "our_claims": len(claims), "our_claims_true": sum(1 for d in claims if d.get("claim_true") is not False),
+            "our_claims": len(claims), "our_claims_true": sum(1 for d in claims if d.get("claim_true") is True),
+            "our_claims_unjudged": sum(1 for d in claims if d.get("claim_true") is None),
             "reviews": len(rv), "reviews_off_baseline": len(off),
             "reviews_off_without_reason": sum(1 for d in off if not d.get("why")),
             "posts": len(fp), "posts_with_valid_refs": sum(1 for d in fp if d.get("refs_valid"))}
@@ -153,12 +158,12 @@ def forum(ctx, since=None, until=None, epoch=None):
     for e in ev:
         if e["kind"] == "forum.votes":
             latest[e["data"].get("post_id")] = e["data"]          # the newest count per post
-    role = {p.get("post_id"): p.get("as") for p in posts}
-    by = {"buyer": {"posts": 0, "likes": 0, "dislikes": 0}, "shop": {"posts": 0, "likes": 0, "dislikes": 0}}
+    by = {"buyer": {"posts": 0, "likes": 0, "dislikes": 0}, "shop": {"posts": 0, "likes": 0, "dislikes": 0},
+          "unknown": {"posts": 0, "likes": 0, "dislikes": 0}}
     for p in posts:
-        by.setdefault(p.get("as") or "buyer", {"posts": 0, "likes": 0, "dislikes": 0})["posts"] += 1
+        by.setdefault(p.get("as") or "unknown", {"posts": 0, "likes": 0, "dislikes": 0})["posts"] += 1
     for pid, v in latest.items():
-        b = by.setdefault(role.get(pid) or "buyer", {"posts": 0, "likes": 0, "dislikes": 0})
+        b = by.setdefault(v.get("as") or "unknown", {"posts": 0, "likes": 0, "dislikes": 0})
         b["likes"] += v.get("likes") or 0
         b["dislikes"] += v.get("dislikes") or 0
     return by

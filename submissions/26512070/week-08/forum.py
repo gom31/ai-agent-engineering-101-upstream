@@ -77,7 +77,8 @@ def main():
                               "refs": (d or {}).get("refs"), "votes": votes,
                               "why": (d or {}).get("why") or (d or {}).get("thought")})
         if d and d.get("action") == "post":
-            w.emit("forum.posted", {"as": d["as"], "refs_valid": True, "post_id": None})
+            w.emit("forum.posted", {"as": d["as"], "refs_valid": True, "post_id": None})   # the id comes back on the
+            # market's answer in outbox.sent.jsonl; votes are counted by side from forum.json (forum.votes "as")
         print(json.dumps({"forum": (d or {}).get("action"), "votes": votes}))
     finally:
         w.close()

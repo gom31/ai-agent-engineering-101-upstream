@@ -55,7 +55,8 @@ def deal_of(row):
     return {"seq": row.get("seq"), "ts": row.get("ts"), "buyer": d.get("buyer"), "shop_url": d.get("shop"),
             "shop_card": r.get("shop") or d.get("shop_name"), "sku": r.get("item") or d.get("sku") or d.get("item") or mr.get("item"),
             "price": r.get("price", d.get("price")), "stars": d.get("stars"), "task": r.get("task") or d.get("task"),
-            "order": d.get("order"), "unit": mr.get("unit") or d.get("unit")}
+            "order": d.get("order"), "unit": mr.get("unit") or d.get("unit"),
+            "claim": mr.get("claim") or r.get("claim"), "claim_true": mr.get("claim_honest", d.get("claim_honest"))}
 
 
 # --- the rolling state behind live.json
@@ -268,7 +269,8 @@ class Collector:
                     costs = costs if costs is not None else seller_costs()
                     cost, unit = costs.get(deal["task"], (None, None))
                     self.w.emit("seller.settled", {"price": deal["price"], "cost": cost, "ledger": deal["seq"],
-                                                   "sku": deal["sku"], "stars": deal["stars"]},
+                                                   "sku": deal["sku"], "stars": deal["stars"], "claim": deal["claim"],
+                                                   "claim_true": deal["claim_true"]},
                                 task=deal["task"], ledger_seq=deal["seq"], **({"counterpart": deal["buyer"]} if deal["buyer"] else {}),
                                 **({"unit": unit} if unit else {}))
                     if deal["buyer"] and deal["task"]:
