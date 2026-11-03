@@ -76,7 +76,7 @@ def fold(state, row, me, catalog):
     rnd = row.get("round")
     if rnd is not None and state.get("round") is not None and rnd != state["round"]:
         # a new round: what sold before does not tell what sells now (Round 3 has other products)
-        state.update(hours={}, shops={}, customers={}, round_started=row.get("ts"))
+        state.update(hours={}, shops={}, customers={}, buyers={}, round_started=row.get("ts"))
     if rnd is not None:
         state["round"] = rnd
     d = row.get("data") or {}
@@ -106,6 +106,12 @@ def fold(state, row, me, catalog):
         s["last"] = ts
         if isinstance(deal["stars"], (int, float)):
             s["stars"] = (s["stars"] + [deal["stars"]])[-50:]
+    cat = (catalog.get(deal["sku"]) or {}).get("category") if deal["sku"] else None
+    if deal["buyer"] and cat:                           # hidden demand: what each buyer's orders turn out to be
+        b = state.setdefault("buyers", {}).setdefault(deal["buyer"], {"deals": 0, "cats": {}, "last": None})
+        b["deals"] += 1
+        b["cats"][cat] = b["cats"].get(cat, 0) + 1
+        b["last"] = ts
     ours = is_ours(deal, me, state)
     if ours and deal["buyer"]:
         c = state["customers"].setdefault(deal["buyer"], {"deals": 0, "first": ts, "last": None, "skus": {}, "paid": 0})
@@ -149,6 +155,10 @@ def live(state, catalog, now, hours=6):
                               "sold": n, **({} if s in catalog else {"in_catalog": False})} for s, n in top],
                     "categories": [{"category": c, "sold": n} for c, n in sorted(cats.items(), key=lambda x: -x[1])[:30]]},
         "sku": {s: {"sold_6h": n} for s, n in top},
+        "buyers": {n: {"deals": b["deals"], "last": b["last"],
+                       "favourites": [{"category": c, "deals": k, "share": round(k / b["deals"], 3)}
+                                      for c, k in sorted(b["cats"].items(), key=lambda x: -x[1])[:5]]}
+                   for n, b in (state.get("buyers") or {}).items()},
         "customer": {n: {"deals_with_us": c["deals"], "first": c["first"], "last": c["last"], "paid_total": c["paid"],
                          "top_skus": sorted(c["skus"], key=lambda s: -c["skus"][s])[:5]} for n, c in state["customers"].items()},
         "shop": {n: {"deals_seen": s["deals_seen"], "last": s["last"],

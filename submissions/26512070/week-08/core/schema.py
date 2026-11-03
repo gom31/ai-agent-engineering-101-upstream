@@ -140,6 +140,7 @@ LIMITS = {
                 "first_deal_only": {"type": "boolean"},
                 "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}},
                 "max_list_price": {"type": "integer", "minimum": 0},
+                "grades": {"type": "array", "items": {"type": "string", "enum": ["A", "B", "C"]}},   # grade now
             },
         },
     },
@@ -157,6 +158,10 @@ STRATEGY = {
         "phase": _STR,
         "priorities": {"type": "array", "items": _STR},
         "context": {"type": "array", "items": _STR},   # optional: what the analysts and strategy saw, for executors
+        "welcome_food": {                                # optional: when restock brings the batch, how long it is sold
+            "type": "object",
+            "properties": {"restock_at": {"type": "array", "items": {"type": "string", "minLength": 4}},
+                           "sell_hours": {"type": "number", "minimum": 0}, "share_of_cost": {"type": "number"}}},
         "shop_card": {                                   # optional: what our A2A card tells other agents (name is fixed)
             "type": "object", "required": ["description"],
             "properties": {"description": {"type": "string", "minLength": 1, "maxLength": 600},

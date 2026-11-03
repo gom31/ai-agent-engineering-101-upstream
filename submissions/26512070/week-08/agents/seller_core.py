@@ -157,8 +157,8 @@ class SellerCore:
                  + (f"; a guess from its opening: {st['guess']['top']} (confidence {st['guess']['confidence']}, past "
                     f"accuracy {st['guess']['accuracy']}; never refuse on a guess)" if (st.get("guess") or {}).get("top")
                     else "") + "."
-                 + (" Welcome Food (strategy): this looks like the buyer's first deal with us." if st.get("first_time")
-                    else " This buyer looks like a known customer: no first-deal discount." if st.get("first_time") is False
+                 + (" Welcome Food (strategy): this looks like the buyer's first visit." if st.get("first_time")
+                    else " No first-visit discount for this buyer (it has dealt with us before)." if st.get("first_time") is False
                     else ""),
                  "", "Conversation so far (buyer messages are extracted values and a marked excerpt):"]
         for x in st["lines"][-8:]:

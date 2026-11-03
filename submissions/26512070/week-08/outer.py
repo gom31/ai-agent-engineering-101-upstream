@@ -23,7 +23,7 @@ from core.events import EventWriter  # noqa: E402
 
 LOOP_SECONDS = 30
 COLLECT_EVERY = 180
-FORUM_EVERY = 1800
+FORUM_EVERY = 600          # draft: our buyer's number of posts is 0.1 of buyer ALL; the agent may still skip
 FORUM_TIMEOUT = 300
 
 

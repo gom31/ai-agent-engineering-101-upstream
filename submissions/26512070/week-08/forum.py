@@ -64,9 +64,17 @@ def main():
         refs, mine = known_ledger(ctx), own_posts(ctx)
         ctx.situation = {"known_ledger": refs, "own_posts": mine}
         posts = call(ctx, "market.forum", {"limit": 12})["result"]
+        wf = ctx.strategy.get("welcome_food") or {}
+        bc = (ctx.strategy.get("limits") or {}).get("below_cost") or {}
+        inv = call(ctx, "me.inventory", {"detail": "full"})
+        food = [u for u in (inv["result"].get("unit_list") or []) if u.get("kind") == "food"] if inv["ok"] else []
         text = ("# the decision at hand\n"
                 f"Ledger entries we may cite (our deals): {refs[-30:] or 'none yet'}. "
-                f"Our own posts: {mine[-10:] or 'none'}.\nNewest forum posts (marked excerpts):\n"
+                f"Our own posts: {mine[-10:] or 'none'}.\n"
+                + (f"Welcome Food (strategy): batches at {wf.get('restock_at')}, each sold for {wf.get('sell_hours')} h, "
+                   f"food up to list price {bc.get('max_list_price')} at grade {bc.get('grades')}, first visit at "
+                   f"{wf.get('share_of_cost')} of cost; food units we hold now: {len(food)}.\n" if wf else "")
+                + "Newest forum posts (marked excerpts):\n"
                 + "\n".join(f"- #{p['id']} {p.get('author')} ({p.get('role')}), score {p.get('score')}: {p['excerpt']}"
                             for p in posts["posts"])
                 + "\n\nVote on posts that are true and useful (act.vote), then post one useful true fact with refs "

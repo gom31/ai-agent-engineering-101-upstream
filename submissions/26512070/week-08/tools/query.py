@@ -108,6 +108,32 @@ def selling(ctx, hours=6, kind=None, limit=10):
             "note": None if live else "no market collection yet (the outer runtime writes it)"}
 
 
+@tool("market.buyer_prefs", "Hidden demand: each buyer's favourite categories as its settled deals show them (the market "
+      "does not publish them). With buyer: that buyer's favourites with counts and shares. With category: the buyers "
+      "who favour it. With neither: the categories wanted by the most different buyers. Says how many deals each is "
+      "based on; a buyer with few deals is a weak signal.",
+      {"type": "object", "properties": {"buyer": {"type": "string"}, "category": {"type": "string"},
+                                        "limit": {"type": "integer", "minimum": 1, "maximum": 30}}})
+def buyer_prefs(ctx, buyer=None, category=None, limit=10):
+    buyers = (_read(paths.memory() / "facts" / "live.json", default={}) or {}).get("buyers") or {}
+    if not buyers:
+        return {"buyers": 0, "note": "no settled deals collected yet"}
+    if buyer:
+        b = buyers.get(buyer)
+        return {"buyer": buyer, "known": bool(b), **(b or {})}
+    if category:
+        q = category.lower()
+        rows = [{"buyer": safe_name(n), "deals": f["deals"], "share": f["share"], "of_deals": b["deals"]}
+                for n, b in buyers.items() for f in b["favourites"] if q in f["category"].lower()]
+        return {"category": category, "buyers": sorted(rows, key=lambda r: (-r["share"], -r["deals"]))[:limit]}
+    wide = {}
+    for b in buyers.values():
+        for f in b["favourites"][:3]:
+            wide[f["category"]] = wide.get(f["category"], 0) + 1
+    return {"buyers": len(buyers), "categories_by_buyers": [{"category": c, "buyers": k} for c, k in
+                                                            sorted(wide.items(), key=lambda x: -x[1])[:limit]]}
+
+
 @tool("me.counterpart", "Everything we know about one participant, in one call. side=shop: how that shop treated our "
       "buyer (deals, cheated, payment refusals, blocked). side=buyer: how that buyer dealt with our shop. Plus the "
       "market analyst's profile summary and our current stance toward them. Unknown participants come back as unknown.",

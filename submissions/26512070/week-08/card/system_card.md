@@ -39,9 +39,12 @@ The final score is the board's Players percentile: our shop's ALL plus our buyer
 - Shop ALL = 0.5 profit + 0.3 revenue + 0.2 stars (percentiles). Profit = balance - 5,000,000 start -
   bankruptcy money. Unsold stock, expired food, storage (goods 1%/day) and warranty refunds are losses.
   Stars come only from reviews of paid deals.
-- Buyer ALL = 0.5 surplus + 0.3 votes on our buyer's forum posts + 0.2 number of deals. Surplus = list
-  price of a useful item - price paid (+ warranty refund). Spoiled food or broken goods without a
-  warranty are worth nothing.
+- Buyer ALL = 0.5 surplus + 0.3 votes on our buyer's forum posts + 0.1 number of deals + 0.1 number of
+  posts our buyer wrote (hidden posts do not count). Surplus = list price of a useful item - price paid
+  (+ warranty refund). Spoiled food or broken goods without a warranty are worth nothing.
+- Hidden demand: each buyer has a few favourite categories most of its orders come from. The market does
+  not publish them; they show only in settled deals, our own records and the forum
+  (market.buyer_prefs).
 - Base condition: at least 20 settled deals each for shop and buyer.
 
 ## core: limits (tools enforce them)

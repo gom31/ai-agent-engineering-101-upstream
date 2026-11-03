@@ -26,6 +26,7 @@ from tools import market_files as mf  # noqa: E402
 from tools.registry import Ctx, call  # noqa: E402
 
 REASK_MINUTES = 20
+BATCH_MINUTES = 30         # a Welcome Food batch time asks the model once within this window
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
 
 
@@ -35,11 +36,27 @@ def stuck(inv):
             and not live)
 
 
+def welcome_slot(strategy, now):
+    """The Welcome Food batch time we are in (its first BATCH_MINUTES), e.g. '2026-11-05 09:00', or None."""
+    wf = strategy.get("welcome_food") or {}
+    for t in wf.get("restock_at") or []:
+        try:
+            hh, mm = (int(x) for x in t.split(":"))
+        except ValueError:
+            continue
+        lt = time.localtime(now)
+        start = time.mktime((lt.tm_year, lt.tm_mon, lt.tm_mday, hh, mm, 0, 0, 0, -1))
+        if 0 <= now - start < BATCH_MINUTES * 60:
+            return time.strftime("%Y-%m-%d ", lt) + t
+    return None
+
+
 def signature(ctx):
     inv = call(ctx, "me.inventory", {})["result"]
     sold = call(ctx, "market.selling", {"hours": 2})["result"]["our_deals"]
     return {"units": inv["units"], "expiring": len(inv["expiring_12h"]), "sold_2h": sold,
-            "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version")}, inv
+            "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version"),
+            "welcome": welcome_slot(ctx.strategy, time.time())}, inv
 
 
 def situation(ctx, inv):
@@ -65,6 +82,13 @@ def situation(ctx, inv):
              "SKUs in the catalog):"]
     for d in mf.read(ctx, "demand.json", default=[]) or []:
         lines.append(f"- {d.get('item')} ({d.get('kind')}, {d.get('median_price')}, {d.get('skus')})")
+    slot = welcome_slot(ctx.strategy, time.time())
+    wf, bc = ctx.strategy.get("welcome_food") or {}, lim.get("below_cost") or {}
+    if slot:
+        lines.append(f"\nWelcome Food batch time ({slot}): buy food for first-time buyers (list price up to "
+                     f"{bc.get('max_list_price')}, sold only at grade {bc.get('grades')} now), sized to sell within "
+                     f"{wf.get('sell_hours')} h. What arrives at which grade is the market's; market.buyer_prefs "
+                     "shows which food categories buyers want.")
     lines.append("\nFind SKUs with market.sku (a category word or a name), then act.buy a plan (or an empty plan).")
     return "\n".join(lines)
 

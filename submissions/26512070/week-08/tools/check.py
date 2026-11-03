@@ -41,9 +41,13 @@ def price(ctx, unit, price):
     if bc.get("max_list_price") is not None and (u.get("list_price") or 0) > bc["max_list_price"]:
         raise Refused(f"{price} is below cost {cost}; below cost only up to list price {bc['max_list_price']}",
                       f"ask {cost} or more")
-    if bc.get("first_deal_only") and ctx.situation.get("first_time") is not True:
-        raise Refused(f"{price} is below cost {cost}; below cost only on a first deal, and this buyer is "
-                      + ("a known customer" if ctx.situation.get("first_time") is False else "not known to be new"),
+    if bc.get("grades"):
+        now_grade = mf.current_grade(u, (mf.catalog(ctx).get(u["sku"]) or {}).get("shelf_hours"), ctx.now())
+        if now_grade not in bc["grades"]:
+            raise Refused(f"{price} is below cost {cost}; below cost only for grade {bc['grades']} now, this unit is "
+                          f"{now_grade}", f"ask {cost} or more")
+    if bc.get("first_deal_only") and ctx.situation.get("first_time") is False:
+        raise Refused(f"{price} is below cost {cost}: no first-visit discount, this buyer has dealt with us before",
                       f"ask {cost} or more")
     if price < floor:
         raise Refused(f"{price} loses more than {bc['max_loss_share_of_cost']:.0%} of cost {cost}",
