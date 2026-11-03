@@ -134,7 +134,8 @@ def situation(ctx, inv):
                      "worst-case cost, category, name):")
         lines += [f"- {r['sku']} {r['list_price']} {r['worst_cost']} {r['category']}: {r['name']}" for r in rows]
     lines.append("\nPick from the candidates or find others with market.sku, then act.buy a plan of up to 10 lines "
-                 "(or an empty plan). This window allows a few plans in a row.")
+                 "(or an empty plan). This window allows a few plans in a row. The kit buys one line about every "
+                 "10 s, so a line of several units (up to the per-SKU limit) stocks more in the same window.")
     return "\n".join(lines)
 
 
