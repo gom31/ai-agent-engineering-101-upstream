@@ -7,3 +7,7 @@
 {"ts": 1793734455.2778962, "proposal_id": "2026-11-04T0430", "choice": "A_depth", "note": "night mode or delegation: audit agreed", "installed": 34}
 {"ts": 1793738052.8914542, "proposal_id": "2026-11-04T0530", "choice": "A", "note": "night mode or delegation: audit agreed", "installed": 37}
 {"ts": 1793739831.63209, "proposal_id": "2026-11-04T0600", "choice": "A_depth_best_sellers", "note": "night mode or delegation: audit agreed", "installed": 39}
+{"ts": 1793741650.4996474, "proposal_id": "2026-11-04T0630", "choice": "A_breadth_moderate", "note": "night mode or delegation: audit agreed", "installed": 41}
+{"ts": 1793743431.0497322, "proposal_id": "2026-11-04T0700", "choice": "B_cover3", "note": "night mode or delegation: audit agreed", "installed": 42}
+{"ts": 1793745253.5699177, "proposal_id": "2026-11-04T0730", "choice": "A_depth_line", "note": "night mode or delegation: audit agreed", "installed": 43}
+{"ts": 1793747029.0096173, "proposal_id": "2026-11-04T08", "choice": "A_capped_breadth", "note": "night mode or delegation: audit agreed", "installed": 44}
