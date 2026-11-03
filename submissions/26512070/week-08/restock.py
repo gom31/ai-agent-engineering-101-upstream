@@ -13,6 +13,7 @@ unit left to sell. Code decides it, not the model, and an urgent alert tells the
 """
 import argparse
 import json
+import math
 import sys
 import time
 from pathlib import Path
@@ -34,6 +35,71 @@ WINDOW_MINUTES = 3
 PLANS_PER_WINDOW = 4       # a plan of 10 lines takes the kit ~100 s (one supply call per 10 s); windows run 10 min (seen 11/3)
 CANDIDATES = 40            # goods SKUs offered in the situation, one per demand category, so a plan needs no search
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
+
+
+WINDOWS_PER_6H = 18        # supply opens about every 20 minutes
+BUY_LIST_FRESH = 1200      # seconds a buy list the outer loop wrote stays good
+
+
+def playbook(ctx):
+    """User 11/4 02:0x (HARNESS 14): restock buys a list fixed in advance; the strategy's playbook sets its numbers
+    and the strategy agent keeps changing them (delegated)."""
+    pb = ((ctx.strategy.get("playbook") or {}).get("restock") or {})
+    return {"mode": pb.get("mode", "rules"), "cover_windows": pb.get("cover_windows", 2),
+            "market_top": pb.get("market_top", 5), "market_units": pb.get("market_units", 2)}
+
+
+def build_buy_list(ctx, now=None):
+    """The buy list: our missed requests and our sales (last 6 h) turned into units per supply window, times
+    cover_windows, then the market's best-selling goods we do not hold (market_units each). Most wanted first, so
+    act.buy's trimming drops the least wanted. Written to memory/facts/buy_list.json for the outer side to read."""
+    now = now or time.time()
+    pb, lim = playbook(ctx), check._limits(ctx)
+    cat = mf.catalog(ctx)
+    have = {}
+    for u in mf.inventory(ctx).get("units", []):
+        if u.get("grade") != "expired":
+            have[u["sku"]] = have.get(u["sku"], 0) + 1
+    missed = call(ctx, "me.missed", {"hours": 6})
+    sell = call(ctx, "market.selling", {"hours": 6})
+    want = {}
+    for x in (missed["result"].get("skus") or []) if missed["ok"] else []:
+        if x.get("kind") == "goods":
+            want[x["sku"]] = want.get(x["sku"], 0) + x.get("asked", 0)
+    for x in (sell["result"].get("ours") or []) if sell["ok"] else []:
+        if (cat.get(x["sku"]) or {}).get("kind") == "goods":
+            want[x["sku"]] = want.get(x["sku"], 0) + x.get("sold", 0)
+    lines = []
+    for sku, n in sorted(want.items(), key=lambda kv: -kv[1]):
+        if sku not in cat:
+            continue
+        target = max(1, min(lim["max_units_per_sku"], math.ceil(pb["cover_windows"] * n / WINDOWS_PER_6H)))
+        lines.append({"sku": sku, "target": target, "have": have.get(sku, 0), "why": f"wanted {n} in 6 h"})
+    market = [x for x in ((sell["result"].get("market") or []) if sell["ok"] else [])
+              if x.get("kind") == "goods" and x["sku"] in cat and x["sku"] not in want]
+    for x in market[:pb["market_top"]]:
+        lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["market_units"]),
+                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} in 6 h"})
+    doc = {"ts": now, "playbook": pb, "lines": lines}
+    atomic.write_json(paths.memory() / "facts" / "buy_list.json", doc)
+    return doc
+
+
+def rules_plan(ctx, now=None):
+    """(plan, trimmed, list) from the buy list: what each line still lacks, cut to the limits by act.fit_plan."""
+    from tools import act
+    now = now or time.time()
+    doc = atomic.read_json(paths.memory() / "facts" / "buy_list.json", default=None)
+    if not doc or now - doc.get("ts", 0) > BUY_LIST_FRESH:
+        doc = build_buy_list(ctx, now)
+    have = {}
+    for u in mf.inventory(ctx).get("units", []):         # now, not when the list was written
+        if u.get("grade") != "expired":
+            have[u["sku"]] = have.get(u["sku"], 0) + 1
+    plan = [{"sku": x["sku"], "qty": min(20, x["target"] - have.get(x["sku"], 0))} for x in doc["lines"]
+            if x["target"] > have.get(x["sku"], 0)]
+    plan, trimmed = act.fit_plan(ctx, plan[:10])
+    return plan, trimmed, doc
 
 
 def stuck(inv):
@@ -217,6 +283,18 @@ def main():
             w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False})
             print(json.dumps({"buy": []}))
             return
+        if playbook(ctx)["mode"] == "rules":
+            # HARNESS 14: buy the list at once, once per window; the agent only when the list gives nothing
+            plan, trimmed, doc = rules_plan(ctx, t0)
+            if plan:
+                atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute, "plans_in_window": PLANS_PER_WINDOW})
+                w.emit("restock.plan", {"lines": len(plan), "plan": plan, "refused": None, "used_model": False,
+                                        "rules": True, "trimmed": trimmed or None})
+                print(json.dumps({"buy": plan}))
+                return
+            w.emit("exec.anomaly", {"role": "restock", "kind": "buy_list_empty",
+                                    "situation": {"lines": len(doc["lines"]), "trimmed": trimmed[:10]},
+                                    "then": "agent"})
         d, trace = loop.decide("restock", ctx, situation(ctx, inv), deadline=t0 + DEADLINE)
         plan = d["plan"] if d else []
         if d is not None:                               # a failed turn is tried again next time

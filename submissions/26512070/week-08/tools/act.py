@@ -199,7 +199,7 @@ def buy(ctx, plan, why=""):
 def fit_plan(ctx, plan):
     """11/4 01:3x: 32 restock plans in 4 h bought 4 times - most were refused for a few units over the per-SKU limit
     or the cash floor, and with model turns of 40-60 s there was no time to plan again. Cut each line to the room the
-    SKU has, then drop lines from the end until check.buy passes. (plan, what was cut)."""
+    SKU has, then take the lines in order, each with the most units check.buy still passes. (plan, what was cut)."""
     lim = check._limits(ctx)
     have = {}
     for u in mf.inventory(ctx).get("units", []):
@@ -214,15 +214,22 @@ def fit_plan(ctx, plan):
         if line["qty"] > room:
             cut.append(f"{line['sku']}: {line['qty']} -> {room}")
         out.append(dict(line, qty=min(line["qty"], room)))
-    while out:
-        try:
-            check.buy(ctx, out)
+    fitted = []
+    for line in out:                       # most wanted first: each line gets the most units that still pass
+        for q in range(line["qty"], 0, -1):
+            try:
+                check.buy(ctx, fitted + [dict(line, qty=q)])
+            except Refused as e:
+                if "per SKU" in str(e) or "not in the catalog" in str(e) or "lines;" in str(e):
+                    raise
+                continue
+            if q < line["qty"]:
+                cut.append(f"{line['sku']}: {line['qty']} -> {q} (cash or stock limit)")
+            fitted.append(dict(line, qty=q))
             break
-        except Refused as e:
-            if "per SKU" in str(e) or "not in the catalog" in str(e) or "lines;" in str(e):
-                raise
-            cut.append(f"dropped {out[-1]['sku']} ({e.args[0][:60]})")
-            out = out[:-1]
+        else:
+            cut.append(f"dropped {line['sku']} (cash or stock limit)")
+    out = fitted
     return out, cut
 
 

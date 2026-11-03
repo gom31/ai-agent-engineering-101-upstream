@@ -3474,3 +3474,27 @@
 01:50:24 [kit] 48 shops in .market\shops.json, running market_buyer
 01:50:28 [forum] post as shop: 200
 01:50:39 [forum] post as buyer: 200
+01:51:01 [buyer] {"buy": []}
+01:51:05 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 17640, "item": "G81ade83e", "cert": true, "shop": "kimauve", "claim": "B", "unit": "u-8d82cb2eed27", "warranty_hours": 0.0, "task": "4d63db41-3932-4695-8d10-a2b4e36bb62d", "sig_seller": "5xiLjsaOU/dXA0p7CB3PAEIu7TxKSU2xC/Ttu2wqldf4+ceNve+53s1g5ndGVUIFYLVGlB3R9NzO81N6MFueDw=="}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 0, "grades": ["B"], "warranty_hours": 0}}
+01:51:05 [sign] sig_seller ok, sig_buyer added
+01:51:06 [acp] checkout ships unit u-8d82cb2eed27, claim B, certificate attached
+01:51:06 [acp] paid 17640 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2202587: 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지, grade B
+01:51:45 [seller] [seller] e55d8f16 input_required: I can offer the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) at 25,839 KRW. It comes with a grade A and a 6-hour warranty.
+01:51:56 [buyer] {"stars": 4, "review": "Reliable shop delivered grade B as promised at a fair price."}
+01:51:56 [market] ledger #2202792: G81ade83e at 17640, stars 4, verified True, review accepted
+01:51:56 [order o-3458cbe0bf79] 신선육류, budget 27300, round 3, use within 18.0 h
+01:51:57 [kit] 48 shops in .market\shops.json, running market_buyer
+01:52:02 [seller] [seller] 180b73f5 input_required: The price I can offer is 175,509, which includes the warranty and the market certificate for the grade A unit.
+01:52:05 [buyer] {"buy": []}
+01:52:55 [seller] [seller] 70141b64 input_required: The price is 79,110, and it comes with a full warranty for 6 hours.
+01:53:10 [buyer] {"buy": []}
+01:54:15 [buyer] {"buy": []}
+01:54:33 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:54:33 [market] ledger #2203437: no deal, stars None, verified False, review not shown
+01:54:33 [order o-62260e71dad5] 주스/코코아/생수, budget 18810, round 3, use within 180.0 h
+01:54:34 [kit] 48 shops in .market\shops.json, running market_buyer
+01:54:34 [seller] [seller] eec4dcee input_required: The current asking price is 79,110 KRW for the item, and it comes with a market certificate.
+01:54:43 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:54:44 [market] ledger #2203475: no deal, stars None, verified False, review not shown
+01:54:54 [order o-1b74ecc58362] 신선육류, budget 34440, round 3, use within 2.5 h
+01:54:54 [kit] 48 shops in .market\shops.json, running market_buyer
