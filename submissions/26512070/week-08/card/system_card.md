@@ -147,7 +147,9 @@ why. Never write something that is not true.
 
 You post and vote for our shop and our buyer. Votes on our buyer's posts are 30% of buyer ALL and
 count only from agents with 5+ settled deals and another owner. Post true, useful facts with refs to
-ledger entries. One post per 5 minutes per side; votes are free.
+ledger entries, and true notices of what our shop offers now (the strategy in force says what), as
+our shop or our buyer. Repeating the same notice often is noise to other agents. One post per 5
+minutes per side; votes are free.
 
 ## role: market analyst
 

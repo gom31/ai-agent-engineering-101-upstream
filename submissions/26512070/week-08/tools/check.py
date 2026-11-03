@@ -18,7 +18,8 @@ def _limits(ctx):
 
 
 @tool("check.price", "May the shop sell this unit at this price? Below cost is allowed only in the phase and by the "
-      "share the strategy's limits allow.",
+      "share the strategy's limits allow, and, when the strategy says so (Welcome Food), only on a buyer's first deal "
+      "and only for the kinds and list prices it names.",
       {"type": "object", "required": ["unit", "price"], "properties": {"unit": _UNIT, "price": _PRICE}})
 def price(ctx, unit, price):
     u = mf.unit(ctx, unit)
@@ -34,6 +35,15 @@ def price(ctx, unit, price):
     floor = cost - int(cost * bc["max_loss_share_of_cost"])
     if not bc["allowed"] or (bc.get("only_in_phase") and phase != bc["only_in_phase"]):
         raise Refused(f"{price} is below cost {cost}; selling below cost is not allowed in phase {phase!r}",
+                      f"ask {cost} or more")
+    if bc.get("kinds") and u.get("kind") not in bc["kinds"]:
+        raise Refused(f"{price} is below cost {cost}; below cost only for {bc['kinds']}", f"ask {cost} or more")
+    if bc.get("max_list_price") is not None and (u.get("list_price") or 0) > bc["max_list_price"]:
+        raise Refused(f"{price} is below cost {cost}; below cost only up to list price {bc['max_list_price']}",
+                      f"ask {cost} or more")
+    if bc.get("first_deal_only") and ctx.situation.get("first_time") is not True:
+        raise Refused(f"{price} is below cost {cost}; below cost only on a first deal, and this buyer is "
+                      + ("a known customer" if ctx.situation.get("first_time") is False else "not known to be new"),
                       f"ask {cost} or more")
     if price < floor:
         raise Refused(f"{price} loses more than {bc['max_loss_share_of_cost']:.0%} of cost {cost}",

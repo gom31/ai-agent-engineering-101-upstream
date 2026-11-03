@@ -15,12 +15,14 @@ import time
 from pathlib import Path
 
 from agents import loop
+from core import atomic, paths
 from core import card as cardmod
 from core.events import EventWriter
 from tools import market_files as mf
 from tools.registry import Ctx, call
 
 MAX_TURNS = 12
+KNOWN_AT = 0.5             # a guess this sure that names a confirmed customer makes the buyer "not first time"
 CANDIDATES = 5
 
 
@@ -44,6 +46,10 @@ class SellerCore:
         self.open = {}
         self.events = EventWriter("seller", source="seller")
         self.tool_events = EventWriter("seller", source="tools")    # one open file for every turn's tool calls
+
+    def is_customer(self, name):
+        live = atomic.read_json(paths.memory() / "facts" / "live.json", default={}) or {}
+        return bool(((live.get("customer") or {}).get(name) or {}).get("deals_with_us"))
 
     # --- what fits
 
@@ -96,6 +102,7 @@ class SellerCore:
             g = call(ctx, "calc.guess_counterpart", {"task": task_id, "messages": [text]})["result"]
             top = (g.get("candidates") or [None])[0]
             st["guess"] = {"top": top and top["name"], "confidence": top and top["confidence"], "accuracy": g.get("accuracy")}
+            st["first_time"] = not (top and top["confidence"] >= KNOWN_AT and self.is_customer(top["name"]))
             self.events.emit("guess.made", {"task": task_id, "top": st["guess"]["top"],
                                             "confidence": st["guess"]["confidence"]}, task=task_id)
         st["turns"] += 1
@@ -107,7 +114,7 @@ class SellerCore:
             return self._close(task_id, st, "rejected", "We could not agree. Thank you for asking.")
 
         ctx.situation = {"unit": st["unit"], "candidates": [c["unit"] for c in st["candidates"]], "offer": st["offer"],
-                         "ask": st["ask"]}
+                         "ask": st["ask"], "first_time": st.get("first_time")}
         t0 = time.perf_counter()
         d, trace = loop.decide("seller", ctx, self.situation_text(ctx, st), deadline=deadline, model_call=self.model_call)
         guard = None
@@ -149,7 +156,10 @@ class SellerCore:
                  f"Phase in force: {strat.get('phase')}. Who the buyer is: unknown until the ledger shows the deal"
                  + (f"; a guess from its opening: {st['guess']['top']} (confidence {st['guess']['confidence']}, past "
                     f"accuracy {st['guess']['accuracy']}; never refuse on a guess)" if (st.get("guess") or {}).get("top")
-                    else "") + ".",
+                    else "") + "."
+                 + (" Welcome Food (strategy): this looks like the buyer's first deal with us." if st.get("first_time")
+                    else " This buyer looks like a known customer: no first-deal discount." if st.get("first_time") is False
+                    else ""),
                  "", "Conversation so far (buyer messages are extracted values and a marked excerpt):"]
         for x in st["lines"][-8:]:
             if x["from"] == "buyer":

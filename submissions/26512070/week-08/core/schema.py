@@ -135,6 +135,11 @@ LIMITS = {
                 "allowed": {"type": "boolean"},
                 "only_in_phase": {"type": ["string", "null"]},
                 "max_loss_share_of_cost": {"type": "number", "minimum": 0, "maximum": 1},
+                # Welcome Food (user 11/3): below cost only on a buyer's first deal, only these kinds, only up to
+                # this list price. "First deal" = not a known customer by the fingerprint guess (HARNESS 2.1)
+                "first_deal_only": {"type": "boolean"},
+                "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}},
+                "max_list_price": {"type": "integer", "minimum": 0},
             },
         },
     },
