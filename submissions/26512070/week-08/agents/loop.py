@@ -49,7 +49,7 @@ ROLES = {
                           "rec.stance", "memory.card_section"],
                  "final": ["rec.brief"], "steps": 8, "seat": "strategy", "reader": "strategist", "timeout": 240},
     "audit": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.audits",
-                       "memory.summary", "memory.card_section"],
+                       "memory.summary", "market.selling", "market.sku", "memory.card_section"],
               "final": ["rec.audit"], "steps": 5, "seat": "audit", "reader": "auditor", "timeout": 240},
 }
 FORMAT = ('Answer with ONE JSON object and nothing else: {"thought": "<one short sentence>", "tool": "<tool name>", '
