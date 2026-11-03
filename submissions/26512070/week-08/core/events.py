@@ -31,6 +31,7 @@ class EventWriter:
         self.writer, self.source = writer, source
         self.pid = os.getpid()
         self.seq = 0
+        self.out = atomic.Appender()          # the day's file stays open; a new day opens the next one
         self.ctx = {"strategy_version": None, "epoch": None, "card_version": None}
 
     def context(self, strategy_version=None, epoch=None, card_version=None):
@@ -53,8 +54,11 @@ class EventWriter:
         errors = schema.validate(ev, schema.EVENT)
         if errors:
             raise ValueError(f"event does not fit the schema: {errors}")
-        atomic.append_line(self.path(ts), json.dumps(ev, ensure_ascii=False, separators=(",", ":")))
+        self.out.append(self.path(ts), json.dumps(ev, ensure_ascii=False, separators=(",", ":")))
         return ev
+
+    def close(self):
+        self.out.close()
 
 
 class EventReader:

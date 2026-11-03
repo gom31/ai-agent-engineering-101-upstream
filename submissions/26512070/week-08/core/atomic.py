@@ -80,19 +80,45 @@ def read_json(path, default=None):
         return default
 
 
+def _append_locked(f, data):
+    _retry(lambda: _lock(f))                 # byte 0 is the lock; in "a+b" mode writes go to the end
+    try:
+        f.seek(0, os.SEEK_END)
+        f.write(data)
+        f.flush()
+    finally:
+        _unlock(f)
+
+
 def append_line(path, line: str):
-    """Append one line (a trailing newline is added) under a file lock."""
+    """Append one line (a trailing newline is added) under a file lock. Opens and closes the file each time;
+    a process that appends often keeps an Appender instead."""
     if "\n" in line:
         raise ValueError("append_line takes a single line")
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    data = (line + "\n").encode("utf-8")
-    # "r+b"/"a+b": msvcrt.locking needs a real handle; byte 0 is the lock, writes go to the end.
     with open(path, "a+b") as f:
-        _retry(lambda: _lock(f))
-        try:
-            f.seek(0, os.SEEK_END)
-            f.write(data)
-            f.flush()
-        finally:
-            _unlock(f)
+        _append_locked(f, (line + "\n").encode("utf-8"))
+
+
+class Appender:
+    """Keeps one file open for appending. Opening a file per line cost ~24 ms on Windows (500 events in
+    11.8 s), which a decision that logs several events cannot afford."""
+
+    def __init__(self):
+        self.path, self.f = None, None
+
+    def append(self, path, line: str):
+        if "\n" in line:
+            raise ValueError("append takes a single line")
+        path = Path(path)
+        if path != self.path:
+            self.close()
+            path.parent.mkdir(parents=True, exist_ok=True)
+            self.f, self.path = open(path, "a+b"), path
+        _append_locked(self.f, (line + "\n").encode("utf-8"))
+
+    def close(self):
+        if self.f is not None:
+            self.f.close()
+        self.path, self.f = None, None

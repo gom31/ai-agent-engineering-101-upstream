@@ -54,13 +54,13 @@ class Base(unittest.TestCase):
     def write_inventory(self, units, balance):
         atomic.write_json(self.market / "inventory.json", {"balance": balance, "start": 5_000_000, "units": units})
 
-    def ok(self, name, **args):
-        out = call(self.ctx, name, args)
+    def ok(self, tool_name, **args):
+        out = call(self.ctx, tool_name, args)
         self.assertTrue(out["ok"], out)
         return out["result"]
 
-    def refused(self, name, **args):
-        out = call(self.ctx, name, args)
+    def refused(self, tool_name, **args):
+        out = call(self.ctx, tool_name, args)
         self.assertFalse(out["ok"], out)
         return out
 
