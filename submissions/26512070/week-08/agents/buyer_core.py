@@ -209,6 +209,12 @@ class BuyerCore:
             share = min((prices.get(s["name"]) or {}).get("median_share", 0.75), ceil_share)
             fit = [k for k in s["skus"] if (cat.get(k) or {}).get("list_price")
                    and share * cat[k]["list_price"] <= self.order["budget"]]
+            need = self.order.get("use_within_hours")
+            if need and fit:
+                # 11/4 03:0x: 15 of 18 unpaid deals in 10 min were food short of shelf life; a SKU that keeps much
+                # longer than the order's use window is far more likely to arrive with the hours left
+                keeps = [k for k in fit if (cat[k].get("shelf_hours") or 0) >= 1.5 * need]
+                fit = keeps or fit
             if fit:
                 sku = max(fit, key=lambda k: cat[k]["list_price"])
                 r = call(self.ctx, "act.pick", {"shop": s["name"], "sku": sku,

@@ -4199,3 +4199,79 @@
 03:02:24 [sign] sig_seller ok, sig_buyer added
 03:02:25 [acp] checkout ships unit u-aa3273218da9, claim B, certificate attached
 03:02:26 [acp] paid 9312 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2221789: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 26.9 h of shelf life left
+03:02:42 [buyer] {"buy": [{"sku": "G1515d951", "qty": 1}, {"sku": "G200e39a3", "qty": 3}, {"sku": "G0f415407", "qty": 2}, {"sku": "Ga7918a2e", "qty": 5}, {"sku": "G75f11c19", "qty": 5}, {"sku": "Gdf79cd07", "qty": 3}, {"sku": "Gaae7863f", "qty": 1}, {"sku": "G582603b2", "qty": 3}, {"sku": "G010744b7", "qty": 3}, {"sku": "G476cc094", "qty": 3}]}
+03:02:42 [supply] 1 x 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 for 308921, balance 2944780
+03:02:46 [seller] [seller] 03c8e7d3 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 360238 KRW, a premium unit with the market's certificate, its true grade and our full-r
+03:02:46 [seller] [seller] 03c8e7d3 input_required: For this guaranteed unit I can do 347524 KRW.
+03:02:46 [seller] [seller] 03c8e7d3 input_required: For this guaranteed unit I can do 339048 KRW.
+03:02:47 [seller] [seller] 03c8e7d3 input_required: For this guaranteed unit I can do 339048 KRW.
+03:02:52 [supply] 3 x [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증) for 55361, balance 2889419
+03:03:02 [buyer] {"stars": 4, "review": "Grade B potatoes at good value from a consistently fair vendor."}
+03:03:02 [market] ledger #2222032: G0b0ca441 at 9312, stars 4, verified True, review accepted
+03:03:02 [order o-f94493963028] 신선육류, budget 24640, round 3, use within 12.0 h
+03:03:03 [kit] 48 shops in .market\shops.json, running market_buyer
+03:03:03 [supply] 2 x 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS for 306461, balance 2582958
+03:03:07 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": {"shop": "Elm Street", "sig_seller": "BsmgwrmbnkpONJZQKKDZbDSKad/pwJOytZ2DlSk254nnKjCvApfXt+fighY2iEW8dNAhk5p/4D6mFhrtVOogBQ==", "item": "Gfdbe310d", "unit": "u-86964754eb65", "price": 6336, "task": "f3f35095-a77f-4b2c-99d2-ed9e219f93b6", "cert": false, "claim": "A"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+03:03:07 [sign] sig_seller ok, sig_buyer added
+03:03:08 [acp] not paying: no certificate to show the shelf life
+03:03:08 [market] ledger #2222067: Gfdbe310d at 6336, stars None, verified False (failed: settled), review not shown
+03:03:13 [supply] 5 x [바운티풀] 엘리트코튼 호텔 침구 순면80수 이불커버 SS for 217229, balance 2365729
+03:03:16 [seller] [seller] 4f5cdb18 input_required: 이솔홈 도트 쉬폰 원피스 앞치마: 13175 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee
+03:03:17 [seller] [seller] 25afd34d input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 360238 KRW, a premium unit with the market's certificate, its true grade and our full-r
+03:03:19 [seller] [seller] 4f5cdb18 completed: Deal at 13175 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+03:03:20 [acp] settled 이솔홈 도트 쉬폰 원피스 앞치마 at 13175, ledger #2222149, unit u-128fa146e0b3 grade A
+03:03:23 [order o-35f9f3edc617] 신선육류, budget 26330, round 3, use within 2.5 h
+03:03:23 [kit] 48 shops in .market\shops.json, running market_buyer
+03:03:23 [supply] 5 x 프리미엄 앤 모달 차렵 이불패드세트 Q for 379380, balance 1999524
+03:03:28 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+03:03:28 [market] ledger #2222190: no deal, stars None, verified False, review not shown
+03:03:34 [supply] 3 x 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송) for 18762, balance 1980762
+03:03:43 [order o-43f83a9df0b0] 디저트, budget 15980, round 3, use within 12.0 h
+03:03:43 [kit] 48 shops in .market\shops.json, running market_buyer
+03:03:44 [supply] 1 x 장인가구 콤마 기능성 아쿠아 2인 패브릭 소파 스툴포함 for 195577, balance 1785185
+03:03:46 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "38848baa-e332-4940-848e-7cc275f65af4", "item": "G11f14ced", "sig_seller": "w99kEpFM/lpAbufmpkcahu/+VTVAOAITTEEuFErJ3mGtYX9l7kag9CBNKykX0cB2bdxkS75Djb3YwFB9DUlPAA==", "shop": "ddolcom", "claim": "B", "unit": "u-158f3840f9c4", "price": 6812}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+03:03:46 [sign] sig_seller ok, sig_buyer added
+03:03:47 [acp] checkout ships unit u-158f3840f9c4, claim B, certificate attached
+03:03:48 [acp] paid 6812 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2222303: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 38.3 h of shelf life left
+03:03:54 [supply] 3 x 건국 무첨가두유 32팩 for 43267, balance 1741918
+03:04:05 [seller] [seller] 61dca288 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
+03:04:05 [supply] 3 x [본사직영] 바프 먼투썬 하루견과 코코넛 50봉 (20g x 50EA) for 51288, balance 1690630
+03:04:15 [supply] 3 x 외갓집 송탄 서정리 부대찌개 1kg x 2팩 (라면사리 2개) for 23139, balance 1667491
+03:04:17 [buyer] {"buy": []}
+03:04:32 [buyer] {"stars": 4, "review": "Grade B, honestly graded and fairly priced from a consistently reliable and fair seller."}
+03:04:32 [market] ledger #2222577: G11f14ced at 6812, stars 4, verified True, review accepted
+03:04:33 [order o-d72798755df4] 신선육류, budget 57250, round 3, use within 12.0 h
+03:04:33 [kit] 48 shops in .market\shops.json, running market_buyer
+03:04:38 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+03:04:38 [market] ledger #2222610: no deal, stars None, verified False, review not shown
+03:04:53 [order o-a9bd9064f046] 신선야채(부패주의), budget 24040, round 3, use within 36.0 h
+03:04:53 [kit] 48 shops in .market\shops.json, running market_buyer
+03:04:55 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "5c86f13a-ed45-4cd0-9458-f21887ea0cb3", "item": "G0b0ca441", "sig_seller": "a+mPsf7sNp2LCPk5VADxg6/e2jw8KqBHchK7cfCRVRk9wGQhRpUp6oGDL7nIOZzdr6Gzi0CffZS0a5F4WuhmAw==", "shop": "ddolcom", "claim": "C", "unit": "u-40a9a52b844f", "price": 8274}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+03:04:55 [sign] sig_seller ok, sig_buyer added
+03:04:56 [acp] not paying: 13.81 h of shelf life left, the policy asks for 36.0
+03:04:57 [market] ledger #2222693: G0b0ca441 at 8274, stars None, verified False (failed: settled), review not shown
+03:04:58 [seller] [seller] b93f7323 input_required: 이솔홈 도트 쉬폰 원피스 앞치마: 13175 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee
+03:05:05 [seller] [seller] 6ac21d5e input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
+03:05:09 [seller] [seller] 655aaa4f input_required: 프리미엄 앤 모달 차렵 이불패드세트 Q: 104465 KRW, a premium unit with the market's certificate, its true grade and our full-refund guar
+03:05:09 [seller] [seller] 655aaa4f completed: Deal at 104465 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+03:05:11 [acp] settled 프리미엄 앤 모달 차렵 이불패드세트 Q at 104465, ledger #2222758, unit u-0330c114680a grade A
+03:05:13 [order o-3330bb76960e] 주스/코코아/생수, budget 51170, round 3, use within 72.0 h
+03:05:13 [kit] 48 shops in .market\shops.json, running market_buyer
+03:05:14 [buyer] {"shop": "https://agent-market-shop-r3-lab1.vercel.app", "receipt": null, "stars": null, "review": null}
+03:05:15 [market] ledger #2222779: no deal, stars None, verified False, review not shown
+03:05:22 [forum] post as shop: 200
+03:05:22 [forum] post as buyer: 200
+03:05:22 [buyer] {"buy": []}
+03:05:33 [order o-e4df764343e3] 비스켓/쿠키, budget 9810, round 3, use within 360.0 h
+03:05:33 [kit] 48 shops in .market\shops.json, running market_buyer
+03:05:35 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "bd755b61-9857-406f-927d-6003b88e91d6", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "JGDoX/u90ax66P0UwQ2iUbndu0u2BLK9BENGKgOE7KQPhDXfF775/NPOdmajJZLmM+pA0PnEjsMDVv3IhJqpDQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+03:05:35 [sign] sig_seller ok, sig_buyer added
+03:05:36 [acp] not paying: 135.49 h of shelf life left, the policy asks for 360.0
+03:05:36 [market] ledger #2222865: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+03:05:54 [order o-f5200ac114a2] 디저트, budget 17370, round 3, use within 12.0 h
+03:05:54 [kit] 48 shops in .market\shops.json, running market_buyer
+03:05:56 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "3b0fe717-23fb-44fc-849e-d0970dd1ff58", "item": "G11f14ced", "sig_seller": "qxyy0fBPCNUzJByU5USYfZ/4nzoe4eEdyBdOnCrghb6opRt+mE3VvqUYkFu79mLJ35uSrLuOCX1ChTqbztWzAw==", "shop": "ddolcom", "claim": "B", "unit": "u-112cf9addea8", "price": 6525}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+03:05:57 [sign] sig_seller ok, sig_buyer added
+03:05:57 [acp] checkout ships unit u-112cf9addea8, claim B, certificate attached
+03:05:58 [acp] paid 6525 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2222964: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 28.3 h of shelf life left
+03:06:02 [seller] [seller] fc6f4af0 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
