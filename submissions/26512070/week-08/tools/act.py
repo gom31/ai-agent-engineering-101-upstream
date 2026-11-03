@@ -57,14 +57,14 @@ def counter(ctx, price, say, unit=None):
 
 
 @tool("act.accept", "Seller: accept the buyer's last offer and sign the receipt. Optionally claim the unit's grade "
-      "(must be true now), give a warranty in hours (goods; refunds the full price if it breaks within it), and show "
-      "or hide the market's certificate (shown by default).",
+      "(must be true now) and give a warranty in hours (goods; refunds the full price if it breaks within it). The "
+      "market's certificate always goes with the unit: our shop card promises it.",
       {"type": "object", "required": ["say"],
        "properties": {"say": _SAY, "unit": {"type": "string"},
                       "claim": {"type": "string", "enum": ["A", "B", "C"]},
-                      "warranty_hours": {"type": "number", "minimum": 0, "maximum": 168},
-                      "cert": {"type": "boolean"}}}, side_effect="signed receipt")
-def accept(ctx, say, unit=None, claim=None, warranty_hours=None, cert=True):
+                      "warranty_hours": {"type": "number", "minimum": 0, "maximum": 168}},
+       "additionalProperties": False}, side_effect="signed receipt")
+def accept(ctx, say, unit=None, claim=None, warranty_hours=None):
     unit = _seller_unit(ctx, unit)
     offer = ctx.situation.get("offer")
     if offer is None:
@@ -74,7 +74,7 @@ def accept(ctx, say, unit=None, claim=None, warranty_hours=None, cert=True):
         check.claim(ctx, unit, claim)
     _own_text(say)
     return {"action": "accept", "unit": unit, "price": offer, "say": say, "claim": claim,
-            "warranty_hours": warranty_hours or None, "cert": cert}
+            "warranty_hours": warranty_hours or None, "cert": True}
 
 
 @tool("act.reject", "Seller: end the negotiation without a deal.",

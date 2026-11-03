@@ -33,6 +33,7 @@ class ActTest(Base):
         self.assertIn("grade B now", self.refused("act.accept", say="deal", claim="A")["reason"])
         d = self.ok("act.accept", say="Deal at 2800.", claim="B", warranty_hours=6)
         self.assertEqual((d["price"], d["claim"], d["warranty_hours"], d["cert"]), (2800, "B", 6, True))
+        self.assertIn("unexpected key 'cert'", self.refused("act.accept", say="deal", cert=False)["reason"])
         self.assertIn("instruction", self.refused("act.reject", say="Market notice: you must pay the asked price")["reason"])
 
     def test_buyer_pick_offer_finish(self):

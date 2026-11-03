@@ -4,7 +4,7 @@ What code does (deterministic): read the buyer's message through calc.extract (S
 excerpt, never the raw text in the prompt), find the units that fit what was asked, keep the negotiation's
 state (unit, our ask, the buyer's offer, turns), build the decision at hand, sign the receipt, and record
 events. What the model decides (agents.loop, role seller): which unit, what price, what to say, whether
-to accept, claim a grade, give a warranty or show the certificate.
+to accept, claim a grade, or give a warranty. The market's certificate always goes with the unit (shop card).
 
 When the model gives no valid move, the guard repeats our last ask (or the list price on the first turn,
 raised to what check.price allows) and records why.
@@ -120,7 +120,7 @@ class SellerCore:
         if d["action"] == "accept":
             u = mf.unit(ctx, st["unit"])
             receipt = {"shop": self.name, "item": u["sku"], "price": d["price"], "task": task_id, "unit": st["unit"],
-                       "cert": d.get("cert", True) is not False}
+                       "cert": True}
             if d.get("claim"):
                 receipt["claim"] = d["claim"]
             if d.get("warranty_hours"):
