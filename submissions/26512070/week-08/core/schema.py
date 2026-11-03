@@ -191,6 +191,13 @@ STRATEGY = {
         "limits": LIMITS,
         "experiment": {"type": "object"},
         "delegation": {"type": "object"},
+        "playbook": {                                    # optional (HARNESS 14, D34): the numbers the rules run on
+            "type": "object", "properties": {
+                "restock": {"type": "object", "properties": {
+                    "mode": {"type": "string", "enum": ["rules", "agent"]},
+                    "cover_windows": {"type": "number", "minimum": 0.5, "maximum": 6},
+                    "market_top": {"type": "integer", "minimum": 0, "maximum": 10},
+                    "market_units": {"type": "integer", "minimum": 0, "maximum": 8}}}}},
     },
 }
 

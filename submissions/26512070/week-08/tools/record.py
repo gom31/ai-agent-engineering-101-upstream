@@ -21,7 +21,8 @@ from tools.registry import Refused, tool
 _EVID = {"type": "array", "items": {"type": "string", "minLength": 1}}
 _FINDING = {"type": "object", "required": ["claim", "evidence"],
             "properties": {"claim": {"type": "string", "minLength": 1, "maxLength": 400}, "evidence": _EVID}}
-CHANGE_KEYS = ("priorities", "phase", "limits", "experiment", "shop_card", "context")
+CHANGE_KEYS = ("priorities", "phase", "limits", "experiment", "shop_card", "context",
+               "playbook", "restock", "buyer", "repeat_buyer")   # 11/4: the rules' numbers (HARNESS 14)
 
 
 def _sit(ctx, key):
@@ -172,7 +173,8 @@ def apply_change(strategy, change):
 
 
 @tool("rec.brief", "End the strategy turn: write the brief for the user. Options (2-3, none at night) are changes to the "
-      "strategy in force (keys: priorities, phase, limits, experiment, shop_card, context), each with the score part it "
+      "strategy in force (keys: priorities, phase, limits, experiment, shop_card, context, playbook, restock, buyer, "
+      "repeat_buyer), each with the score part it "
       "targets, the expected effect, the risk and whether it can be undone; recommend one by id.",
       {"type": "object", "required": ["score", "happened", "hypothesis", "counterparts", "options"],
        "properties": {"score": {"type": "string", "minLength": 1, "maxLength": 600},

@@ -37,7 +37,9 @@ def slice_id(now):
     return time.strftime("%Y-%m-%dT%H", tm)
 
 
-DELEGATED = {"stock": {"limits": {"max_stock_share", "max_units_per_sku"}, "restock": None, "context": None}}
+DELEGATED = {"stock": {"limits": {"max_stock_share", "max_units_per_sku"}, "restock": None, "context": None},
+             # user 11/4 02:1x: the rules' numbers keep changing with the data (HARNESS 14)
+             "playbook": {"playbook": None, "context": None}}
 
 
 def delegated(strategy, change):
@@ -68,6 +70,9 @@ def unsafe(active, new):
     wa, wn = active.get("warranty") or {}, new.get("warranty") or {}
     if (wn.get("hours") or 0) < (wa.get("hours") or 0):
         return f"warranty hours {wa.get('hours')} -> {wn.get('hours')}"
+    ra, rn = active.get("repeat_buyer") or {}, new.get("repeat_buyer") or {}
+    if ra.get("min_share_of_list") and (rn.get("min_share_of_list") or 0) < min(ra["min_share_of_list"], 0.8):
+        return f"price floor {ra.get('min_share_of_list')} -> {rn.get('min_share_of_list')} of list"
     if (ln.get("max_stock_share") or 0) > max(la.get("max_stock_share") or 0, 0.5):
         return f"max_stock_share {la.get('max_stock_share')} -> {ln.get('max_stock_share')}"
     return None
@@ -113,6 +118,10 @@ def strategy_text(ctx):
     for kind in ("market", "self"):
         r = call(ctx, "memory.summary", {"kind": kind})
         lines.append(f"This slice's {kind} summary: {_j(r['result'] if r['ok'] else r['reason'], 2500)}")
+    bl = atomic.read_json(paths.memory() / "facts" / "buy_list.json", default=None)
+    lines.append(f"Playbook in force (the numbers the rules run on; change them with an option's playbook): "
+                 f"{_j(s.get('playbook') or 'defaults', 300)}; restock buy list now: "
+                 f"{_j([(x['sku'], x['target'], x['have'], x['why']) for x in (bl or {}).get('lines', [])][:12], 900)}")
     if pending.exists():
         lines.append("Stances waiting for the user: " + _j(pending.read_text(encoding="utf-8").splitlines()[-10:], 1000))
     if ctx.situation.get("auto"):
