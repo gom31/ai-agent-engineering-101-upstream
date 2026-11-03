@@ -211,7 +211,9 @@ STRATEGY = {
                     "accept_from_turn": {"type": "integer", "minimum": 1, "maximum": 12}}},
                 "buyer": {"type": "object", "properties": {      # 11/4 02:4x: the buyer's rules
                     "mode": {"type": "string", "enum": ["rules", "agent"]},
-                    "ceiling_share": {"type": "number", "minimum": 0.3, "maximum": 1}}}}},
+                    "ceiling_share": {"type": "number", "minimum": 0.3, "maximum": 1},
+                    "max_shops_goods": {"type": "integer", "minimum": 1, "maximum": 30},
+                    "max_shops_food": {"type": "integer", "minimum": 1, "maximum": 30}}}}},
     },
 }
 

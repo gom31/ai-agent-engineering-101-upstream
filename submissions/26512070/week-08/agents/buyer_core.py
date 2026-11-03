@@ -184,8 +184,11 @@ class BuyerCore:
         # 11/4 03:1x: one shop per order lost most goods orders (15 of 51 rejected at the first message); an order
         # takes ~3 s by rule and has 270 s, so the rules try the next shop when one ends without a receipt
         tried = {shop["name"]}
-        while (self.rules() and out.get("receipt") is None and len(tried) < MAX_SHOPS
-               and self.deadline() - self.clock() > 60):
+        pb = self.playbook()
+        most = pb["max_shops_goods"] if kind == "goods" else pb["max_shops_food"]
+        left = 40 if kind == "goods" else 60    # user 11/4 03:2x: goods orders visit as many shops as time allows
+        while (self.rules() and out.get("receipt") is None and len(tried) < most
+               and self.deadline() - self.clock() > left):
             rest = {n: x for n, x in shops.items() if n not in tried}
             if not rest:
                 break
@@ -205,7 +208,8 @@ class BuyerCore:
 
     def playbook(self):
         pb = ((self.ctx.strategy.get("playbook") or {}).get("buyer") or {})
-        return {"mode": pb.get("mode", "agent"), "ceiling_share": pb.get("ceiling_share", 0.8)}   # rules when the strategy says so
+        return {"mode": pb.get("mode", "agent"), "ceiling_share": pb.get("ceiling_share", 0.8),   # rules when the strategy says so
+                "max_shops_goods": pb.get("max_shops_goods", 10), "max_shops_food": pb.get("max_shops_food", MAX_SHOPS)}
 
     def rules(self):
         return self.playbook()["mode"] == "rules"
