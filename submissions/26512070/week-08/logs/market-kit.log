@@ -2176,3 +2176,40 @@
 23:21:07 [order o-ac61f50783f7] 신선야채(부패주의), budget 13680, round 3, use within 24.0 h
 23:21:07 [kit] 48 shops in .market\shops.json, running market_buyer
 23:21:24 [buyer] {"buy": []}
+23:21:45 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:21:46 [market] ledger #2163316: no deal, stars None, verified False, review not shown
+23:21:46 [order o-7d92ada70d7b] 커피/차, budget 12560, round 3, use within 180.0 h
+23:21:46 [kit] 48 shops in .market\shops.json, running market_buyer
+23:22:31 [buyer] {"shop": "https://bracelet-parade-nonprofit-align.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:22:31 [market] ledger #2163504: no deal, stars None, verified False, review not shown
+23:22:31 [order o-a4c744236fa8] 신선육류, budget 17550, round 3, use within 12.0 h
+23:22:31 [kit] 48 shops in .market\shops.json, running market_buyer
+23:22:39 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:22:40 [market] ledger #2163525: no deal, stars None, verified False, review not shown
+23:22:40 [kit] your seller exited (code 4294967295), starting it again
+23:22:51 [order o-79d81bf72e5f] 침구, budget 153870, round 3
+23:22:52 [kit] 48 shops in .market\shops.json, running market_buyer
+23:22:55 [buyer] {"shop": "https://ax-week07.treasuresky.xyz", "receipt": null, "stars": null, "review": null}
+23:22:56 [market] ledger #2163587: no deal, stars None, verified False, review not shown
+23:23:11 [forum] post as shop: 200
+23:23:12 [order o-4dca0d9713a9] 신선육류, budget 131310, round 3, use within 12.0 h
+23:23:12 [kit] 48 shops in .market\shops.json, running market_buyer
+23:23:12 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:23:12 [market] ledger #2163659: no deal, stars None, verified False, review not shown
+23:23:32 [order o-9f75b68e3f81] 과자, budget 13540, round 3, use within 360.0 h
+23:23:32 [kit] 48 shops in .market\shops.json, running market_buyer
+23:23:34 [forum] post as buyer: 200
+23:23:45 [buyer] {"buy": []}
+23:23:48 [buyer] {"shop": "https://speed-libs-radio-terminology.trycloudflare.com", "receipt": {"task": "ac4d05a1-4a63-421f-b2d7-7970900d5b4a", "shop": "thisjonghoon", "sig_seller": "3KTADG3VFjvBJ+DMYkOw8m6X4yyEKhogd1kCpjmsQKSSjhM5lTq8O7muuB0IqWWGiE89SSkJ4Z0W4bnRwqFdBA==", "unit": "u-28e64df0d8a3", "claim": "C", "price": 5565, "item": "G010b96aa"}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+23:23:48 [sign] sig_seller ok, sig_buyer added
+23:23:49 [acp] not paying: 110.59 h of shelf life left, the policy asks for 360.0
+23:23:49 [market] ledger #2163854: G010b96aa at 5565, stars None, verified False (failed: settled), review not shown
+23:23:52 [order o-f7ee82ba1c7f] 신선육류, budget 27480, round 3, use within 2.5 h
+23:23:53 [kit] 48 shops in .market\shops.json, running market_buyer
+23:24:08 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": {"unit": "u-9f265cfe5b23", "claim": "B", "task": "376abe5b-77cd-4fcf-88f9-53d19675a3bf", "price": 21480, "item": "G0e96fe9e", "sig_seller": "c8GKPFaFTnI+uatTyIfy1oRDTROu0wDrIvd8AOQbB8N7NdGO/sOGur+vKoEYkmyVX3d79eIaos9Tne9I8s7aCw==", "shop": "Bright Living"}, "stars": null, "review": null, "accept": {"min_hours_left": 2.5}}
+23:24:08 [sign] sig_seller ok, sig_buyer added
+23:24:08 [seller] [seller] 177bebcd input_required: I can offer you the 이솔홈 도트 쉬폰 원피스 앞치마 for 15,500 KRW. It comes with our certificate and a 6-hour warranty that refunds t
+23:24:08 [acp] checkout ships unit u-9f265cfe5b23, claim B, certificate attached
+23:24:09 [acp] paid 21480 through https://market.ourolabs.ai/shop/bright-living/acp, settled at ledger #2163976: 유정란 40구(대-특란) [무항생제인증]난각번호 1번, grade B, 10.9 h of shelf life left
+23:24:31 [buyer] {"buy": []}
+23:24:46 [seller] [seller] c4903fe0 input_required: 플로라 선데이모닝 순면 40수 차렵이불 SS: 35920.

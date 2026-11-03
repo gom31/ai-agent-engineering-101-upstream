@@ -28,10 +28,12 @@ FORUM_TIMEOUT = 300
 
 
 def due_slice(now, last_slice):
-    """The slice id to run now (each even hour, once), or None."""
+    """The slice id to run now (each even hour, once; every 30 min in the night mode's hours), or None."""
+    from outer import slice as outer_slice
     tm = time.localtime(now)
-    sid = time.strftime("%Y-%m-%dT%H", tm)
-    return sid if tm.tm_hour % 2 == 0 and sid != last_slice else None
+    sid = outer_slice.slice_id(now)
+    due = tm.tm_hour in outer_slice.AUTO_HOURS or tm.tm_hour % 2 == 0
+    return sid if due and sid != last_slice else None
 
 
 def run_forum():

@@ -17,7 +17,7 @@ from core.events import EventWriter
 from outer import brief
 
 
-def decide(pid, choice, note="", now=None):
+def decide(pid, choice, note="", now=None, by="user"):
     now = now or time.time()
     path = paths.memory() / "strategy" / "proposals" / f"{pid}.json"
     doc = atomic.read_json(path)
@@ -38,7 +38,7 @@ def decide(pid, choice, note="", now=None):
             active = atomic.read_json(paths.memory() / "strategy" / "active.json", default={}) or {}
             if active.get("version", 0) >= s["version"]:     # another decision came first: rebase the version
                 s = dict(s, version=active["version"] + 1, epoch=f"e{active['version'] + 1}")
-            s = dict(s, approved=f"user {stamp}: brief {pid} option {choice}" + (f" ({note})" if note else ""))
+            s = dict(s, approved=f"{by} {stamp}: brief {pid} option {choice}" + (f" ({note})" if note else ""))
             out = paths.root() / "logs" / "strategy" / "strategies" / f"v{s['version']}.json"
             atomic.write_json(out, s)
             strategy.install(out)

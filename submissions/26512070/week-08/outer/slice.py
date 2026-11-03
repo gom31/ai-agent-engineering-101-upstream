@@ -22,6 +22,36 @@ from tools.registry import Ctx, call
 
 CODE = Path(__file__).resolve().parent.parent   # the code; HARNESS_ROOT (the records) may be elsewhere
 NIGHT = range(1, 8)            # 01:00-07:59 (HARNESS.md 5)
+# User 11/3 23:2x: at night the strategy agent decides by itself every 30 minutes. A slice in these hours writes
+# options, the audit runs in the slice, and the recommended option is installed when the audit agrees and the
+# change keeps the safety terms (SAFE_KEYS); otherwise the brief waits for the user. These hours override NIGHT.
+AUTO_HOURS = range(0, 8)       # 00:00-07:59
+AUTO_EVERY_MIN = 30
+
+
+def slice_id(now):
+    """The slice id: one per hour by day (YYYY-MM-DDTHH), one per half hour in AUTO_HOURS (YYYY-MM-DDTHHMM)."""
+    tm = time.localtime(now)
+    if tm.tm_hour in AUTO_HOURS:
+        return time.strftime("%Y-%m-%dT%H", tm) + f"{tm.tm_min // AUTO_EVERY_MIN * AUTO_EVERY_MIN:02d}"
+    return time.strftime("%Y-%m-%dT%H", tm)
+
+
+def unsafe(active, new):
+    """Why an automatic install would loosen a safety term the user set, or None."""
+    la, ln = active.get("limits") or {}, new.get("limits") or {}
+    if (ln.get("cash_floor") or 0) < (la.get("cash_floor") or 0):
+        return f"cash_floor {la.get('cash_floor')} -> {ln.get('cash_floor')}"
+    if (ln.get("below_cost") or {}).get("allowed") and not (la.get("below_cost") or {}).get("allowed"):
+        return "below_cost allowed"
+    if active.get("certified_only") and not new.get("certified_only"):
+        return "certified_only off"
+    wa, wn = active.get("warranty") or {}, new.get("warranty") or {}
+    if (wn.get("hours") or 0) < (wa.get("hours") or 0):
+        return f"warranty hours {wa.get('hours')} -> {wn.get('hours')}"
+    if (ln.get("max_stock_share") or 0) > max(la.get("max_stock_share") or 0, 0.5):
+        return f"max_stock_share {la.get('max_stock_share')} -> {ln.get('max_stock_share')}"
+    return None
 PROFILES_PER_SLICE = 6
 
 
@@ -66,10 +96,39 @@ def strategy_text(ctx):
         lines.append(f"This slice's {kind} summary: {_j(r['result'] if r['ok'] else r['reason'], 2500)}")
     if pending.exists():
         lines.append("Stances waiting for the user: " + _j(pending.read_text(encoding="utf-8").splitlines()[-10:], 1000))
-    lines.append("It is night: write a report only (no options)." if ctx.situation["night"]
-                 else "Write the brief with rec.brief: 2-3 options and a recommendation if something should change, "
-                      "else no options.")
+    if ctx.situation.get("auto"):
+        lines.append("It is night and the user is away: your recommendation is installed by itself once the audit "
+                     "agrees, and the next slice comes in 30 minutes. The goal is the board's Players rank: shop ALL = "
+                     "0.5 profit + 0.3 revenue + 0.2 stars, buyer ALL = 0.5 surplus + 0.3 votes on buyer posts + "
+                     "0.1 deals + 0.1 buyer posts, each a percentile. Write the brief with rec.brief: 2-3 options and "
+                     "a recommendation if the numbers since the last slice show a better direction, else no options. "
+                     "Change a few numbers at a time, so the next slice can tell what worked.")
+    elif ctx.situation["night"]:
+        lines.append("It is night: write a report only (no options).")
+    else:
+        lines.append("Write the brief with rec.brief: 2-3 options and a recommendation if something should change, "
+                     "else no options.")
     return "\n".join(lines)
+
+
+def auto_install(pid, model_call=None):
+    """Night mode: audit the brief here, then install its recommendation if the audit agrees and it is safe."""
+    from outer import decide
+    op = audit.run(pid, model_call=model_call)
+    doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{pid}.json", default={}) or {}
+    rec = doc.get("recommendation")
+    if not op or not op.get("agrees"):
+        bus.alert("slice", "info", "auto_held", f"brief {pid}: the audit did not agree, option {rec} waits for the user")
+        return {"installed": None, "why": "audit did not agree" if op else "no audit"}
+    active = atomic.read_json(paths.memory() / "strategy" / "active.json", default={}) or {}
+    why = unsafe(active, (doc.get("strategies") or {}).get(rec) or {})
+    if why:
+        bus.alert("slice", "warn", "auto_held", f"brief {pid}: option {rec} loosens a safety term ({why}), it waits "
+                  "for the user")
+        return {"installed": None, "why": why}
+    d = decide.decide(pid, rec, note="night mode: audit agreed", by="auto")
+    bus.alert("slice", "info", "auto_installed", f"brief {pid}: option {rec} installed as v{d.get('installed')} (night mode)")
+    return {"installed": d.get("installed"), "option": rec}
 
 
 def _lock_path():
@@ -110,14 +169,16 @@ def _run(now=None, model_call=None):
     st_path = paths.memory() / "facts" / "slice_state.json"
     st = atomic.read_json(st_path, default=None) or {"last": now - 7200}
     tm = time.localtime(now)
-    slice_id = time.strftime("%Y-%m-%dT%H", tm)
+    sid = slice_id(now)
+    auto = tm.tm_hour in AUTO_HOURS
     tool_w, w = EventWriter("outer", source="tools"), EventWriter("slice", source="outer")
-    out = {"slice": slice_id, "steps": {}}
+    out = {"slice": sid, "steps": {}}
     try:
         base = Ctx(caller="outer", _writer=tool_w)
         epoch = base.strategy.get("epoch") or "e0"
         w.context(strategy_version=base.strategy.get("version"), epoch=epoch)
-        common = {"epoch": epoch, "slice": slice_id, "night": tm.tm_hour in NIGHT, "proposal_id": slice_id}
+        common = {"epoch": epoch, "slice": sid, "night": tm.tm_hour in NIGHT and not auto, "auto": auto,
+                  "proposal_id": sid}
 
         def step(role, caller, text_fn, extra=None):
             ctx = Ctx(caller=caller, _writer=tool_w)
@@ -137,26 +198,28 @@ def _run(now=None, model_call=None):
         step("market analyst", "market-analyst", lambda c: market_text(c, st["last"]), {"kind": "market"})
         step("self analyst", "self-analyst", lambda c: self_text(c, st["last"]), {"kind": "self"})
         d = step("strategy", "strategy", strategy_text)
-        doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{slice_id}.json", default=None)
+        doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{sid}.json", default=None)
         if d and doc:
             if doc.get("options"):
-                w.emit("strategy.proposal", {"proposal_id": slice_id, "version_from": doc.get("version_from"),
+                w.emit("strategy.proposal", {"proposal_id": sid, "version_from": doc.get("version_from"),
                                              "options": [o["id"] for o in doc["options"]]})
-            pub = atomic.read_json(brief.briefs_dir() / f"{slice_id}.json", default=None)
+            pub = atomic.read_json(brief.briefs_dir() / f"{sid}.json", default=None)
             if pub:
                 brief.write_markdown(pub)
             brief.refresh_pending()
-            if model_call is not None:                   # tests: the audit in this process, with the same script
-                out["steps"]["audit"] = {"ok": audit.run(slice_id, model_call=model_call) is not None}
+            if auto and doc.get("options") and doc.get("recommendation"):
+                out["steps"]["auto"] = auto_install(sid, model_call)
+            elif model_call is not None:                 # tests: the audit in this process, with the same script
+                out["steps"]["audit"] = {"ok": audit.run(sid, model_call=model_call) is not None}
             else:                                        # its own process; the slice does not wait for it
-                subprocess.Popen([sys.executable, "-m", "outer.audit", slice_id], cwd=CODE,
+                subprocess.Popen([sys.executable, "-m", "outer.audit", sid], cwd=CODE,
                                  stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                                  **({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt"
                                     else {"start_new_session": True}))
                 out["steps"]["audit"] = {"started": True}
         else:
-            bus.alert("slice", "warn", "no_brief", f"slice {slice_id}: the strategy agent wrote no brief", out["steps"])
-        atomic.write_json(st_path, {"last": now, "slice": slice_id})
+            bus.alert("slice", "warn", "no_brief", f"slice {sid}: the strategy agent wrote no brief", out["steps"])
+        atomic.write_json(st_path, {"last": now, "slice": sid})
         w.emit("slice.done", out)
     finally:
         w.close()

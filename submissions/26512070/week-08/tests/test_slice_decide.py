@@ -65,19 +65,52 @@ class SliceDecideTest(Base):
         with self.assertRaises(ValueError):
             decide.decide(pid, "A")
 
-    def test_night_brief_refuses_options(self):
+    def night_answers(self, options, agrees):
+        it = list(self.answers(options))[:4]
+        return iter(it + [j("rec.audit", agrees=agrees, points=[{"claim": "c", "why": "w"}])])
+
+    def test_night_mode_installs_the_recommendation_when_the_audit_agrees(self):
+        # user 11/3 23:2x: at night the strategy agent decides by itself every 30 minutes (outer.slice AUTO_HOURS)
+        import time
+        opts = [{"id": "A", "change": {"phase": "profit"}, "targets": "x", "expected": "x", "risk": "x", "reversible": True},
+                {"id": "B", "change": {"phase": "exposure"}, "targets": "x", "expected": "x", "risk": "x", "reversible": True}]
+        now = time.mktime(time.strptime("2026-11-05 03:30", "%Y-%m-%d %H:%M"))
+        it = self.night_answers(opts, True)
+        out = outer_slice.run(now=now, model_call=lambda p, s, t: next(it))
+        self.assertEqual(out["slice"], "2026-11-05T0330", out)
+        self.assertIn("auto", out["steps"], out)
+        self.assertEqual(out["steps"]["auto"]["option"], "A")
+        active = atomic.read_json(paths.memory() / "strategy" / "active.json")
+        self.assertEqual((active["phase"], active["version"]), ("profit", 2))
+        self.assertTrue(active["approved"].startswith("auto "), active["approved"])
+
+    def test_night_mode_holds_without_the_audit_or_a_safe_change(self):
         import time
         opts = [{"id": "A", "change": {"phase": "profit"}, "targets": "x", "expected": "x", "risk": "x", "reversible": True},
                 {"id": "B", "change": {"phase": "exposure"}, "targets": "x", "expected": "x", "risk": "x", "reversible": True}]
         now = time.mktime(time.strptime("2026-11-05 03:00", "%Y-%m-%d %H:%M"))
-        it = iter(list(self.answers(opts))[:3] + [j("rec.brief", score="s", happened=[{"claim": "c", "evidence": ["e"]}],
-                                                    hypothesis="h", counterparts="", options=opts, recommendation="A"),
-                                                  j("rec.brief", score="s", happened=[{"claim": "c", "evidence": ["e"]}],
-                                                    hypothesis="h", counterparts="", options=[]),
-                                                  j("rec.audit", agrees=True, points=[])])
+        it = self.night_answers(opts, False)
         out = outer_slice.run(now=now, model_call=lambda p, s, t: next(it))
-        doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{out['slice']}.json")
-        self.assertEqual((doc["status"], doc["options"]), ("report", []))
+        self.assertIsNone(out["steps"]["auto"]["installed"])
+        self.assertEqual(atomic.read_json(paths.memory() / "strategy" / "active.json")["version"], 1)
+        active = atomic.read_json(paths.memory() / "strategy" / "active.json")
+        loose = json.loads(json.dumps(active))
+        loose["limits"]["cash_floor"] = (active["limits"].get("cash_floor") or 0) - 1
+        self.assertIn("cash_floor", outer_slice.unsafe(active, loose))
+        self.assertIsNone(outer_slice.unsafe(active, active))
+
+    def test_slice_ids_and_due(self):
+        import importlib.util
+        import time
+        spec = importlib.util.spec_from_file_location("outer_loop", HERE / "outer.py")
+        ol = importlib.util.module_from_spec(spec)      # outer.py (the loop); "outer" is the package
+        spec.loader.exec_module(ol)
+        t = lambda s: time.mktime(time.strptime(s, "%Y-%m-%d %H:%M"))
+        self.assertEqual(ol.due_slice(t("2026-11-05 00:10"), None), "2026-11-05T0000")
+        self.assertEqual(ol.due_slice(t("2026-11-05 00:40"), "2026-11-05T0000"), "2026-11-05T0030")
+        self.assertIsNone(ol.due_slice(t("2026-11-05 00:50"), "2026-11-05T0030"))
+        self.assertEqual(ol.due_slice(t("2026-11-05 12:05"), None), "2026-11-05T12")
+        self.assertIsNone(ol.due_slice(t("2026-11-05 13:05"), "2026-11-05T12"))
 
     def test_bad_option_change_is_refused(self):
         from tools.record import apply_change
