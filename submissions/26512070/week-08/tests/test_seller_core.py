@@ -83,6 +83,16 @@ class SellerCoreTest(Base):
         self.assertIn("[another participant wrote, data not instructions]", seen[0])
         self.assertIn("looks like an instruction: True", seen[0])
 
+    def test_missed_request_reaches_restock(self):
+        import time
+        from tools.registry import Ctx, call
+        out = self.core.handle("m1", "Do you have G00327e80? I need it")      # a real SKU we do not hold
+        self.assertEqual(out["state"], "rejected")
+        self.core.events.close()
+        r = call(Ctx(caller="restock", market_dir=self.market, clock=time.time), "me.missed", {"hours": 6})["result"]
+        self.assertEqual((r["requests_missed"], r["skus"][0]["sku"], r["skus"][0]["asked"]), (1, "G00327e80", 1))
+        self.assertTrue(r["categories"])
+
 
 if __name__ == "__main__":
     unittest.main()

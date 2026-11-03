@@ -108,6 +108,26 @@ def selling(ctx, hours=6, kind=None, limit=10):
             "note": None if live else "no market collection yet (the outer runtime writes it)"}
 
 
+@tool("me.missed", "What buyers asked our shop for that we did not have, in the last hours: SKUs and categories with "
+      "how often, newest first. The surest sign of what to stock next.",
+      {"type": "object", "properties": {"hours": {"type": "number", "minimum": 0.5, "maximum": 48},
+                                        "limit": {"type": "integer", "minimum": 1, "maximum": 30}}})
+def missed(ctx, hours=6, limit=10):
+    from tools.evaluate import events
+    cat, skus, cats, n = mf.catalog(ctx), {}, {}, 0
+    for e in events(["seller.missed"], since=ctx.now() - hours * 3600):
+        n += 1
+        for s in e["data"].get("skus") or []:
+            skus[s] = skus.get(s, 0) + 1
+        for c in e["data"].get("categories") or []:
+            cats[c] = cats.get(c, 0) + 1
+    top = lambda d: sorted(d.items(), key=lambda x: -x[1])[:limit]
+    return {"hours": hours, "requests_missed": n,
+            "skus": [{"sku": s, "name": (cat.get(s) or {}).get("name"), "kind": (cat.get(s) or {}).get("kind"),
+                      "asked": k} for s, k in top(skus)],
+            "categories": [{"category": c, "asked": k} for c, k in top(cats)]}
+
+
 @tool("market.buyer_prefs", "Hidden demand: each buyer's favourite categories as its settled deals show them (the market "
       "does not publish them). With buyer: that buyer's favourites with counts and shares. With category: the buyers "
       "who favour it. With neither: the categories wanted by the most different buyers. Says how many deals each is "

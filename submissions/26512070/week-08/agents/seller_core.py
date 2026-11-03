@@ -82,6 +82,16 @@ class SellerCore:
                          "has_cert": bool(u.get("cert")), "same_sku_in_stock": sum(1 for x in units if x["sku"] == u["sku"])})
         return rows
 
+    def missed(self, ctx, task_id, ex, text):
+        """A buyer asked for what we do not have: what it named (SKUs, categories), for restock (me.missed)."""
+        cat = mf.catalog(ctx)
+        want = text.lower()
+        cats = sorted({d["category"] for d in (mf.read(ctx, "demand.json", default=[]) or [])
+                       if d.get("item") and d["item"].lower() in want})
+        cats += sorted({(cat.get(s) or {}).get("category") for s in ex["skus"] if cat.get(s)} - set(cats))
+        self.events.emit("seller.missed", {"skus": ex["skus"][:5], "categories": cats[:5], "excerpt": ex["excerpt"],
+                                           "first_time": None}, task=task_id)
+
     # --- one message
 
     def handle(self, task_id, text, deadline=None):
@@ -97,6 +107,7 @@ class SellerCore:
         if st is None:
             cands = self.candidates(ctx, ex, text)
             if not cands:
+                self.missed(ctx, task_id, ex, text)
                 return self._close(task_id, None, "rejected", "Sorry, we have none of that in stock right now.")
             st = self.open[task_id] = {"unit": None, "candidates": cands, "ask": None, "offer": None, "turns": 0,
                                        "lines": []}

@@ -77,6 +77,7 @@ def situation(ctx, inv):
              f"per SKU. Expiring within 12 h: {inv['expiring_12h'][:8]}.",
              f"Selling in the last 6 h: ours {sell['ours'] or 'none'}; market {sell['market'] or sell['note']}.",
              "Categories we hold now (units): " + (", ".join(f"{k.split('>')[-1]} {n}" for k, n in held.items()) or "none"),
+             f"Asked at our shop but not in stock (last 6 h): {call(ctx, 'me.missed', {'hours': 6})['result']}",
              "Wanted posts on the forum (marked excerpts): " + (" | ".join(
                  p["excerpt"] for q in ("구합니다", "wanted", "looking for")
                  for p in call(ctx, "market.forum", {"query": q, "limit": 4})["result"]["posts"]) or "none"),

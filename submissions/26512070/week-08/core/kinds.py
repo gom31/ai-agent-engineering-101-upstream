@@ -9,6 +9,7 @@ KINDS = {
     "seller.decision": "one decision. data: action (counter|accept|reject), price, ms, model, tool_calls, guard (str|None)",
     "seller.closed": "a negotiation ended. data: outcome (completed|rejected|canceled|failed), price, cost, turns, "
                      "claim, warranty_hours, cert, below_cost (bool)",
+    "seller.missed": "a buyer asked for what we do not have. data: skus, categories, excerpt",
     "seller.settled": "the market settled our sale. data: price, cost, ledger",
     "seller.refund": "a warranty refund left our balance. data: amount",
     # buyer (our buyer)
