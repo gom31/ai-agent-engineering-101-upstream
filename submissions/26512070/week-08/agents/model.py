@@ -32,7 +32,7 @@ SEATS = {
     "forum": {"claude": "sonnet", "fallback": "openai/gpt-4o-mini"},
     "analyst": {"claude": "sonnet", "fallback": None},
     "strategy": {"claude": "opus", "fallback": None},
-    "audit": {"claude": None, "fallback": "openai/gpt-4o-mini"},     # another vendor's model (D29)
+    "audit": {"claude": None, "fallback": "google/gemini-2.5-flash"},  # another vendor's model (D29 draft)
 }
 BREAK_AFTER = 3
 BREAK_SECONDS = 300
