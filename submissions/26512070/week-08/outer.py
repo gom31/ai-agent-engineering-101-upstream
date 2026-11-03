@@ -25,6 +25,7 @@ LOOP_SECONDS = 30
 COLLECT_EVERY = 180
 FORUM_EVERY = 300          # user 11/3 23:1x: the kit allows one post per 5 min per side; buyer posts are 0.1 of buyer ALL (agent.md)
 FORUM_TIMEOUT = 300
+BENCH_EVERY = 1500         # benchmark (outer/benchmark.py) shortly before each half-hour slice
 
 
 def due_slice(now, last_slice):
@@ -73,6 +74,10 @@ def once(state, w, now=None):
     if now - state.get("forum", 0) >= FORUM_EVERY:
         state["forum"] = now                     # also on failure: a broken forum turn waits for the next one
         job("forum", run_forum)
+    if now - state.get("benchmark", 0) >= BENCH_EVERY:   # user 11/4 03:3x: keep benchmarking the top players
+        state["benchmark"] = now
+        from outer import benchmark
+        job("benchmark", lambda: benchmark.build(now)["ts"])
     sid = due_slice(now, state.get("slice"))
     if sid:
         state["slice"] = sid

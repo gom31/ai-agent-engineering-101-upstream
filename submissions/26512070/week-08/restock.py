@@ -89,18 +89,33 @@ def build_buy_list(ctx, now=None):
         lines.append({"sku": sku, "target": target, "have": have.get(sku, 0), "why": f"wanted {n} in 6 h",
                       "value": n * (cat[sku].get("list_price") or 0)})
     market = sorted((x for x in ((sell["result"].get("market") or []) if sell["ok"] else [])
-                     if x.get("kind") == "goods" and x["sku"] in cat and x["sku"] not in want),
+                     if x.get("kind") == "goods" and x["sku"] in cat),
                     key=lambda x: -x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0))
+    by_sku = {x["sku"]: x for x in lines}
+
+    def add(sku, target, why, value):
+        # 11/4 03:3x: one line per SKU with the larger target and value - G1515d951 (the market's best seller) came
+        # in as "wanted 1" after one sale of ours and its market line was dropped, so it ranked last
+        x = by_sku.get(sku)
+        if x is None:
+            x = by_sku[sku] = {"sku": sku, "target": target, "have": have.get(sku, 0), "why": why, "value": value}
+            lines.append(x)
+        elif value > x["value"] or target > x["target"]:
+            x.update(target=max(target, x["target"]), value=max(value, x["value"]), why=why if value > x["value"] else x["why"])
     for x in market[:pb["market_top"]]:
-        lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["market_units"]),
-                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} in 6 h",
-                      "value": x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0)})
+        add(x["sku"], min(lim["max_units_per_sku"], pb["market_units"]), f"market sold {x.get('sold')} in 6 h",
+            x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0))
     food = [x for x in ((sell_food["result"].get("market") or []) if sell_food["ok"] else [])
-            if x.get("kind") == "food" and x["sku"] in cat and x["sku"] not in want and keeps(x["sku"])]
+            if x.get("kind") == "food" and x["sku"] in cat and keeps(x["sku"])]
     for x in food[:pb["food_top"]]:
-        lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["food_units"]),
-                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} food in 6 h",
-                      "value": x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0)})
+        add(x["sku"], min(lim["max_units_per_sku"], pb["food_units"]), f"market sold {x.get('sold')} food in 6 h",
+            x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0))
+    # 11/4 03:3x: what the top shops sell that we lack (outer/benchmark.py) - the strongest sign which SKUs orders take
+    bench = atomic.read_json(paths.memory() / "facts" / "benchmark.json", default=None) or {}
+    for sku, sold, lp in (bench.get("skus") or {}).get("their_best_we_lack", []):
+        if sku in cat and keeps(sku):
+            per = pb["food_units"] if cat[sku].get("kind") == "food" else pb["market_units"]
+            add(sku, min(lim["max_units_per_sku"], per), f"top shops sold {sold} in 6 h", sold * (lp or 0))
     lines.sort(key=lambda x: -x["value"])               # one order for all: expected sales value
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
