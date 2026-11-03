@@ -165,6 +165,9 @@ def apply_change(strategy, change):
             s[k] = {**s[k], **v}
         else:
             s[k] = v
+    sc = s.get("shop_card") or {}
+    if isinstance(sc.get("description"), str) and len(sc["description"]) > 600:   # the schema's limit: cut, not refuse
+        s["shop_card"] = dict(sc, description=sc["description"][:599] + "…")
     s["version"] = strategy.get("version", 0) + 1
     s["epoch"] = f"e{s['version']}"
     s["approved"] = "DRAFT - proposal"
@@ -198,6 +201,10 @@ def rec_brief(ctx, score, happened, hypothesis, counterparts, options, recommend
     if options and not 2 <= len(options) <= 3:
         raise Refused(f"{len(options)} options", "give 2 or 3 options, or none when nothing needs deciding")
     ids = [o["id"] for o in options]
+    if options and recommendation not in ids and isinstance(recommendation, str):
+        # 11/4 03:3x: the strategy agent wrote "A_breadth. To the user's question: ..." - take the id it starts with
+        lead = next((i for i in sorted(ids, key=len, reverse=True) if recommendation.strip().startswith(i)), None)
+        recommendation = lead or recommendation
     if options and recommendation not in ids:
         raise Refused(f"recommendation {recommendation!r} is not one of {ids}")
     strategies = {o["id"]: apply_change(ctx.strategy, o["change"]) for o in options}
