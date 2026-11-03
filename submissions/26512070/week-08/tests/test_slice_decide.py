@@ -112,6 +112,17 @@ class SliceDecideTest(Base):
         self.assertEqual(ol.due_slice(t("2026-11-05 12:05"), None), "2026-11-05T12")
         self.assertIsNone(ol.due_slice(t("2026-11-05 13:05"), "2026-11-05T12"))
 
+    def test_stock_delegation(self):
+        # user 11/3 23:5x: the stock cap is the strategy agent's by day too (strategy.delegation.auto = ["stock"])
+        d = {"delegation": {"auto": ["stock"]}}
+        self.assertTrue(outer_slice.delegated(d, {"limits": {"max_stock_share": 0.4}, "context": ["x"]}))
+        self.assertTrue(outer_slice.delegated(d, {"restock": {"per_asked_category": 4}}))
+        self.assertFalse(outer_slice.delegated(d, {"limits": {"cash_floor": 1}}))
+        self.assertFalse(outer_slice.delegated(d, {"priorities": ["x"]}))
+        self.assertFalse(outer_slice.delegated({"delegation": {}}, {"limits": {"max_stock_share": 0.4}}))
+        a = {"limits": {"max_stock_share": 0.45}}
+        self.assertIn("max_stock_share", outer_slice.unsafe(a, {"limits": {"max_stock_share": 0.6}}))
+
     def test_bad_option_change_is_refused(self):
         from tools.record import apply_change
         from tools.registry import Refused

@@ -2493,3 +2493,34 @@
 23:46:57 [buyer] {"buy": []}
 23:47:07 [seller] [seller] f671e2d4 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
 23:47:12 [seller] [seller] 7e0a08c8 rejected: Sorry, we have none of that in stock right now.
+23:47:29 [buyer] {"stars": 4, "review": "Consistently fair vendor delivered grade C food honestly at good price."}
+23:47:29 [market] ledger #2170282: G11f14ced at 7997, stars 4, verified True, review accepted
+23:47:29 [order o-40180ef37f5f] 침구, budget 183340, round 3
+23:47:29 [kit] 49 shops in .market\shops.json, running market_buyer
+23:47:39 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:47:39 [market] ledger #2170329: no deal, stars None, verified False, review not shown
+23:47:50 [order o-a854f553c69c] 신선야채(부패주의), budget 33230, round 3, use within 24.0 h
+23:47:50 [kit] 49 shops in .market\shops.json, running market_buyer
+23:48:01 [buyer] {"buy": []}
+23:48:04 [kit] your seller exited (code 4294967295), starting it again
+23:48:40 [buyer] {"shop": "https://climb-advance-right-gabriel.trycloudflare.com", "receipt": {"price": 13160, "warranty_hours": 0.0, "unit": "u-43f20d1ad668", "sig_seller": "8a5VjRoEiwnra0DaT9P10uXItIqyxBq2V5eG9IfycKXN1BPRKiYYktmwLzWk4wciNkk/xkHTHUs7cKJiALr7Ag==", "cert": true, "shop": "kimauve", "task": "624ec397-d958-4e81-96d6-91e0192eb775", "item": "G0b0ca441"}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+23:48:40 [sign] sig_seller ok, sig_buyer added
+23:48:41 [acp] checkout ships unit u-43f20d1ad668, certificate attached
+23:48:41 [acp] paid 13160 through https://climb-advance-right-gabriel.trycloudflare.com/acp, settled at ledger #2170602: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 46.8 h of shelf life left
+23:49:09 [buyer] {"buy": []}
+23:49:12 [buyer] {"stars": 5, "review": "Honest grade A product at fair price; kimauve is a reliable partner."}
+23:49:13 [market] ledger #2170709: G0b0ca441 at 13160, stars 5, verified True, review accepted
+23:49:13 [order o-e71533e8c8ad] 빵, budget 11440, round 3, use within 5.0 h
+23:49:13 [kit] 49 shops in .market\shops.json, running market_buyer
+23:49:33 [seller] [seller] ebc4d7b8 input_required: I can offer you the G53e73f8c for 15,500 KRW. It comes with a warranty and a certificate.
+23:49:34 [seller] [seller] e30e2539 input_required: I have the 이솔홈 도트 쉬폰 원피스 앞치마 (G53e73f8c) available for you at 15,500 KRW, with a full warranty included.
+23:49:38 [seller] [seller] fdaa696f input_required: I can offer the 이솔홈 도트 쉬폰 원피스 앞치마 for 13,950 KRW. It comes with a certificate and a 6-hour warranty.
+23:50:02 [seller] [seller] ebc4d7b8 input_required: I can offer you the G53e73f8c for 13,950 KRW, which comes with a warranty and a certificate.
+23:50:12 [seller] [seller] ebc4d7b8 rejected: Unfortunately, I cannot accept your offer of 855 KRW for the G53e73f8c. My lowest price is 13,950 KRW, which includes a 
+23:50:12 [buyer] {"buy": []}
+23:50:33 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "B", "price": 5913, "task": "30e76c76-a4b2-4ea9-966b-a979e7f266d8", "unit": "u-9f7130902c8e", "item": "Gc184b6fa", "sig_seller": "xXQB86MXn6m43y6oSPsLr0xgAo7PYqr+lHxueHEvy49NlvUeadAiNGOM7hKTnx6DFCXNBYmw9LWmsD6UWfZWDA=="}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 5}}
+23:50:33 [sign] sig_seller ok, sig_buyer added
+23:50:37 [acp] checkout ships unit u-9f7130902c8e, claim B, certificate attached
+23:50:38 [acp] paid 5913 through https://cups-settings-highways-katie.trycloudflare.com/acp, settled at ledger #2171023: 전통 이옥래 안흥찐빵(50g x 10개입), grade B, 27.7 h of shelf life left
+23:50:40 [seller] [seller] 6738285f rejected: Sorry, we have none of that in stock right now.
+23:50:47 [seller] [seller] feaa44a7 input_required: I'm offering you the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 (G054ff120) at 7,110 credits, backed by our warranty.

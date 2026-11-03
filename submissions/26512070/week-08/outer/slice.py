@@ -37,6 +37,25 @@ def slice_id(now):
     return time.strftime("%Y-%m-%dT%H", tm)
 
 
+DELEGATED = {"stock": {"limits": {"max_stock_share", "max_units_per_sku"}, "restock": None, "context": None}}
+
+
+def delegated(strategy, change):
+    """User 11/3 23:5x: inside strategy.delegation.auto the strategy agent decides by day too. True when every key
+    the option changes is in a delegated area (DELEGATED; None = any sub-key)."""
+    areas = [DELEGATED[a] for a in (strategy.get("delegation") or {}).get("auto", []) if a in DELEGATED]
+    if not areas or not change:
+        return False
+    for k, v in change.items():
+        ok = False
+        for area in areas:
+            if k in area and (area[k] is None or (isinstance(v, dict) and set(v) <= area[k])):
+                ok = True
+        if not ok:
+            return False
+    return True
+
+
 def unsafe(active, new):
     """Why an automatic install would loosen a safety term the user set, or None."""
     la, ln = active.get("limits") or {}, new.get("limits") or {}
@@ -107,12 +126,17 @@ def strategy_text(ctx):
         lines.append("It is night: write a report only (no options).")
     else:
         lines.append("Write the brief with rec.brief: 2-3 options and a recommendation if something should change, "
-                     "else no options.")
+                     "else no options."
+                     + (" The user delegated the stock to you (strategy.delegation): an option that changes only "
+                        "limits.max_stock_share (at most 0.5), limits.max_units_per_sku, restock or context is "
+                        "installed by itself once the audit agrees; anything else waits for the user."
+                        if "stock" in (s.get("delegation") or {}).get("auto", []) else ""))
     return "\n".join(lines)
 
 
 def auto_install(pid, model_call=None):
-    """Night mode: audit the brief here, then install its recommendation if the audit agrees and it is safe."""
+    """Night mode or the delegation: audit the brief here, then install its recommendation if the audit agrees and it
+    is safe."""
     from outer import decide
     op = audit.run(pid, model_call=model_call)
     doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{pid}.json", default={}) or {}
@@ -126,8 +150,8 @@ def auto_install(pid, model_call=None):
         bus.alert("slice", "warn", "auto_held", f"brief {pid}: option {rec} loosens a safety term ({why}), it waits "
                   "for the user")
         return {"installed": None, "why": why}
-    d = decide.decide(pid, rec, note="night mode: audit agreed", by="auto")
-    bus.alert("slice", "info", "auto_installed", f"brief {pid}: option {rec} installed as v{d.get('installed')} (night mode)")
+    d = decide.decide(pid, rec, note="night mode or delegation: audit agreed", by="auto")
+    bus.alert("slice", "info", "auto_installed", f"brief {pid}: option {rec} installed as v{d.get('installed')} (night mode or delegation)")
     return {"installed": d.get("installed"), "option": rec}
 
 
@@ -207,7 +231,8 @@ def _run(now=None, model_call=None):
             if pub:
                 brief.write_markdown(pub)
             brief.refresh_pending()
-            if auto and doc.get("options") and doc.get("recommendation"):
+            rec_change = next((o.get("change") for o in doc.get("options") or [] if o["id"] == doc.get("recommendation")), None)
+            if doc.get("options") and doc.get("recommendation") and (auto or delegated(base.strategy, rec_change)):
                 out["steps"]["auto"] = auto_install(sid, model_call)
             elif model_call is not None:                 # tests: the audit in this process, with the same script
                 out["steps"]["audit"] = {"ok": audit.run(sid, model_call=model_call) is not None}
