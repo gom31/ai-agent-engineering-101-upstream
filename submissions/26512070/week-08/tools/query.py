@@ -158,10 +158,17 @@ def guess_counterpart(ctx, task, messages=None):
     return {"task": task, "candidates": scores[:3], "accuracy": fp.get("accuracy")}
 
 
+EXECUTORS = {"seller", "buyer", "restock", "review", "forum"}
+
+
 @tool("memory.card_section", "One section of the system card that is not in your prompt: 'appendix: rules' (the "
-      "full market rules), 'appendix: history', or another role's section.",
+      "full market rules) or 'appendix: history'. The analysts, strategy and audit may also read any role's section; "
+      "executors read only their own role.",
       {"type": "object", "required": ["name"], "properties": {"name": {"type": "string", "minLength": 1}}})
 def card_section(ctx, name):
+    if ctx.caller in EXECUTORS and not name.startswith("appendix: ") and name != f"role: {ctx.caller}":
+        raise Refused(f"{ctx.caller} reads only its own role and the appendix",
+                      "your role and the strategy in force are already in your prompt; try 'appendix: rules'")
     try:
         return {"name": name, "text": card.section(name)}
     except KeyError as e:

@@ -61,6 +61,25 @@ class CardTest(Base):
         self.assertIn("bankrupt", call(ctx, "memory.card_section", {"name": "appendix: rules"})["result"]["text"])
         self.assertFalse(call(ctx, "memory.card_section", {"name": "appendix: nope"})["ok"])
 
+    def test_executor_reads_only_its_own_role(self):
+        seller = Ctx(caller="seller")
+        self.assertTrue(call(seller, "memory.card_section", {"name": "role: seller"})["ok"])
+        self.assertTrue(call(seller, "memory.card_section", {"name": "appendix: rules"})["ok"])
+        r = call(seller, "memory.card_section", {"name": "role: buyer"})
+        self.assertFalse(r["ok"])
+        self.assertIn("own role", r["reason"])
+        self.assertTrue(call(Ctx(caller="strategy"), "memory.card_section", {"name": "role: buyer"})["ok"])
+
+    def test_assemble_with_strategy(self):
+        _, text = card.assemble("seller", strategy=STRATEGY_V1)
+        self.assertNotIn("# your role: buyer", text)
+        self.assertIn("phase exposure", text)
+        self.assertIn("What the analysts and the strategy agent saw:", text)
+        self.assertIn("Hypothesis under test: H1", text)
+        order = [text.index(h) for h in ("# your role: seller", "# intent", "# strategy in force",
+                                         "# risk limits", "# current priorities")]
+        self.assertEqual(order, sorted(order))
+
 
 class StrategyTest(Base):
     def test_draft_is_refused_then_installed_when_approved(self):

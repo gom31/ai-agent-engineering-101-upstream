@@ -149,6 +149,7 @@ STRATEGY = {
         "approved": _STR,
         "phase": _STR,
         "priorities": {"type": "array", "items": _STR},
+        "context": {"type": "array", "items": _STR},   # optional: what the analysts and strategy saw, for executors
         "limits": LIMITS,
         "experiment": {"type": "object"},
         "delegation": {"type": "object"},

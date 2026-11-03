@@ -4,7 +4,11 @@ card/system_card.md is cut into sections on its "## " headings. assemble() puts 
 reader gets, in a fixed order so the unchanging part comes first and prompt caching can hit (C1):
 
     core sections -> the reader's role -> intent (framed for that reader) -> the strategy in force
-    (limit values, then priorities)
+    (version and phase, the context the analysts and strategy agent wrote, the hypothesis under test,
+    limit values, then priorities)
+
+An executor gets only its own role. Other roles are for the analysts, strategy and audit
+(memory.card_section enforces this).
 
 The intent is the same text for everyone; only its frame differs (HARNESS.md 1): executors follow it,
 the strategy agent develops it, the audit agent verifies it.
@@ -66,7 +70,7 @@ def _limit_lines(limits):
     return lines
 
 
-def assemble(role: str, reader: str = "executor", priorities=None, limits=None):
+def assemble(role: str, reader: str = "executor", priorities=None, limits=None, strategy=None):
     """(card_version, text) for one reader. role is a 'role: ...' section name without the prefix."""
     version, s = load()
     if f"role: {role}" not in s:
@@ -76,6 +80,18 @@ def assemble(role: str, reader: str = "executor", priorities=None, limits=None):
     parts = [f"# {k}\n{v}" for k, v in s.items() if k.startswith("core: ")]
     parts.append(f"# your role: {role}\n{s['role: ' + role]}")
     parts.append(f"# intent\n{FRAMES[reader]}\n\n{s['intent']}")
+    if strategy:
+        priorities = priorities or strategy.get("priorities")
+        limits = limits or strategy.get("limits")
+        head = [f"# strategy in force (v{strategy.get('version')}, epoch {strategy.get('epoch')}, "
+                f"phase {strategy.get('phase')})"]
+        if strategy.get("context"):
+            head.append("What the analysts and the strategy agent saw:")
+            head += [f"- {c}" for c in strategy["context"]]
+        hyp = (strategy.get("experiment") or {}).get("hypothesis")
+        if hyp:
+            head.append(f"Hypothesis under test: {hyp}")
+        parts.append("\n".join(head))
     if limits:
         parts.append("# risk limits in force (a first guess the strategy revises; tools enforce them)\n"
                      + "\n".join(_limit_lines(limits)))

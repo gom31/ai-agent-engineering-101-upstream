@@ -11,6 +11,11 @@
   "Learn: explore participants we have not traded with, and record everything; the next strategy is built from these records.",
   "Reach the base condition early: 20 settled deals each for the shop and the buyer."
  ],
+ "context": [
+  "Round 3 has just opened and we have no Round 3 records yet: what sells, who buys, and what other shops charge are unknown.",
+  "The market lists 5,629 SKUs (4,311 food, 1,318 goods) in 140 demand categories.",
+  "Our week-07 shop was honest with 4.5+ stars but got only 0.7% of market visits, because its first prices were too high."
+ ],
  "limits": {
   "cash_floor": 1500000,
   "max_units_per_sku": 5,
