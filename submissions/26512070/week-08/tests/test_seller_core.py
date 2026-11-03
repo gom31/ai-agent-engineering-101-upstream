@@ -93,6 +93,31 @@ class SellerCoreTest(Base):
         self.assertEqual((r["requests_missed"], r["skus"][0]["sku"], r["skus"][0]["asked"]), (1, "G00327e80", 1))
         self.assertTrue(r["categories"])
 
+    def test_rules_mode_sells_without_the_model_and_shadow_logs_both(self):
+        # 11/4 02:5x (HARNESS 14 step 2): open at list, 5% of list a turn, floor = cost x 1.05; no model call
+        from core import atomic
+        path = paths.memory() / "strategy" / "active.json"
+        st = atomic.read_json(path)
+        st["playbook"] = {"seller": {"mode": "rules"}}
+        atomic.write_json(path, st)
+
+        def no_model(p, s, t):
+            raise AssertionError("the model was called in rules mode")
+        self.core.model_call = no_model
+        out = self.core.handle("r1", "I want to buy G0026722f")
+        self.assertTrue(out["say"].startswith("4500") or "4500" in out["say"], out["say"])
+        out = self.core.handle("r1", "3000")
+        self.assertIn("4275", out["say"])
+        out = self.core.handle("r1", "4100")
+        self.assertEqual((out["state"], out["receipt"]["price"]), ("completed", 4100))
+        st["playbook"] = {"seller": {"mode": "shadow"}}
+        atomic.write_json(path, st)
+        self.core.model_call = lambda p, s, t: self.answers.pop(0)
+        self.answers = ['{"tool": "act.counter", "args": {"unit": "u-goods", "price": 4400, "say": "4400 for it."}}']
+        out = self.core.handle("r2", "I want to buy G0026722f")
+        self.assertEqual(out["say"], "4400 for it.")                    # the agent answers in shadow mode
+        sh = [e["data"] for e in EventReader("t2", "seller").iter_new() if e["kind"] == "seller.shadow"]
+        self.assertEqual((sh[-1]["rule"]["price"], sh[-1]["agent"]["price"]), (4500, 4400))
 
 if __name__ == "__main__":
     unittest.main()

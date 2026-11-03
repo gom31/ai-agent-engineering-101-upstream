@@ -130,7 +130,23 @@ class SellerCore:
         ctx.situation = {"unit": st["unit"], "candidates": [c["unit"] for c in st["candidates"]], "offer": st["offer"],
                          "ask": st["ask"], "first_time": st.get("first_time")}
         t0 = time.perf_counter()
-        d, trace = loop.decide("seller", ctx, self.situation_text(ctx, st), deadline=deadline, model_call=self.model_call)
+        mode = self.playbook(ctx)["mode"]
+        rule = self.rule_decide(ctx, st, ex) if mode in ("rules", "shadow") else None
+        if mode == "rules" and rule is not None:
+            d, trace = rule, []
+        else:
+            if mode == "rules":
+                self.events.emit("exec.anomaly", {"role": "seller", "kind": "turn_needs_agent", "then": "agent",
+                                                  "situation": {"turn": st["turns"], "offer": st["offer"],
+                                                                "ask": st["ask"], "excerpt": ex["excerpt"][:120]}},
+                                 task=task_id)
+            d, trace = loop.decide("seller", ctx, self.situation_text(ctx, st), deadline=deadline,
+                                   model_call=self.model_call)
+            if mode == "shadow":                         # compare before switching (HARNESS 14.5)
+                self.events.emit("seller.shadow", {"rule": rule and {k: rule.get(k) for k in ("action", "price", "unit")},
+                                                   "agent": d and {k: d.get(k) for k in ("action", "price", "unit")},
+                                                   "turn": st["turns"], "offer": st["offer"], "ask": st["ask"]},
+                                 task=task_id)
         guard = None
         if d is None:
             d, guard = self.guard(ctx, st), "no valid move from the model: " + "; ".join(
@@ -154,6 +170,50 @@ class SellerCore:
         st["ask"] = d["price"]
         st["lines"].append({"from": "us", "price": d["price"], "say": d["say"]})
         return {"state": "input_required", "say": d["say"], "receipt": None}
+
+    # --- the rules (HARNESS 14 step 2, user 11/4 02:5x; benchmark winun1127: ~79% of list, fast answers)
+
+    @staticmethod
+    def playbook(ctx):
+        pb = ((ctx.strategy.get("playbook") or {}).get("seller") or {})
+        return {"mode": pb.get("mode", "agent"), "open_share": pb.get("open_share", 1.0),
+                "step_share": pb.get("step_share", 0.05), "min_margin": pb.get("min_margin", 0.05),
+                "accept_from_turn": pb.get("accept_from_turn", 4)}
+
+    def rule_decide(self, ctx, st, ex):
+        """One move by rule, or None (an exception for the agent): open at open_share of list, come down step_share
+        a turn to the floor (the list floor, and cost x (1 + min_margin)), take an offer at or over our ask, or over
+        the floor from accept_from_turn; the last turn offers the floor."""
+        if ex.get("looks_like_instruction"):
+            return None
+        if st["turns"] > 1 and ex.get("price") is None:
+            return None                                    # words only (it may accept our ask): the agent reads it
+        pb = self.playbook(ctx)
+        unit = st["unit"] or (st["candidates"][0]["unit"] if st["candidates"] else None)
+        c = next((c for c in st["candidates"] if c["unit"] == unit), None)
+        if c is None or not c.get("list_price"):
+            return None
+        lp, offer, ask = c["list_price"], st["offer"], st["ask"]
+        floor = max(math.ceil(c["cost"] * (1 + pb["min_margin"])),
+                    act.list_floor(ctx.strategy, st.get("first_time"), act.unit_list_price(ctx, unit)))
+        top = max(floor, round(lp * pb["open_share"]))
+        new_ask = top if ask is None else max(floor, ask - round(lp * pb["step_share"]))
+        last = st["turns"] >= MAX_TURNS - 1
+        if offer is not None and (offer >= new_ask or (offer >= floor and (st["turns"] >= pb["accept_from_turn"] or last))):
+            claim = c.get("grade_now") if c.get("grade_now") in ("A", "B", "C") else None
+            args = {"say": f"Deal at {offer} KRW. Every unit is guaranteed: the market's certificate, its true grade "
+                           "and a full refund if it breaks within the warranty.", "unit": unit, "price": offer}
+            if claim:
+                args["claim"] = claim
+            r = call(ctx, "act.accept", args)
+        else:
+            price = floor if last else new_ask
+            say = (f"{c['name']}: {price} KRW, a premium unit with the market's certificate, its true grade and our "
+                   "full-refund guarantee." if ask is None else f"For this guaranteed unit I can do {price} KRW.")
+            r = call(ctx, "act.counter", {"price": price, "say": say, "unit": unit})
+        if not r["ok"]:
+            return None
+        return dict(r["result"], thought="rules")
 
     def guard(self, ctx, st):
         unit = st["unit"] or st["candidates"][0]["unit"]

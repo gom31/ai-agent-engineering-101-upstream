@@ -3985,3 +3985,133 @@
 02:49:19 [kit] 48 shops in .market\shops.json, running market_buyer
 02:49:44 [buyer] {"buy": []}
 02:50:01 [kit] your seller exited (code 4294967295), starting it again
+02:50:21 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:50:22 [market] ledger #2218726: no deal, stars None, verified False, review not shown
+02:50:22 [order o-7bbf7662e8f7] 비스켓/쿠키, budget 15620, round 3, use within 180.0 h
+02:50:22 [kit] 48 shops in .market\shops.json, running market_buyer
+02:50:24 [buyer] {"shop": "https://bulk-fails-begun-fraction.trycloudflare.com", "receipt": {"claim": "B", "price": 5802, "shop": "Kiro Everyday: Groceries & Goods", "unit": "u-b0d1e078dfa5", "item": "Gdff8fabb", "sig_seller": "llGhTasumH1AyOGAkEJY1yImRvqdoC2Bn4lfBYR6GuxzHnmuMzTlIen79sqaA3IbShLujJnvOiwzPIekI041Cw==", "task": "42a2791a-2c41-419e-a034-ad1bdacbeb61"}, "stars": null, "review": null, "accept": {"min_hours_left": 180.0}}
+02:50:24 [sign] sig_seller ok, sig_buyer added
+02:50:24 [acp] checkout ships unit u-b0d1e078dfa5, claim B, certificate attached
+02:50:25 [acp] paid 5802 through https://bulk-fails-begun-fraction.trycloudflare.com/acp, settled at ledger #2218735: 임페리얼 골드셀렉션 초콜릿 쿠키 454g, grade B, 488.4 h of shelf life left
+02:50:48 [buyer] {"buy": []}
+02:50:57 [buyer] {"stars": 4, "review": "Grade B cookie at 59% of list price from a consistently trustworthy partner—strong value."}
+02:50:57 [market] ledger #2218872: Gdff8fabb at 5802, stars 4, verified True, review accepted
+02:50:58 [order o-9141183f515e] 주스/코코아/생수, budget 7930, round 3, use within 360.0 h
+02:50:58 [kit] 48 shops in .market\shops.json, running market_buyer
+02:50:59 [buyer] {"shop": "https://neither-tribunal-beginning-nose.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:50:59 [market] ledger #2218881: no deal, stars None, verified False, review not shown
+02:51:18 [order o-02f068de56dd] 비스켓/쿠키, budget 43540, round 3, use within 360.0 h
+02:51:18 [kit] 48 shops in .market\shops.json, running market_buyer
+02:51:20 [seller] [seller] c33714b5 input_required: The total price for the 이솔홈 도트 쉬폰 원피스 앞치마 (G53e73f8c) is 12,400 KRW, including a market certificate.
+02:51:23 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+02:51:23 [market] ledger #2218973: no deal, stars None, verified False, review not shown
+02:51:28 [seller] [seller] 7d9652ba input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+02:51:38 [order o-285ae805862a] 기타 가공식품, budget 17080, round 3, use within 360.0 h
+02:51:39 [kit] 48 shops in .market\shops.json, running market_buyer
+02:51:42 [buyer] {"shop": "https://ax-week07.treasuresky.xyz", "receipt": null, "stars": null, "review": null}
+02:51:42 [market] ledger #2219052: no deal, stars None, verified False, review not shown
+02:51:53 [buyer] {"buy": []}
+02:51:59 [order o-f74c79b8a2cf] 신선과일(부패주의), budget 24870, round 3, use within 36.0 h
+02:51:59 [kit] 48 shops in .market\shops.json, running market_buyer
+02:52:00 [buyer] {"shop": "https://clinical-mpg-microphone-optimum.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:52:00 [market] ledger #2219122: no deal, stars None, verified False, review not shown
+02:52:21 [order o-ae8359ca73ac] 신선야채(부패주의), budget 36120, round 3, use within 36.0 h
+02:52:22 [kit] 48 shops in .market\shops.json, running market_buyer
+02:52:24 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "c05ab5d5-a907-4500-9727-ec0fbbd89492", "item": "G0b0ca441", "sig_seller": "PS0FwoI7bQdcIFNBctgPUISlI7D3j6JScDOjwrgYcG78x0/nbuuoJikWkFCdgWX9hZCIZJMKWyN5xFrglHobAw==", "shop": "ddolcom", "claim": "B", "unit": "u-ff969b28741d", "price": 8705}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+02:52:24 [sign] sig_seller ok, sig_buyer added
+02:52:25 [acp] checkout ships unit u-ff969b28741d, claim B, certificate attached
+02:52:26 [acp] paid 8705 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2219217: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 38.1 h of shelf life left
+02:52:51 [seller] [seller] 80da5c55 input_required: I can offer you the 바숨 알러지케어 먼지없는 누빔 매트리스커버 슈퍼싱글 SS at 22,320 KRW with grade A and a market certificate.
+02:52:57 [buyer] {"buy": []}
+02:53:09 [buyer] {"stars": 4, "review": "Honest delivery of promised grade B at fair value from a reliable, consistent seller."}
+02:53:09 [market] ledger #2219383: G0b0ca441 at 8705, stars 4, verified True, review accepted
+02:53:09 [order o-f3b76d0af6b2] 신선야채(부패주의), budget 97860, round 3, use within 12.0 h
+02:53:10 [kit] 48 shops in .market\shops.json, running market_buyer
+02:53:10 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:53:10 [market] ledger #2219390: no deal, stars None, verified False, review not shown
+02:53:30 [order o-054b41098bb7] 신선야채(부패주의), budget 15640, round 3, use within 5.0 h
+02:53:30 [kit] 48 shops in .market\shops.json, running market_buyer
+02:53:31 [buyer] {"shop": "https://baltimore-appreciate-airport-filled.trycloudflare.com", "receipt": {"price": 3960, "item": "G0b0ca441", "sig_seller": "ncDsjrDrcp28GGcj2B7b7h7sesEpCGB3bkDhE22Lm8ASeQH66u+Cza8UJYe9UTuVAI7d3+A/rEZIE0mjRj2nCQ==", "shop": "ggari-shop", "unit": "u-5fdb46922484", "task": "3491738e-4d66-4205-944d-7a0f6cc04271"}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+02:53:31 [sign] sig_seller ok, sig_buyer added
+02:53:32 [acp] checkout ships unit u-5fdb46922484, certificate attached
+02:53:32 [acp] paid 3960 through https://baltimore-appreciate-airport-filled.trycloudflare.com/acp, settled at ledger #2219481: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 11.2 h of shelf life left
+02:53:57 [buyer] {"stars": 3, "review": "Grade C 포슬포슬 수미감자 arrived as specified; shop's quality representation was honest."}
+02:53:57 [market] ledger #2219575: G0b0ca441 at 3960, stars 3, verified True, review accepted
+02:53:57 [order o-d704fce52f99] 신선야채(부패주의), budget 25050, round 3, use within 36.0 h
+02:53:58 [kit] 48 shops in .market\shops.json, running market_buyer
+02:54:02 [buyer] {"buy": []}
+02:54:08 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "970fc915-3c5b-4215-b80f-4f0d466cf5cf", "item": "G0b0ca441", "sig_seller": "KDAY8d6iRgTXzE/d2oxAfc1Me9HVt2seSEy/uavsA0BsBAD383O+ClAB+4Qy689OGL1oHondbG8m2NakhJk5BA==", "shop": "YAHO1212", "claim": "C", "unit": "u-dfb070d8e940", "price": 8871}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+02:54:08 [sign] sig_seller ok, sig_buyer added
+02:54:09 [acp] not paying: 10.93 h of shelf life left, the policy asks for 36.0
+02:54:09 [market] ledger #2219631: G0b0ca441 at 8871, stars None, verified False (failed: settled), review not shown
+02:54:17 [order o-43a85dc4534d] 주스/코코아/생수, budget 4600, round 3, use within 540.0 h
+02:54:18 [kit] 48 shops in .market\shops.json, running market_buyer
+02:54:19 [buyer] {"shop": "https://agent-market-shop-r3-v2.vercel.app", "receipt": null, "stars": null, "review": null}
+02:54:19 [market] ledger #2219661: no deal, stars None, verified False, review not shown
+02:54:23 [forum] post as shop: 200
+02:54:34 [forum] post as buyer: 200
+02:54:38 [order o-cdeb24cea0f0] 신선야채(부패주의), budget 13540, round 3, use within 5.0 h
+02:54:38 [kit] 48 shops in .market\shops.json, running market_buyer
+02:54:39 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:54:39 [market] ledger #2219744: no deal, stars None, verified False, review not shown
+02:54:58 [order o-ba72b75bfe69] 찌개/탕류/장류, budget 11150, round 3, use within 180.0 h
+02:54:58 [kit] 48 shops in .market\shops.json, running market_buyer
+02:55:00 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+02:55:00 [market] ledger #2219827: no deal, stars None, verified False, review not shown
+02:55:07 [buyer] {"buy": []}
+02:55:18 [order o-3e7ba450b8ab] 디저트, budget 17370, round 3, use within 12.0 h
+02:55:18 [kit] 48 shops in .market\shops.json, running market_buyer
+02:55:21 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "753109b6-4f8f-4337-82ae-3adf56d0246e", "item": "G11f14ced", "sig_seller": "VqqI4U4deqEdOOjqsFEjTTk3ucq0T+vVMIl3SdwehwVVGqDuBwP2XipixzIQWh4b0rM4wSdTTtsBVpyWiSA9DA==", "shop": "ddolcom", "claim": "C", "unit": "u-e04c06ecf9fb", "price": 6336}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+02:55:22 [sign] sig_seller ok, sig_buyer added
+02:55:22 [acp] checkout ships unit u-e04c06ecf9fb, claim C, certificate attached
+02:55:23 [acp] paid 6336 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2219924: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade C, 21.5 h of shelf life left
+02:55:51 [buyer] {"stars": 3, "review": "Delivered grade C as described with good surplus."}
+02:55:51 [market] ledger #2220048: G11f14ced at 6336, stars 3, verified True, review accepted
+02:55:51 [order o-3a7f6882eca1] 신선야채(부패주의), budget 9770, round 3, use within 12.0 h
+02:55:52 [kit] 48 shops in .market\shops.json, running market_buyer
+02:55:56 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": {"shop": "Elm Street", "sig_seller": "05o0LEaTsjri7pSvEefZEfXzQq7S8tWmMzXFS1xJJzT4qLGmNnf92xnFo1RUkrhGqrCuDBoW0Vk92wmIz+KeBw==", "item": "Ge05ea828", "unit": "u-12b3074fe1ce", "price": 6917, "task": "c519e07a-011e-477d-85a1-e1b3480f46d9", "cert": false, "claim": "A"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+02:55:56 [sign] sig_seller ok, sig_buyer added
+02:55:56 [acp] not paying: no certificate to show the shelf life
+02:55:57 [market] ledger #2220081: Ge05ea828 at 6917, stars None, verified False (failed: settled), review not shown
+02:56:12 [order o-1235b2b8789e] 디저트, budget 19460, round 3, use within 24.0 h
+02:56:12 [kit] 48 shops in .market\shops.json, running market_buyer
+02:56:12 [buyer] {"buy": []}
+02:56:14 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "0150747d-d838-4b19-a54f-f0d9ac1ef020", "item": "G11f14ced", "sig_seller": "k0xHRXgRv6Z5u+BRAc3F2+FfwL+UvGxcZMclZsarUCZPdWXfdea38SOqwFMLzO7nvBTjOfcNlrDngtfO8HS9Dg==", "shop": "ddolcom", "claim": "A", "unit": "u-55ebff6b8ba1", "price": 6729}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+02:56:14 [sign] sig_seller ok, sig_buyer added
+02:56:15 [acp] checkout ships unit u-55ebff6b8ba1, claim A, certificate attached
+02:56:15 [acp] paid 6729 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2220152: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade A, 40.9 h of shelf life left
+02:56:35 [buyer] {"stars": 5, "review": "Reliable partner with consistent quality: A-grade cookies certified, honest grade and receipt, strong surplus."}
+02:56:36 [market] ledger #2220228: G11f14ced at 6729, stars 5, verified True, review accepted
+02:56:36 [order o-ae7194fa5df4] 비스켓/쿠키, budget 14370, round 3, use within 360.0 h
+02:56:36 [kit] 48 shops in .market\shops.json, running market_buyer
+02:56:38 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "2d7a9ee0-2e39-481f-b1b7-3b7ee5ab244d", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "guqDyb8Kc6DozcT/slCAw8qF4ikigoLS+lB3xtit6Q5G1upw+Q1i+cCgfygG8JMm6V01wNDhSJsHV/LXVkKUBQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+02:56:38 [sign] sig_seller ok, sig_buyer added
+02:56:38 [seller] [seller] 1082129b input_required: I can offer you the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 6320.
+02:56:39 [acp] not paying: 135.64 h of shelf life left, the policy asks for 360.0
+02:56:39 [market] ledger #2220241: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+02:56:52 [seller] [seller] 5be5c422 input_required: The current asking price for the comforter is 70,320 KRW, and it comes with a certificate. Would you like to proceed?
+02:56:56 [order o-cf64e513b4c4] 신선육류, budget 20470, round 3, use within 6.0 h
+02:56:56 [kit] 48 shops in .market\shops.json, running market_buyer
+02:56:57 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:56:57 [market] ledger #2220320: no deal, stars None, verified False, review not shown
+02:57:05 [seller] [seller] c6d9b16d input_required: I can offer you the 라로퍼니처 보스턴 참죽나무 원목 식탁 의자 카페 인테리어 체어 for 92,800 KRW.
+02:57:16 [order o-fbd4981f4d3f] 신선육류, budget 22420, round 3, use within 18.0 h
+02:57:17 [kit] 48 shops in .market\shops.json, running market_buyer
+02:57:17 [buyer] {"buy": []}
+02:57:18 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:57:18 [market] ledger #2220399: no deal, stars None, verified False, review not shown
+02:57:33 [seller] [seller] e16c4153 input_required: I can offer you the [베드리움] 듀얼쿠션 유로탑 매트리스 (SS) for 217,728 KRW.
+02:57:35 [seller] [seller] e16c4153 rejected: I cannot accept your offer of 136,080 KRW as it is below my cost for this unit.
+02:57:37 [order o-0ee541f13569] 신선육류, budget 49870, round 3, use within 12.0 h
+02:57:37 [kit] 48 shops in .market\shops.json, running market_buyer
+02:57:42 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+02:57:42 [market] ledger #2220507: no deal, stars None, verified False, review not shown
+02:57:57 [order o-41b6fb5f5768] 침구, budget 62910, round 3
+02:57:58 [kit] 48 shops in .market\shops.json, running market_buyer
+02:57:59 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:57:59 [market] ledger #2220571: no deal, stars None, verified False, review not shown
+02:58:18 [order o-85ed764cafff] 비스켓/쿠키, budget 15640, round 3, use within 180.0 h
+02:58:18 [kit] 48 shops in .market\shops.json, running market_buyer
+02:58:20 [seller] [seller] 5a7d3f99 input_required: I can offer the 마카롱 회음부방석 임산부 산모 도넛 방석 for 6,320 KRW with the market's certificate and a warranty.
+02:58:20 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "8f47668a-50bd-40d0-ba4a-c0fdf427c6fa", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "ipKjS8WkRwy9MNTAdhrPGEJsxZcU4x+jeaDr3KyQKNWd2Daw5mW72mkWuighqXlhAAeqvwfgKPxgLOceUAeJBQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 180.0}}
+02:58:20 [sign] sig_seller ok, sig_buyer added

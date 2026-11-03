@@ -203,7 +203,13 @@ STRATEGY = {
                     "food_top": {"type": "integer", "minimum": 0, "maximum": 30},
                     "food_units": {"type": "integer", "minimum": 0, "maximum": 8},
                     "food_min_shelf_hours": {"type": "number", "minimum": 0}}},
-                "buyer": {"type": "object", "properties": {      # 11/4 03:2x: the buyer's rules
+                "seller": {"type": "object", "properties": {     # 11/4 02:5x: the seller's rules
+                    "mode": {"type": "string", "enum": ["rules", "shadow", "agent"]},
+                    "open_share": {"type": "number", "minimum": 0.5, "maximum": 1.5},
+                    "step_share": {"type": "number", "minimum": 0, "maximum": 0.3},
+                    "min_margin": {"type": "number", "minimum": 0, "maximum": 1},
+                    "accept_from_turn": {"type": "integer", "minimum": 1, "maximum": 12}}},
+                "buyer": {"type": "object", "properties": {      # 11/4 02:4x: the buyer's rules
                     "mode": {"type": "string", "enum": ["rules", "agent"]},
                     "ceiling_share": {"type": "number", "minimum": 0.3, "maximum": 1}}}}},
     },
