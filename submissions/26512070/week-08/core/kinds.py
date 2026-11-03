@@ -14,6 +14,7 @@ KINDS = {
     # buyer (our buyer)
     "buyer.order": "an order arrived. data: category, budget, kind, use_within_hours, acceptable_n",
     "buyer.pick": "a shop was picked. data: shop, why, explored (bool: a shop we had not traded with)",
+    "buyer.decision": "one move in a negotiation. data: action (offer|walk_away), price, tool_calls, thought",
     "buyer.closed": "a negotiation ended. data: outcome (completed|walked|rejected|expired|failed), agreed, "
                     "receipt_price, verdict (fair|cheated: ...|no deal ...), list_price",
     "buyer.payment": "the kit's payment result. data: paid (bool), price, reason, ledger",

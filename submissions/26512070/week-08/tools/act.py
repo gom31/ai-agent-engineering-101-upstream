@@ -116,7 +116,9 @@ def walk_away(ctx, why=""):
 
 @tool("act.finish", "Buyer: set what the checkout must show before the kit pays for the agreed receipt: the market's "
       "certificate, the least shelf life in hours (food), the grades we accept, the least warranty in hours (goods). "
-      "The kit refuses to pay when the unit does not meet it. Leave a field out to not require it.",
+      "The kit refuses to pay when the unit does not meet it. Leave a field out to not require it. The kit can check "
+      "grades and min_hours_left only from the market's certificate: without one it refuses to pay any policy that "
+      "asks for them (and the deal is lost).",
       {"type": "object", "required": ["accept"],
        "properties": {"accept": {"type": "object", "properties": {
            "cert": {"type": "boolean"}, "min_hours_left": {"type": "number", "minimum": 0},
