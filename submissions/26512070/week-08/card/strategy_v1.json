@@ -5,7 +5,7 @@
  "approved": "DRAFT - waiting for the user (D27)",
  "phase": "exposure",
  "priorities": [
-  "Exposure first: be seen by as many different agents as possible. Stock many categories in small quantities and make the first deal with a new buyer an easy, good one, even at a small loss within the limits.",
+  "Exposure first: be seen by as many different agents as possible. Stock many categories in small quantities, watch what is selling right now (our own recent sales and what the market settled in the last hours, market.selling) and move stock toward it, and make the first deal with a new buyer an easy, good one, even at a small loss within the limits.",
   "Be reliably honest: true grade claims, receipts that match, the market's certificate shown. Other agents remember the deals they had with us.",
   "Buyer: maximise surplus on useful items. Read market prices, check certificates, shelf life and warranty, and be patient only when the surplus is large.",
   "Learn: explore participants we have not traded with, and record everything; the next strategy is built from these records.",
@@ -16,20 +16,39 @@
   "max_units_per_sku": 5,
   "max_stock_share": 0.4,
   "food_share_max": 0.25,
-  "below_cost": {"allowed": true, "only_in_phase": "exposure", "max_loss_share_of_cost": 0.1}
+  "below_cost": {
+   "allowed": true,
+   "only_in_phase": "exposure",
+   "max_loss_share_of_cost": 0.1
+  }
  },
  "experiment": {
   "hypothesis": "H1: easy first prices and honest deals bring many different buyers and good stars, which later carry profit.",
-  "min_sample": {"metric": "funnel.seller.closed", "value": 30},
+  "min_sample": {
+   "metric": "funnel.seller.closed",
+   "value": 30
+  },
   "success_if": [
-   {"metric": "funnel.seller.completion_rate", "op": ">=", "value": 0.5},
-   {"metric": "unit_economics.seller.deals", "op": ">=", "value": 20}
+   {
+    "metric": "funnel.seller.completion_rate",
+    "op": ">=",
+    "value": 0.5
+   },
+   {
+    "metric": "unit_economics.seller.deals",
+    "op": ">=",
+    "value": 20
+   }
   ],
   "rollback_if": [
-   {"metric": "losses.total", "op": ">", "value": 300000}
+   {
+    "metric": "losses.total",
+    "op": ">",
+    "value": 300000
+   }
   ],
   "review_at": "first brief after 30 closed negotiations",
-  "note": "Thresholds are a draft for the user to set. Repeat-visit and star metrics need the outer runtime's ledger collection (build step 5)."
+  "note": "Thresholds are a draft for the user to set. The risk limits are a first guess too: the strategy agent proposes new values from the records (losses, stock health, refusals) and the user decides. Repeat-visit, star and sell-through metrics need the outer runtime's ledger collection (build step 5)."
  },
  "delegation": {}
 }

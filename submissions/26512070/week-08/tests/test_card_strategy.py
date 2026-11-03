@@ -16,6 +16,8 @@ from core import atomic, card, paths, strategy  # noqa: E402
 from tools import query  # noqa: E402,F401
 from tools.registry import Ctx, call  # noqa: E402
 
+STRATEGY_V1 = atomic.read_json(HERE / "card" / "strategy_v1.json")
+
 
 class Base(unittest.TestCase):
     def setUp(self):
@@ -44,6 +46,11 @@ class CardTest(Base):
         self.assertLess(text.index("# your role: seller"), text.index("# intent"))
         self.assertTrue(text.rstrip().endswith("- exposure first"))           # the changing part comes last
         self.assertNotIn("appendix", text)
+        _, with_limits = card.assemble("seller", priorities=["exposure first"],
+                                       limits=STRATEGY_V1["limits"])
+        self.assertIn("cash floor (KRW): 1500000", with_limits)
+        self.assertIn("below cost: allowed in phase exposure", with_limits)
+        self.assertLess(with_limits.index("# risk limits"), with_limits.index("# current priorities"))
         _, audit = card.assemble("audit", "auditor")
         self.assertIn("claims to verify", audit)
         with self.assertRaises(KeyError):

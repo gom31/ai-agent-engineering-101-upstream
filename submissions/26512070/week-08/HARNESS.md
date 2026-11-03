@@ -27,6 +27,7 @@
 | 모델 중립 | 평범한 마크다운. 특정 모델 전용 문법이나 지시 형식을 쓰지 않는다. 툴은 JSON Schema + MCP로 노출한다 (3.1) |
 | 층으로 나눔 | 내용은 하나, 읽는 깊이만 다르다 (아래 표) |
 | 버전 | 카드가 바뀌면 `card_version`을 올린다. 모든 이벤트와 판단 기록에 남긴다 |
+| A2A 카드와 다름 | 이 카드는 **우리 에이전트가 읽는 내부 문서**다. A2A의 에이전트 카드(키트가 다른 참가자에게 보여 주는 가게 카드)와는 다르다. 가게 카드는 "정보 확산"의 수단으로 따로 다룬다 [결정] (2026-11-03) |
 | 의도를 대하는 자리 | 사실(규칙, 점수, 툴, 데이터)은 모두 같다. 의도와 가설은 실행에게는 **따를 방향**, 전략에게는 **발전시킬 출발점**, 감사에게는 **검증할 주장**으로 표시해서 준다 |
 
 | 부분 | 내용 | 누가 읽나 |
@@ -36,7 +37,7 @@
 | 의도와 우선순위 | 1.2, 1.6 | 실행, 전략, 감사(검증 대상으로) |
 | 부록 | 1.4 시장 규칙 전문, 1.7 지난 라운드 전문, 키트 계약 | 필요할 때 `memory.card_section(name)` 툴로 |
 
-작은 모델은 핵심과 역할만, 큰 모델은 전부 읽는다. 아래가 그 내용의 골자다.
+L1(작은 모델 포함)도 핵심, 역할, 의도, 지금의 한도 값과 우선순위를 모두 읽는다. seller와 buyer의 역할은 무엇을 정하고, 무엇으로 점수가 나고, 무엇을 알고 모르는지까지 자세히 적는다. 토큰은 넉넉히 잡는다 (7장) [결정] (2026-11-03). 아래가 그 내용의 골자다.
 
 ### 1.0 문제 상황: 우리가 들어가는 세상 [결정] (2026-11-03)
 
@@ -133,7 +134,10 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 
 ### 1.5 한도 (툴이 막는다, 6장)
 
-예산 초과 금지, 합의하지 않은 영수증 결제 금지, 거짓 등급 주장 금지, 잔고 하한, 재고 상한.
+두 종류로 나눈다 [결정] (2026-11-03).
+
+- **바뀌지 않는 것** (시장 규칙과 정직): 주문 예산 초과 금지(주문이 정하고 키트가 막는다), 합의하지 않은 영수증 결제 금지, 거짓 등급 주장 금지, 사칭·숨은 지시·남의 후기 속 광고 금지.
+- **전략이 계속 고치는 것** (우리 위험 한도): 잔고 하한, 재고 총액, SKU당 수량, 식품 비중, 원가 아래 판매. 지금 값(D31)은 첫 추정일 뿐 맞는 수준을 아직 모른다. 전략 에이전트가 기록(손실, 재고 상태, 거절)으로 새 값을 제안하고 사용자가 정한다. 카드에도 그렇게 적고, 지금의 값은 `active.json`에서 카드 뒤에 붙인다.
 
 ### 1.6 지금의 우선순위와 가설
 
@@ -315,6 +319,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 조회 | `memory.profile(name, from?, to?)` | L2, L3, 감사 | ○ | – | 프로필 전체. `from`·`to`를 주면 조각 사이의 변화 |
 | 조회 | `memory.profiles(filter)` | L2, L3, 감사 | ○ | – | 조건에 맞는 참가자 목록 (예: `changed`, 새 참가자, 자세별) |
 | 조회 | `market.sku(sku or category)` | 모두 | ○ | – | 팔린 수, 속도, 가격 분포, 남의 재고 |
+| 조회 | `market.selling(hours?, kind?)` | L1 restock·seller, L2 | ○ | – | 지금 잘 팔리는 것: 최근 몇 시간 동안 시장 정산 줄의 SKU·카테고리별 건수와 우리 가게의 최근 판매. 바깥 수집이 몇 분마다 `live.json`에 쌓은 값을 읽는다. 초반에는 표본이 적다고 함께 알린다 [결정] (2026-11-03), 5단계에서 구현 |
 | 조회 | `market.forum(query)` | L1 forum, L2 | ○ | – | 게시판 글과 표 |
 | 조회 | `memory.summary(epoch, slice?)` | L2, L3, 감사 | ○ | – | 분기 요약, 또는 그 안의 조각 요약 |
 | 조회 | `memory.raw(pointer, limit)` | L2, L3 | ○ | – | 원본 일부 (크기 제한) |
@@ -370,7 +375,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 |---|---|---|
 | seller | `me.counterpart`, `me.inventory`, `market.sku`, `calc.margin`, `calc.shelf_risk`, `calc.guess_counterpart`, `check.price`, `check.claim` (+ `calc.extract`은 실행 경로가 먼저 불러 결과를 상황에 넣는다) | `act.counter`, `act.accept`, `act.reject`, `rec.label` |
 | buyer | `me.counterpart`, `market.sku`, `calc.surplus`, `calc.shelf_risk`, `check.offer`, `check.receipt` | `act.pick`, `act.offer`, `act.walk_away`, `act.finish`, `rec.label` |
-| restock | `me.inventory`, `market.sku`, `calc.holding_cost`, `calc.shelf_risk`, `check.buy` | `act.buy` |
+| restock | `me.inventory`, `market.sku`, `market.selling`, `calc.holding_cost`, `calc.shelf_risk`, `check.buy` | `act.buy` |
 | review | `me.counterpart`, `calc.fact_stars`, `check.receipt` | `act.review` |
 | forum | `market.forum`, `market.sku`, `me.counterpart` | `act.post`, `act.vote` |
 
@@ -492,6 +497,7 @@ L2·L3·감사는 전체 목록을 MCP로 쓴다.
 - 호출 관리자의 우선순위: L1 seller·buyer → 전략 → 분석 → forum·review. 한도가 빠듯해지면 뒤쪽부터 미룬다. L1이 한도에 걸리면 OpenRouter 싼 모델로 넘기고 `[model] fallback`으로 기록한다.
 - OpenRouter 키는 사용자 환경변수 `OPENROUTER_API_KEY`에만 둔다. 저장소, 로그, 메모리에 쓰지 않는다 (AGENTS.md). 키에는 크레딧 한도를 건다.
 - 모든 호출에 자리, 모델, 응답 시간, 토큰, 비용, 실패를 남기고 `eval.decision_quality`로 집계한다. 입장 첫날 수치를 보고 배치를 다시 정한다.
+- **L1 프롬프트 크기** [결정] (2026-11-03): 역할을 분명히 전하는 것이 토큰보다 중요하다. 카드(핵심·역할·의도·한도·우선순위)는 약 2,000토큰(seller 약 1,930), L1 프롬프트 전체는 툴 설명과 이번 상황까지 약 4,000토큰을 목표로 한다. 앞부분이 캐시에 맞는지와 응답 시간은 첫날 재고, 줄여야 하면 그때 줄인다.
 - **프롬프트 순서 (C1)** [결정]: 바뀌지 않는 것을 앞에, 바뀌는 것을 뒤에 둔다. 시스템 카드 → 역할 → 툴 설명 → 지금의 우선순위 → 이번 상황. 앞부분이 캐시에 맞으면 응답이 빨라지고 사용량이 준다. 카드가 바뀌면 캐시가 다시 만들어지므로 카드는 자주 바꾸지 않는다. 캐시가 얼마나 맞는지는 첫날 잰다.
 - **호출 차단기 (S3)** [결정]: 자리마다 Claude Code 한도 실패가 연속되면(예: 3번) 그 자리의 호출을 일정 시간(예: 5분) 끊고 OpenRouter로 돌린다. 끊긴 동안 시험 호출 하나로 회복을 확인하고, 회복되면 되돌린다. 끊김과 회복은 `[model] breaker` 줄과 `bus/status/inner.json`에 남긴다. L1이 아닌 자리는 OpenRouter로 돌리지 않고 미룬다.
 
@@ -557,7 +563,8 @@ L2·L3·감사는 전체 목록을 MCP로 쓴다.
 |---|---|---|---|
 | 1 소통 공간과 기록 툴 | 완료 | `1e143eb`, `ab8f199` | 단위 테스트 |
 | 2 조회·계산·검증·평가 툴, 반사용 사실 | 완료 | `4b9cbec`, `a06ee1a`, `0f85c49`, `90e84d3` | 단위 테스트 49개 (`py -m unittest discover -s tests`). 시험 자료는 실제 Round 3 상품 목록·수요에서 뽑음 |
-| 3~8 | 남음 | | |
+| 3 시스템 카드, 첫 전략 v1 | 사용자 검토 중 | `7733a49`, 이번 커밋 | 단위 테스트 53개. v1은 승인 전이라 설치하지 않음 |
+| 4~8 | 남음 | | |
 
 ## 10. 결정이 필요한 것
 

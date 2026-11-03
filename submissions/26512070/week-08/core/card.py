@@ -3,7 +3,8 @@
 card/system_card.md is cut into sections on its "## " headings. assemble() puts together what one
 reader gets, in a fixed order so the unchanging part comes first and prompt caching can hit (C1):
 
-    core sections -> the reader's role -> intent (framed for that reader) -> the active priorities
+    core sections -> the reader's role -> intent (framed for that reader) -> the strategy in force
+    (limit values, then priorities)
 
 The intent is the same text for everyone; only its frame differs (HARNESS.md 1): executors follow it,
 the strategy agent develops it, the audit agent verifies it.
@@ -49,7 +50,23 @@ def section(name):
     return s[name]
 
 
-def assemble(role: str, reader: str = "executor", priorities=None):
+_LIMIT_NAMES = {"cash_floor": "cash floor (KRW)", "max_units_per_sku": "units per SKU",
+                "max_stock_share": "stock value, share of the 5,000,000 start",
+                "food_share_max": "food, share of the stock value"}
+
+
+def _limit_lines(limits):
+    lines = [f"- {_LIMIT_NAMES.get(k, k)}: {v}" for k, v in limits.items() if k != "below_cost"]
+    b = limits.get("below_cost") or {}
+    if b.get("allowed"):
+        phase = f" in phase {b['only_in_phase']}" if b.get("only_in_phase") else ""
+        lines.append(f"- below cost: allowed{phase}, losing at most {b.get('max_loss_share_of_cost')} of cost per deal")
+    else:
+        lines.append("- below cost: not allowed")
+    return lines
+
+
+def assemble(role: str, reader: str = "executor", priorities=None, limits=None):
     """(card_version, text) for one reader. role is a 'role: ...' section name without the prefix."""
     version, s = load()
     if f"role: {role}" not in s:
@@ -59,6 +76,9 @@ def assemble(role: str, reader: str = "executor", priorities=None):
     parts = [f"# {k}\n{v}" for k, v in s.items() if k.startswith("core: ")]
     parts.append(f"# your role: {role}\n{s['role: ' + role]}")
     parts.append(f"# intent\n{FRAMES[reader]}\n\n{s['intent']}")
+    if limits:
+        parts.append("# risk limits in force (a first guess the strategy revises; tools enforce them)\n"
+                     + "\n".join(_limit_lines(limits)))
     if priorities:
         parts.append("# current priorities (strategy in force)\n" + "\n".join(f"- {p}" for p in priorities))
     return version, "\n\n".join(parts)
