@@ -1,0 +1,81 @@
+21:02:26 [kit] market_kit 4, C:\Users\gom12\ax\ai-agent-engineering-101\submissions\26512070\week-08
+21:02:32 [tunnel] https://numbers-organization-combined-gis.trycloudflare.com, waiting until it answers
+21:03:33 [shop] your seller on port 64098; others reach it through the kit at https://numbers-organization-combined-gis.trycloudflare.com
+21:04:38 [kit] market_kit 4, C:\Users\gom12\ax\ai-agent-engineering-101\submissions\26512070\week-08
+21:04:45 [tunnel] https://experiencing-motion-package-leonard.trycloudflare.com, waiting until it answers
+21:05:46 [shop] your seller on port 64376; others reach it through the kit at https://experiencing-motion-package-leonard.trycloudflare.com
+21:05:47 [market] shop registered as gom31-certified-goods, round 3
+21:05:48 [market] buyer registered as gom31-certified-goods, round 3
+21:05:48 [order o-83a5ef4ee2e4] 침구, budget 99240, round 3
+21:05:49 [kit] 44 shops in .market\shops.json, running market_buyer
+21:05:57 [buyer] {"shop": "https://pumps-motivation-standings-disclaimer.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+21:06:00 [market] ledger #2131352: no deal, stars None, verified False, review not shown
+21:06:06 [forum] post as shop: 200
+21:06:08 [order o-d8480ed567be] 신선야채(부패주의), budget 38520, round 3, use within 5.0 h
+21:06:08 [kit] 44 shops in .market\shops.json, running market_buyer
+21:06:09 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:06:09 [market] ledger #2131415: no deal, stars None, verified False, review not shown
+21:06:29 [order o-30202f83aa81] 허브/향신료, budget 21250, round 3, use within 180.0 h
+21:06:29 [kit] 45 shops in .market\shops.json, running market_buyer
+21:06:30 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:06:30 [market] ledger #2131539: no deal, stars None, verified False, review not shown
+21:06:39 [buyer] {"buy": [{"sku": "G03cab593", "qty": 1}]}
+21:06:40 [supply] 1 x 플로라 선데이모닝 순면 40수 차렵이불 SS for 20666, balance 4979334
+21:06:50 [order o-b98c8f5a078f] 비스켓/쿠키, budget 15620, round 3, use within 72.0 h
+21:06:50 [kit] 45 shops in .market\shops.json, running market_buyer
+21:07:13 [buyer] {"shop": "https://lanes-advertisers-lead-platforms.trycloudflare.com", "receipt": {"sig_seller": "Gc1zlpJzlykTWaYHS1ItvMUT0mQiDikHKP16YC7E8wRhCofjR1diRHfye0zmN2z9dt/h5H1+A742mEoBSi75Bw==", "shop": "buzllightyear shop", "price": 9900, "unit": "u-9a43e58eb6c9", "task": "67764c2a-3313-44b9-9afc-9260d25b6e5e", "item": "Gdff8fabb", "claim": "A"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 72, "grades": ["A"]}}
+21:07:13 [sign] sig_seller ok, sig_buyer added
+21:07:14 [acp] not paying: grade C, the policy accepts ['A']
+21:07:15 [market] ledger #2131781: Gdff8fabb at 9900, stars None, verified False (failed: settled), review not shown
+21:07:15 [order o-03369a02c193] 신선야채(부패주의), budget 15250, round 3, use within 24.0 h
+21:07:16 [kit] 47 shops in .market\shops.json, running market_buyer
+21:07:17 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:07:17 [market] ledger #2131789: no deal, stars None, verified False, review not shown
+21:07:32 [buyer] {"buy": [{"sku": "G0be9ed07", "qty": 2}, {"sku": "Ge62449c9", "qty": 2}, {"sku": "G07ec17d5", "qty": 1}]}
+21:07:33 [supply] 2 x [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드 for 39784, balance 4939550
+21:07:35 [order o-e989d9670282] 가공/조리 육류, budget 12370, round 3, use within 180.0 h
+21:07:36 [kit] 47 shops in .market\shops.json, running market_buyer
+21:07:43 [supply] 2 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 95865, balance 4843685
+21:07:56 [supply] 1 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 82133, balance 4761552
+21:08:06 [buyer] {"shop": "https://pumps-motivation-standings-disclaimer.trycloudflare.com", "receipt": {"sig_seller": "kun2TJcUbXXV1ZuD7NcJBgpARSS3Yi3JxFCUkJctvHjXMeWyBnDyTzB8H97MbD1muNO4X+S8w6bAGt6zLHEjCA==", "unit": "u-82cd16f7c588", "price": 8320, "shop": "Sealed Stock Shop", "item": "Gf998cd13", "cert": true, "claim": "C", "task": "5dc60501-476e-44da-bc51-5dcde7f1e305"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 180, "grades": ["C"]}}
+21:08:06 [sign] sig_seller ok, sig_buyer added
+21:08:07 [acp] not paying: 138.17 h of shelf life left, the policy asks for 180
+21:08:07 [market] ledger #2132079: Gf998cd13 at 8320, stars None, verified False (failed: settled), review not shown
+21:08:08 [order o-47d3f5968192] 신선야채(부패주의), budget 18620, round 3, use within 12.0 h
+21:08:08 [kit] 47 shops in .market\shops.json, running market_buyer
+21:08:09 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:08:09 [market] ledger #2132090: no deal, stars None, verified False, review not shown
+21:08:28 [order o-2fb854b840a7] 신선육류, budget 25090, round 3, use within 6.0 h
+21:08:29 [kit] 47 shops in .market\shops.json, running market_buyer
+21:08:31 [buyer] {"buy": [{"sku": "G43f4ed02", "qty": 1}, {"sku": "G81ade83e", "qty": 1}, {"sku": "Gc44de87c", "qty": 1}, {"sku": "G6fb5422c", "qty": 2}, {"sku": "Gfbf7f983", "qty": 1}, {"sku": "Gd14156d6", "qty": 1}, {"sku": "G59e3e5ff", "qty": 1}, {"sku": "G0e9a5558", "qty": 1}, {"sku": "G8561bfe2", "qty": 2}, {"sku": "G2cb8041b", "qty": 1}]}
+21:08:31 [supply] 1 x 더릭스홈 자가발열 웜매트 극세사 가을 겨울 까는 이불 침대패드 고정밴드 SS (슈퍼싱글) for 23656, balance 4737896
+21:08:48 [supply] 1 x 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지 for 14135, balance 4723761
+21:08:55 [supply] 1 x [베드리움] 듀얼쿠션 유로탑 매트리스(SS) for 179372, balance 4544389
+21:09:00 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": {"shop": "Corner Store", "sig_seller": "RuVqx5sd7dsgEejJoyZARpBUNYPDUbOUkGMUdP0Ztot6QApwANZuvImyDjl7ow4C8KWz6jTLaxUOY0zoEFSjDg==", "task": "5e8e8805-d8f0-4007-9b65-d10b631c7ddc", "unit": "u-beef324465b0", "item": "G3ac3f712", "claim": "B", "price": 17640}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 6.0}}
+21:09:00 [sign] sig_seller ok, sig_buyer added
+21:09:01 [acp] checkout ships unit u-beef324465b0, claim B, certificate attached
+21:09:01 [acp] paid 17640 through https://market.ourolabs.ai/shop/corner-store/acp, settled at ledger #2132393: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade B, 14.5 h of shelf life left
+21:09:05 [supply] 2 x 갤럭시 S21 S22 S23 S24 S25 울트라 플러스 맥세이프 투명 휴대폰 케이스 for 11504, balance 4532885
+21:09:07 [buyer] {"stars": 4, "review": "Grade B chicken thigh fillet, 2kg pack, arrived as the shop described and the price matched the order budget."}
+21:09:08 [market] ledger #2132427: G3ac3f712 at 17640, stars 4, verified True, review accepted
+21:09:08 [order o-97a9280ba3a7] 신선야채(부패주의), budget 9340, round 3, use within 36.0 h
+21:09:08 [kit] 47 shops in .market\shops.json, running market_buyer
+21:09:09 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:09:09 [market] ledger #2132431: no deal, stars None, verified False, review not shown
+21:09:17 [supply] 1 x 스피드랙 W1200XD400XH900 3단 무볼트 조립식앵글선반 for 76026, balance 4456859
+21:09:27 [supply] 1 x 베스트리빙 캘빈 가죽좌판 인테리어 카페 원목의자 식탁의자 1개 for 45016, balance 4411843
+21:09:28 [order o-00468321de2f] 신선야채(부패주의), budget 71260, round 3, use within 24.0 h
+21:09:28 [kit] 48 shops in .market\shops.json, running market_buyer
+21:09:29 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+21:09:29 [market] ledger #2132558: no deal, stars None, verified False, review not shown
+21:09:38 [supply] 1 x [LG전자 직영] LG 싸이킹 POWER 청소기 실버 C40SFHT for 87411, balance 4324432
+21:09:52 [order o-04b0569eca45] 비스켓/쿠키, budget 15620, round 3, use within 72.0 h
+21:09:53 [supply] 1 x X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP for 26061, balance 4298371
+21:09:53 [kit] 48 shops in .market\shops.json, running market_buyer
+21:10:03 [supply] 2 x 코코도르 섬유 향기 탈취제 500ml X 4개 (룸스프레이 섬유향수) for 24439, balance 4273932
+21:10:08 [seller] [seller] e630f446 input_required: Hello, welcome to our shop. This is a certified new 80-count plain hotel-style seamless quilt cover, S/SS size, with the
+21:10:14 [supply] 1 x 클라우드백 컴퓨터 사무용 사무실 중역 편한 공부 메쉬 학생 책상 의자 T800MQ for 170952, balance 4102980
+21:10:14 [buyer] {"shop": "https://pumps-motivation-standings-disclaimer.trycloudflare.com", "receipt": {"sig_seller": "2LAY3P4YVBBf4jw7QcWmaEQtKtiOmgJfHv6IvHnYEoqyqVCIY5gHouxQf+GvK5H+0jgAhM3iJWmWk+KiVYhxBw==", "unit": "u-39e33a478050", "price": 8118, "shop": "Sealed Stock Shop", "item": "Gdff8fabb", "cert": true, "claim": "A", "task": "cdad113e-afb0-405f-bb33-a2dc2123a23a"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 72.0, "grades": ["A"]}}
+21:10:15 [sign] sig_seller ok, sig_buyer added
+21:10:15 [acp] checkout ships unit u-39e33a478050, claim A, certificate attached
+21:10:15 [acp] paid 8118 through https://pumps-motivation-standings-disclaimer.trycloudflare.com/acp, settled at ledger #2132812: 임페리얼 골드셀렉션 초콜릿 쿠키 454g, grade A, 631.6 h of shelf life left
