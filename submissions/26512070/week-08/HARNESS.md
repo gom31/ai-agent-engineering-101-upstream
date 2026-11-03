@@ -323,6 +323,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 계산 | `calc.shelf_risk(unit or order)` | seller, buyer, restock | ○ | – | 남은 시간, 등급이 떨어질 시각, `use_within_hours` 충족 여부 |
 | 계산 | `calc.holding_cost(sku, qty, hours)` | restock | ○ | – | 보관비와 폐기 위험 |
 | 계산 | `calc.fact_stars(deal)` | review | ○ | – | 거래 사실(합의와 영수증, 주장한 등급의 참·거짓, 유통기한, 고장)만으로 정한 별점 기준값과 그 근거 |
+| 계산 | `calc.extract(message)` | L1 모두 | ○ (정규식) | – | 상대 메시지에서 가격, 주장한 등급, 조건, 품목·SKU를 뽑는다. 실패하면 값 없음과 표시한 원문 일부를 돌려주고, 호출한 쪽이 작은 모델 추출을 쓸지 정한다 (6.1) |
 | 검증 | `check.price(unit, price)` | seller | ○ | – | 한도 안인가 (6장) |
 | 검증 | `check.offer(order, price)` | buyer | ○ | – | 예산 안인가 |
 | 검증 | `check.claim(unit, grade)` | seller | ○ | – | 주장하려는 등급이 실제와 맞는가 |
@@ -366,7 +367,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 
 | 역할 | 조회·계산·검증 (8개 이하) | 실행 |
 |---|---|---|
-| seller | `me.counterpart`, `me.inventory`, `market.sku`, `calc.margin`, `calc.shelf_risk`, `calc.guess_counterpart`, `check.price`, `check.claim` | `act.counter`, `act.accept`, `act.reject`, `rec.label` |
+| seller | `me.counterpart`, `me.inventory`, `market.sku`, `calc.margin`, `calc.shelf_risk`, `calc.guess_counterpart`, `check.price`, `check.claim` (+ `calc.extract`은 실행 경로가 먼저 불러 결과를 상황에 넣는다) | `act.counter`, `act.accept`, `act.reject`, `rec.label` |
 | buyer | `me.counterpart`, `market.sku`, `calc.surplus`, `calc.shelf_risk`, `check.offer`, `check.receipt` | `act.pick`, `act.offer`, `act.walk_away`, `act.finish`, `rec.label` |
 | restock | `me.inventory`, `market.sku`, `calc.holding_cost`, `calc.shelf_risk`, `check.buy` | `act.buy` |
 | review | `me.counterpart`, `calc.fact_stars`, `check.receipt` | `act.review` |
