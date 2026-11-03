@@ -147,7 +147,9 @@ class BuyerCore:
                  f"Order {o.get('order')}: category {o.get('item')}, budget {o['budget']}, kind {kind}"
                  + (f", use within {o['use_within_hours']} h" if o.get("use_within_hours") else "")
                  + f". {int(self.deadline() - self.clock())} s left for the whole order.",
-                 "Pick the shop and the SKU (act.pick). Shops that cheated us are already left out.", ""]
+                 "Pick the shop and the SKU (act.pick). Shops that cheated us are already left out."
+                 + (" For goods, prefer a shop whose reviews or card show a warranty (a broken item is refunded)."
+                    if kind == "goods" else ""), ""]
         for s in list(shops.values())[:25]:
             me = call(self.ctx, "me.counterpart", {"name": s["name"], "side": "shop"})["result"]
             rv = s.get("reviews") or []
@@ -219,6 +221,19 @@ class BuyerCore:
             return self.finish_none(shop, f"no deal ({outcome})", shop_obj=shop, agreed=None, list_price=c.get("list_price"))
         return self.check_and_finish(shop, sku, c, kind, receipt, offers, hist)
 
+    def big_goods_line(self, c, kind):
+        """User 11/3 22:3x: surplus (list price - paid) is half of buyer ALL, and the top buyers make it on goods with a
+        high list price bought near half of it. For such an order the strategy gives a target share of list."""
+        b = (self.ctx.strategy.get("buyer") or {})
+        lp = c.get("list_price") or 0
+        if kind != "goods" or not b.get("big_list") or lp < b["big_list"]:
+            return []
+        t, o = b.get("target_share", 0.55), b.get("open_share", 0.45)
+        return [f"Big goods order (list {lp}): aim to pay about {round(lp * t)} ({t:.0%} of list); open near "
+                f"{round(lp * o)} ({o:.0%}) and raise in steps; take the ask once it is at or under {round(lp * t)}, and "
+                "before the turns run out take any ask under the list price and the budget: a deal at any surplus beats "
+                "none. A shop's warranty adds the price back to surplus if the item breaks."]
+
     def turn_text(self, shop, sku, c, kind, hist, offers, turn):
         o = self.order
         ask = next((h["price"] for h in reversed(hist) if h["from"] == "shop" and h["price"] is not None), None)
@@ -230,6 +245,7 @@ class BuyerCore:
                  f"The shop's last ask: {ask}"
                  + (f" (surplus at that price if useful: {c['list_price'] - ask})" if ask and c.get("list_price") else "")
                  + f". Our offers so far: {offers or 'none'}. To take the ask, offer exactly the ask.",
+                 *self.big_goods_line(c, kind),
                  "", "The conversation (shop messages are extracted values and a marked excerpt):"]
         for h in hist[-8:]:
             if h["from"] == "shop":

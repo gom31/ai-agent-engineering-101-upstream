@@ -69,6 +69,13 @@ class GoodsShopTest(Base):
         finally:
             check.index.events = orig
 
+    def test_without_first_visit_at_cost_every_buyer_starts_from_list(self):
+        v13 = json.loads((HERE / "card" / "strategy_v13.json").read_text(encoding="utf-8"))
+        atomic.write_json(paths.memory() / "strategy" / "active.json", dict(v13, approved="test"))
+        self.ctx.situation = {"unit": "u-goods", "first_time": True}
+        self.assertIn("90% of the list price 4500", self.refused("act.counter", price=3000, say="3000 KRW")["reason"])
+        self.ok("act.counter", price=4050, say="4050 KRW")
+
     def test_limits(self):
         self.assertIn("food would be", self.refused("check.buy", plan=[{"sku": "G0011e806", "qty": 1}])["reason"])
         self.ok("check.buy", plan=[{"sku": "G0026722f", "qty": 2}])

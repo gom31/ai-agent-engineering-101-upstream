@@ -151,7 +151,13 @@ def situation(ctx, inv):
                       (inv["balance"] or 0) - (lim.get("cash_floor") or 0) - reserve))
     missed = call(ctx, "me.missed", {"hours": 6})["result"]
     first = [c["category"] for c in missed.get("categories") or []]
-    rows = candidates(ctx, held_skus, room, first, [s["sku"] for s in missed.get("skus") or [] if s.get("sku")])
+    # what buyers asked us for, then (user 11/3 22:3x: hold the market's best sellers deep) what sells: ours, then the
+    # market's goods
+    cat = mf.catalog(ctx)
+    asked = [s["sku"] for s in missed.get("skus") or [] if s.get("sku")]
+    asked += [s["sku"] for s in (sell.get("ours") or []) + (sell.get("market") or [])
+              if isinstance(s, dict) and (cat.get(s.get("sku")) or {}).get("kind") == "goods" and s["sku"] not in asked]
+    rows = candidates(ctx, held_skus, room, first, asked)
     lines.append(f"\nRoom to stock now: about {room} (the stock cap {start_cap} minus stock {inv['stock_value']}, and "
                  f"the balance above the floor"
                  + (f" and the warranty reserve {reserve} for {open_n} sales ({open_total}) still in warranty"
@@ -187,6 +193,12 @@ def main():
                       {"balance": inv_raw.get("balance"), "left": inv_raw.get("bankruptcies_left")})
             w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False, "bankrupt": True})
             print(json.dumps({"buy": [], "bankrupt": True}))
+            return
+        stop = (ctx.strategy.get("restock") or {}).get("stop_after")
+        if stop and t0 >= stop:
+            # User 11/3: the board counts unsold stock as zero profit, so stock is sold down before the round ends
+            w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False, "stopped": stop})
+            print(json.dumps({"buy": []}))
             return
         sig, inv = signature(ctx)
         state_path = paths.memory() / "facts" / "restock_state.json"

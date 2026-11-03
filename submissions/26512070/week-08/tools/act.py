@@ -67,8 +67,9 @@ def _repeat_floor(ctx, unit, price):
     """User 11/3: a buyer that is not on its first visit negotiates from the list price, down to min_share_of_list
     of it at most (user 22:25: 0.9 - at list, returning buyers stopped at 90% and walked: 1 sale in 25 min)."""
     rb = ctx.strategy.get("repeat_buyer") or {}
-    if rb.get("min_price") != "list" or ctx.situation.get("first_time") is not False:
-        return
+    at_cost = (ctx.strategy.get("first_visit") or {}).get("price") == "at_cost"
+    if rb.get("min_price") != "list" or (at_cost and ctx.situation.get("first_time") is not False):
+        return          # a first visit at cost has its own rule; without that promise every buyer starts from list
     u = mf.unit(ctx, unit) or {}
     lp = u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
     floor = math.ceil(lp * rb.get("min_share_of_list", 1.0)) if lp else None

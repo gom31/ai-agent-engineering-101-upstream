@@ -165,7 +165,12 @@ STRATEGY = {
                            # cash kept for refunds: this share of our sales still in warranty (check.buy)
                            "reserve_share": {"type": "number", "minimum": 0, "maximum": 1}}},
         "restock": {                                     # optional: how restock picks its candidates
-            "type": "object", "properties": {"per_asked_category": {"type": "integer", "minimum": 1, "maximum": 20}}},
+            "type": "object", "properties": {"per_asked_category": {"type": "integer", "minimum": 1, "maximum": 20},
+                                             "stop_after": {"type": "number"}}},   # no buying from then on
+        "buyer": {                                       # optional: targets for big goods orders
+            "type": "object", "properties": {"big_list": {"type": "number", "minimum": 0},
+                                             "target_share": {"type": "number", "minimum": 0, "maximum": 1},
+                                             "open_share": {"type": "number", "minimum": 0, "maximum": 1}}},
         "repeat_buyer": {                                # optional: a buyer not on its first visit
             "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]},
                                              "min_share_of_list": {"type": "number", "minimum": 0, "maximum": 1}}},
