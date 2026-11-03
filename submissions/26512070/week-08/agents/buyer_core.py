@@ -206,7 +206,7 @@ class BuyerCore:
                 a.cancel()
                 break
             try:
-                state, text, receipt = a.send(d.get("say") or str(d["price"]), timeout=max(10, left - 5))
+                state, text, receipt = a.send(d["say"], timeout=max(10, left - 5))   # act.offer put the price in it
             except Exception as e:
                 outcome = f"failed ({type(e).__name__})"
                 break
@@ -242,9 +242,7 @@ class BuyerCore:
 
     def check_and_finish(self, shop, sku, c, kind, receipt, offers, hist):
         o, ctx = self.order, self.ctx
-        agreed = offers[-1] if offers else None
-        if agreed is None:      # the shop closed at its own ask without our offer: we agreed to nothing lower
-            agreed = next((h["price"] for h in reversed(hist) if h["from"] == "shop" and h["price"] is not None), None)
+        agreed = offers[-1] if offers else None         # a receipt before any offer of ours is not agreed: not paid
         chk = call(ctx, "check.receipt", {"receipt": receipt, "agreed_price": agreed,
                                           "acceptable": o.get("acceptable") or [], "budget": o["budget"]})
         if not chk["ok"]:

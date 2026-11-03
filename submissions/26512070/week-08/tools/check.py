@@ -119,6 +119,7 @@ def buy(ctx, plan):
         if have.get(line["sku"], 0) + line["qty"] > lim["max_units_per_sku"]:
             raise Refused(f"{line['sku']}: {have.get(line['sku'], 0)} in stock + {line['qty']} is over "
                           f"{lim['max_units_per_sku']} per SKU", f"buy at most {lim['max_units_per_sku'] - have.get(line['sku'], 0)}")
+        have[line["sku"]] = have.get(line["sku"], 0) + line["qty"]     # the same SKU on two lines counts once
         worst = round(c["list_price"] * mf.COST_SHARE["A"][1]) * line["qty"]
         spend += worst
         if c.get("kind") == "food":

@@ -54,10 +54,18 @@ class SellerCoreTest(Base):
 
     def test_ok_takes_our_ask_and_nothing_in_stock(self):
         self.answers = ['{"tool": "act.counter", "args": {"unit": "u-food-a", "price": 20000, "say": "20000."}}',
-                        '{"tool": "act.accept", "args": {"say": "Deal."}}']
+                        '{"tool": "act.accept", "args": {"say": "Deal."}}',            # no offer: refused
+                        '{"tool": "act.accept", "args": {"say": "Deal.", "price": 20000}}']   # the model reads 'ok' as yes
         self.core.handle("t2", "kimchi please G0011e806")
         self.assertEqual(self.core.handle("t2", "ok")["receipt"]["price"], 20000)
         self.assertEqual(self.core.handle("t3", "I want a sofa")["state"], "rejected")
+
+    def test_no_number_is_not_agreement_by_itself(self):
+        self.answers = ['{"tool": "act.counter", "args": {"unit": "u-goods", "price": 4000, "say": "4000 KRW."}}',
+                        '{"tool": "act.counter", "args": {"price": 3900, "say": "I can do 3900 KRW."}}']
+        self.core.handle("t6", "I want to buy G0026722f")
+        out = self.core.handle("t6", "no deal, that is too much")       # 'deal' in the text no longer means yes
+        self.assertEqual((out["state"], out["receipt"]), ("input_required", None))
 
     def test_guard_when_the_model_fails(self):
         self.answers = ["nonsense", "still nonsense", "no"]

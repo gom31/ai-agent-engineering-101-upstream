@@ -22,7 +22,6 @@ from tools.registry import Ctx, call
 
 MAX_TURNS = 12
 CANDIDATES = 5
-ACCEPT_WORDS = ("ok", "okay", "accept", "deal", "agreed", "yes", "take it", "좋아", "수락", "콜", "구매할게")
 
 
 def canon(d):
@@ -101,15 +100,14 @@ class SellerCore:
                                             "confidence": st["guess"]["confidence"]}, task=task_id)
         st["turns"] += 1
         if ex["price"] is not None:
-            st["offer"] = ex["price"]
-        elif st["ask"] is not None and any(w in text.lower() for w in ACCEPT_WORDS):
-            st["offer"] = st["ask"]                     # "ok" to our ask
+            st["offer"] = ex["price"]       # whether a message without a number accepts our ask is the model's call
         st["lines"].append({"from": "buyer", "excerpt": ex["excerpt"], "price": ex["price"],
                             "claimed_grade": ex["claimed_grade"], "looks_like_instruction": ex["looks_like_instruction"]})
         if st["turns"] > MAX_TURNS:
             return self._close(task_id, st, "rejected", "We could not agree. Thank you for asking.")
 
-        ctx.situation = {"unit": st["unit"], "candidates": [c["unit"] for c in st["candidates"]], "offer": st["offer"]}
+        ctx.situation = {"unit": st["unit"], "candidates": [c["unit"] for c in st["candidates"]], "offer": st["offer"],
+                         "ask": st["ask"]}
         t0 = time.perf_counter()
         d, trace = loop.decide("seller", ctx, self.situation_text(ctx, st), deadline=deadline, model_call=self.model_call)
         guard = None
@@ -161,7 +159,9 @@ class SellerCore:
                 lines.append(f"- us: asked {x['price']}: {x['say']!r}")
         lines.append("")
         lines.append(f"Our last ask: {st['ask']}. The buyer's offer on the table: {st['offer']}"
-                     + (" (act.accept takes this price)" if st["offer"] is not None else " (none yet)") + ".")
+                     + (" (act.accept takes this price)" if st["offer"] is not None else " (none yet)") + "."
+                     + (" The buyer's last message has no number: if it accepts our ask, act.accept with price = our ask."
+                        if st["lines"][-1].get("price") is None and st["ask"] is not None else ""))
         if st["unit"]:
             lines.append(f"The unit under negotiation: {st['unit']}.")
             cands = [c for c in st["candidates"] if c["unit"] == st["unit"]]

@@ -100,7 +100,12 @@ class BuyerCoreTest(Base):
                              '{"tool": "act.offer", "args": {"price": 22000}}',
                              '{"tool": "act.finish", "args": {"accept": {}}}'], shop)
         self.assertEqual(out["receipt"]["price"], 22000)
-        self.assertEqual(shop.sent[1], "22000")
+        self.assertEqual(shop.sent[1], "Offer: 22000.")
+
+    def test_receipt_before_any_offer_is_not_paid(self):
+        shop = Shop([("TASK_STATE_COMPLETED", "Sold at 21000.", receipt(21000))])
+        out = self.run_core(['{"tool": "act.pick", "args": {"shop": "elm", "sku": "G0011e806"}}'], shop)
+        self.assertIsNone(out["receipt"])
 
 
 if __name__ == "__main__":

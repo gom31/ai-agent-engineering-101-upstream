@@ -11,7 +11,7 @@ import json
 
 from core import atomic, paths
 from tools import check
-from tools.calc import _SUSPECT
+from tools.calc import _SUSPECT, extract
 from tools.registry import Refused, tool
 
 _SAY = {"type": "string", "maxLength": 400}
@@ -33,15 +33,30 @@ def _own_text(text):
                       "say only true things about the deal, the item or the market")
 
 
+def _say_price(ctx, say, price, unit=None, label="Price"):
+    """The message the other side reads must carry the price the tool checked: a different number is refused, a
+    message without one gets it added. A grade named in the message must be true now (check.claim)."""
+    ex = extract(ctx, say or "", 0)
+    if ex["price"] is not None and ex["price"] != price:
+        raise Refused(f"your message names {ex['price']} but the price is {price}",
+                      "write the same number in the message (for example '... 21000 KRW'), or leave the number out")
+    if unit and ex["claimed_grade"]:
+        check.claim(ctx, unit, ex["claimed_grade"])
+    return say if ex["price"] is not None else f"{(say or '').rstrip()} {label}: {price}.".strip()
+
+
 # --- seller
 
 def _seller_unit(ctx, unit):
-    unit = unit or ctx.situation.get("unit")
+    chosen = ctx.situation.get("unit")
+    unit = unit or chosen
     if unit is None:
         raise Refused("no unit chosen yet", "name one of the candidate units in 'unit'")
-    if ctx.situation.get("unit") is None and unit not in (ctx.situation.get("candidates") or []):
+    if chosen is None and unit not in (ctx.situation.get("candidates") or []):
         raise Refused(f"unit {unit} does not fit what this buyer asked for",
                       f"candidates: {ctx.situation.get('candidates')}")
+    if chosen is not None and unit != chosen:
+        raise Refused(f"this negotiation is for unit {chosen}, not {unit}", "keep the unit, or end and start over")
     return unit
 
 
@@ -53,28 +68,34 @@ def counter(ctx, price, say, unit=None):
     unit = _seller_unit(ctx, unit)
     check.price(ctx, unit, price)
     _own_text(say)
-    return {"action": "counter", "unit": unit, "price": price, "say": say}
+    return {"action": "counter", "unit": unit, "price": price, "say": _say_price(ctx, say, price, unit)}
 
 
-@tool("act.accept", "Seller: accept the buyer's last offer and sign the receipt. Optionally claim the unit's grade "
+@tool("act.accept", "Seller: accept and sign the receipt at the buyer's last offer, or at our last ask when the buyer "
+      "accepted it in words (then pass price = that ask). Optionally claim the unit's grade "
       "(must be true now) and give a warranty in hours (goods; refunds the full price if it breaks within it). The "
       "market's certificate always goes with the unit: our shop card promises it.",
       {"type": "object", "required": ["say"],
-       "properties": {"say": _SAY, "unit": {"type": "string"},
+       "properties": {"say": _SAY, "unit": {"type": "string"}, "price": _PRICE,
                       "claim": {"type": "string", "enum": ["A", "B", "C"]},
                       "warranty_hours": {"type": "number", "minimum": 0, "maximum": 168}},
        "additionalProperties": False}, side_effect="signed receipt")
-def accept(ctx, say, unit=None, claim=None, warranty_hours=None):
+def accept(ctx, say, unit=None, price=None, claim=None, warranty_hours=None):
     unit = _seller_unit(ctx, unit)
-    offer = ctx.situation.get("offer")
-    if offer is None:
-        raise Refused("the buyer has not offered a price yet", "counter with a price, or end the negotiation")
-    check.price(ctx, unit, offer)
+    offer, ask = ctx.situation.get("offer"), ctx.situation.get("ask")
+    price = offer if price is None else price
+    if price is None:
+        raise Refused("the buyer has not offered a price", "if it accepted your ask in words, pass price = your ask; "
+                      "else counter or end")
+    if price not in (offer, ask):
+        raise Refused(f"{price} is neither the buyer's offer ({offer}) nor our last ask ({ask})",
+                      "accept one of those, or counter")
+    check.price(ctx, unit, price)
     if claim:
         check.claim(ctx, unit, claim)
     _own_text(say)
-    return {"action": "accept", "unit": unit, "price": offer, "say": say, "claim": claim,
-            "warranty_hours": warranty_hours or None, "cert": True}
+    return {"action": "accept", "unit": unit, "price": price, "say": _say_price(ctx, say, price, unit, "Deal at"),
+            "claim": claim, "warranty_hours": warranty_hours or None, "cert": True}
 
 
 @tool("act.reject", "Seller: end the negotiation without a deal.",
@@ -105,7 +126,7 @@ def pick(ctx, shop, sku, why=""):
 def offer(ctx, price, say=""):
     check.offer(ctx, price, _need(ctx, "budget", "budget"))
     _own_text(say)
-    return {"action": "offer", "price": price, "say": say}
+    return {"action": "offer", "price": price, "say": _say_price(ctx, say, price, label="Offer")}
 
 
 @tool("act.walk_away", "Buyer: end this negotiation without a deal.",
