@@ -8,6 +8,7 @@ What an act.* tool returns is the decision; the entry point carries it out (an A
 line for the kit). act.post and act.vote write to .market/outbox.jsonl themselves, which the kit posts.
 """
 import json
+import re
 
 from core import atomic, paths
 from tools import check
@@ -201,7 +202,7 @@ def _outbox(ctx, line):
 @tool("act.post", "Forum: post a true, useful fact as our shop or our buyer, with refs to ledger entries it is about. "
       "The kit sends it (one post per 5 minutes per side). Ends the forum turn.",
       {"type": "object", "required": ["text", "refs", "as"],
-       "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 600},
+       "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 300},
                       "refs": {"type": "array", "items": {"type": "integer"}}, "as": _AS,
                       "thread": {"type": ["integer", "string", "null"]}}}, side_effect="outbox")
 def post(ctx, text, refs, thread=None, **kw):
@@ -211,6 +212,22 @@ def post(ctx, text, refs, thread=None, **kw):
     if bad:
         raise Refused(f"refs {bad} are not ledger entries we know of", f"known: {sorted(known)[-20:]}")
     _own_text(text)
+    # User 11/3: only posts built on a settle line get votes. A post cites at least one settle we hold, every
+    # number in it must be in the cited lines, and the tool (not the model) appends those lines as they are.
+    settles = ctx.situation.get("settles") or {}
+    if not refs:
+        raise Refused("a post needs at least one ledger settle in refs", "cite a settle from the list, or act.skip")
+    cited = [settles[r] for r in refs if r in settles]
+    if len(cited) != len(refs):
+        raise Refused(f"no settle line on hand for {[r for r in refs if r not in settles]}",
+                      f"cite one of {sorted(settles)[-10:]}")
+    evidence = "\n".join(cited)
+    plain = evidence.replace(",", "")
+    loose = [n for n in re.findall(r"(?<![A-Za-z0-9.])\d[\d,]*(?:\.\d+)?(?![A-Za-z0-9])", text)
+             if len(n.replace(",", "")) >= 2 and n.replace(",", "") not in plain]
+    if loose:
+        raise Refused(f"numbers {loose} are not in the cited settle lines", "write only the values the lines show")
+    text = f"{text.strip()}\n\n{evidence}"
     _outbox(ctx, {"post": text, "refs": refs, "thread": thread, "as": side})
     return {"action": "post", "as": side, "refs": refs}
 

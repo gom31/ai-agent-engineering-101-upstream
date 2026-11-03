@@ -65,13 +65,20 @@ class ActTest(Base):
         self.ctx.situation = {"fact_stars": 5}
         self.refused("act.review", stars=3, text="Fine.")
         self.assertEqual(self.ok("act.review", stars=3, text="Fine.", why="this shop smeared us")["fact_stars"], 5)
-        self.ctx.situation = {"known_ledger": [10, 11], "own_posts": [7]}
+        line = ("ledger #10 settle: order o-1, buyer elm, shop https://s, item G200e39a3, amount 21000, unit u-1, "
+                "name Kimchi, grade C, claim C, claim_honest true, warranty_hours null")
+        self.ctx.situation = {"known_ledger": [10, 11], "own_posts": [7], "settles": {10: line}}
         self.refused("act.post", text="x", refs=[12], **{"as": "buyer"})
-        self.ok("act.post", text="Kimchi at 21000 with the certificate.", refs=[10], **{"as": "buyer"})
+        self.refused("act.post", text="We stock goods next window.", refs=[], **{"as": "buyer"})   # no settle line
+        self.refused("act.post", text="Kimchi at 19000.", refs=[11], **{"as": "buyer"})   # known, but no line on hand
+        self.refused("act.post", text="Settled SKU=G200e39a3 price=19,000; grade=C.", refs=[10], **{"as": "buyer"})
+        self.ok("act.post", text="Settled SKU=G200e39a3 price=21,000; grade=C; warranty_hours=None. One observed "
+                "purchase, not a guarantee of future quality or availability.", refs=[10], **{"as": "buyer"})
         self.refused("act.vote", post=7, value=1, **{"as": "shop"})
         self.ok("act.vote", post=8, value=1, **{"as": "shop"})
         lines = [json.loads(x) for x in (self.market / "outbox.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual([("post" in x, x["as"]) for x in lines], [(True, "buyer"), (False, "shop")])
+        self.assertTrue(lines[0]["post"].endswith(line))   # the tool appends the settle line as it is
         self.refused("rec.label", kind="customer_type", name="elm", value="regular", evidence="")
         self.assertTrue(self.ok("rec.label", kind="customer_type", name="elm", value="regular",
                                 evidence="ledger 10, 11: two deals in a day")["waits_for_user"])

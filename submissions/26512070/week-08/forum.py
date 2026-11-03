@@ -42,6 +42,29 @@ def known_ledger(ctx):
     return sorted(seqs)
 
 
+def _show(v):
+    return "null" if v is None else ("true" if v is True else "false" if v is False else str(v))
+
+
+def settle_line(row):
+    """One ledger settle as the posts that get votes quote it (user 11/3): every field as the ledger has it."""
+    d = row["data"]
+    return (f"ledger #{row['seq']} settle: order {d.get('order')}, buyer {d.get('buyer')}, shop {d.get('shop')}, "
+            f"item {d.get('item')}, amount {d.get('amount')}, unit {d.get('unit')}, name {d.get('name')}, "
+            f"grade {_show(d.get('grade'))}, claim {_show(d.get('claim'))}, "
+            f"claim_honest {_show(d.get('claim_honest'))}, warranty_hours {_show(d.get('warranty_hours'))}")
+
+
+def settles(seqs):
+    """The settle lines for our ledger entries, from the ledger the outer runtime collects."""
+    want, out = set(seqs), {}
+    for f in sorted((HERE / "memory" / "market").glob("ledger-*.jsonl")):
+        for row in _lines(f):
+            if row.get("seq") in want and row.get("kind") == "settle" and isinstance(row.get("data"), dict):
+                out[row["seq"]] = settle_line(row)
+    return out
+
+
 def own_posts(ctx):
     ids = []
     for x in _lines(ctx.market_dir / "outbox.sent.jsonl"):
@@ -63,7 +86,8 @@ def main():
         w.context(strategy_version=ctx.strategy.get("version"), epoch=ctx.strategy.get("epoch"),
                   card_version=card.load()[0])
         refs, mine = known_ledger(ctx), own_posts(ctx)
-        ctx.situation = {"known_ledger": refs, "own_posts": mine}
+        lines = settles(refs)
+        ctx.situation = {"known_ledger": refs, "own_posts": mine, "settles": lines}
         posts = call(ctx, "market.forum", {"limit": 12})["result"]
         wf = ctx.strategy.get("welcome_food") or {}
         bc = (ctx.strategy.get("limits") or {}).get("below_cost") or {}
@@ -72,8 +96,13 @@ def main():
         r = (atomic.read_json(ctx.market_dir / "inventory.json", default={}) or {}).get("restock") or {}
         nxt = time.strftime("%H:%M", time.localtime(r["opens_at"])) if r.get("opens_at") else "unknown"
         text = ("# the decision at hand\n"
-                f"Ledger entries we may cite (our deals): {refs[-30:] or 'none yet'}. "
                 f"Our own posts: {mine[-10:] or 'none'}.\n"
+                "Settle lines of our deals we may cite (newest last):\n"
+                + ("\n".join(f"- {lines[s]}" for s in sorted(lines)[-12:]) or "- none yet") + "\n"
+                "A post states one checked fact from one settle line, in this shape: 'Settled SKU=<item> "
+                "price=<amount>; grade=<grade>; warranty_hours=<warranty_hours>. One observed purchase, not a "
+                "guarantee of future quality or availability.' Use only values the line shows; refs = that line's "
+                "number. act.post appends the line itself. No announcements or offers without a settle line.\n"
                 + (f"Welcome Food (strategy): fresh food each supply window (about every 20 min; next opens "
                    f"{nxt}), food up to list price {bc.get('max_list_price')} discounted while grade {bc.get('grades')}, "
                    f"first visit at {wf.get('share_of_cost')} of cost; food units we hold now: {len(food)}.\n" if wf else "")
