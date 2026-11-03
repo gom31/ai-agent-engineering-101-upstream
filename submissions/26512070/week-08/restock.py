@@ -46,7 +46,8 @@ def playbook(ctx):
     and the strategy agent keeps changing them (delegated)."""
     pb = ((ctx.strategy.get("playbook") or {}).get("restock") or {})
     return {"mode": pb.get("mode", "rules"), "cover_windows": pb.get("cover_windows", 2),
-            "market_top": pb.get("market_top", 5), "market_units": pb.get("market_units", 2)}
+            "market_top": pb.get("market_top", 5), "market_units": pb.get("market_units", 2),
+            "max_line_share": pb.get("max_line_share", 1.0)}
 
 
 def build_buy_list(ctx, now=None):
@@ -83,7 +84,12 @@ def build_buy_list(ctx, now=None):
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
     room = check.room(ctx)
-    got = act.allocate(room, [(x["sku"], max(0, x["target"] - x["have"])) for x in lines])
+    money = min(max(0, room["cash"] or 0), max(0, room["stock"]))
+    cap = pb["max_line_share"] * money                   # one line may take at most this much of the window's money
+    wants = [(x["sku"], max(0, min(x["target"] - x["have"],
+                                   int(cap // room["worst"](x["sku"])) if room["worst"](x["sku"]) else 0) if pb["max_line_share"] < 1
+                                else x["target"] - x["have"])) for x in lines]
+    got = act.allocate(room, wants)
     for x, (_, q, why) in zip(lines, got):
         x["buy"], x["short"] = q, (why if q < x["target"] - x["have"] else None)
     doc = {"ts": now, "playbook": pb, "lines": lines,

@@ -123,6 +123,10 @@ def strategy_text(ctx):
     for kind in ("market", "self"):
         r = call(ctx, "memory.summary", {"kind": kind})
         lines.append(f"This slice's {kind} summary: {_j(r['result'] if r['ok'] else r['reason'], 2500)}")
+    notes = paths.root() / "logs" / "strategy" / "user_notes.md"
+    if notes.exists():                                   # 11/4 02:2x: what the user asks the strategy agent to judge
+        lines.append("The user asks you to judge (answer it in this brief, with options if a change is due): "
+                     + notes.read_text(encoding="utf-8")[-2000:])
     bl = atomic.read_json(paths.memory() / "facts" / "buy_list.json", default=None)
     lines.append(f"Playbook in force (the numbers the rules run on; change them with an option's playbook): "
                  f"{_j(s.get('playbook') or 'defaults', 300)}; restock buy list now: "
@@ -187,7 +191,7 @@ def running():
     return False
 
 
-def run(now=None, model_call=None):
+def run(now=None, model_call=None, sid=None):
     _lock_path().parent.mkdir(parents=True, exist_ok=True)
     lock = open(_lock_path(), "a+b")
     try:
@@ -196,18 +200,18 @@ def run(now=None, model_call=None):
         lock.close()
         return {"skipped": "another slice is running"}
     try:
-        return _run(now, model_call)
+        return _run(now, model_call, sid)
     finally:
         atomic._unlock(lock)
         lock.close()
 
 
-def _run(now=None, model_call=None):
+def _run(now=None, model_call=None, sid_override=None):
     now = now or time.time()
     st_path = paths.memory() / "facts" / "slice_state.json"
     st = atomic.read_json(st_path, default=None) or {"last": now - 7200}
     tm = time.localtime(now)
-    sid = slice_id(now)
+    sid = sid_override or slice_id(now)        # --id: a slice the user asked for between the scheduled ones
     auto = tm.tm_hour in AUTO_HOURS
     tool_w, w = EventWriter("outer", source="tools"), EventWriter("slice", source="outer")
     out = {"slice": sid, "steps": {}}
@@ -267,4 +271,5 @@ def _run(now=None, model_call=None):
 
 
 if __name__ == "__main__":
-    print(json.dumps(run(), ensure_ascii=False))
+    sid = sys.argv[sys.argv.index("--id") + 1] if "--id" in sys.argv else None
+    print(json.dumps(run(sid=sid), ensure_ascii=False))

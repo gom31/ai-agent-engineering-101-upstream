@@ -3592,3 +3592,65 @@
 02:07:57 [kit] 48 shops in .market\shops.json, running market_buyer
 02:08:42 [buyer] {"buy": []}
 02:09:17 [kit] your seller exited (code 4294967295), starting it again
+02:09:44 [seller] [seller] 70f0d4ef input_required: I can offer you the 이솔홈 도트 쉬폰 원피스 앞치마 (G53e73f8c) for 13,950 credits.
+02:09:45 [seller] [seller] 2035b644 input_required: The price for the product is 32,328 KRW, and it comes with our full warranty.
+02:09:46 [buyer] {"buy": []}
+02:10:51 [buyer] {"buy": []}
+02:10:55 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:10:56 [market] ledger #2207838: no deal, stars None, verified False, review not shown
+02:10:56 [order o-a1b1dc67833f] 신선야채(부패주의), budget 17370, round 3, use within 12.0 h
+02:10:56 [kit] 48 shops in .market\shops.json, running market_buyer
+02:11:06 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:11:06 [market] ledger #2207881: no deal, stars None, verified False, review not shown
+02:11:17 [order o-40673875667e] 디저트, budget 19460, round 3, use within 36.0 h
+02:11:17 [kit] 48 shops in .market\shops.json, running market_buyer
+02:11:26 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:11:26 [market] ledger #2207963: no deal, stars None, verified False, review not shown
+02:11:37 [order o-f26c48fefe1a] 디저트, budget 14590, round 3, use within 5.0 h
+02:11:37 [kit] 48 shops in .market\shops.json, running market_buyer
+02:11:46 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:11:46 [market] ledger #2208059: no deal, stars None, verified False, review not shown
+02:11:54 [buyer] {"buy": []}
+02:11:57 [order o-b10c3af8a6c4] 신선육류, budget 26120, round 3, use within 2.5 h
+02:11:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:12:04 [forum] post as shop: 200
+02:12:07 [seller] [seller] a35f1e03 input_required: I can offer this item for 32,328 KRW. It comes with a full warranty and is certified.
+02:12:15 [forum] post as buyer: 200
+02:12:25 [seller] [seller] a2b9e76b input_required: The price for the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS is 79,110, with a full warranty and certificate available.
+02:12:59 [buyer] {"buy": []}
+02:14:03 [buyer] {"buy": []}
+02:14:09 [seller] [seller] 4d85e825 input_required: I can offer the 리진 로사벨라 셔닐 소파패드 4인용 for 31,320 KRW, which includes a full warranty for 6 hours.
+02:14:29 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:14:30 [market] ledger #2208776: no deal, stars None, verified False, review not shown
+02:14:30 [order o-04ffb14f9a6e] 신선야채(부패주의), budget 40460, round 3, use within 12.0 h
+02:14:30 [kit] 48 shops in .market\shops.json, running market_buyer
+02:14:40 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:14:41 [market] ledger #2208827: no deal, stars None, verified False, review not shown
+02:14:50 [order o-f6b299426fab] 신선해조류, budget 9200, round 3, use within 2.5 h
+02:14:50 [kit] 48 shops in .market\shops.json, running market_buyer
+02:15:07 [buyer] {"buy": []}
+02:16:11 [buyer] {"buy": []}
+02:17:15 [forum] post as shop: 200
+02:17:15 [forum] post as buyer: 200
+02:17:16 [buyer] {"buy": []}
+02:17:23 [seller] [seller] 9caa1ca9 rejected: Sorry, we have none of that in stock right now.
+02:17:28 [seller] [seller] 1bc0b544 input_required: The price for the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS is 79,110, and it comes with our full warranty.
+02:17:38 [seller] [seller] 1bc0b544 completed: Thank you for your order! Your purchase comes with our full warranty. Deal at: 79110.
+02:17:44 [seller] [seller] aa013eb7 rejected: Sorry, we have none of that in stock right now.
+02:17:47 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:17:48 [market] ledger #2209624: no deal, stars None, verified False, review not shown
+02:17:48 [order o-ef9380c8a42c] 신선야채(부패주의), budget 17130, round 3, use within 5.0 h
+02:17:48 [kit] 48 shops in .market\shops.json, running market_buyer
+02:17:54 [seller] [seller] 6a7abf4e input_required: The total price for 이솔홈 도트 쉬폰 원피스 앞치마 is 13,950 KRW. It comes with a market certificate, grade A, and our 6-hour warrant
+02:17:57 [seller] [seller] 2b8c84ab input_required: The current asking price for the bed cover is 79,110 KRW. Each unit comes with a market certificate and a 6-hour warrant
+02:17:59 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:17:59 [market] ledger #2209680: no deal, stars None, verified False, review not shown
+02:18:08 [order o-2074fe921c41] 신선야채(부패주의), budget 14870, round 3, use within 5.0 h
+02:18:09 [kit] 48 shops in .market\shops.json, running market_buyer
+02:18:19 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:18:19 [market] ledger #2209757: no deal, stars None, verified False, review not shown
+02:18:20 [buyer] {"buy": []}
+02:18:29 [order o-5152f84d12c0] 디저트, budget 12510, round 3, use within 24.0 h
+02:18:29 [kit] 48 shops in .market\shops.json, running market_buyer
+02:18:38 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:18:39 [market] ledger #2209849: no deal, stars None, verified False, review not shown

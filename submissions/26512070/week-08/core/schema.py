@@ -196,8 +196,10 @@ STRATEGY = {
                 "restock": {"type": "object", "properties": {
                     "mode": {"type": "string", "enum": ["rules", "agent"]},
                     "cover_windows": {"type": "number", "minimum": 0.5, "maximum": 6},
-                    "market_top": {"type": "integer", "minimum": 0, "maximum": 10},
-                    "market_units": {"type": "integer", "minimum": 0, "maximum": 8}}}}},
+                    "market_top": {"type": "integer", "minimum": 0, "maximum": 30},
+                    "market_units": {"type": "integer", "minimum": 0, "maximum": 8},
+                    # one line's share of the money the window may spend (breadth over depth), 1 = no cap
+                    "max_line_share": {"type": "number", "minimum": 0.05, "maximum": 1}}}}},
     },
 }
 
