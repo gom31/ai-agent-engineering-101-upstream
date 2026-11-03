@@ -7057,3 +7057,14 @@
 05:35:59 [kit] 48 shops in .market\shops.json, running market_buyer
 05:36:04 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
 05:36:04 [market] ledger #2263084: no deal, stars None, verified False, review not shown
+05:36:19 [order o-6cd3e9d55b04] 조리/가공 견과류, budget 18370, round 3, use within 72.0 h
+05:36:19 [kit] 48 shops in .market\shops.json, running market_buyer
+05:36:23 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": {"shop": "Corner Store", "sig_seller": "pYJ2wwHQgPOgRtVFUpTsZbjFvBDh5Tls3mA09PArl+BKS7/e3x2v0egXDsKTZe2muVW3nlne7F+R9J6FVZKqAA==", "task": "017d70a9-26bd-4ad6-a8c3-a690363336df", "unit": "u-a6455bd6dbc4", "item": "Gc44e4607", "claim": "C", "price": 12729}, "stars": null, "review": null}
+05:36:24 [sign] sig_seller ok, sig_buyer added
+05:36:24 [acp] checkout ships unit u-a6455bd6dbc4, claim C, certificate attached
+05:36:24 [acp] paid 12729 through https://market.ourolabs.ai/shop/corner-store/acp, settled at ledger #2263156: [너트리] 무첨가 견과100% 프리미엄 믹스너트 750g, grade C, 109.3 h of shelf life left
+05:36:36 [buyer] {"buy": []}
+05:36:44 [buyer] {"stars": 3, "review": "Corner-store delivered the claimed grade C honestly and consistently."}
+05:36:45 [market] ledger #2263224: Gc44e4607 at 12729, stars 3, verified True, review accepted
+05:36:45 [order o-040f01889c29] 디저트, budget 15980, round 3, use within 24.0 h
+05:36:45 [kit] 48 shops in .market\shops.json, running market_buyer
