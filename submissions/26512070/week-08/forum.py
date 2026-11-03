@@ -36,10 +36,20 @@ def _lines(path):
     return out
 
 
+def _ledger_rows():
+    return [row for f in sorted((HERE / "memory" / "market").glob("ledger-*.jsonl")) for row in _lines(f)]
+
+
 def known_ledger(ctx, split=False):
     bought = {p["ledger"] for p in _lines(ctx.market_dir / "payments.jsonl")
               if p.get("paid") and isinstance(p.get("ledger"), int)}
     sold = {e["data"]["ledger"] for e in events(["seller.settled"]) if isinstance(e["data"].get("ledger"), int)}
+    # Since 11/3 22:3x a sale is recorded on its paid result line; posts cite the settle line of the same order.
+    rows = _ledger_rows()
+    settle_of = {r["data"].get("order"): r["seq"] for r in rows
+                 if r.get("kind") == "settle" and isinstance(r.get("data"), dict)}
+    kind = {r.get("seq"): (r.get("kind"), (r.get("data") or {}).get("order")) for r in rows}
+    sold = {settle_of.get(kind[s][1], s) if kind.get(s, ("",))[0] == "result" else s for s in sold}
     if split:
         return sorted(bought), sorted(sold)
     return sorted(bought | sold)

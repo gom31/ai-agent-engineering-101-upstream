@@ -96,7 +96,11 @@ class CollectTest(Base):
     def test_new_round_restarts_the_counts(self):
         r2 = dict(result(10, "https://elm", "Elm", "kim", "lamp", 100, "t-a"), round=2)
         r3 = dict(result(11, "https://elm", "Elm", "kim", "G0011e806", 18000, "t-b"), round=3)
-        c = collect.Collector(market=FakeMarket([r2, r3]), clock=lambda: NOW)
+        r3["data"]["verified"] = True
+        unpaid = dict(result(12, "https://elm", "Elm", "lee", "G0011e806", 18000, "t-c"), round=3)  # not verified
+        settle = {"seq": 13, "ts": NOW - 600, "kind": "settle", "round": 3,      # the same deal as r3, again
+                  "data": {"order": "o11", "buyer": "kim", "shop": "https://elm", "item": "G0011e806", "amount": 18000}}
+        c = collect.Collector(market=FakeMarket([r2, r3, unpaid, settle]), clock=lambda: NOW)
         try:
             c.round(start=9)
         finally:

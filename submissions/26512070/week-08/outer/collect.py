@@ -48,6 +48,12 @@ def deal_of(row):
     if row.get("kind") not in SETTLED_KINDS:
         return None
     d = row.get("data") or {}
+    if (row.get("round") or 0) >= 3 and (row.get("kind") == "settle"
+                                         or (row.get("kind") == "result" and d.get("verified") is not True)):
+        # Round 3 writes a settle line and a result line for each paid deal, and a result line for a receipt that was
+        # never paid. Counting all of them doubled our sales (11/3 22:2x: 59 counted, 27 paid = the board's 27).
+        # The paid result line (verified) is the deal: it carries the price, the task and the stars.
+        return None
     r = d.get("receipt") if isinstance(d.get("receipt"), dict) else {}
     if not r and not d.get("item") and not d.get("sku"):
         return None                                 # a result with no deal
