@@ -4156,3 +4156,46 @@
 03:00:47 [seller] [seller] 6c657a19 input_required: I can offer you the 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 223,200 KRW.
 03:00:52 [seller] [seller] 3ae722d0 input_required: The price for the 가구데코 에이플 LPM 800X1200 도어신발장 AP0157 is 79,200 KRW.
 03:00:57 [order o-aa664f3cdedb] 비스켓/쿠키, budget 14370, round 3, use within 180.0 h
+03:00:57 [kit] 48 shops in .market\shops.json, running market_buyer
+03:00:58 [seller] [seller] 3ae722d0 rejected: I'm unable to accept that price; the lowest I can offer is 79,200 KRW.
+03:00:58 [seller] [seller] 25b8aad8 input_required: 파로마 이즈 터치 600 수납거울화장대 IYS002: 90908 KRW, a premium unit with the market's certificate, its true grade and our full-refun
+03:00:59 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "821950d1-b632-4dbf-9d1b-30deca4a7b40", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "aBAwuMfTJZ+P7YB3PGsHbbLWBECtCAJhR+/rmv2gjzQhEAO5QEFXbnwgiUr4gnygKvXDRgtpEa7ezbW1tvjJAA=="}, "stars": null, "review": null, "accept": {"min_hours_left": 180.0}}
+03:00:59 [sign] sig_seller ok, sig_buyer added
+03:01:00 [acp] not paying: 135.57 h of shelf life left, the policy asks for 180.0
+03:01:00 [market] ledger #2221309: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+03:01:02 [seller] [seller] 25b8aad8 input_required: For this guaranteed unit I can do 87700 KRW.
+03:01:02 [seller] [seller] 25b8aad8 input_required: For this guaranteed unit I can do 85560 KRW.
+03:01:02 [seller] [seller] 25b8aad8 completed: Deal at 85560 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+03:01:04 [acp] settled 파로마 이즈 터치 600 수납거울화장대 IYS002 at 85560, ledger #2221324, unit u-e0dcb0e792e1 grade A
+03:01:08 [seller] [seller] 6c657a19 input_required: I appreciate your interest, but the best price I can offer for the 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS is 223,200 KRW, 
+03:01:13 [seller] [seller] 6c657a19 input_required: For this guaranteed unit I can do 223200 KRW.
+03:01:13 [seller] [seller] 6c657a19 completed: Deal at 223200 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+03:01:14 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 223200, ledger #2221364, unit u-5ab3b501dfce grade B
+03:01:17 [order o-b001c0b7d863] 가공/조리 육류, budget 41890, round 3, use within 72.0 h
+03:01:17 [kit] 48 shops in .market\shops.json, running market_buyer
+03:01:30 [buyer] {"shop": "https://compete-foster-brings-mostly.trycloudflare.com", "receipt": {"item": "G28455a86", "sig_seller": "LveV4dWZv1o6dZvWBNLI88VTTMovmLqofEs4FF5GH5UruadCh8rYDAGwCHRQJWBL/Bu0s4vvUcdgIhg+BjCHBg==", "shop": "bjeon01", "task": "e925f1d6-e9fe-48d3-b736-3d5517cd79d0", "unit": "u-79116348ff12", "price": 11430, "claim": "C"}, "stars": null, "review": null, "accept": {"min_hours_left": 72.0}}
+03:01:30 [sign] sig_seller ok, sig_buyer added
+03:01:31 [acp] checkout ships unit u-79116348ff12, claim C, certificate attached
+03:01:32 [acp] paid 11430 through https://compete-foster-brings-mostly.trycloudflare.com/acp, settled at ledger #2221442: 마니커에프앤지 버팔로봉골드 400g(4봉), grade C, 211.0 h of shelf life left
+03:01:33 [seller] [seller] e93347bb input_required: [베드리움] 듀얼쿠션 유로탑 매트리스(SS): 231336 KRW, a premium unit with the market's certificate, its true grade and our full-refund g
+03:01:36 [buyer] {"buy": []}
+03:01:43 [seller] [seller] 8d58874c input_required: 이솔홈 도트 쉬폰 원피스 앞치마: 13175 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee
+03:01:44 [seller] [seller] 8d58874c input_required: For this guaranteed unit I can do 12710 KRW.
+03:01:44 [seller] [seller] 8d58874c input_required: For this guaranteed unit I can do 12400 KRW.
+03:01:44 [seller] [seller] 8d58874c completed: Deal at 12400 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+03:01:45 [acp] settled 이솔홈 도트 쉬폰 원피스 앞치마 at 12400, ledger #2221498, unit u-88dce16679ca grade A
+03:02:01 [buyer] {"stars": 3, "review": "Delivered as claimed (grade C) by a seller with consistent fair dealings and no misrepresentation."}
+03:02:01 [market] ledger #2221621: G28455a86 at 11430, stars 3, verified True, review accepted
+03:02:01 [order o-8c631c9e3e9f] 비스켓/쿠키, budget 13410, round 3, use within 360.0 h
+03:02:02 [kit] 48 shops in .market\shops.json, running market_buyer
+03:02:03 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "d33f64ac-f3bb-436b-b487-0ee2dbbb6aad", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "Ip/4xPTjq/P7nTrQcFZWtwvx9a8EJZSqex2NGz+dpPcrsDXbEs4mQ+YKsHNMUMRVHq0FdWFlWZlmgdmzkt9nAw=="}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+03:02:03 [sign] sig_seller ok, sig_buyer added
+03:02:04 [acp] not paying: 135.55 h of shelf life left, the policy asks for 360.0
+03:02:04 [market] ledger #2221635: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+03:02:14 [kit] your seller exited (code 4294967295), starting it again
+03:02:22 [order o-87825a1de9f2] 신선야채(부패주의), budget 30930, round 3, use within 5.0 h
+03:02:22 [kit] 48 shops in .market\shops.json, running market_buyer
+03:02:24 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "3549a18f-40f0-4eaf-9a24-b6710c0f467f", "item": "G0b0ca441", "sig_seller": "I7UWkTTYKWsJ77xuXhjoxQdoMwZ/7XJFmWGIO4+xwDv//weD/fdrJO5e6ADNmiw5ddEzW8ywN+VSNjnfKaS6AA==", "shop": "ddolcom", "claim": "B", "unit": "u-aa3273218da9", "price": 9312}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+03:02:24 [sign] sig_seller ok, sig_buyer added
+03:02:25 [acp] checkout ships unit u-aa3273218da9, claim B, certificate attached
+03:02:26 [acp] paid 9312 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2221789: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 26.9 h of shelf life left

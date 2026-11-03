@@ -126,7 +126,7 @@ LIMITS = {
     "properties": {
         "cash_floor": {"type": "integer", "minimum": 0},
         "max_units_per_sku": {"type": "integer", "minimum": 1},
-        "max_stock_share": {"type": "number", "minimum": 0, "maximum": 1},   # of the starting capital
+        "max_stock_share": {"type": "number", "minimum": 0, "maximum": 2},   # of the starting capital (11/4: above 1 = cash turns, benchmark)
         "food_share_max": {"type": "number", "minimum": 0, "maximum": 1},    # of the stock value
         "below_cost": {
             "type": "object",
