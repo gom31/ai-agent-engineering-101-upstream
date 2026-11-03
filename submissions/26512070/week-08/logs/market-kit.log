@@ -3400,3 +3400,39 @@
 01:40:06 [forum] post as shop: 200
 01:40:17 [forum] post as buyer: 200
 01:40:28 [buyer] {"buy": []}
+01:41:02 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:41:02 [market] ledger #2199650: no deal, stars None, verified False, review not shown
+01:41:02 [order o-cad0ffb171e5] 신선야채(부패주의), budget 14490, round 3, use within 36.0 h
+01:41:02 [kit] 48 shops in .market\shops.json, running market_buyer
+01:41:04 [seller] [seller] 5f45b46f rejected: Sorry, we have none of that in stock right now.
+01:41:11 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:41:11 [market] ledger #2199693: no deal, stars None, verified False, review not shown
+01:41:22 [order o-e04ca6a2de96] 커튼/러그/쿠션/덮개, budget 31180, round 3
+01:41:23 [kit] 48 shops in .market\shops.json, running market_buyer
+01:41:30 [seller] [seller] a4388765 rejected: Sorry, we have none of that in stock right now.
+01:41:33 [buyer] {"buy": []}
+01:42:11 [seller] [seller] bd2006ce rejected: Sorry, we have none of that in stock right now.
+01:42:46 [buyer] {"buy": []}
+01:43:20 [seller] [seller] 94ff6818 rejected: Sorry, we have none of that in stock right now.
+01:43:50 [buyer] {"buy": []}
+01:44:13 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:44:13 [seller] [seller] 0c128b73 rejected: Sorry, we have none of that in stock right now.
+01:44:13 [market] ledger #2200789: no deal, stars None, verified False, review not shown
+01:44:13 [order o-0c6abbe56570] 신선야채(부패주의), budget 14310, round 3, use within 12.0 h
+01:44:14 [kit] 48 shops in .market\shops.json, running market_buyer
+01:44:35 [buyer] {"buy": []}
+01:44:38 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 8765, "item": "G0b0ca441", "cert": true, "shop": "kimauve", "unit": "u-ad1bf3294ec8", "warranty_hours": 0.0, "task": "356bd18c-11e4-4d83-a327-4ee69701067c", "sig_seller": "r15mxSx7898AqJViB9rYcZito5oObipr13g1Lbfhk/2ncoWmjoOiQiWQmTDvb5GF++sfWkQPNWzOdtLhXQjkDQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 12}}
+01:44:38 [sign] sig_seller ok, sig_buyer added
+01:44:39 [acp] checkout ships unit u-ad1bf3294ec8, certificate attached
+01:44:39 [acp] paid 8765 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2200924: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 36.7 h of shelf life left
+01:44:56 [buyer] {"stars": 4, "review": "Grade B potatoes as ordered; reliable seller with fair pricing at 8,765 KRW."}
+01:44:56 [market] ledger #2200993: G0b0ca441 at 8765, stars 4, verified True, review accepted
+01:44:56 [order o-065bcd1b6ffa] 신선야채(부패주의), budget 13050, round 3, use within 36.0 h
+01:44:56 [kit] 48 shops in .market\shops.json, running market_buyer
+01:45:07 [forum] post as shop: 200
+01:45:17 [forum] post as buyer: 200
+01:45:24 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+01:45:24 [market] ledger #2201114: no deal, stars None, verified False, review not shown
+01:45:24 [order o-3fb3092a6c33] 조리/가공 과일, budget 64800, round 3, use within 180.0 h
+01:45:25 [kit] 48 shops in .market\shops.json, running market_buyer
+01:45:25 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}

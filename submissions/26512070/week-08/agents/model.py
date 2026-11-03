@@ -42,7 +42,7 @@ CALL_TIMEOUT = 60
 # 11/3 23:1x on the home PC: Claude Code answers the trading seats in 40-60 s (7 s on the laptop) and the seller's
 # calls run into their deadline, so the buyer handled 7 orders in 15 min (106 in 54 min before). A trading seat
 # gives Claude this long, then asks the fallback for that call (Claude stays first on the next one).
-TRADING = ("seller", "buyer", "restock")   # restock: 11/4 01:3x, 40-60 s turns left no time to re-plan
+TRADING = ("seller", "buyer")   # not restock: 11/4 01:4x, with 6 s its gpt-4o-mini fallback planned nothing (empty plans, a made-up SKU)
 TRADING_CLAUDE_TIMEOUT = 6      # 11/3 23:4x: at 15 s, 46 of 53 seller calls ran out (buyers waited ~20 s a message)
 RATE_WORDS = ("rate limit", "rate_limit", "usage limit", "429", "overloaded", "quota")
 _EMPTY = None
