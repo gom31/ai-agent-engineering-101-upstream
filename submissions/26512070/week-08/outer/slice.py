@@ -41,6 +41,7 @@ def market_text(ctx, since):
         f"Participants: {_j(live.get('participants'), 400)}",
         f"Most active shops (deals seen, stars): {_j(shops, 1500)}",
         f"Our customers: {_j(customers, 1000)}",
+        f"You have {loop.ROLES['market analyst']['steps']} steps. "
         f"Write up to {PROFILES_PER_SLICE} profiles (rec.profile) for the participants that matter most this slice "
         "(new, changed, or dealing with us), then end with rec.summary: what sells, who does what, who changed."])
 

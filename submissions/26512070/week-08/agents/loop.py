@@ -39,11 +39,11 @@ ROLES = {
     # outer runtime (HARNESS.md 2.3): seat = the model seat in agents.model, reader = how the card frames the intent
     "market analyst": {"look": ["market.selling", "market.sku", "market.forum", "me.counterpart", "memory.profiles",
                                 "memory.profile", "memory.summary", "eval.forum", "rec.profile", "memory.card_section"],
-                       "final": ["rec.summary"], "steps": 8, "seat": "analyst", "reader": "strategist", "timeout": 240},
+                       "final": ["rec.summary"], "steps": 12, "seat": "analyst", "reader": "strategist", "timeout": 240},
     "self analyst": {"look": ["eval.funnel", "eval.unit_economics", "eval.losses", "eval.stock_health",
                               "eval.decision_quality", "eval.integrity", "eval.forum", "eval.guess_accuracy",
                               "eval.experiment", "eval.score", "me.inventory", "memory.summary", "memory.card_section"],
-                     "final": ["rec.summary"], "steps": 8, "seat": "analyst", "reader": "strategist", "timeout": 240},
+                     "final": ["rec.summary"], "steps": 12, "seat": "analyst", "reader": "strategist", "timeout": 240},
     "strategy": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.proposals",
                           "eval.audits", "memory.summary", "memory.profiles", "memory.profile", "me.counterpart",
                           "rec.stance", "memory.card_section"],
@@ -57,14 +57,22 @@ FORMAT = ('Answer with ONE JSON object and nothing else: {"thought": "<one short
 OBS_MAX = 1500
 
 
+def _type(v):
+    """A compact type: enums as a|b, arrays as [item], objects as {k: type, optional?: type}."""
+    if "enum" in v:
+        return "|".join(map(str, v["enum"]))
+    t = v.get("type")
+    if t == "array" and v.get("items"):
+        return f"[{_type(v['items'])}]"
+    if t == "object" and v.get("properties"):
+        req = set(v.get("required", []))
+        return "{" + ", ".join(f"{k}{'' if k in req else '?'}: {_type(x)}" for k, x in v["properties"].items()) + "}"
+    return "|".join(t) if isinstance(t, list) else str(t)
+
+
 def _schema_line(s):
-    props = s.get("properties", {})
     req = set(s.get("required", []))
-    parts = []
-    for k, v in props.items():
-        t = v.get("enum") or v.get("type")
-        parts.append(f"{k}{'' if k in req else '?'}: {t if not isinstance(t, list) else '|'.join(map(str, t))}")
-    return "(" + ", ".join(parts) + ")"
+    return "(" + ", ".join(f"{k}{'' if k in req else '?'}: {_type(v)}" for k, v in s.get("properties", {}).items()) + ")"
 
 
 def tools_text(names):
@@ -107,6 +115,8 @@ def decide(role, ctx, situation_text, deadline=None, allowed=None, model_call=No
         if trace:
             prompt += "\n\n# your steps so far in this turn\n" + "\n".join(
                 f"step {t['step']}: {t['answer']}\nobservation: {t['observation']}" for t in trace)
+        if step == (steps or ROLES[role]["steps"]):
+            prompt += f"\n\nThis is your last step: end your turn now with one of {final}."
         prompt += f"\n\n{FORMAT}"
         per_call = ROLES[role].get("timeout", models.CALL_TIMEOUT)
         timeout = per_call if left is None else max(5, min(per_call, left - 3))

@@ -85,9 +85,21 @@ def claude_code(model, system, prompt, timeout):
     return out
 
 
+def _user_env(name):
+    """A Windows user environment variable set after this process's parent started (kept in memory only)."""
+    if os.name != "nt":
+        return None
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as k:
+            return winreg.QueryValueEx(k, name)[0] or None
+    except OSError:
+        return None
+
+
 def openrouter(model, system, prompt, timeout):
     import httpx
-    key = os.environ.get("OPENROUTER_API_KEY")
+    key = os.environ.get("OPENROUTER_API_KEY") or _user_env("OPENROUTER_API_KEY")
     if not key:
         raise ModelError("OPENROUTER_API_KEY is not set")
     msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
