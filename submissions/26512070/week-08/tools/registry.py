@@ -57,10 +57,12 @@ def tool(name, description, input_schema, **flags):
 
 @dataclass
 class Ctx:
-    """What a tool may look at: the kit's .market/ folder, the clock, the active strategy, the caller."""
+    """What a tool may look at: the kit's .market/ folder, the clock, the active strategy, the caller, and the
+    decision at hand."""
     caller: str
     market_dir: Path = field(default_factory=lambda: Path(os.environ.get("MARKET_DIR") or paths.root() / ".market"))
     clock: callable = time.time
+    situation: dict = field(default_factory=dict)    # the decision at hand (the act.* tools act on it)
     _writer: EventWriter = None
     _strategy: dict = None
 

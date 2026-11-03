@@ -81,6 +81,30 @@ def sku(ctx, query, detail="concise", limit=5):
     return {"matches": len(hits), "shown": rows}
 
 
+@tool("market.selling", "What is selling now: in the last hours, the SKUs and categories the market settled (from the "
+      "ledger, collected every few minutes by the outer runtime) and our own shop's sales. Says how many deals it is "
+      "based on; early in the round it is thin.",
+      {"type": "object", "properties": {"hours": {"type": "number", "minimum": 0.5, "maximum": 48},
+                                        "kind": {"type": "string", "enum": ["food", "goods"]},
+                                        "limit": {"type": "integer", "minimum": 1, "maximum": 30}}})
+def selling(ctx, hours=6, kind=None, limit=10):
+    from tools.evaluate import events
+    cat, since = mf.catalog(ctx), ctx.now() - hours * 3600
+    ours = {}
+    for e in events(["seller.settled"], since=since):
+        s = e.get("sku") or e["data"].get("sku")
+        if s and (kind is None or (cat.get(s) or {}).get("kind") == kind):
+            ours[s] = ours.get(s, 0) + 1
+    live = (_read(paths.memory() / "facts" / "live.json", default={}) or {}).get("selling") or {}
+    market = [r for r in live.get("skus", []) if kind is None or r.get("kind") == kind][:limit]
+    return {"hours": hours, "ours": [{"sku": s, "name": (cat.get(s) or {}).get("name"), "sold": n}
+                                     for s, n in sorted(ours.items(), key=lambda x: -x[1])[:limit]],
+            "our_deals": sum(ours.values()),
+            "market": market, "market_categories": (live.get("categories") or [])[:limit],
+            "market_deals": live.get("deals"), "market_updated": live.get("updated"),
+            "note": None if live else "no market collection yet (the outer runtime writes it)"}
+
+
 @tool("me.counterpart", "Everything we know about one participant, in one call. side=shop: how that shop treated our "
       "buyer (deals, cheated, payment refusals, blocked). side=buyer: how that buyer dealt with our shop. Plus the "
       "market analyst's profile summary and our current stance toward them. Unknown participants come back as unknown.",

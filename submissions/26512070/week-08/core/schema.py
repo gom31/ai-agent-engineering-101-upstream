@@ -3,7 +3,7 @@
 The schemas are plain JSON Schema dicts, so the MCP server and function calls can
 publish the same definitions (HARNESS.md 3.1). jsonschema is not installed here, so
 validate() implements only the keywords these schemas use: type, required,
-properties, additionalProperties, items, enum, minimum, maximum, minLength.
+properties, additionalProperties, items, enum, minimum, maximum, minLength, maxLength.
 """
 
 SCHEMA_VERSION = 1
@@ -38,6 +38,8 @@ def validate(obj, schema, path="$"):
             errors.append(f"{path}: {obj} is above {schema['maximum']}")
     if isinstance(obj, str) and "minLength" in schema and len(obj) < schema["minLength"]:
         errors.append(f"{path}: shorter than {schema['minLength']}")
+    if isinstance(obj, str) and "maxLength" in schema and len(obj) > schema["maxLength"]:
+        errors.append(f"{path}: longer than {schema['maxLength']}")
     if isinstance(obj, dict):
         props = schema.get("properties", {})
         for k in schema.get("required", []):
