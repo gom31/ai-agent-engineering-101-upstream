@@ -300,6 +300,27 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 기록 | `set_stance(name, side, stance, why, evidence)` | 전략 | – | `counterparts.json` | 위임 범위 안에서만. 피하기와 해제는 사용자 확정 대기로 들어간다 |
 | 기록 | `write_brief(...)`, `propose_strategy(...)` | L3 | – | `logs/strategy/` | 반영은 사용자 확정 뒤 |
 
+### 3.3 평가 툴 (결정론적인 지표는 전부 툴) [결정] (2026-11-03)
+
+평가 지표 중 기록에서 계산할 수 있는 것은 모두 툴이다. 입력은 `scope`(에이전트 또는 시스템), `slice` 또는 `epoch`이고, 출력은 숫자와 표본 수, 원본 위치다. 판단이 필요한 평가는 8.1의 평가자가 한다.
+
+| 툴 | 계산하는 것 |
+|---|---|
+| `score_components()` | Players 백분위, 가게 ALL·buyer ALL과 6개 요소의 백분위와 값, 다음 구간까지의 거리 |
+| `funnel(scope, slice)` | 가게: 방문 → 흥정 → 합의 → 정산. buyer: 주문 → 고르기 → 합의 → 결제 → 쓸모 있음. 단계별 이탈과 사유 분포 |
+| `unit_economics(scope, slice)` | 거래당 마진, 원가 대비 비율, 잉여, 거래 수 |
+| `losses(slice)` | 폐기, 보관비, 보증 환불, 상한 식품·고장 손실 |
+| `stock_health(slice)` | 재고 회전, 재고 나이, 품절로 놓친 요청, 무작위 구매(기본형)와 같은 조건 비교 |
+| `decision_quality(scope, slice)` | 응답 시간 분포, 모델 호출 수, 툴 오류, 한도 툴이 거부한 시도, 하네스 실패, 주문 만료 |
+| `integrity(scope, slice)` | 합의와 다른 영수증을 잡은 수, 후기 속 숫자와 거래 사실의 일치율, 게시판 `refs`가 맞는 비율, 우리 등급 주장의 참 비율 |
+| `forum_stats(slice)` | 글 수, 센 표와 안 센 표, 좋아요·나빠요 |
+| `guess_accuracy(slice)` | 상대 추정 중 사후 확인으로 맞은 비율 (확신도 구간별) |
+| `judge_experiment(version)` | 전략 버전의 `success_if`·`rollback_if`를 지표 툴로 계산한 판정과 표본 수 |
+| `proposal_outcomes(slice)` | 전략 제안 중 사용자가 받아들인 비율, 받아들인 제안의 판정 결과, 브리핑 정시성 |
+| `audit_outcomes(slice)` | 감사가 전략과 갈린 비율, 갈린 건의 사후 판정 |
+
+`success_if`, `rollback_if`, 가설의 판정 지표는 이 툴들로 계산할 수 있는 식으로 쓴다. 그래야 판정이 결정론이 된다.
+
 목록은 구현하며 늘거나 줄 수 있다. 바뀌면 이 표와 툴 설명을 같이 고친다.
 
 ---
@@ -316,7 +337,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | review | 받은 물건 평가 | 정산 뒤 | haiku | `deal.json`, `check_receipt`, `write_review` |
 | forum | 게시판 | 5분마다 기회 | haiku | 조회(게시판, 시세, 가게), `post`, `vote` |
 | 시장 분석 | 시장을 요약하고, **참가자마다 그 전략을 분석해 프로필로 기록**한다. 바뀐 상대를 표시한다 | 2시간 (그 조각에 활동한 참가자만) | sonnet | 조회, `profile_diff`, `open_raw`, `write_summary`, `write_profile` |
-| 자기 분석 | 내 가게·buyer를 요약 | 2시간 | sonnet | 조회, `open_raw`, `write_summary`, `label` |
+| 자기 분석 | 내 가게·buyer를 요약하고, **실행 에이전트들을 평가**한다 (8.1) | 2시간 | sonnet | 조회, 평가 툴(3.3), `open_raw`, `write_summary`, `label` |
 | 전략 | 순위를 향한 우선순위와 가설, **상대별 자세**, 사용자 보고 | 2시간 + 경보 | sonnet 또는 opus | 요약, `scoreboard`, `profiles`, `profile`, `open_raw`, `write_brief`, `propose_strategy`, `set_stance` |
 | 감사 [제안] | 전략의 브리핑과 제안을 독립 검토. 의도와 가설을 검증 대상으로 읽는다 | 전략 브리핑마다 (선택지가 있을 때) | **다른 회사 모델** [결정 필요 D29] | 전략과 같은 조회 툴(MCP), `write_audit` |
 
@@ -395,6 +416,28 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 기본 조건 | – | 정산 각 20건 | 정산 줄 | 운영 중 |
 
 단계: `설계 전 / 설계됨 / 구현됨 / 증거 있음`.
+
+### 8.1 에이전트별 평가 [결정] (2026-11-03)
+
+원칙:
+
+- **결정론적인 지표는 평가 툴(3.3)이 계산한다.** 누가 불러도 같은 값이 나온다.
+- **실행 에이전트(L1)는 스스로를 평가하지 않는다.** 다음 판단에 필요한 것만 평가 툴로 읽는다. 예: buyer가 다음 주문 전에 지난 결제 거부 사유를 읽는다. restock이 자기가 산 SKU의 팔림새를 읽는다.
+- **판단이 필요한 평가는 바깥 에이전트가 한다.** 실행은 자기 분석이, 분석은 전략과 감사가, 전략은 감사와 사용자가 평가한다.
+- 평가 결과는 2시간 조각 요약에 들어가고, 브리핑 ①③에 쓰인다.
+
+| 에이전트 | 결과 지표 (툴) | 과정 지표 (툴) | 판단이 필요한 평가 → 평가자 | 중간 평가 증거 |
+|---|---|---|---|---|
+| seller | `unit_economics`, `funnel`, `score_components`의 순이익·매출·별점 | `decision_quality`, `integrity`(주장 참 비율), `guess_accuracy` | 왜 손님이 떠났나, 자세를 잘 썼나 → 자기 분석 | 1a, 1c, 3 |
+| buyer | `unit_economics`(잉여), `funnel`, `losses`(상한·고장) | `decision_quality`, `integrity`(영수증 검사) | 가게를 잘 골랐나, 흥정을 끌 만했나 → 자기 분석 | 1a, 1c, 3 |
+| restock | `stock_health`, `losses`, `unit_economics`(순이익 기여) | `decision_quality`, 기본형 비교(`stock_health`) | 무엇을 더 샀어야 했나 → 자기 분석, 전략 | 1c, 2, 3 |
+| review | – | `integrity`(후기 숫자와 사실), 리뷰 누락 | 문장이 공정한가 → 자기 분석 | 1c |
+| forum | `forum_stats` | `integrity`(`refs`) | 쓸모 있고 정직한 글인가 (P8) → 자기 분석, 감사 | 1c, 3 |
+| 시장 분석 | – | `guess_accuracy`, 요약 신선도, 프로필 `changed` 뒤 실제 변화 여부 | 프로필 해석이 맞나 → 전략, 감사 | 1b, 2 |
+| 자기 분석 | – | 지표 누락, 경보가 맞았나 | 원인 분석이 맞나 → 전략, 감사 | 1b |
+| 전략 | `score_components`의 변화 | `judge_experiment`, `proposal_outcomes` | 판단의 근거가 맞나 → 감사, 사용자 | 1b, 2, 3 |
+| 감사 | – | `audit_outcomes` | 감사가 쓸모 있었나 → 사용자 | 1a, 2 |
+| 시스템 전체 | `score_components`, 기본 조건 | `decision_quality`(scope=system): L1 가동률, 계정 한도 충돌 | – | 8장 표 전체 |
 
 ---
 
