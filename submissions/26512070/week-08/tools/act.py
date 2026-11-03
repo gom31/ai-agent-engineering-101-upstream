@@ -212,13 +212,15 @@ def _outbox(ctx, line):
     atomic.append_line(ctx.market_dir / "outbox.jsonl", json.dumps(line, ensure_ascii=False))
 
 
-@tool("act.post", "Forum: post a true, useful fact as our shop or our buyer, with refs to ledger entries it is about. "
-      "The kit sends it (one post per 5 minutes per side). Ends the forum turn.",
+@tool("act.post", "Forum: post a true, useful fact as our shop or our buyer: about ledger settles we hold (refs), or "
+      "about one fact line of ours (fact: a wanted order of our buyer, or goods our shop holds). The kit sends it "
+      "(one post per 5 minutes per side). Ends the forum turn.",
       {"type": "object", "required": ["text", "refs", "as"],
        "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 300},
                       "refs": {"type": "array", "items": {"type": "integer"}}, "as": _AS,
+                      "fact": {"type": ["string", "null"]},
                       "thread": {"type": ["integer", "string", "null"]}}}, side_effect="outbox")
-def post(ctx, text, refs, thread=None, **kw):
+def post(ctx, text, refs, thread=None, fact=None, **kw):
     side = kw["as"]
     known = set(ctx.situation.get("known_ledger") or [])
     bad = [r for r in refs if r not in known]
@@ -227,28 +229,34 @@ def post(ctx, text, refs, thread=None, **kw):
     _own_text(text)
     # User 11/3: only posts built on a settle line get votes. A post cites at least one settle we hold, every
     # number in it must be in the cited lines, and the tool (not the model) appends those lines as they are.
-    settles = ctx.situation.get("settles") or {}
-    if not refs:
-        raise Refused("a post needs at least one ledger settle in refs", "cite a settle from the list, or act.skip")
+    # User 11/3 22:10: more posts - a post may instead stand on one fact line of ours (our buyer's wanted order,
+    # goods our shop holds), with the same rule for numbers; fact lines are not appended.
+    settles, facts = ctx.situation.get("settles") or {}, ctx.situation.get("facts") or {}
+    if not refs and not fact:
+        raise Refused("a post needs a ledger settle in refs or one of our fact lines",
+                      "cite a settle or a fact from the list, or act.skip")
     want = ctx.situation.get("post_as")
     if want and side != want:
-        raise Refused(f"this turn posts as {want} (it has fewer posts)", f"post as {want}, or act.skip")
+        raise Refused(f"this turn posts as {want}", f"post as {want}, or act.skip")
+    if fact is not None and (fact not in facts or facts[fact][0] != side):
+        raise Refused(f"no fact {fact!r} for our {side}",
+                      f"cite one of {[k for k, v in facts.items() if v[0] == side][:10]}")
     mine = (ctx.situation.get("side_refs") or {}).get(side)
-    if mine is not None and not set(refs) & set(mine):
+    if refs and mine is not None and not set(refs) & set(mine):
         raise Refused(f"none of {refs} is a deal of our {side}", f"cite one of {sorted(mine)[-10:]}")
     cited = [settles[r] for r in refs if r in settles]
     if len(cited) != len(refs):
         raise Refused(f"no settle line on hand for {[r for r in refs if r not in settles]}",
                       f"cite one of {sorted(settles)[-10:]}")
     evidence = "\n".join(cited)
-    plain = evidence.replace(",", "")
+    plain = (evidence + "\n" + (facts[fact][1] if fact else "") + f"\n{thread or ''}").replace(",", "")
     loose = [n for n in re.findall(r"(?<![A-Za-z0-9.])\d[\d,]*(?:\.\d+)?(?![A-Za-z0-9])", text)
              if len(n.replace(",", "")) >= 2 and n.replace(",", "") not in plain]
     if loose:
-        raise Refused(f"numbers {loose} are not in the cited settle lines", "write only the values the lines show")
-    text = f"{text.strip()}\n\n{evidence}"
+        raise Refused(f"numbers {loose} are not in the cited lines", "write only the values the lines show")
+    text = f"{text.strip()}\n\n{evidence}" if evidence else text.strip()
     _outbox(ctx, {"post": text, "refs": refs, "thread": thread, "as": side})
-    return {"action": "post", "as": side, "refs": refs}
+    return {"action": "post", "as": side, "refs": refs, "fact": fact}
 
 
 @tool("act.vote", "Forum: vote on a post (1 or -1) as our shop or our buyer. Does not end the turn.",

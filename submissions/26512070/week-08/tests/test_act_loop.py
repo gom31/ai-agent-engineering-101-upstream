@@ -79,10 +79,19 @@ class ActTest(Base):
         self.ctx.situation.update(post_as=None)
         self.refused("act.post", text=good, refs=[10], **{"as": "shop"})   # #10 is a deal of our buyer, not our shop
         self.ok("act.post", text=good, refs=[10], **{"as": "buyer"})
+        # a post on one of our fact lines (user 11/3 22:10): no settle, numbers only from that line
+        self.ctx.situation.update(post_as="shop", facts={
+            "s-G1": ("shop", "In stock at our shop now: Quilt (G1), 3 units, grade A, list price 35920."),
+            "w-o1": ("buyer", "Our buyer's order o1: goods in category bedding, budget 99240.")})
+        self.refused("act.post", text="Quilt ready, 3 units.", refs=[], fact="w-o1", **{"as": "shop"})  # buyer's
+        self.refused("act.post", text="Quilt ready at 30000.", refs=[], fact="s-G1", **{"as": "shop"})
+        self.ok("act.post", text="Quilt (G1) ready: 3 units, grade A, list price 35,920.", refs=[], fact="s-G1",
+                thread=264, **{"as": "shop"})
         self.refused("act.vote", post=7, value=1, **{"as": "shop"})
         self.ok("act.vote", post=8, value=1, **{"as": "shop"})
         lines = [json.loads(x) for x in (self.market / "outbox.jsonl").read_text(encoding="utf-8").splitlines()]
-        self.assertEqual([("post" in x, x["as"]) for x in lines], [(True, "buyer"), (False, "shop")])
+        self.assertEqual([("post" in x, x["as"]) for x in lines], [(True, "buyer"), (True, "shop"), (False, "shop")])
+        self.assertEqual(lines[1]["thread"], 264)
         self.assertTrue(lines[0]["post"].endswith(line))   # the tool appends the settle line as it is
         self.refused("rec.label", kind="customer_type", name="elm", value="regular", evidence="")
         self.assertTrue(self.ok("rec.label", kind="customer_type", name="elm", value="regular",
