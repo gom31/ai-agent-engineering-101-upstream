@@ -1,18 +1,22 @@
-"""One 2-hour slice of the outer runtime (HARNESS.md 2.3, 5): market analyst -> self analyst -> strategy -> audit.
+"""One 2-hour slice of the outer runtime (HARNESS.md 2.3, 5): market analyst -> self analyst -> strategy, then the
+audit in its own process (outer.audit).
 
     py -m outer.slice            # run one slice now
 
 Each step is one agents.loop turn of its role, ending with its rec.* tool. A step that fails is recorded and
-the next one still runs with what there is; the audit never blocks the brief. At night (NIGHT hours) the
+the next one still runs with what there is; the audit never blocks the brief: the slice starts it and goes on. At night (NIGHT hours) the
 brief is a report only. The slice's window starts where the last slice ended (memory/facts/slice_state.json).
 """
 import json
+import os
+import subprocess
+import sys
 import time
 
 from agents import loop
 from core import atomic, bus, paths
 from core.events import EventWriter
-from outer import brief
+from outer import audit, brief
 from tools.registry import Ctx, call
 
 NIGHT = range(1, 8)            # 01:00-07:59 (HARNESS.md 5)
@@ -65,13 +69,6 @@ def strategy_text(ctx):
     return "\n".join(lines)
 
 
-def audit_text(ctx, doc):
-    return "\n".join(["# the audit at hand",
-                      "The strategy agent's brief (options are changes to the strategy in force):",
-                      _j({k: v for k, v in doc.items() if k not in ("strategies", "audit")}, 5000),
-                      "Check it against the scoring formula and the data (tools), then end with rec.audit."])
-
-
 def run(now=None, model_call=None):
     now = now or time.time()
     st_path = paths.memory() / "facts" / "slice_state.json"
@@ -109,14 +106,18 @@ def run(now=None, model_call=None):
             if doc.get("options"):
                 w.emit("strategy.proposal", {"proposal_id": slice_id, "version_from": doc.get("version_from"),
                                              "options": [o["id"] for o in doc["options"]]})
-            a = step("audit", "audit", lambda c: audit_text(c, doc))
-            doc = atomic.read_json(paths.memory() / "strategy" / "proposals" / f"{slice_id}.json")
-            if a:
-                w.emit("audit.opinion", {"proposal_id": slice_id, "agrees": doc["audit"]["agrees"]})
             pub = atomic.read_json(brief.briefs_dir() / f"{slice_id}.json", default=None)
             if pub:
                 brief.write_markdown(pub)
             brief.refresh_pending()
+            if model_call is not None:                   # tests: the audit in this process, with the same script
+                out["steps"]["audit"] = {"ok": audit.run(slice_id, model_call=model_call) is not None}
+            else:                                        # its own process; the slice does not wait for it
+                subprocess.Popen([sys.executable, "-m", "outer.audit", slice_id], cwd=paths.root(),
+                                 stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                 **({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt"
+                                    else {"start_new_session": True}))
+                out["steps"]["audit"] = {"started": True}
         else:
             bus.alert("slice", "warn", "no_brief", f"slice {slice_id}: the strategy agent wrote no brief", out["steps"])
         atomic.write_json(st_path, {"last": now, "slice": slice_id})
