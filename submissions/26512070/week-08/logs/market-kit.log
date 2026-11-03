@@ -3705,3 +3705,33 @@
 02:24:17 [kit] 48 shops in .market\shops.json, running market_buyer
 02:24:26 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
 02:24:27 [market] ledger #2211357: no deal, stars None, verified False, review not shown
+02:24:32 [kit] your seller exited (code 4294967295), starting it again
+02:24:37 [order o-048573568d11] 비스켓/쿠키, budget 13120, round 3, use within 180.0 h
+02:24:37 [kit] 48 shops in .market\shops.json, running market_buyer
+02:24:45 [buyer] {"buy": [{"sku": "G53e73f8c", "qty": 7}, {"sku": "G0f415407", "qty": 1}, {"sku": "Ge62449c9", "qty": 2}, {"sku": "G29a60380", "qty": 2}, {"sku": "G0be9ed07", "qty": 2}, {"sku": "G756fd2e8", "qty": 1}, {"sku": "Gc44de87c", "qty": 1}, {"sku": "G07ec17d5", "qty": 1}]}
+02:24:45 [supply] 7 x 이솔홈 도트 쉬폰 원피스 앞치마 for 69885, balance 3786921
+02:24:55 [supply] 1 x 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS for 74965, balance 3711956
+02:25:06 [supply] 2 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 95140, balance 3616816
+02:25:16 [supply] 2 x 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm) for 48450, balance 3568366
+02:25:27 [supply] 2 x [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드 for 38464, balance 3529902
+02:25:37 [supply] 1 x 엘로디 먼지없는 사계절 차렵이불세트 Q for 23612, balance 3506290
+02:25:48 [supply] 1 x [베드리움] 듀얼쿠션 유로탑 매트리스(SS) for 188183, balance 3318107
+02:25:58 [supply] 1 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 162208, balance 3155899
+02:25:59 [buyer] {"buy": []}
+02:26:22 [seller] [seller] 153a4ba4 input_required: The best price I can offer is 31,920 for the sofa pad, which comes with our full warranty and market certification.
+02:26:27 [seller] [seller] e7f8ed9c input_required: [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자: 216000.
+02:26:30 [seller] [seller] 3b3746c4 input_required: I can offer you this 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm) for 27,840. It comes with a full warranty and is certified.
+02:27:04 [buyer] {"buy": []}
+02:27:05 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:27:05 [market] ledger #2212359: no deal, stars None, verified False, review not shown
+02:27:05 [order o-bcef223611bd] 신선육류, budget 40320, round 3, use within 12.0 h
+02:27:06 [kit] 48 shops in .market\shops.json, running market_buyer
+02:27:37 [forum] post as shop: 200
+02:27:48 [forum] post as buyer: 200
+02:28:10 [buyer] {"buy": []}
+02:28:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:28:57 [market] ledger #2212882: no deal, stars None, verified False, review not shown
+02:28:57 [order o-884103495612] 신선육류, budget 26910, round 3, use within 2.5 h
+02:28:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:29:06 [seller] [seller] be12c757 input_required: The current asking price is 70,320 with a certificate available for this unit.
+02:29:15 [buyer] {"buy": []}

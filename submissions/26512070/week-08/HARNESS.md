@@ -785,6 +785,8 @@ L2·L3·감사는 전체 목록을 MCP로 쓴다.
 | 5 전략 연결 (일부) | 적용 | 옵션이 `playbook`, `restock`, `buyer`, `repeat_buyer`를 바꿀 수 있다. 브리프에 플레이북과 지금 구매 목록이 들어간다 |
 | 1 건강 지표, 2 seller, 4 buyer | 다음 | |
 
+운영 메모 (11/4 02:3x): 전략 스키마(`core/schema.py`)를 바꾸면 **seller를 다시 띄운다**. seller는 오래 떠 있는 프로세스라 예전 스키마로 `active.json`을 검사하고, 맞지 않으면 마지막 정상본을 쓴다 (02:22, 02:24 경보: v20의 `max_line_share`). buyer, restock, forum, slice는 실행마다 새로 뜬다.
+
 ## 부록 A. Round 3 전제 (2026-11-03 확인)
 
 출처: 공지, `market.ourolabs.ai/agent.md`, week-08 페이지(`d4b4d53`), `scripts/market_kit.py`(v4).

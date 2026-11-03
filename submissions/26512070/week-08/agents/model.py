@@ -124,6 +124,33 @@ def openrouter(model, system, prompt, timeout):
 BACKENDS = {"claude": claude_code, "openrouter": openrouter}
 
 
+PROBE_WINDOW, PROBE_SLOW, PROBE_EVERY = 10, 8, 5
+
+
+def _recent_path(seat):
+    return paths.bus() / "breaker" / f"{seat}-recent.json"
+
+
+def probe_claude(seat):
+    """11/4 02:3x: at 6 s, 158 of 159 trading calls to Claude timed out in 30 min, each costing 6 s before the
+    fallback. Claude stays first (user), but while 8 of the last 10 timed out only every 5th call asks it."""
+    if seat not in TRADING:
+        return True
+    r = atomic.read_json(_recent_path(seat), default=None) or {"last": [], "n": 0}
+    slow = sum(1 for x in r["last"][-PROBE_WINDOW:] if x == "timeout")
+    r["n"] = r.get("n", 0) + 1
+    atomic.write_json(_recent_path(seat), r)
+    return slow < PROBE_SLOW or r["n"] % PROBE_EVERY == 0
+
+
+def _note_claude(seat, outcome):
+    if seat not in TRADING:
+        return
+    r = atomic.read_json(_recent_path(seat), default=None) or {"last": [], "n": 0}
+    r["last"] = (r["last"] + [outcome])[-PROBE_WINDOW:]
+    atomic.write_json(_recent_path(seat), r)
+
+
 def _breaker_path(seat):
     return paths.bus() / "breaker" / f"{seat}.json"
 
@@ -150,7 +177,7 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
     """The model's text answer for this seat. Raises ModelError when no backend answered."""
     cfg = SEATS[seat]
     st = breaker(seat)
-    use_claude = cfg["claude"] is not None and st["open_until"] <= now()
+    use_claude = cfg["claude"] is not None and st["open_until"] <= now() and probe_claude(seat)
     tries = []
     if use_claude:
         tries.append(("claude", cfg["claude"], False))
@@ -183,11 +210,14 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
                   rate_limited=e.rate_limited, fallback=backend != "claude", prompt_chars=len(prompt) + len(system or ""),
                   error=str(e)[:200])
             if backend == "claude":
+                _note_claude(seat, "timeout" if e.timed_out else "error")
                 _claude_failed(seat, st, e, now)
             continue
         _emit(seat=seat, model=f"{backend}:{model}", ms=round((time.perf_counter() - t0) * 1000), ok=True,
               rate_limited=False, fallback=backend != "claude", prompt_chars=len(prompt) + len(system or ""),
               waited_ms=round(waited * 1000))
+        if backend == "claude":
+            _note_claude(seat, "ok")
         if backend == "claude" and (st["fails"] or st["open_until"]):
             if st["open_until"]:
                 bus.alert(f"model-{seat}", "info", "breaker", f"{seat}: Claude Code answers again, breaker closed")
