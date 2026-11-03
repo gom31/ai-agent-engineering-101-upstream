@@ -18,7 +18,7 @@ import time
 
 from agents import model as models
 from core import card
-from tools import act, calc, check, evaluate, query, record  # noqa: F401  (registers the tools)
+from tools import act, calc, check, evaluate, query, record, search  # noqa: F401  (registers the tools)
 from tools.registry import TOOLS, call
 
 # HARNESS.md 3.4: what each L1 role sees (look-ups) and how it can end its turn (finals).
@@ -38,18 +38,22 @@ ROLES = {
               "final": ["act.post", "act.skip"], "steps": 5},
     # outer runtime (HARNESS.md 2.3): seat = the model seat in agents.model, reader = how the card frames the intent
     "market analyst": {"look": ["market.selling", "market.sku", "market.forum", "me.counterpart", "memory.profiles",
-                                "memory.profile", "memory.summary", "eval.forum", "rec.profile", "memory.card_section"],
+                                "memory.profile", "memory.summary", "memory.search", "memory.raw", "eval.forum",
+                                "rec.profile", "memory.card_section"],
                        "final": ["rec.summary"], "steps": 12, "seat": "analyst", "reader": "strategist", "timeout": 240},
     "self analyst": {"look": ["eval.funnel", "eval.unit_economics", "eval.losses", "eval.stock_health",
                               "eval.decision_quality", "eval.integrity", "eval.forum", "eval.guess_accuracy",
-                              "eval.experiment", "eval.score", "me.inventory", "memory.summary", "memory.card_section"],
+                              "eval.experiment", "eval.score", "me.inventory", "memory.summary", "memory.search",
+                              "memory.raw", "memory.card_section"],
                      "final": ["rec.summary"], "steps": 12, "seat": "analyst", "reader": "strategist", "timeout": 240},
     "strategy": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.proposals",
-                          "eval.audits", "memory.summary", "memory.profiles", "memory.profile", "me.counterpart",
+                          "eval.audits", "memory.summary", "memory.search", "memory.raw", "memory.profiles",
+                          "memory.profile", "me.counterpart",
                           "rec.stance", "memory.card_section"],
                  "final": ["rec.brief"], "steps": 8, "seat": "strategy", "reader": "strategist", "timeout": 240},
     "audit": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.audits",
-                       "memory.summary", "market.selling", "market.sku", "memory.card_section"],
+                       "memory.summary", "memory.search", "memory.raw", "market.selling", "market.sku",
+                       "memory.card_section"],
               "final": ["rec.audit"], "steps": 5, "seat": "audit", "reader": "auditor", "timeout": 240},
 }
 FORMAT = ('Answer with ONE JSON object and nothing else: {"thought": "<one short sentence>", "tool": "<tool name>", '
