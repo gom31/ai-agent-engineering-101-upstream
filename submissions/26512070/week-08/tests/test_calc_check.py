@@ -156,7 +156,7 @@ class CheckTest(Base):
         self.assertIn("starting capital", self.refused("check.buy", plan=big)["reason"])
         self.assertIn("below the floor", self.refused("check.buy", plan=[{"sku": "G00327e80", "qty": 2}])["reason"])
         self.assertIn("food would be", self.refused("check.buy", plan=[{"sku": "G00200492", "qty": 5}])["reason"])
-        self.write_inventory(UNITS, balance=1_520_000)
+        self.write_inventory(UNITS, balance=1_510_000)                          # 1,510,000 - 13,500 < 1,500,000
         self.assertIn("below the floor", self.refused("check.buy", plan=[{"sku": "G0026722f", "qty": 4}])["reason"])
 
 
