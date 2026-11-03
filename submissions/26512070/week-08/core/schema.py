@@ -1,0 +1,169 @@
+"""The schemas of everything on the bus, as JSON Schema, and a small validator.
+
+The schemas are plain JSON Schema dicts, so the MCP server and function calls can
+publish the same definitions (HARNESS.md 3.1). jsonschema is not installed here, so
+validate() implements only the keywords these schemas use: type, required,
+properties, additionalProperties, items, enum, minimum, maximum, minLength.
+"""
+
+SCHEMA_VERSION = 1
+
+_TYPES = {
+    "object": dict, "array": list, "string": str, "boolean": bool, "null": type(None),
+}
+
+
+def _is_type(value, name):
+    if name == "integer":
+        return isinstance(value, int) and not isinstance(value, bool)
+    if name == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    return isinstance(value, _TYPES[name])
+
+
+def validate(obj, schema, path="$"):
+    """A list of error strings; empty when obj fits schema."""
+    errors = []
+    types = schema.get("type")
+    if types is not None:
+        types = [types] if isinstance(types, str) else types
+        if not any(_is_type(obj, t) for t in types):
+            return [f"{path}: expected {'/'.join(types)}, got {type(obj).__name__}"]
+    if "enum" in schema and obj not in schema["enum"]:
+        errors.append(f"{path}: {obj!r} is not one of {schema['enum']}")
+    if isinstance(obj, (int, float)) and not isinstance(obj, bool):
+        if "minimum" in schema and obj < schema["minimum"]:
+            errors.append(f"{path}: {obj} is below {schema['minimum']}")
+        if "maximum" in schema and obj > schema["maximum"]:
+            errors.append(f"{path}: {obj} is above {schema['maximum']}")
+    if isinstance(obj, str) and "minLength" in schema and len(obj) < schema["minLength"]:
+        errors.append(f"{path}: shorter than {schema['minLength']}")
+    if isinstance(obj, dict):
+        props = schema.get("properties", {})
+        for k in schema.get("required", []):
+            if k not in obj:
+                errors.append(f"{path}: missing {k!r}")
+        for k, v in obj.items():
+            if k in props:
+                errors += validate(v, props[k], f"{path}.{k}")
+            elif schema.get("additionalProperties") is False:
+                errors.append(f"{path}: unexpected key {k!r}")
+    if isinstance(obj, list) and "items" in schema:
+        for i, v in enumerate(obj):
+            errors += validate(v, schema["items"], f"{path}[{i}]")
+    return errors
+
+
+_STR = {"type": "string", "minLength": 1}
+_TS = {"type": "number", "minimum": 0}           # unix seconds
+_VERSION = {"type": "integer", "minimum": 1}
+
+# Join keys on every raw event (HARNESS.md 2): what lets slices, profiles and ledgers line up.
+KEYS = {
+    "type": "object",
+    "properties": {k: {"type": ["string", "integer", "null"]}
+                   for k in ("task", "order", "unit", "sku", "ledger_seq", "counterpart")},
+    "additionalProperties": False,
+}
+
+EVENT = {
+    "type": "object",
+    "required": ["schema_version", "event_id", "ts", "writer", "source", "kind",
+                 "strategy_version", "epoch", "card_version", "keys", "data"],
+    "properties": {
+        "schema_version": _VERSION,
+        "event_id": _STR,
+        "ts": _TS,
+        "writer": _STR,
+        "source": _STR,
+        "kind": _STR,
+        "strategy_version": {"type": ["integer", "null"]},
+        "epoch": {"type": ["string", "null"]},
+        "card_version": {"type": ["integer", "null"]},
+        "keys": KEYS,
+        "data": {"type": "object"},
+    },
+    "additionalProperties": False,
+}
+
+STATUS = {
+    "type": "object",
+    "required": ["schema_version", "runtime", "ts", "pid"],
+    "properties": {
+        "schema_version": _VERSION,
+        "runtime": {"type": "string", "enum": ["inner", "outer"]},
+        "ts": _TS,
+        "pid": {"type": "integer"},
+        "kit_version": {"type": ["string", "null"]},
+        "round": {"type": ["integer", "null"]},
+        "strategy_version": {"type": ["integer", "null"]},   # the strategy the runtime is using now
+        "last_hour": {"type": "object"},                     # counts: deals, failures, rate_limited, ...
+        "note": {"type": "string"},
+    },
+}
+
+ALERT = {
+    "type": "object",
+    "required": ["schema_version", "event_id", "ts", "writer", "level", "kind", "message"],
+    "properties": {
+        "schema_version": _VERSION,
+        "event_id": _STR,
+        "ts": _TS,
+        "writer": _STR,
+        "level": {"type": "string", "enum": ["info", "warn", "urgent"]},
+        "kind": _STR,
+        "message": _STR,
+        "data": {"type": "object"},
+    },
+}
+
+# memory/strategy/active.json (HARNESS.md 5): priorities and hypotheses, not rules.
+LIMITS = {
+    "type": "object",
+    "required": ["cash_floor", "max_units_per_sku", "max_stock_share", "food_share_max", "below_cost"],
+    "properties": {
+        "cash_floor": {"type": "integer", "minimum": 0},
+        "max_units_per_sku": {"type": "integer", "minimum": 1},
+        "max_stock_share": {"type": "number", "minimum": 0, "maximum": 1},   # of the balance
+        "food_share_max": {"type": "number", "minimum": 0, "maximum": 1},    # of the stock value
+        "below_cost": {
+            "type": "object",
+            "required": ["allowed", "max_loss_share_of_cost"],
+            "properties": {
+                "allowed": {"type": "boolean"},
+                "only_in_phase": {"type": ["string", "null"]},
+                "max_loss_share_of_cost": {"type": "number", "minimum": 0, "maximum": 1},
+            },
+        },
+    },
+}
+
+STRATEGY = {
+    "type": "object",
+    "required": ["schema_version", "version", "epoch", "approved", "phase", "priorities", "limits",
+                 "experiment", "delegation"],
+    "properties": {
+        "schema_version": _VERSION,
+        "version": _VERSION,
+        "epoch": _STR,
+        "approved": _STR,
+        "phase": _STR,
+        "priorities": {"type": "array", "items": _STR},
+        "limits": LIMITS,
+        "experiment": {"type": "object"},
+        "delegation": {"type": "object"},
+    },
+}
+
+CURSOR = {
+    "type": "object",
+    "required": ["schema_version", "reader", "files"],
+    "properties": {
+        "schema_version": _VERSION,
+        "reader": _STR,
+        "files": {"type": "object"},      # relative path -> byte offset of the next unread line
+        "last_event_id": {"type": ["string", "null"]},
+    },
+}
+
+SCHEMAS = {"event": EVENT, "status": STATUS, "alert": ALERT, "strategy": STRATEGY, "cursor": CURSOR}
