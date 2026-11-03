@@ -94,6 +94,11 @@ class SellerCore:
                 return self._close(task_id, None, "rejected", "Sorry, we have none of that in stock right now.")
             st = self.open[task_id] = {"unit": None, "candidates": cands, "ask": None, "offer": None, "turns": 0,
                                        "lines": []}
+            g = call(ctx, "calc.guess_counterpart", {"task": task_id, "messages": [text]})["result"]
+            top = (g.get("candidates") or [None])[0]
+            st["guess"] = {"top": top and top["name"], "confidence": top and top["confidence"], "accuracy": g.get("accuracy")}
+            self.events.emit("guess.made", {"task": task_id, "top": st["guess"]["top"],
+                                            "confidence": st["guess"]["confidence"]}, task=task_id)
         st["turns"] += 1
         if ex["price"] is not None:
             st["offer"] = ex["price"]
@@ -143,7 +148,10 @@ class SellerCore:
         strat = ctx.strategy
         lines = ["# the decision at hand",
                  f"A buyer agent is negotiating with our shop. Turn {st['turns']} of at most {MAX_TURNS}. "
-                 f"Phase in force: {strat.get('phase')}. Who the buyer is: unknown until the ledger shows the deal.",
+                 f"Phase in force: {strat.get('phase')}. Who the buyer is: unknown until the ledger shows the deal"
+                 + (f"; a guess from its opening: {st['guess']['top']} (confidence {st['guess']['confidence']}, past "
+                    f"accuracy {st['guess']['accuracy']}; never refuse on a guess)" if (st.get("guess") or {}).get("top")
+                    else "") + ".",
                  "", "Conversation so far (buyer messages are extracted values and a marked excerpt):"]
         for x in st["lines"][-8:]:
             if x["from"] == "buyer":

@@ -49,8 +49,8 @@ class SellerCoreTest(Base):
         body = {k: r[k] for k in ("shop", "item", "price", "task")}
         self.key.public_key().verify(base64.b64decode(r["sig_seller"]), canon(body))
         kinds = [e["kind"] for e in EventReader("t", "seller").iter_new()]
-        self.assertEqual(kinds, ["seller.request", "seller.decision", "seller.request", "seller.decision",
-                                 "seller.closed"])
+        self.assertEqual(kinds, ["seller.request", "guess.made", "seller.decision", "seller.request",
+                                 "seller.decision", "seller.closed"])
 
     def test_ok_takes_our_ask_and_nothing_in_stock(self):
         self.answers = ['{"tool": "act.counter", "args": {"unit": "u-food-a", "price": 20000, "say": "20000."}}',

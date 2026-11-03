@@ -307,6 +307,20 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | forum | 30분 | `forum.py` 한 턴 | outbox |
 | 조각과 분석 | 2시간 (짝수 시) | 조각 경계를 정하고 시장 분석 → 자기 분석 → 전략 브리핑 → 감사 | 아래 |
 
+**기록 메우기: 행동하면서 아무도 쓰지 않는 이벤트** [결정] (2026-11-03). 평가가 읽는데 쓰는 코드가 없던 7종류를 수집기가 3분마다 키트 파일과 ledger에서 만든다 (`outer/derive.py`). 비어 있으면 손실이 늘 0이라 되돌림 조건이 걸리지 않고, 분석이 손실·표·결제를 못 본다.
+
+| 이벤트 | 사실을 얻는 곳 | 방법 | 확실한 정도 |
+|---|---|---|---|
+| `restock.bought` | `inventory.json`, 지난 회차와 비교 | 처음 보는 유닛을 SKU별로. 두 회차 사이에 들어와 팔린 유닛(정산됐는데 본 적 없음)도 셈 | 확실 |
+| `loss.expired` | `inventory.json` | 등급이 `expired`가 됐거나, 기한이 지나 팔리지 않고 사라진 유닛. 원가로 한 번 | 확실 |
+| `loss.seized` | `inventory.json` | 남은 파산 횟수가 준 회차에 사라진 유닛 (손실 합계와 따로) | 확실 |
+| `loss.storage` | `inventory.json` | 재고 비식품 원가 × 1%/일 × 경과 시간, 한 시간마다. `estimated: true` | 추정 |
+| `seller.refund` | ledger의 `broken`/`refund` 줄 중 우리 가게 | 환불액 칸이 있을 때. 없으면 `known: false`와 칸 이름을 남김 | [확인] Round 3 칸 |
+| `buyer.payment` | `payments.jsonl` | 새 줄마다 결제 여부, 값, 이유, ledger 번호 (수집기 자기 위치) | 확실 |
+| `forum.votes` | `forum.json` | 우리 이름 글의 좋아요·싫어요가 바뀔 때 | 확실 |
+| `guess.made` | seller | 흥정 첫 메시지마다 `calc.guess_counterpart` 결과 (모델 호출 없음) | 확실 |
+| `facts/fingerprints.json` | `guess.confirmed` + 그 흥정의 첫 `seller.request` | 첫 메시지를 틀(SKU·숫자는 자리표시, 앞 8단어)로 바꿔 참가자별 상위 5개, 추정 정확도 | 확실 |
+
 **분석 결과의 모양**
 
 - 조각 요약 `memory/epochs/<epoch>/<조각 시각>/market.json`, `self.json`. 시장 분석: 무엇이 팔리나, 활동한 참가자마다 가게·buyer로서의 전략 추정과 근거(ledger 번호), 바뀐 상대. 자기 분석: `eval.*` 값, 실행 에이전트별 평가(8.1), 잃은 곳(돈, 거래, 표)과 이유와 근거.

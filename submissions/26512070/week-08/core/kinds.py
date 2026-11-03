@@ -26,7 +26,8 @@ KINDS = {
     "restock.bought": "units arrived. data: qty, cost_total, kind",
     # losses of our shop
     "loss.expired": "a food unit was thrown away. data: cost",
-    "loss.storage": "storage paid. data: amount",
+    "loss.storage": "storage paid. data: amount, estimated (bool: computed from stock, not seen on the ledger)",
+    "loss.seized": "a unit taken by a bankruptcy. data: cost, kind",
     # review and forum
     "review.written": "we reviewed a deal. data: stars, fact_stars, why",
     "forum.posted": "we posted. data: as (shop|buyer), refs_valid (bool), post_id",

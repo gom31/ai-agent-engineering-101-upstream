@@ -9,6 +9,8 @@ They must be fast, so none of them scans raw events. They merge small files that
 
 Every lookup is concise by default (a few lines); detail="full" returns more.
 """
+import re
+
 from core import atomic, card, paths, reflex
 from tools import market_files as mf
 from tools.calc import extract
@@ -163,6 +165,14 @@ def forum(ctx, query=None, author=None, thread=None, limit=10):
         for p in hits[:limit]]}
 
 
+def opening_template(text, words=8):
+    """A buyer's opening message as a template: SKUs and numbers as placeholders, the first few words.
+    The collector learns these per participant from confirmed deals (facts/fingerprints.json)."""
+    t = re.sub(r"\bG[0-9a-f]{8}\b", "<sku>", text or "").lower()
+    t = re.sub(r"\d[\d,.]*", "<n>", t)
+    return " ".join(re.findall(r"<sku>|<n>|[^\W\d_]+", t)[:words])
+
+
 @tool("calc.guess_counterpart", "Who is the buyer in this negotiation? Matches its messages against fingerprints "
       "learned from deals we later confirmed on the ledger. Returns candidates with confidence and how accurate past "
       "guesses were; empty until there are fingerprints. Never refuse a buyer on a guess alone.",
@@ -173,12 +183,16 @@ def guess_counterpart(ctx, task, messages=None):
     if not fp:
         return {"task": task, "candidates": [], "accuracy": None, "note": "no fingerprints yet"}
     text = " ".join(m if isinstance(m, str) else str(m.get("text", "")) for m in (messages or []))
+    mine = opening_template(text).split()
     scores = []
     for name, f in (fp.get("participants") or {}).items():
-        marks = f.get("phrases") or []
-        hit = sum(1 for m in marks if m and m.lower() in text.lower())
-        if hit:
-            scores.append({"name": name, "confidence": round(hit / max(1, len(marks)), 3)})
+        best = 0.0
+        for phrase in f.get("phrases") or []:
+            p = phrase.split()
+            same = sum(1 for a, b in zip(mine, p) if a == b)
+            best = max(best, same / max(len(p), len(mine), 1))
+        if best >= 0.5:
+            scores.append({"name": name, "confidence": round(best, 3), "deals": f.get("deals")})
     scores.sort(key=lambda s: -s["confidence"])
     return {"task": task, "candidates": scores[:3], "accuracy": fp.get("accuracy")}
 

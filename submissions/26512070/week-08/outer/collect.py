@@ -25,6 +25,7 @@ from pathlib import Path
 
 from core import atomic, paths
 from core.events import EventWriter
+from outer import derive
 from tools.evaluate import events
 
 MARKET = "https://market.ourolabs.ai"
@@ -261,6 +262,8 @@ class Collector:
             for row in rows:
                 self.store.append(paths.memory() / "market" / f"ledger-{day}.jsonl", json.dumps(row, ensure_ascii=False))
                 deal = fold(state, row, self.me, cat)
+                derive.refund(row, self.w, lambda url, name: bool((name and name == self.me["card_name"])
+                                                                   or (url and url in state["our_shop_urls"])))
                 if deal and deal["ours"]:
                     costs = costs if costs is not None else seller_costs()
                     cost, unit = costs.get(deal["task"], (None, None))
@@ -280,6 +283,10 @@ class Collector:
             if len(rows) < PAGE:
                 break
         broken = self.broken(state, cat)
+        md = Path(__import__("os").environ.get("MARKET_DIR") or paths.root() / ".market")
+        inv = atomic.read_json(md / "inventory.json", default=None) if (md / "inventory.json").exists() else None
+        derived = {"inventory": derive.inventory(state, self.w, inv, now), "payments": derive.payments(state, self.w, md),
+                   "forum_votes": derive.forum_votes(state, self.w, md, self.me), "fingerprints": derive.fingerprints(now)}
         prune(state, now)
         atomic.write_json(self.state_path, state)
         atomic.write_json(paths.memory() / "facts" / "live.json", live(state, cat, now))
@@ -296,7 +303,8 @@ class Collector:
                 board = True
             except RuntimeError as e:
                 board = f"skipped: {e}"
-        out = {"rows": n_rows, "our_sales": ours, "broken": broken, "cursor": cur["seq"], "board": board}
+        out = {"rows": n_rows, "our_sales": ours, "broken": broken, "cursor": cur["seq"], "board": board,
+               "derived": derived}
         self.w.emit("collect.round", out)
         return out
 
