@@ -39,6 +39,11 @@ SLOT_SEAT = {}                 # seat -> slot priority name, when they differ (n
 BREAK_AFTER = 3
 BREAK_SECONDS = 300
 CALL_TIMEOUT = 60
+# 11/3 23:1x on the home PC: Claude Code answers the trading seats in 40-60 s (7 s on the laptop) and the seller's
+# calls run into their deadline, so the buyer handled 7 orders in 15 min (106 in 54 min before). A trading seat
+# gives Claude this long, then asks the fallback; timeouts in a row open the breaker like rate limits.
+TRADING = ("seller", "buyer")
+TRADING_CLAUDE_TIMEOUT = 15
 RATE_WORDS = ("rate limit", "rate_limit", "usage limit", "429", "overloaded", "quota")
 _EMPTY = None
 _writer = None
@@ -162,7 +167,8 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
         try:
             if backend == "claude":                     # Claude Code calls share SLOTS across all processes
                 with slots.slot(SLOT_SEAT.get(seat, seat)) as waited:
-                    out = BACKENDS[backend](model, system, prompt, timeout)
+                    t = min(timeout, TRADING_CLAUDE_TIMEOUT) if seat in TRADING else timeout
+                    out = BACKENDS[backend](model, system, prompt, t)
             else:
                 out = BACKENDS[backend](model, system, prompt, timeout)
         except slots.Busy as e:
@@ -191,14 +197,14 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
 
 
 def _claude_failed(seat, st, e, now):
-    if not e.rate_limited:
+    if not (e.rate_limited or (e.timed_out and seat in TRADING)):
         return
     fails = st["fails"] + 1
     new = {"fails": fails, "open_until": st["open_until"]}
     if fails >= BREAK_AFTER:
         new["open_until"] = now() + BREAK_SECONDS
         bus.alert(f"model-{seat}", "warn", "breaker",
-                  f"{seat}: {fails} rate limits in a row, Claude Code paused for {BREAK_SECONDS} s", {"fails": fails})
+                  f"{seat}: {fails} rate limits or timeouts in a row, Claude Code paused for {BREAK_SECONDS} s", {"fails": fails})
     _set_breaker(seat, new)
     st.update(new)
 

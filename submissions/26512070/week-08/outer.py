@@ -23,7 +23,7 @@ from core.events import EventWriter  # noqa: E402
 
 LOOP_SECONDS = 30
 COLLECT_EVERY = 180
-FORUM_EVERY = 600          # draft: our buyer's number of posts is 0.1 of buyer ALL; the agent may still skip
+FORUM_EVERY = 300          # user 11/3 23:1x: the kit allows one post per 5 min per side; buyer posts are 0.1 of buyer ALL (agent.md)
 FORUM_TIMEOUT = 300
 
 

@@ -2101,3 +2101,78 @@
 23:11:52 [seller] [seller] 6289a402 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
 23:12:05 [seller] [seller] 55ce5de1 input_required: I appreciate your offer, but I can offer you the curtain at 32,000, which still reflects its quality and value.
 23:12:07 [seller] [seller] fd629103 rejected: Sorry, we have none of that in stock right now.
+23:12:44 [buyer] {"buy": []}
+23:12:47 [seller] [seller] 6289a402 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:12:57 [seller] [seller] 55ce5de1 input_required: [모던하우스] ON NEW 린넨스타일 3중방한 3도씨커튼 창문형 140x180 1장 화이트 높이조절밴드: 32000.
+23:13:21 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "1158b719-04a3-4b15-a812-2381bdf11ba0", "item": "G76ba0184", "sig_seller": "ifLREnjgV9+Gy99arjsILIx1sPSYY9MZq2BmW14Q0KfoYm9xOKFjoo4qdJqV95UmN3HPqeqOz67TdTV7slePCg==", "shop": "YAHO1212", "claim": "B", "unit": "u-1fa9f27863d3", "price": 15661}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 48, "grades": ["A", "B"]}}
+23:13:21 [sign] sig_seller ok, sig_buyer added
+23:13:23 [acp] checkout ships unit u-1fa9f27863d3, claim B, certificate attached
+23:13:23 [acp] paid 15661 through https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com/acp, settled at ledger #2161358: 한계란 무항생제 동물복지 유정란 난각번호 2번 계란 40구, grade B, 71.2 h of shelf life left
+23:13:40 [seller] [seller] 55ce5de1 completed: Perfect! I'm pleased to close this deal at 30,800. Your curtain comes with our 6-hour warranty and full market certifica
+23:13:43 [seller] [seller] 6289a402 completed: Accepted your offer of 7500 for the pillow.
+23:13:48 [buyer] {"stars": 4, "review": "Grade B eggs as promised, fair price paid to a reliable seller."}
+23:13:49 [market] ledger #2161455: G76ba0184 at 15661, stars 4, verified True, review accepted
+23:13:49 [acp] settled 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 7500, ledger #2161454, unit u-5d79a3f80ccd grade C
+23:13:49 [order o-4c33906dfe05] 침대/매트리스, budget 2277000, round 3
+23:13:49 [buyer] {"buy": []}
+23:13:49 [kit] 47 shops in .market\shops.json, running market_buyer
+23:13:49 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:13:49 [market] ledger #2161463: no deal, stars None, verified False, review not shown
+23:13:51 [seller] [seller] 85aebb2d rejected: Sorry, we have none of that in stock right now.
+23:14:09 [order o-27be505c91bd] 신선야채(부패주의), budget 84980, round 3, use within 24.0 h
+23:14:10 [kit] 47 shops in .market\shops.json, running market_buyer
+23:14:10 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:14:10 [market] ledger #2161540: no deal, stars None, verified False, review not shown
+23:14:30 [order o-34e849484f6a] 신선야채(부패주의), budget 19320, round 3, use within 12.0 h
+23:14:30 [kit] 47 shops in .market\shops.json, running market_buyer
+23:14:55 [buyer] {"buy": []}
+23:15:31 [seller] [seller] 31532611 rejected: Sorry, we have none of that in stock right now.
+23:15:55 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:15:56 [market] ledger #2161990: no deal, stars None, verified False, review not shown
+23:15:56 [order o-2ce48c75cb24] 찌개/탕류/장류, budget 17380, round 3, use within 72.0 h
+23:15:56 [kit] 48 shops in .market\shops.json, running market_buyer
+23:16:00 [buyer] {"buy": []}
+23:16:11 [seller] [seller] dd9a4c6a rejected: Sorry, we have none of that in stock right now.
+23:16:46 [seller] [seller] 125ab9e9 rejected: Sorry, we have none of that in stock right now.
+23:16:52 [seller] [seller] 753953a3 input_required: The total price for the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) is 28,710 KRW. This includes our certificate and a warranty 
+23:17:08 [buyer] {"buy": []}
+23:17:29 [seller] [seller] 3636fc61 rejected: Sorry, we have none of that in stock right now.
+23:17:43 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+23:17:43 [market] ledger #2162407: no deal, stars None, verified False, review not shown
+23:17:43 [order o-d2da8b600f92] 디저트, budget 12510, round 3, use within 24.0 h
+23:17:43 [kit] 48 shops in .market\shops.json, running market_buyer
+23:17:44 [seller] [seller] df2e965f input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 39900.
+23:17:46 [seller] [seller] 298740cc input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+23:18:01 [forum] post as shop: 200
+23:18:08 [seller] [seller] 478b1627 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+23:18:13 [buyer] {"buy": []}
+23:18:23 [forum] post as buyer: 200
+23:18:29 [seller] [seller] df2e965f input_required: 이 제품은 A등급 보증상품으로 시장 인증서와 6시간 보증이 포함되어 있습니다. 정가 39,900원에서 35,910원으로 제안드립니다.
+23:18:34 [seller] [seller] 4f121d13 rejected: Sorry, we have none of that in stock right now.
+23:18:39 [seller] [seller] 2d170ddc input_required: Grade A unit, perfect condition. Market certificate and 6-hour warranty included (full refund if any issue). Our price: 
+23:19:09 [seller] [seller] d259bc7b rejected: Sorry, we have none of that in stock right now.
+23:19:17 [buyer] {"buy": []}
+23:19:18 [seller] [seller] a147aed4 input_required: 마카롱 회음부방석 임산부 산모 도넛 방석: 7900.
+23:19:20 [seller] [seller] 9dd562e1 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+23:19:28 [seller] [seller] df2e965f rejected: 죄송하지만 제안하신 가격은 수익성을 보장할 수 없어 협상을 종료하겠습니다.
+23:19:38 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": {"task": "fbc15bac-3429-42d4-8499-07f857e63103", "item": "G11f14ced", "sig_seller": "XEPiU0xqwaFQHJ5igaLr/PTzTi7hk/r2CfWXd89s8iaORRT+kh6l5TdCofFV/hDfc6NIPtzn+7OQptdunliCCQ==", "shop": "ddolcom", "claim": "C", "unit": "u-71305dd87592", "price": 10900}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 24, "grades": ["A", "B"]}}
+23:19:38 [sign] sig_seller ok, sig_buyer added
+23:19:48 [acp] not paying: 20.41 h of shelf life left, the policy asks for 24
+23:19:49 [market] ledger #2162846: G11f14ced at 10900, stars None, verified False (failed: settled), review not shown
+23:19:49 [order o-024148b28db9] 침구, budget 23520, round 3
+23:19:49 [kit] 48 shops in .market\shops.json, running market_buyer
+23:20:09 [seller] [seller] a147aed4 input_required: 마카롱 회음부방석 임산부 산모 도넛 방석: 7900.
+23:20:14 [seller] [seller] 95339160 rejected: Sorry, we have none of that in stock right now.
+23:20:24 [buyer] {"buy": []}
+23:20:25 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:20:26 [market] ledger #2162999: no deal, stars None, verified False, review not shown
+23:20:26 [order o-7322f30ea0e0] 신선야채(부패주의), budget 21730, round 3, use within 36.0 h
+23:20:26 [kit] 48 shops in .market\shops.json, running market_buyer
+23:20:43 [seller] [seller] e794e7f6 rejected: Sorry, we have none of that in stock right now.
+23:20:58 [seller] [seller] a147aed4 completed: Agreed at 7310 KRW. Certified A-grade unit with 6-hour warranty. Thank you for your business.
+23:20:59 [acp] settled 마카롱 회음부방석 임산부 산모 도넛 방석 at 7310, ledger #2163109, unit u-0614d3f953ee grade A
+23:21:07 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:21:07 [market] ledger #2163158: no deal, stars None, verified False, review not shown
+23:21:07 [order o-ac61f50783f7] 신선야채(부패주의), budget 13680, round 3, use within 24.0 h
+23:21:07 [kit] 48 shops in .market\shops.json, running market_buyer
+23:21:24 [buyer] {"buy": []}
