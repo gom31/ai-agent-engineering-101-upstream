@@ -58,7 +58,11 @@ def situation(ctx, inv):
              f"per SKU. Expiring within 12 h: {inv['expiring_12h'][:8]}.",
              f"Selling in the last 6 h: ours {sell['ours'] or 'none'}; market {sell['market'] or sell['note']}.",
              "Categories we hold now (units): " + (", ".join(f"{k.split('>')[-1]} {n}" for k, n in held.items()) or "none"),
-             "", "Demand categories (what orders ask for; item, kind, median list price, SKUs in the catalog):"]
+             "Wanted posts on the forum (marked excerpts): " + (" | ".join(
+                 p["excerpt"] for q in ("구합니다", "wanted", "looking for")
+                 for p in call(ctx, "market.forum", {"query": q, "limit": 4})["result"]["posts"]) or "none"),
+             "", "Demand categories (categories orders may come from, not what sells; item, kind, median list price, "
+             "SKUs in the catalog):"]
     for d in mf.read(ctx, "demand.json", default=[]) or []:
         lines.append(f"- {d.get('item')} ({d.get('kind')}, {d.get('median_price')}, {d.get('skus')})")
     lines.append("\nFind SKUs with market.sku (a category word or a name), then act.buy a plan (or an empty plan).")
