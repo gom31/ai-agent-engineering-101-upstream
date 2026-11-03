@@ -21,6 +21,7 @@ import sys
 import tempfile
 import time
 
+from agents import slots
 from core import atomic, bus, paths
 from core.events import EventWriter
 
@@ -34,6 +35,7 @@ SEATS = {
     "strategy": {"claude": "opus", "fallback": None},
     "audit": {"claude": None, "fallback": "google/gemini-2.5-flash"},  # another vendor's model (D29 draft)
 }
+SLOT_SEAT = {}                 # seat -> slot priority name, when they differ (none yet)
 BREAK_AFTER = 3
 BREAK_SECONDS = 300
 CALL_TIMEOUT = 60
@@ -144,8 +146,19 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
         if is_fallback and last is not None and not last.rate_limited:
             break                                       # only a rate limit sends an L1 call elsewhere
         t0 = time.perf_counter()
+        waited = 0.0
         try:
-            out = BACKENDS[backend](model, system, prompt, timeout)
+            if backend == "claude":                     # Claude Code calls share SLOTS across all processes
+                with slots.slot(SLOT_SEAT.get(seat, seat)) as waited:
+                    out = BACKENDS[backend](model, system, prompt, timeout)
+            else:
+                out = BACKENDS[backend](model, system, prompt, timeout)
+        except slots.Busy as e:
+            last = ModelError(str(e), rate_limited=True)     # like a rate limit: L1 goes to the fallback
+            _emit(seat=seat, model=f"{backend}:{model}", ms=round((time.perf_counter() - t0) * 1000), ok=False,
+                  rate_limited=False, busy=True, fallback=False, prompt_chars=len(prompt) + len(system or ""),
+                  error=str(e)[:200])
+            continue
         except ModelError as e:
             last = e
             _emit(seat=seat, model=f"{backend}:{model}", ms=round((time.perf_counter() - t0) * 1000), ok=False,
@@ -155,7 +168,8 @@ def call(seat, prompt, system=None, timeout=CALL_TIMEOUT, now=time.time):
                 _claude_failed(seat, st, e, now)
             continue
         _emit(seat=seat, model=f"{backend}:{model}", ms=round((time.perf_counter() - t0) * 1000), ok=True,
-              rate_limited=False, fallback=backend != "claude", prompt_chars=len(prompt) + len(system or ""))
+              rate_limited=False, fallback=backend != "claude", prompt_chars=len(prompt) + len(system or ""),
+              waited_ms=round(waited * 1000))
         if backend == "claude" and (st["fails"] or st["open_until"]):
             if st["open_until"]:
                 bus.alert(f"model-{seat}", "info", "breaker", f"{seat}: Claude Code answers again, breaker closed")
