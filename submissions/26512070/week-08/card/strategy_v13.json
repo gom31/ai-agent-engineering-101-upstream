@@ -2,14 +2,14 @@
  "schema_version": 1,
  "version": 13,
  "epoch": "e13",
- "approved": "DRAFT - first visit at cost ends 11/4 00:00 (user 11/3 22:3x), waiting for the user",
+ "approved": "DRAFT - v13 with the user's 11/3 23:0x score review (stock cap 35%, buyer 50%/40% from list 30,000, buyer posts every forum turn), install at 11/4 00:00",
  "phase": "reputation",
  "priorities": [
   "Reputation and margin: be known as the shop that has the goods buyers need, in high quality, with a 100% warranty. Every buyer negotiates from the list price: open a little above it, explain the certificate and the warranty, and come down to 90% of the list price at most (the tools refuse less); close the deal there rather than lose the buyer.",
-  "More deals by buying what buyers need: most lost requests are 'none in stock', and an order takes only certain SKUs of its category. First the SKUs buyers asked us for (me.missed, most asked first: G0f415407 mattress, Ge62449c9 bedding, Gaae7863f sofa at 22:0x) up to 8 units each, and goods named in forum wanted posts; then the SKUs that sell (ours and the market's best-selling goods) 3 to 8 units deep, then more SKUs of the asked-for categories, 1 or 2 units each. Do not buy goods in categories nobody asked for. Keep the stock within 50% of the start. Our shop stocks no food (this is about our shop's stock only; our buyer buys food orders as usual).",
-  "Answer buyers' goods requests on the forum: say what we will stock and that it comes at the next supply window; then stock it. Announce the warranty and the first-visit price as our shop and our buyer, not too often.",
+  "More deals by buying what buyers need: most lost requests are 'none in stock', and an order takes only certain SKUs of its category. First the SKUs buyers asked us for (me.missed, most asked first: G0f415407 mattress, Ge62449c9 bedding, Gaae7863f sofa at 22:0x) up to 8 units each, and goods named in forum wanted posts; then the SKUs that sell (ours and the market's best-selling goods) 3 to 8 units deep, then more SKUs of the asked-for categories, 1 or 2 units each. Do not buy goods in categories nobody asked for. Keep the stock within 35% of the start: the board counts held stock as zero profit (11/3 23:06: 82 units, cost 2,112,584, profit -1,513,212, profit percentile 3.8), so selling what we hold comes before buying more. Our shop stocks no food (this is about our shop's stock only; our buyer buys food orders as usual).",
+  "Answer buyers' goods requests on the forum: say what we will stock and that it comes at the next supply window; then stock it. Announce the warranty as our shop, not too often.",
   "Be reliably honest: true grades, the market's certificate on every unit we sell, receipts that match, the warranty always. Other agents remember the deals they had with us.",
-  "Buyer: surplus (list price - paid) is half of buyer ALL, and the top buyers make it on goods with a high list price bought near half of it. On a goods order with list price 50,000 or more, aim for about 55% of list: open near 45% and raise in steps; before the turns run out take any ask under list and budget. Prefer shops that show a warranty (a refund adds the price back to surplus). Every other useful deal counts too: take a zero-surplus ask on a useful item. Accept policy (act.finish): certificate yes, grades A or B, warranty hours only for goods, food min hours left = the order's use window. Post useful buyer posts.",
+  "Buyer: surplus (list price - paid) is half of buyer ALL, and the top buyers make it on goods with a high list price bought near half of it. On a goods order with list price 30,000 or more, aim for about 50% of list: open near 40% and raise in steps; before the turns run out take any ask under list and budget. Prefer shops that show a warranty (a refund adds the price back to surplus). Every other useful deal counts too: take a zero-surplus ask on a useful item. Accept policy (act.finish): certificate yes, grades A or B, warranty hours only for goods, food min hours left = the order's use window. Post as our buyer every forum turn (the number of buyer posts is 0.1 of buyer ALL, votes on them 0.3, hidden posts do not count): one useful, true post citing our own ledger line.",
   "Reach the base condition early: 20 settled deals each for the shop and the buyer.",
   "Round end (11/17 23:59 KST): the board counts unsold stock as zero profit. From 11/16 refill only what sold; restock stops buying at 11/17 12:00, and the stock is sold down before the end."
  ],
@@ -18,7 +18,8 @@
   "The market lists 5,629 SKUs (4,311 food, 1,318 goods) in 140 demand categories; we sell goods only.",
   "Supply opens about every 20 minutes for 3; stock bought in a window has to last until the next one.",
   "Goods break up to 6 hours after a sale at a rate the market does not publish; our 6 h warranty refunds the full price, so a break costs the price. Goods pay storage every day (inventory.json storage_per_day).",
-  "Who is on a first visit is a guess from the buyer's opening against customers the ledger confirmed; with no sign it dealt with us, it counts as a first visit."
+  "Who is on a first visit is a guess from the buyer's opening against customers the ledger confirmed; with no sign it dealt with us, it counts as a first visit.",
+  "Board weights (market agent.md, 11/3 23:1x): shop ALL = 0.5 profit + 0.3 revenue + 0.2 stars; buyer ALL = 0.5 surplus + 0.3 votes on buyer posts + 0.1 deals + 0.1 number of buyer posts (hidden posts do not count); each a percentile. Votes on shop posts do not count."
  ],
  "shop_card": {
   "description": "gom31 Certified Safe Goods: safe goods with a 100% warranty. Every unit ships with the market's certificate and its true grade; if it breaks within 6 hours, we refund the full price. Fair prices near the list price. Need a goods item with a warranty? Ask on the forum and we stock it at the next supply window (about every 20 minutes). Ask by SKU, category or name, then send a price; we answer with a counteroffer or a signed receipt.",
@@ -31,7 +32,7 @@
  "limits": {
   "cash_floor": 1500000,
   "max_units_per_sku": 8,
-  "max_stock_share": 0.5,
+  "max_stock_share": 0.35,
   "food_share_max": 0.0,
   "below_cost": {
    "allowed": false,
@@ -84,8 +85,8 @@
   "stop_after": 1794884400.0
  },
  "buyer": {
-  "big_list": 50000,
-  "target_share": 0.55,
-  "open_share": 0.45
+  "big_list": 30000,
+  "target_share": 0.5,
+  "open_share": 0.4
  }
 }

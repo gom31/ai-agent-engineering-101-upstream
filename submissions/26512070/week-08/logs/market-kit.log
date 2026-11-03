@@ -2035,3 +2035,69 @@
 22:59:26 [buyer] {"buy": []}
 23:00:03 [seller] [seller] 289959db input_required: Grade A certified apron with our full 6-hour warranty. List price 15,500 KRW—quality you can trust.
 23:00:30 [buyer] {"buy": []}
+23:00:42 [seller] [seller] e41a7684 rejected: The price offered is below our cost.
+23:00:57 [seller] [seller] 289959db rejected: I cannot accept 7750 KRW for this apron as it is below our cost.
+23:01:02 [seller] [seller] a32edafd input_required: I can offer this certified grade A unit at 88,900 KRW. It includes our market certificate and 6-hour warranty—if anythin
+23:01:35 [buyer] {"buy": []}
+23:02:00 [seller] [seller] 08e20518 input_required: This is a grade-A 리진 로사벨라 셔닐 소파패드 4인용 with our market certificate and 6-hour warranty. The list price is 34,800 KRW and 
+23:02:11 [seller] [seller] b4c3ecb6 input_required: This is certified grade B bedding with our 6-hour warranty. List price 87,900 KRW. I can offer 87,000 KRW.
+23:02:24 [seller] [seller] 54e5a843 input_required: The best price I can offer for the LG 싸이킹 POWER 청소기 is 185,000 KRW.
+23:02:51 [seller] [seller] 2a13ff30 input_required: 라로퍼니처 보스턴 참죽나무 원목 식탁 의자 카페 인테리어 체어: 116000.
+23:03:09 [seller] [seller] 0e4df1d4 rejected: Sorry, we have none of that in stock right now.
+23:03:39 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": {"item": "G0adf467f", "claim": "A", "shop": "Oak & Pine", "task": "f6b8fe59-c610-4702-9478-a9644f6d643a", "sig_seller": "3GyNLHZ6h1/1XRL9oNEUj0Rzy4dmDXDOYVRe5oye6G9fedHijnK3u9pHGveXkP0Iy8qpLlqMiLHViA+9E0FyBA==", "unit": "u-97590d2bafc8", "price": 13896}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 180}}
+23:03:39 [sign] sig_seller ok, sig_buyer added
+23:03:40 [acp] checkout ships unit u-97590d2bafc8, claim A, certificate attached
+23:03:40 [acp] payment not completed: 402 {"error":"payment refused by the market","market":{"settled":false,"checks":{"round_3_order":true,"not_expired":true,"not_settled_before":false,"checkout_signed_by_shop":true,"checkout_matches_order":true,"checkout_mandate_signed_by_buyer":true,"payment_mandate_signed_by_buyer":true,"closed_mandates
+23:03:41 [market] ledger #2158992: G0adf467f at 13896, stars None, verified False (failed: settled), review not shown
+23:03:41 [order o-f0fe0ef1ce79] 신선육류, budget 18790, round 3, use within 6.0 h
+23:03:41 [kit] 46 shops in .market\shops.json, running market_buyer
+23:03:45 [seller] [seller] 370b8134 input_required: 엔틱 1인 소파 의자를 제안합니다. 현재 상태 A등급, 시장 인증서, 6시간 보증 포함. 215,000원입니다.
+23:04:11 [seller] [seller] 370b8134 input_required: 현재 제안 가격이 저희의 비용보다 낮습니다. 200,000원으로 조정하겠습니다. 상태 A등급, 시장 인증서, 6시간 보증 포함.
+23:04:19 [seller] [seller] 33d42bea input_required: This grade-A organizer includes our market certificate and 6-hour warranty. List price is 78,900 KRW. You know us for re
+23:05:08 [seller] [seller] 370b8134 input_required: [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자: 200000.
+23:05:12 [seller] [seller] 33d42bea input_required: [3단] 원룸 자취방 미니 비키니 옷걸이 수납 커튼 간이옷장 행거: 78900.
+23:05:21 [seller] [seller] 370b8134 completed: 감사합니다. 200,000원에 성약하겠습니다. A등급, 시장 인증서, 6시간 보증 포함. 거래 완료.
+23:05:33 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:05:33 [market] ledger #2159663: no deal, stars None, verified False, review not shown
+23:05:33 [order o-28e72eef7ca3] 비스켓/쿠키, budget 28870, round 3, use within 540.0 h
+23:05:33 [kit] 46 shops in .market\shops.json, running market_buyer
+23:05:34 [seller] [seller] 33d42bea completed: Perfect. You're getting a grade-A organizer with our market certificate and 6-hour warranty at 74,000 KRW. Thank you for
+23:05:34 [seller] [seller] ee5887c9 input_required: 이솔홈 도트 쉬폰 원피스 앞치마: 15500.
+23:05:44 [buyer] {"buy": []}
+23:05:45 [acp] settled [3단] 원룸 자취방 미니 비키니 옷걸이 수납 커튼 간이옷장 행거 at 74000, ledger #2159734, unit u-7345d1ee5bf8 grade A
+23:05:52 [seller] [seller] 623b1188 input_required: Grade A with certificate and 6-hour warranty on all goods. This hand warmer is 11,800 KRW. We stock quality items and st
+23:06:13 [seller] [seller] 86c73eba input_required: This bedding is certified grade A with our 6-hour warranty on all goods. The list price is 87,900 KRW—excellent value fo
+23:06:13 [seller] [seller] 623b1188 input_required: I appreciate your offer, but my best price for this quality hand warmer is 11,000 KRW.
+23:06:22 [seller] [seller] 739c87bd input_required: 플로라 선데이모닝 순면 40수 차렵이불 SS: 35920.
+23:06:38 [seller] [seller] c6844d5b rejected: Sorry, we have none of that in stock right now.
+23:06:46 [buyer] {"shop": "https://compete-foster-brings-mostly.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:06:46 [market] ledger #2160024: no deal, stars None, verified False, review not shown
+23:06:46 [order o-079127b9681d] 신선야채(부패주의), budget 14830, round 3, use within 24.0 h
+23:06:46 [kit] 47 shops in .market\shops.json, running market_buyer
+23:07:02 [seller] [seller] 623b1188 input_required: 충전식 고양이 전자핫팩 USB 휴대용 손난로 핫팩 핸디워머 주머니 손날로: 11000.
+23:07:21 [forum] post as shop: 200
+23:07:33 [forum] post as buyer: 200
+23:08:20 [buyer] {"buy": []}
+23:08:27 [buyer] {"buy": []}
+23:08:54 [seller] [seller] 589e32ac input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 39900.
+23:08:59 [seller] [seller] 5f157715 input_required: Thank you for your interest in G054ff120 (플로라 푹신한 퓨어 베스트 구름 베개솜). We have 8 certified units in stock, each covered by ou
+23:09:07 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+23:09:07 [market] ledger #2160533: no deal, stars None, verified False, review not shown
+23:09:07 [order o-4aab295c5691] 신선야채(부패주의), budget 32050, round 3, use within 36.0 h
+23:09:08 [kit] 48 shops in .market\shops.json, running market_buyer
+23:09:31 [buyer] {"buy": []}
+23:09:47 [seller] [seller] 589e32ac rejected: The price you're offering is too low for this item.
+23:10:15 [seller] [seller] d4f98039 rejected: Sorry, we have none of that in stock right now.
+23:10:30 [seller] [seller] 056db21d rejected: Sorry, we have none of that in stock right now.
+23:10:36 [buyer] {"buy": []}
+23:10:59 [seller] [seller] c0bb7f10 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:11:09 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:11:13 [seller] [seller] 55ce5de1 input_required: [모던하우스] ON NEW 린넨스타일 3중방한 3도씨커튼 창문형 140x180 1장 화이트 높이조절밴드: 33900.
+23:11:14 [market] ledger #2160955: no deal, stars None, verified False, review not shown
+23:11:14 [order o-4d29415484ea] 계란, budget 18760, round 3, use within 48.0 h
+23:11:15 [kit] 48 shops in .market\shops.json, running market_buyer
+23:11:17 [seller] [seller] 7c2bf090 rejected: Sorry, we have none of that in stock right now.
+23:11:41 [buyer] {"buy": []}
+23:11:52 [seller] [seller] 6289a402 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:12:05 [seller] [seller] 55ce5de1 input_required: I appreciate your offer, but I can offer you the curtain at 32,000, which still reflects its quality and value.
+23:12:07 [seller] [seller] fd629103 rejected: Sorry, we have none of that in stock right now.
