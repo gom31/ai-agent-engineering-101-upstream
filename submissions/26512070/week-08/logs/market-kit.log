@@ -3590,3 +3590,5 @@
 02:07:47 [seller] [seller] 1a0529f6 input_required: Thank you for your offer. However, I can offer this item at 238,545 KRW, which is the lowest I can accept for grade B, c
 02:07:57 [order o-92914806b3f8] 신선육류, budget 22410, round 3, use within 18.0 h
 02:07:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:08:42 [buyer] {"buy": []}
+02:09:17 [kit] your seller exited (code 4294967295), starting it again
