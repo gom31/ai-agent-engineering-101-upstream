@@ -19,6 +19,7 @@ KINDS = {
                     "receipt_price, verdict (fair|cheated: ...|no deal ...), list_price",
     "buyer.payment": "the kit's payment result. data: paid (bool), price, reason, ledger",
     "buyer.received": "what a settled purchase was worth. data: value, price, grade, claim_honest, surplus",
+    "buyer.settled_seen": "the ledger shows a deal of our buyer. data: shop, price, sku",
     "buyer.broken": "goods we bought broke. data: price, warranty (bool), refund, matched (bool)",
     # restock
     "restock.plan": "a plan was made. data: lines, refused (reason|None), used_model (bool)",
@@ -31,6 +32,8 @@ KINDS = {
     "forum.posted": "we posted. data: as (shop|buyer), refs_valid (bool), post_id",
     "forum.turn": "one forum turn. data: action (post|skip|None), as, refs, votes, why",
     "forum.votes": "votes our posts received, counted. data: post_id, likes, dislikes",
+    # outer runtime
+    "collect.round": "one collection round. data: rows, our_sales, broken, cursor, board",
     # model calls (every seat)
     "model.call": "one model call. data: seat, model, ms, ok, rate_limited, fallback, prompt_chars",
     # counterpart guesses

@@ -56,6 +56,7 @@ def main():
         value = worth(ctx, deal)
         settled = dict(mr, value=value)
         w.emit("buyer.received", {"value": value, "price": r.get("price"), "grade": mr.get("grade"),
+                                  "name": mr.get("name"), "sku": mr.get("item") or r.get("item"),
                                   "claim_honest": mr.get("claim_honest"),
                                   "surplus": (value or 0) - (r.get("price") or 0)},
                order=o.get("order"), **({"ledger_seq": mr["ledger"]} if isinstance(mr.get("ledger"), int) else {}))

@@ -1,10 +1,13 @@
 {
- "_note": "The name is fixed for the round (user 2026-11-03), the same as the kit's --name. The description here is used only when the strategy in force has no shop_card.",
+ "_note": "The name is fixed for the round (user 2026-11-03), the same as the kit's --name. The description here is used only when the strategy in force has no shop_card. join_name is the kit's --name (letters, digits, dashes; at most 32).",
  "name": "gom31 Honest Shop",
  "description": "gom31 Honest Shop: we only tell the truth. Every grade we state is the grade the unit has right now, the market's certificate comes with every unit that has one, and the receipt always matches the price we agreed. Groceries and goods. Ask for an item by SKU, category or name, then send a price; we answer with a counteroffer or a signed receipt.",
  "examples": [
   "I want to buy G0011e806",
   "21000",
   "ok"
- ]
+ ],
+ "join_name": "gom31-honest-shop",
+ "github": "gom31",
+ "market": "https://market.ourolabs.ai"
 }
