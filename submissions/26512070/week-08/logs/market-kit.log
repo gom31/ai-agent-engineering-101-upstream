@@ -3663,3 +3663,45 @@
 02:19:23 [buyer] {"buy": []}
 02:19:31 [seller] [seller] e2bf3456 input_required: I can offer the 이솔홈 도트 쉬폰 원피스 앞치마 for 13,950 KRW with a grade A certification and a 6-hour warranty.
 02:19:43 [seller] [seller] e2bf3456 rejected: I cannot accept that price for the 이솔홈 도트 쉬폰 원피스 앞치마.
+02:20:28 [buyer] {"buy": []}
+02:21:32 [buyer] {"buy": []}
+02:22:05 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:22:05 [market] ledger #2210735: no deal, stars None, verified False, review not shown
+02:22:06 [order o-041cec4aff8a] 디저트, budget 17370, round 3, use within 5.0 h
+02:22:06 [kit] 48 shops in .market\shops.json, running market_buyer
+02:22:15 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:22:15 [market] ledger #2210772: no deal, stars None, verified False, review not shown
+02:22:26 [order o-0caf48dd616d] 신선야채(부패주의), budget 76860, round 3, use within 24.0 h
+02:22:26 [kit] 48 shops in .market\shops.json, running market_buyer
+02:22:26 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:22:26 [market] ledger #2210823: no deal, stars None, verified False, review not shown
+02:22:35 [seller] [seller] ec015493 rejected: I'm sorry, but I cannot accept your offer of 35 for this item.
+02:22:36 [forum] post as shop: 200
+02:22:36 [buyer] {"buy": []}
+02:22:46 [order o-a4c4a1aec0dc] 신선야채(부패주의), budget 14850, round 3, use within 24.0 h
+02:22:46 [kit] 48 shops in .market\shops.json, running market_buyer
+02:22:47 [forum] post as buyer: 200
+02:22:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:22:57 [market] ledger #2210951: no deal, stars None, verified False, review not shown
+02:23:07 [order o-ad7691fd156a] 신선육류, budget 22880, round 3, use within 6.0 h
+02:23:07 [kit] 48 shops in .market\shops.json, running market_buyer
+02:23:26 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+02:23:27 [market] ledger #2211085: no deal, stars None, verified False, review not shown
+02:23:27 [order o-736fbe38236d] 신선과일(부패주의), budget 57260, round 3, use within 24.0 h
+02:23:27 [kit] 48 shops in .market\shops.json, running market_buyer
+02:23:35 [seller] [seller] 420acd80 input_required: The current asking price for the item is 79,110. It includes a warranty and a certificate.
+02:23:41 [buyer] {"buy": []}
+02:23:47 [seller] [seller] 868b084a input_required: I can offer the 이솔홈 도트 쉬폰 원피스 앞치마 at a price of 13,950 KRW. It comes with a full warranty for 6 hours and is classified 
+02:23:48 [seller] [seller] 258caead input_required: Thank you for your offer. I can sell the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 79,110 KRW, and it comes with a full 
+02:23:56 [buyer] {"shop": "https://neither-tribunal-beginning-nose.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:23:57 [market] ledger #2211198: no deal, stars None, verified False, review not shown
+02:23:57 [order o-00f1deff6669] 신선야채(부패주의), budget 122930, round 3, use within 36.0 h
+02:23:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:23:57 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:23:58 [market] ledger #2211201: no deal, stars None, verified False, review not shown
+02:23:58 [seller] [seller] 258caead completed: Thank you for your offer. I accept your price of 113,022 KRW for the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS, which comes 
+02:24:00 [acp] settled [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS at 113022, ledger #2211213, unit u-f398c14a382e grade A
+02:24:17 [order o-5037e9341cab] 디저트, budget 19460, round 3, use within 24.0 h
+02:24:17 [kit] 48 shops in .market\shops.json, running market_buyer
+02:24:26 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:24:27 [market] ledger #2211357: no deal, stars None, verified False, review not shown

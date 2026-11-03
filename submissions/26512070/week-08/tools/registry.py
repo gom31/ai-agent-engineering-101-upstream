@@ -84,11 +84,25 @@ class Ctx:
         return self._strategy or {}
 
 
+def clip_strings(obj, sch):
+    """11/4: a text over its maxLength is cut, not refused - each refusal cost a model turn (restock's why over
+    400 three times, the self analyst's summary over 1500 failed the 02:20 slice step)."""
+    if isinstance(obj, str) and isinstance(sch, dict) and "maxLength" in sch and len(obj) > sch["maxLength"]:
+        return obj[:sch["maxLength"] - 1] + "…"
+    if isinstance(obj, dict) and isinstance(sch, dict):
+        props = sch.get("properties") or {}
+        return {k: clip_strings(v, props.get(k)) for k, v in obj.items()}
+    if isinstance(obj, list) and isinstance(sch, dict) and isinstance(sch.get("items"), dict):
+        return [clip_strings(v, sch["items"]) for v in obj]
+    return obj
+
+
 def call(ctx: Ctx, name: str, args=None):
     args = dict(args or {})
     t = TOOLS.get(name)
     if t is None:
         return {"ok": False, "reason": f"unknown tool {name!r}", "hint": f"tools: {sorted(TOOLS)}"}
+    args = clip_strings(args, t.input_schema)
     errors = schema.validate(args, t.input_schema)
     if errors:
         return {"ok": False, "reason": "bad input: " + "; ".join(errors[:3]), "hint": "see the tool's input schema"}

@@ -183,10 +183,16 @@ class BuyerCore:
                  "Surplus first (half of buyer ALL): surplus = the SKU's list price - what we pay. Prefer the shop that "
                  "sells cheapest against list (its market median below; lower is better), and among its SKUs the one "
                  "with the highest list price we can still buy within the budget at that shop's usual share. A shop "
-                 "with no market record is worth a try when the known ones are near list."
+                 "with no market record is worth a try when the known ones are near list. Shops whose agreed deals we "
+                 "often could not pay (short shelf life, no certificate) are listed last."
                  + (" A warranty helps (a broken item is refunded)." if kind == "goods" else ""), ""]
         prices = shop_prices(list(shops.values()))
-        order_shops = sorted(shops.values(), key=lambda s: (prices.get(s["name"]) or {}).get("median_share", 0.8))
+        rf = (reflex.load().get("shops") or {})
+        def unpaid_often(s):    # 11/4 02:3x: 18 of 50 agreed deals were not paid (food short of shelf life)
+            r = rf.get(s["name"]) or {}
+            return r.get("unpaid", 0) >= 2 and r.get("unpaid", 0) >= r.get("paid", 0)
+        order_shops = sorted(shops.values(), key=lambda s: (unpaid_often(s),
+                                                            (prices.get(s["name"]) or {}).get("median_share", 0.8)))
         for s in order_shops[:25]:
             me = call(self.ctx, "me.counterpart", {"name": s["name"], "side": "shop"})["result"]
             rv = s.get("reviews") or []
