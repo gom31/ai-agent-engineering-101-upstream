@@ -217,6 +217,12 @@ def post(ctx, text, refs, thread=None, **kw):
     settles = ctx.situation.get("settles") or {}
     if not refs:
         raise Refused("a post needs at least one ledger settle in refs", "cite a settle from the list, or act.skip")
+    want = ctx.situation.get("post_as")
+    if want and side != want:
+        raise Refused(f"this turn posts as {want} (it has fewer posts)", f"post as {want}, or act.skip")
+    mine = (ctx.situation.get("side_refs") or {}).get(side)
+    if mine is not None and not set(refs) & set(mine):
+        raise Refused(f"none of {refs} is a deal of our {side}", f"cite one of {sorted(mine)[-10:]}")
     cited = [settles[r] for r in refs if r in settles]
     if len(cited) != len(refs):
         raise Refused(f"no settle line on hand for {[r for r in refs if r not in settles]}",

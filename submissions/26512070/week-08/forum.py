@@ -35,11 +35,13 @@ def _lines(path):
     return out
 
 
-def known_ledger(ctx):
-    seqs = {p["ledger"] for p in _lines(ctx.market_dir / "payments.jsonl")
-            if p.get("paid") and isinstance(p.get("ledger"), int)}
-    seqs |= {e["data"]["ledger"] for e in events(["seller.settled"]) if isinstance(e["data"].get("ledger"), int)}
-    return sorted(seqs)
+def known_ledger(ctx, split=False):
+    bought = {p["ledger"] for p in _lines(ctx.market_dir / "payments.jsonl")
+              if p.get("paid") and isinstance(p.get("ledger"), int)}
+    sold = {e["data"]["ledger"] for e in events(["seller.settled"]) if isinstance(e["data"].get("ledger"), int)}
+    if split:
+        return sorted(bought), sorted(sold)
+    return sorted(bought | sold)
 
 
 def _show(v):
@@ -66,17 +68,31 @@ def settles(seqs):
 
 
 def own_posts(ctx):
-    ids = []
+    """Our post ids and how many we wrote per side. The market answers a post with {"post": <id>} (seen 11/3)."""
+    ids, sides = [], {"shop": 0, "buyer": 0}
     for x in _lines(ctx.market_dir / "outbox.sent.jsonl"):
-        if "post" not in (x.get("sent") or {}):
+        sent = x.get("sent") or {}
+        if "post" not in sent:
             continue
         try:
             ans = json.loads(x.get("answer") or "{}")
         except ValueError:
             continue
-        if isinstance(ans, dict) and ans.get("id") is not None:
-            ids.append(ans["id"])
-    return ids
+        pid = ans.get("post", ans.get("id")) if isinstance(ans, dict) else None
+        if pid is not None:
+            ids.append(pid)
+            sides[sent.get("as")] = sides.get(sent.get("as"), 0) + 1
+    return ids, sides
+
+
+def next_side(sides, buyer_refs, shop_refs):
+    """The side with fewer posts writes next (both count for ALL), if that side has a settle of its own to cite."""
+    want = "buyer" if sides.get("buyer", 0) <= sides.get("shop", 0) else "shop"
+    have = {"buyer": buyer_refs, "shop": shop_refs}
+    if have[want]:
+        return want
+    other = "shop" if want == "buyer" else "buyer"
+    return other if have[other] else None
 
 
 def main():
@@ -85,9 +101,13 @@ def main():
     try:
         w.context(strategy_version=ctx.strategy.get("version"), epoch=ctx.strategy.get("epoch"),
                   card_version=card.load()[0])
-        refs, mine = known_ledger(ctx), own_posts(ctx)
+        bought, sold = known_ledger(ctx, split=True)
+        refs = sorted(set(bought) | set(sold))
+        mine, sides = own_posts(ctx)
         lines = settles(refs)
-        ctx.situation = {"known_ledger": refs, "own_posts": mine, "settles": lines}
+        side = next_side(sides, [s for s in bought if s in lines], [s for s in sold if s in lines])
+        ctx.situation = {"known_ledger": refs, "own_posts": mine, "settles": lines, "post_as": side,
+                         "side_refs": {"buyer": bought, "shop": sold}}
         posts = call(ctx, "market.forum", {"limit": 12})["result"]
         wf = ctx.strategy.get("welcome_food") or {}
         bc = (ctx.strategy.get("limits") or {}).get("below_cost") or {}
@@ -95,10 +115,15 @@ def main():
         food = [u for u in (inv["result"].get("unit_list") or []) if u.get("kind") == "food"] if inv["ok"] else []
         r = (atomic.read_json(ctx.market_dir / "inventory.json", default={}) or {}).get("restock") or {}
         nxt = time.strftime("%H:%M", time.localtime(r["opens_at"])) if r.get("opens_at") else "unknown"
+        mark_of = {"buyer": "our buyer bought", "shop": "our shop sold"}
+        mark = {s: mark_of["buyer"] for s in bought} | {s: mark_of["shop"] for s in sold}
         text = ("# the decision at hand\n"
-                f"Our own posts: {mine[-10:] or 'none'}.\n"
-                "Settle lines of our deals we may cite (newest last):\n"
-                + ("\n".join(f"- {lines[s]}" for s in sorted(lines)[-12:]) or "- none yet") + "\n"
+                f"Our own posts: {mine[-10:] or 'none'} (as shop {sides.get('shop', 0)}, as buyer "
+                f"{sides.get('buyer', 0)}). "
+                + (f"Post this turn as {side}, citing a settle {mark_of[side]}.\n"
+                   if side else "No settle line to cite yet: vote, then act.skip.\n")
+                + "Settle lines of our deals we may cite (newest last):\n"
+                + ("\n".join(f"- ({mark.get(s)}) {lines[s]}" for s in sorted(lines)[-12:]) or "- none yet") + "\n"
                 "A post states one checked fact from one settle line, in this shape: 'Settled SKU=<item> "
                 "price=<amount>; grade=<grade>; warranty_hours=<warranty_hours>. One observed purchase, not a "
                 "guarantee of future quality or availability.' Use only values the line shows; refs = that line's "

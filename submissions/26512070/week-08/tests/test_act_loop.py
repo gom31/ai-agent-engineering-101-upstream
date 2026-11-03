@@ -72,8 +72,13 @@ class ActTest(Base):
         self.refused("act.post", text="We stock goods next window.", refs=[], **{"as": "buyer"})   # no settle line
         self.refused("act.post", text="Kimchi at 19000.", refs=[11], **{"as": "buyer"})   # known, but no line on hand
         self.refused("act.post", text="Settled SKU=G200e39a3 price=19,000; grade=C.", refs=[10], **{"as": "buyer"})
-        self.ok("act.post", text="Settled SKU=G200e39a3 price=21,000; grade=C; warranty_hours=None. One observed "
-                "purchase, not a guarantee of future quality or availability.", refs=[10], **{"as": "buyer"})
+        good = ("Settled SKU=G200e39a3 price=21,000; grade=C; warranty_hours=None. One observed purchase, not a "
+                "guarantee of future quality or availability.")
+        self.ctx.situation.update(post_as="buyer", side_refs={"buyer": [10], "shop": [11]})
+        self.refused("act.post", text=good, refs=[10], **{"as": "shop"})   # this turn is the buyer's
+        self.ctx.situation.update(post_as=None)
+        self.refused("act.post", text=good, refs=[10], **{"as": "shop"})   # #10 is a deal of our buyer, not our shop
+        self.ok("act.post", text=good, refs=[10], **{"as": "buyer"})
         self.refused("act.vote", post=7, value=1, **{"as": "shop"})
         self.ok("act.vote", post=8, value=1, **{"as": "shop"})
         lines = [json.loads(x) for x in (self.market / "outbox.jsonl").read_text(encoding="utf-8").splitlines()]
