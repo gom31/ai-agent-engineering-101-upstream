@@ -9,7 +9,7 @@ They must be fast, so none of them scans raw events. They merge small files that
 
 Every lookup is concise by default (a few lines); detail="full" returns more.
 """
-from core import atomic, paths, reflex
+from core import atomic, card, paths, reflex
 from tools import market_files as mf
 from tools.calc import extract
 from tools.registry import Refused, tool
@@ -156,3 +156,13 @@ def guess_counterpart(ctx, task, messages=None):
             scores.append({"name": name, "confidence": round(hit / max(1, len(marks)), 3)})
     scores.sort(key=lambda s: -s["confidence"])
     return {"task": task, "candidates": scores[:3], "accuracy": fp.get("accuracy")}
+
+
+@tool("memory.card_section", "One section of the system card that is not in your prompt: 'appendix: rules' (the "
+      "full market rules), 'appendix: history', or another role's section.",
+      {"type": "object", "required": ["name"], "properties": {"name": {"type": "string", "minLength": 1}}})
+def card_section(ctx, name):
+    try:
+        return {"name": name, "text": card.section(name)}
+    except KeyError as e:
+        raise Refused(str(e).strip("'\""), "names look like 'appendix: rules' or 'role: buyer'")
