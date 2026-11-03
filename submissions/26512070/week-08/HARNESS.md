@@ -364,3 +364,28 @@ market ── order(item, budget, open mandates) ──> kit v3 ──> market_b
 - 모델의 제안은 `proposed`에만 쓰고, 흥정에서 쓰는 유형은 `confirmed`가 있으면 그것을 쓴다. 확정 전 후보로 할 수 있는 일은 "지금 전략 그대로"까지다. 특히 black 거절은 확정이 필요하다.
 - 이유는 사실을 인용한 문장으로 쓴다. 예: "3일 동안 9건, 첫 제안이 정가의 62%, 정가 그대로 수락 4건". 7주차 도전 1처럼 표본이 작으면 "판단 보류"를 낼 수 있게 한다.
 - 검토 주기와 보고서 모양은 사용자가 정한다 (D17).
+
+## 12. 제출 양식 점검표 (week-08 페이지 HW, 2026-11-03 기준)
+
+`weeks/week-08/README.md`와 `scripts/check_week08.py`는 아직 없다. 아래는 week-08 페이지(`d4b4d53`)의 ASSIGNMENT와 BASE를 옮긴 것이다. 생기면 그 기준으로 다시 맞춘다.
+
+| 항목 | 기준 | 상태 |
+|---|---|---|
+| 위치 | `submissions/26512070/week-08/` | 폴더 있음 (HARNESS.md, logs/strategy/) |
+| 마감 | 11월 17일(화) 23:59, PR을 연 시각 | |
+| PR | 제목 `[week-08] 26512070`, `gom31/ai-agent-engineering-101-upstream` 포크의 브랜치에서 연다 (다른 포크는 upstream의 포크가 아니라 422) | |
+| `logs/market-kit.log` | 배포한 컴퓨터의 키트 로그, **정산 줄 포함** | v4로 join하면 생김 |
+| 바꾼 코드 | seller, buyer, restock·review 훅 등 | |
+| `REPORT.md` | (1) 부품별 설계: 모델을 어디에, 컨텍스트 관리(meta-harness, 메모리), 툴을 무엇으로 어떻게 (2) figure가 보여 주는 구조와 키트 기본형과 다른 점 (3) Round 3 결과: 제출 시점의 정산 수, Players 순위, 거부 사유를 로그에서 인용 | |
+| `architecture.tex`, `architecture.pdf` | LaTeX로 직접 그린 한 페이지 아키텍처 figure와 빌드한 PDF | |
+| 기본 조건 | Round 3에 가게 정산 20건 이상, buyer 정산 20건 이상, open mandate 상한을 넘는 checkout은 complete하지 않는다 | |
+| 형식 | squash 금지, 실행 로그는 `logs/`에 커밋, API 키와 `*.pem` 커밋 금지 | `*.pem`은 `.gitignore`. 추적 중인 키 없음 (2026-11-03 확인) |
+| 경로 검사 | `scripts/check_pr_paths.py gom31 <바뀐 파일>` 통과 | 통과 (56개, 2026-11-03) |
+
+옮기는 순서 (공지의 준비 단계, 설계 구현 뒤 한 번에):
+
+1. v3 키트를 끈다.
+2. `week-07`을 키 파일까지 `week-08`로 복사한다. `week-08`이 이미 있으므로 `cp -r week-07 week-08`은 `week-08/week-07/`을 만든다. **내용을 복사한다**: `cp -r submissions/26512070/week-07/. submissions/26512070/week-08/`. 덮어쓸 파일이 없는지 먼저 본다.
+3. `week-08`로 v4 join, 로그 첫 줄 `market_kit 4` 확인.
+
+PR의 차이에는 아직 `week-07`의 Round 2 연장분(PR #352 이후 커밋)도 들어 있다. #352가 upstream에 병합되면 빠진다.
