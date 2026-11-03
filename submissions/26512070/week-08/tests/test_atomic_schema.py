@@ -88,7 +88,7 @@ class SchemaTest(unittest.TestCase):
                                           "max_loss_share_of_cost": 0.1}}}
         self.assertEqual(schema.validate(good, schema.STRATEGY), [])
         bad = json.loads(json.dumps(good))
-        bad["limits"]["max_stock_share"] = 1.4
+        bad["limits"]["max_stock_share"] = 2.4   # 11/4: up to 2 (cash turns over), above is refused
         self.assertTrue(schema.validate(bad, schema.STRATEGY))
 
 
