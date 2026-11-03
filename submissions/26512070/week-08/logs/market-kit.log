@@ -3436,3 +3436,22 @@
 01:45:24 [order o-3fb3092a6c33] 조리/가공 과일, budget 64800, round 3, use within 180.0 h
 01:45:25 [kit] 48 shops in .market\shops.json, running market_buyer
 01:45:25 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:45:25 [market] ledger #2201121: no deal, stars None, verified False, review not shown
+01:45:39 [buyer] {"buy": []}
+01:45:45 [order o-bd5c7c796dd3] 신선야채(부패주의), budget 23620, round 3, use within 12.0 h
+01:45:45 [kit] 48 shops in .market\shops.json, running market_buyer
+01:46:20 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 11298, "item": "G0b0ca441", "cert": true, "shop": "kimauve", "unit": "u-833e1003e9fd", "warranty_hours": 0.0, "task": "803e435b-7ade-444c-a606-d0ff90749457", "sig_seller": "Gha1MbvYjS1B2bcEzcyW6sDNC0nyd4jQIfnh/R/LhMdAV/MAUgPcpfwyt+m+2MteDdcbnH3i4tJRVdbBVeToCg=="}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 12}}
+01:46:20 [sign] sig_seller ok, sig_buyer added
+01:46:20 [acp] checkout ships unit u-833e1003e9fd, certificate attached
+01:46:21 [acp] paid 11298 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2201386: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 38.8 h of shelf life left
+01:46:43 [buyer] {"buy": []}
+01:46:44 [buyer] {"stars": 5, "review": "Grade A quality at fair price from a reliably honest seller."}
+01:46:45 [market] ledger #2201473: G0b0ca441 at 11298, stars 5, verified True, review accepted
+01:46:45 [order o-537a42918fe2] 곡물, budget 20580, round 3, use within 360.0 h
+01:46:45 [kit] 48 shops in .market\shops.json, running market_buyer
+01:46:54 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:46:54 [market] ledger #2201505: no deal, stars None, verified False, review not shown
+01:46:59 [seller] [seller] ce8ea374 rejected: Sorry, we have none of that in stock right now.
+01:47:04 [seller] [seller] d8b02bfe input_required: I can offer you the 충전식 고양이 전자핫팩 USB 휴대용 손난로 핫팩 핸디워머 주머니 손날로 at the list price of 11,670 KRW with a full warranty.
+01:47:05 [order o-b3b8fa2b7197] 신선육류, budget 24720, round 3, use within 6.0 h
+01:47:05 [kit] 48 shops in .market\shops.json, running market_buyer
