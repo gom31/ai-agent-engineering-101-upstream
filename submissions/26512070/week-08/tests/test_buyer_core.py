@@ -151,6 +151,28 @@ class BuyerCoreTest(Base):
             core.close()
         self.assertEqual(shop.sent[1:], ["I can pay 10454 KRW.", "I can pay 11470 KRW.", "I can pay 13900 KRW."])
         self.assertEqual((out["receipt"]["price"], out["accept"]), (13900, {"min_hours_left": 48}))
+    def test_rules_mode_tries_the_next_shop(self):
+        # 11/4 03:1x: a shop that refuses at the first message no longer ends the order
+        from core import atomic
+        path = paths.memory() / "strategy" / "active.json"
+        st = atomic.read_json(path)
+        st["buyer"] = {"big_list": 30000, "target_share": 0.5, "open_share": 0.4,
+                       "food_target_share": 0.6, "food_open_share": 0.45}
+        st["playbook"] = {"buyer": {"mode": "rules", "ceiling_share": 0.8}}
+        atomic.write_json(path, st)
+        two = [dict(SHOPS[0]), dict(SHOPS[0], name="oak", url="http://oak")]
+        shop = Shop([("TASK_STATE_REJECTED", "Sorry, none in stock.", None),
+                     ("TASK_STATE_INPUT_REQUIRED", "Asking 13000.", None),
+                     ("TASK_STATE_COMPLETED", "Deal at 13000.", receipt(13000))])
+
+        def no_model(p, s, t):
+            raise AssertionError("the model was called in rules mode")
+        core = BuyerCore(dict(ORDER), two, model_call=no_model, connect=shop, clock=lambda: NOW)
+        try:
+            out = core.run()
+        finally:
+            core.close()
+        self.assertEqual((out["receipt"]["price"], len([t for t in shop.sent if t.startswith("I want to buy")])), (13000, 2))
 
 if __name__ == "__main__":
     unittest.main()

@@ -4275,3 +4275,48 @@
 03:05:57 [acp] checkout ships unit u-112cf9addea8, claim B, certificate attached
 03:05:58 [acp] paid 6525 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2222964: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 28.3 h of shelf life left
 03:06:02 [seller] [seller] fc6f4af0 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
+03:06:22 [seller] [seller] 2b40ae05 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
+03:06:28 [buyer] {"buy": []}
+03:06:39 [buyer] {"stars": 4, "review": "Grade B as promised, fair price from a reliable seller with consistent quality."}
+03:06:39 [market] ledger #2223138: G11f14ced at 6525, stars 4, verified True, review accepted
+03:06:39 [order o-be400451bb93] 신선육류, budget 24370, round 3, use within 6.0 h
+03:06:40 [kit] 48 shops in .market\shops.json, running market_buyer
+03:06:42 [seller] [seller] a0799aef input_required: [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증): 32215 KRW, a premium unit with the market's certificate, its true gr
+03:06:44 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": {"shop": "Elm Street", "sig_seller": "acbGBE4taYvZTj0bS6+PDC/6keIdIxnQnzw4WUfF0LfyxJ2QGTuVDif1sxsnJLdK3wgJgrGXpRIcWFomuK8VCA==", "item": "Gfdbe310d", "unit": "u-86964754eb65", "price": 6336, "task": "337679c4-e048-4f29-bd36-d6ed78717539", "cert": false, "claim": "A"}, "stars": null, "review": null, "accept": {"min_hours_left": 6.0}}
+03:06:44 [sign] sig_seller ok, sig_buyer added
+03:06:44 [acp] not paying: no certificate to show the shelf life
+03:06:45 [market] ledger #2223168: Gfdbe310d at 6336, stars None, verified False (failed: settled), review not shown
+03:07:00 [order o-5a991251a060] 소파/의자/스툴, budget 2486400, round 3
+03:07:00 [kit] 48 shops in .market\shops.json, running market_buyer
+03:07:00 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+03:07:00 [market] ledger #2223230: no deal, stars None, verified False, review not shown
+03:07:20 [order o-6441e1d8bb67] 비스켓/쿠키, budget 11250, round 3, use within 540.0 h
+03:07:22 [kit] 48 shops in .market\shops.json, running market_buyer
+03:07:23 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "64eb6dc4-4ebc-4a99-8a39-e17b33c7ccbe", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "mkliY/5748zkB7teSAtTuUftI52ote1967PkMASYM/YJtyVvti7visqEbj6h+Y0o9Mv/bgGH2dF9rUoFa0jWDQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+03:07:23 [sign] sig_seller ok, sig_buyer added
+03:07:24 [acp] not paying: 135.46 h of shelf life left, the policy asks for 540.0
+03:07:24 [market] ledger #2223336: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+03:07:35 [seller] [seller] 12af0448 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 74715 KRW, a premium unit with the market's certificate, its true grade and our f
+03:07:36 [buyer] {"buy": []}
+03:07:39 [seller] [seller] d9118085 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 12920 KRW, a premium unit with the market's certificate, its true grade and o
+03:07:40 [order o-f613ba27f429] 신선야채(부패주의), budget 33460, round 3, use within 36.0 h
+03:07:41 [kit] 48 shops in .market\shops.json, running market_buyer
+03:07:43 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "d5365eee-74e8-4c6f-86ce-1bdbe078c080", "item": "G0b0ca441", "sig_seller": "xqIbOyUSNqjCK4D14x/DHsgGheHpiJ7vKBRBR1CpDID0xkhe2Us12lU/pd8/vnuFbW9QhTUZFGISl3wVVA5QAQ==", "shop": "ddolcom", "claim": "C", "unit": "u-40a9a52b844f", "price": 8274}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+03:07:43 [sign] sig_seller ok, sig_buyer added
+03:07:44 [acp] not paying: 13.76 h of shelf life left, the policy asks for 36.0
+03:07:44 [market] ledger #2223425: G0b0ca441 at 8274, stars None, verified False (failed: settled), review not shown
+03:08:01 [order o-468c5cf9aaa2] 디저트, budget 12510, round 3, use within 36.0 h
+03:08:01 [kit] 48 shops in .market\shops.json, running market_buyer
+03:08:04 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "c4974abe-2c42-4693-8c54-afa07e0051df", "item": "G11f14ced", "sig_seller": "S/VamPSFlhvW4s2hJcWt7ZbsCQm16MLEnKRkquRv9CoKGasP9hUoZ0ApttuG1KgWouKuilc6GNCBnuUL87ArDA==", "shop": "ddolcom", "claim": "A", "unit": "u-dd2531563380", "price": 6831}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+03:08:04 [sign] sig_seller ok, sig_buyer added
+03:08:05 [acp] checkout ships unit u-dd2531563380, claim A, certificate attached
+03:08:05 [acp] paid 6831 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2223519: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade A, 41.5 h of shelf life left
+03:08:13 [seller] [seller] 2761bc4b input_required: 이솔홈 도트 쉬폰 원피스 앞치마: 13175 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee
+03:08:16 [seller] [seller] 3e66bfff input_required: 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS: 225292 KRW, a premium unit with the market's certificate, its true grade and o
+03:08:41 [buyer] {"buy": []}
+03:08:46 [buyer] {"stars": 5, "review": "Reliable seller delivered certified grade A food at excellent value, 62.6% of list price."}
+03:08:47 [market] ledger #2223698: G11f14ced at 6831, stars 5, verified True, review accepted
+03:08:47 [order o-32fbf4f2696b] 소파/의자/스툴, budget 3720750, round 3
+03:08:47 [kit] 48 shops in .market\shops.json, running market_buyer
+03:08:47 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+03:08:48 [market] ledger #2223703: no deal, stars None, verified False, review not shown

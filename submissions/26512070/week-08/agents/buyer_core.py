@@ -25,6 +25,7 @@ from tools.registry import Ctx, call
 DEADLINE = 270             # the kit stops market_buyer after 300 s
 MAX_TURNS = 10
 REVIEWS_SHOWN = 2
+MAX_SHOPS = 3              # rules: shops tried per order when one ends without a receipt
 HEADERS = {"A2A-Version": "1.0"}
 PRICE_FACT_EVERY = 600     # seconds between rebuilds of memory/facts/shop_prices.json
 
@@ -179,7 +180,26 @@ class BuyerCore:
         self.events.emit("buyer.pick", {"shop": shop["name"], "sku": d["sku"], "why": d.get("why") or d.get("thought"),
                                         "explored": not known, "guard": guard, "shops": len(shops)},
                          order=o.get("order"), counterpart=shop["name"])
-        return self.negotiate(shop, d["sku"], kind)
+        out = self.negotiate(shop, d["sku"], kind)
+        # 11/4 03:1x: one shop per order lost most goods orders (15 of 51 rejected at the first message); an order
+        # takes ~3 s by rule and has 270 s, so the rules try the next shop when one ends without a receipt
+        tried = {shop["name"]}
+        while (self.rules() and out.get("receipt") is None and len(tried) < MAX_SHOPS
+               and self.deadline() - self.clock() > 60):
+            rest = {n: x for n, x in shops.items() if n not in tried}
+            if not rest:
+                break
+            ctx.situation = {"budget": o["budget"], "shops": rest}
+            d = self.rule_pick(rest)
+            if d is None:
+                break
+            shop = rest[d["shop"]]
+            tried.add(shop["name"])
+            self.events.emit("buyer.pick", {"shop": shop["name"], "sku": d["sku"], "why": d.get("why"),
+                                            "retry": len(tried) - 1, "shops": len(shops)},
+                             order=o.get("order"), counterpart=shop["name"])
+            out = self.negotiate(shop, d["sku"], kind)
+        return out
 
     # --- the rules (HARNESS 14, D34; user 11/4 03:2x: benchmark myeonggi - fast, cheap, high-list goods)
 
