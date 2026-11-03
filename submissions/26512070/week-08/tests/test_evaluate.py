@@ -54,7 +54,8 @@ class EvalTest(Base):
 
     def test_economics_and_stock(self):
         e = self.ok("eval.unit_economics", scope="seller")
-        self.assertEqual((e["revenue"], e["profit_before_losses"], e["below_cost_deals"]), (6000, 0, 1))
+        self.assertEqual((e["revenue"], e["profit_before_losses"], e["below_cost_deals"], e["exposure_cost"]),
+                         (6000, 0, 1, 300))
         self.assertEqual(self.ok("eval.unit_economics", scope="buyer")["surplus"], 16900)
         st = self.ok("eval.stock_health")
         self.assertEqual((st["bought"], st["sold"], st["sell_through"]), (4, 2, 0.5))

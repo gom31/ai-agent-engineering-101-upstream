@@ -88,7 +88,8 @@ def unit_economics(ctx, scope, since=None, until=None, epoch=None):
         s = [e["data"] for e in events(["seller.settled"], since, until, epoch)]
         m = [d["price"] - d["cost"] for d in s if d.get("price") is not None and d.get("cost") is not None]
         return {"deals": len(s), "revenue": sum(d.get("price") or 0 for d in s), "profit_before_losses": sum(m),
-                "median_margin": statistics.median(m) if m else None, "below_cost_deals": sum(1 for x in m if x < 0)}
+                "median_margin": statistics.median(m) if m else None, "below_cost_deals": sum(1 for x in m if x < 0),
+                "exposure_cost": -sum(x for x in m if x < 0)}
     if scope == "buyer":
         r = [e["data"] for e in events(["buyer.received"], since, until, epoch)]
         s = [d.get("surplus") or 0 for d in r]
@@ -97,7 +98,8 @@ def unit_economics(ctx, scope, since=None, until=None, epoch=None):
     raise Refused(f"unit_economics has no scope {scope!r}", "use seller or buyer")
 
 
-@tool("eval.losses", "What our shop lost besides the cost of what it sold: expired food, storage, warranty refunds.",
+@tool("eval.losses", "What our shop lost besides the cost of what it sold: expired food, storage, warranty refunds. "
+      "Selling below cost is not here: it is exposure_cost in eval.unit_economics (scope=seller).",
       {"type": "object", "properties": _SLICE})
 def losses(ctx, since=None, until=None, epoch=None):
     ev = events(["loss.expired", "loss.storage", "seller.refund"], since, until, epoch)
