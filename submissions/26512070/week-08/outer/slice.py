@@ -12,6 +12,7 @@ import os
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 from agents import loop
 from core import atomic, bus, paths
@@ -19,6 +20,7 @@ from core.events import EventWriter
 from outer import audit, brief
 from tools.registry import Ctx, call
 
+CODE = Path(__file__).resolve().parent.parent   # the code; HARNESS_ROOT (the records) may be elsewhere
 NIGHT = range(1, 8)            # 01:00-07:59 (HARNESS.md 5)
 PROFILES_PER_SLICE = 6
 
@@ -113,7 +115,7 @@ def run(now=None, model_call=None):
             if model_call is not None:                   # tests: the audit in this process, with the same script
                 out["steps"]["audit"] = {"ok": audit.run(slice_id, model_call=model_call) is not None}
             else:                                        # its own process; the slice does not wait for it
-                subprocess.Popen([sys.executable, "-m", "outer.audit", slice_id], cwd=paths.root(),
+                subprocess.Popen([sys.executable, "-m", "outer.audit", slice_id], cwd=CODE,
                                  stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                                  **({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt"
                                     else {"start_new_session": True}))
