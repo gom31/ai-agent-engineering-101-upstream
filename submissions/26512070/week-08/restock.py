@@ -24,6 +24,7 @@ from agents import loop  # noqa: E402
 from core import card  # noqa: E402
 from core import atomic, bus, paths  # noqa: E402
 from core.events import EventWriter  # noqa: E402
+from tools import check  # noqa: E402
 from tools import market_files as mf  # noqa: E402
 from tools.registry import Ctx, call  # noqa: E402
 
@@ -123,12 +124,17 @@ def situation(ctx, inv):
                      f"{bc.get('max_list_price')}, discounted only while grade {bc.get('grades')} now). What arrives at "
                      "which grade is the market's draw; market.buyer_prefs shows which food categories buyers want.")
     start_cap = round((lim.get("max_stock_share") or 0) * start)
-    room = max(0, min(start_cap - (inv["stock_value"] or 0), (inv["balance"] or 0) - (lim.get("cash_floor") or 0)))
+    reserve, open_total, open_n = check.warranty_reserve(ctx)
+    room = max(0, min(start_cap - (inv["stock_value"] or 0),
+                      (inv["balance"] or 0) - (lim.get("cash_floor") or 0) - reserve))
     missed = call(ctx, "me.missed", {"hours": 6})["result"]
     first = [c["category"] for c in missed.get("categories") or []]
     rows = candidates(ctx, held_skus, room, first)
     lines.append(f"\nRoom to stock now: about {room} (the stock cap {start_cap} minus stock {inv['stock_value']}, and "
-                 f"the balance above the floor; costs are drawn on arrival, at most 75% of list).")
+                 f"the balance above the floor"
+                 + (f" and the warranty reserve {reserve} for {open_n} sales ({open_total}) still in warranty"
+                    if reserve else "")
+                 + "; costs are drawn on arrival, at most 75% of list).")
     if rows:
         lines.append("Goods candidates, one per demand category (ones buyers asked us for first; sku, list price, "
                      "worst-case cost, category, name):")

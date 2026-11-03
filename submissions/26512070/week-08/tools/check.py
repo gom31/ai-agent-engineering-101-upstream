@@ -3,11 +3,27 @@
 Limits come from the active strategy (memory/strategy/active.json, limits), never from a prompt. Every
 refusal says why and what would pass.
 """
+from core import index
 from tools import market_files as mf
 from tools.registry import Refused, tool
 
 _UNIT = {"type": "string", "minLength": 1}
 _PRICE = {"type": "integer", "minimum": 0}
+
+
+def warranty_reserve(ctx):
+    """Cash kept for refunds (user 11/3): our sales still inside the warranty, times the strategy's reserve share.
+    Returns (reserve, open sales total, open count). The settle time is when the collector saw it (a little late,
+    so a sale stays open a little longer: on the safe side)."""
+    w = ctx.strategy.get("warranty") or {}
+    hours, share = w.get("hours"), w.get("reserve_share") or 0
+    if not hours or not share:
+        return 0, 0, 0
+    kinds, cat, now = w.get("kinds") or ["goods"], mf.catalog(ctx), ctx.now()
+    open_ = [e["data"]["price"] for e in index.events(["seller.settled"], since=now - hours * 3600)
+             if now - e["ts"] < hours * 3600 and (cat.get(e["data"].get("sku")) or {}).get("kind") in kinds
+             and isinstance(e["data"].get("price"), (int, float))]
+    return round(sum(open_) * share), sum(open_), len(open_)
 
 
 def _limits(ctx):
@@ -138,9 +154,11 @@ def buy(ctx, plan):
         spend += worst
         if c.get("kind") == "food":
             food_value += worst
-    if balance - spend < lim["cash_floor"]:
-        raise Refused(f"up to {spend} would take the balance {balance} below the floor {lim['cash_floor']}",
-                      "buy less, or cheaper SKUs")
+    reserve, open_total, open_n = warranty_reserve(ctx)
+    if balance - spend < lim["cash_floor"] + reserve:
+        raise Refused(f"up to {spend} would take the balance {balance} below the floor {lim['cash_floor']}"
+                      + (f" plus the warranty reserve {reserve} ({open_n} sales, {open_total}, still in warranty)"
+                         if reserve else ""), "buy less, or cheaper SKUs")
     # D31: "40% of the balance (2,000,000)" - of the starting capital, so the cap does not shrink as stock is bought
     base = inv.get("start") or balance
     cap = lim["max_stock_share"] * base

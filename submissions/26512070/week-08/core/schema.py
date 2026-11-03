@@ -161,7 +161,11 @@ STRATEGY = {
         "warranty": {                                    # optional: a warranty the shop always gives (a promise: tools add it)
             "type": "object", "required": ["hours"],
             "properties": {"hours": {"type": "number", "minimum": 0, "maximum": 168},
-                           "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}}}},
+                           "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}},
+                           # cash kept for refunds: this share of our sales still in warranty (check.buy)
+                           "reserve_share": {"type": "number", "minimum": 0, "maximum": 1}}},
+        "repeat_buyer": {                                # optional: a buyer not on its first visit
+            "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]}}},
         "first_visit": {                                 # optional: what a buyer's first visit gets
             "type": "object", "properties": {"price": {"type": "string", "enum": ["at_cost"]}}},
         "certified_only": {"type": "boolean"},           # optional: sell only units with the market's certificate

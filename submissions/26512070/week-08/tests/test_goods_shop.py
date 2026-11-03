@@ -45,6 +45,30 @@ class GoodsShopTest(Base):
         self.ctx.situation = {"unit": "u-goods", "first_time": False}
         self.ok("act.counter", price=3800, say="3800 KRW")                               # a returning buyer
 
+    def test_returning_buyer_at_list_and_warranty_reserve(self):
+        v9 = json.loads((HERE / "card" / "strategy_v9.json").read_text(encoding="utf-8"))
+        atomic.write_json(paths.memory() / "strategy" / "active.json", dict(v9, approved="test"))
+        self.ctx.situation = {"unit": "u-goods", "first_time": False, "offer": 4000, "ask": 4800}
+        self.assertIn("below the list price 4500", self.refused("act.counter", price=4400, say="4400 KRW")["reason"])
+        self.ok("act.counter", price=4800, say="4800 KRW")
+        self.assertIn("below the list price", self.refused("act.accept", say="Deal.")["reason"])   # offer 4000
+        self.ok("act.accept", say="Deal.", price=4800)
+        self.ctx.situation = {"unit": "u-goods", "first_time": True}
+        self.ok("act.counter", price=3000, say="3000 KRW")                    # a first visit stays at cost
+        from tools import check
+        sold = [{"ts": NOW - 3600, "data": {"price": 1_000_000, "sku": "G0026722f"}},     # goods, in warranty
+                {"ts": NOW - 7 * 3600, "data": {"price": 9_000_000, "sku": "G0026722f"}},  # past 6 h
+                {"ts": NOW - 60, "data": {"price": 9_000_000, "sku": "G0011e806"}}]        # food: no warranty
+        orig = check.index.events
+        check.index.events = lambda kinds, since=None, **kw: sold
+        try:
+            self.assertEqual(check.warranty_reserve(self.ctx), (500_000, 1_000_000, 1))
+            self.write_inventory(UNITS, balance=1_600_000)
+            r = self.refused("check.buy", plan=[{"sku": "G0026722f", "qty": 1}])
+            self.assertIn("warranty reserve 500000", r["reason"])
+        finally:
+            check.index.events = orig
+
     def test_limits(self):
         self.assertIn("food would be", self.refused("check.buy", plan=[{"sku": "G0011e806", "qty": 1}])["reason"])
         self.ok("check.buy", plan=[{"sku": "G0026722f", "qty": 2}])

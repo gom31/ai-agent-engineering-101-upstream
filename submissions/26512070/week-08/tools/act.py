@@ -62,6 +62,17 @@ def _seller_unit(ctx, unit):
     return unit
 
 
+def _repeat_floor(ctx, unit, price):
+    """User 11/3: a buyer that is not on its first visit negotiates at or above the list price."""
+    if (ctx.strategy.get("repeat_buyer") or {}).get("min_price") != "list" or ctx.situation.get("first_time") is not False:
+        return
+    u = mf.unit(ctx, unit) or {}
+    lp = u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
+    if lp and price < lp:
+        raise Refused(f"{price} is below the list price {lp}; a returning buyer pays at least list (strategy)",
+                      f"ask {lp} or more")
+
+
 @tool("act.counter", "Seller: answer with a price for the unit (and choose the unit on the first turn). Checks the "
       "price against cost and the limits first.",
       {"type": "object", "required": ["price", "say"],
@@ -75,6 +86,7 @@ def counter(ctx, price, say, unit=None):
         if cost is not None and price != cost:
             raise Refused(f"a first visit is offered at our cost ({cost}), not {price} (our shop card promises it)",
                           f"counter at {cost}; if the buyer offers more, act.accept takes its offer")
+    _repeat_floor(ctx, unit, price)
     _own_text(say)
     return {"action": "counter", "unit": unit, "price": price, "say": _say_price(ctx, say, price, unit)}
 
@@ -99,6 +111,7 @@ def accept(ctx, say, unit=None, price=None, claim=None, warranty_hours=None):
         raise Refused(f"{price} is neither the buyer's offer ({offer}) nor our last ask ({ask})",
                       "accept one of those, or counter")
     check.price(ctx, unit, price)
+    _repeat_floor(ctx, unit, price)
     if claim:
         check.claim(ctx, unit, claim)
     _own_text(say)
