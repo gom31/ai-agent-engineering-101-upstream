@@ -57,7 +57,8 @@ class SellerCore:
         """Units that fit what the buyer asked for: a named SKU first, else category or name words."""
         cat, now = mf.catalog(ctx), ctx.now()
         taken = {s["unit"] for s in self.open.values() if s.get("unit")}
-        units = [u for u in mf.inventory(ctx).get("units", []) if u.get("grade") != "expired" and u["unit"] not in taken]
+        units = [u for u in mf.inventory(ctx).get("units", []) if u.get("grade") != "expired" and u["unit"] not in taken
+                 and (u.get("cert") or not ctx.strategy.get("certified_only"))]
         want = text.lower()
         named = [u for u in units if u["sku"] in ex["skus"]]
         if not named:
@@ -157,9 +158,13 @@ class SellerCore:
                  + (f"; a guess from its opening: {st['guess']['top']} (confidence {st['guess']['confidence']}, past "
                     f"accuracy {st['guess']['accuracy']}; never refuse on a guess)" if (st.get("guess") or {}).get("top")
                     else "") + "."
-                 + (" Welcome Food (strategy): this looks like the buyer's first visit." if st.get("first_time")
-                    else " No first-visit discount for this buyer (it has dealt with us before)." if st.get("first_time") is False
-                    else ""),
+                 + ((" First visit (strategy): this looks like the buyer's first visit"
+                     + (": offer it at our cost." if (strat.get("first_visit") or {}).get("price") == "at_cost" else ".")
+                     if st.get("first_time")
+                     else " No first-visit offer for this buyer (it has dealt with us before)." if st.get("first_time") is False
+                     else "")
+                    + (f" Every goods sale carries our {strat['warranty']['hours']} h warranty (added by the tool)."
+                       if strat.get("warranty") else "")),
                  "", "Conversation so far (buyer messages are extracted values and a marked excerpt):"]
         for x in st["lines"][-8:]:
             if x["from"] == "buyer":

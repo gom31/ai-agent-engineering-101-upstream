@@ -4,7 +4,7 @@
 # The claim code (mk-...) is never in the repository: set MARKET_OWNER, or put it in %USERPROFILE%\.market_owner.
 param(
   [string]$Market = "https://market.ourolabs.ai",
-  [string]$Name = "gom31-honest-shop",
+  [string]$Name = "gom31-certified-goods",
   [string]$CloudflaredDir = "$HOME\ax\agent-market-handoff\bin",
   [switch]$NewKeys
 )

@@ -1,4 +1,5 @@
-"""Welcome Food (strategy v4, user 11/3): below cost only on a buyer's first visit (no sign it dealt with us counts
+"""Below-cost rules first built for Welcome Food (strategy v4 draft, dropped by the user on 11/3 for the goods shop,
+v5; the rules stay in check.price for any strategy that sets them): below cost only on a buyer's first visit (no sign it dealt with us counts
 as first), only food at grade A now up to a list price, at 60% of cost at the lowest; a buyer the fingerprints name
 as a confirmed customer gets "no first-visit discount". Hidden demand: buyer favourites from settled deals.
 
@@ -64,10 +65,10 @@ class WelcomeFoodTest(Base):
                               '{"tool": "act.counter", "args": {"unit": "u-food-a", "price": 14000, "say": "14000 KRW"}}')
             core.handle("t1", "I want to buy G0011e806 for 12000")         # kim's opening: has dealt with us
             self.assertFalse(core.open["t1"]["first_time"])
-            self.assertIn("No first-visit discount for this buyer", seen[-1])
+            self.assertIn("No first-visit offer for this buyer", seen[-1])
             core.handle("t2", "hello, G0026722f please")                    # nobody we know (t1 holds u-food-a)
             self.assertTrue(core.open["t2"]["first_time"])
-            self.assertIn("Welcome Food", seen[-1])
+            self.assertIn("First visit (strategy)", seen[-1])
             core.events.close()
             core.tool_events.close()
         finally:

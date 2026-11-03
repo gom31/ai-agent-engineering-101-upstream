@@ -11,6 +11,7 @@ import json
 
 from core import atomic, paths
 from tools import check
+from tools import market_files as mf
 from tools.calc import _SUSPECT, extract
 from tools.registry import Refused, tool
 
@@ -67,6 +68,12 @@ def _seller_unit(ctx, unit):
 def counter(ctx, price, say, unit=None):
     unit = _seller_unit(ctx, unit)
     check.price(ctx, unit, price)
+    fv = ctx.strategy.get("first_visit") or {}
+    if fv.get("price") == "at_cost" and ctx.situation.get("first_time") is True:
+        cost = (mf.unit(ctx, unit) or {}).get("cost")
+        if cost is not None and price != cost:
+            raise Refused(f"a first visit is offered at our cost ({cost}), not {price} (our shop card promises it)",
+                          f"counter at {cost}; if the buyer offers more, act.accept takes its offer")
     _own_text(say)
     return {"action": "counter", "unit": unit, "price": price, "say": _say_price(ctx, say, price, unit)}
 
@@ -94,6 +101,9 @@ def accept(ctx, say, unit=None, price=None, claim=None, warranty_hours=None):
     if claim:
         check.claim(ctx, unit, claim)
     _own_text(say)
+    wr = ctx.strategy.get("warranty") or {}
+    if wr and (mf.unit(ctx, unit) or {}).get("kind") in (wr.get("kinds") or ["goods"]):
+        warranty_hours = max(warranty_hours or 0, wr["hours"])     # our card promises it: always at least this
     return {"action": "accept", "unit": unit, "price": price, "say": _say_price(ctx, say, price, unit, "Deal at"),
             "claim": claim, "warranty_hours": warranty_hours or None, "cert": True}
 

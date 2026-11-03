@@ -30,6 +30,7 @@ from tools.registry import Ctx, call  # noqa: E402
 REASK_MINUTES = 20
 LEAD = 75                  # plan this many seconds before a window opens at the latest (a model turn takes ~40 s)
 WINDOW_MINUTES = 3
+PLANS_PER_WINDOW = 2       # a plan of 10 lines takes the kit ~100 s (one supply call per 10 s); a window is 180 s
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
 
 
@@ -123,7 +124,8 @@ def main():
         last = atomic.read_json(state_path, default=None) or {}
         win, minute = window(inv_raw, t0)
         if win is not None:                              # the market's supply windows decide when
-            done = last.get("window") is not None and minute is not None and abs(minute - last["window"]) <= 2
+            same = last.get("window") is not None and minute is not None and abs(minute - last["window"]) <= 2
+            done = same and last.get("plans_in_window", 1) >= PLANS_PER_WINDOW
             if win == "closed" or done:
                 w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False,
                                         "window": win, "window_done": done})
@@ -137,7 +139,9 @@ def main():
         d, trace = loop.decide("restock", ctx, situation(ctx, inv), deadline=t0 + DEADLINE)
         plan = d["plan"] if d else []
         if d is not None:                               # a failed turn is tried again next time
-            atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute})
+            n = (last.get("plans_in_window", 0) + 1) if (minute is not None and last.get("window") is not None
+                                                          and abs(minute - last["window"]) <= 2) else 1
+            atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute, "plans_in_window": n})
         refused = next((t["observation"][:200] for t in trace if "refused" in str(t["observation"])), None)
         w.emit("restock.plan", {"lines": len(plan), "plan": plan, "refused": refused, "used_model": True,
                                 "why": (d or {}).get("why") or (d or {}).get("thought"),

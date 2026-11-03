@@ -158,6 +158,13 @@ STRATEGY = {
         "phase": _STR,
         "priorities": {"type": "array", "items": _STR},
         "context": {"type": "array", "items": _STR},   # optional: what the analysts and strategy saw, for executors
+        "warranty": {                                    # optional: a warranty the shop always gives (a promise: tools add it)
+            "type": "object", "required": ["hours"],
+            "properties": {"hours": {"type": "number", "minimum": 0, "maximum": 168},
+                           "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}}}},
+        "first_visit": {                                 # optional: what a buyer's first visit gets
+            "type": "object", "properties": {"price": {"type": "string", "enum": ["at_cost"]}}},
+        "certified_only": {"type": "boolean"},           # optional: sell only units with the market's certificate
         "welcome_food": {                                # optional: Welcome Food (restock brings it each supply window)
             "type": "object",
             "properties": {"each_supply_window": {"type": "boolean"}, "share_of_cost": {"type": "number"}}},

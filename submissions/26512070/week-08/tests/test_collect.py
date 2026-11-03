@@ -55,12 +55,12 @@ class CollectTest(Base):
         super().tearDown()
 
     def test_round_records_our_sale_and_facts(self):
-        rows = [{"seq": 9, "ts": NOW - 900, "kind": "join", "data": {"name": "gom31-honest-shop", "role": "shop",
+        rows = [{"seq": 9, "ts": NOW - 900, "kind": "join", "data": {"name": "gom31-certified-goods", "role": "shop",
                                                                      "url": "https://our.tunnel"}},
                 result(10, "https://elm", "Elm", "kim", "G0011e806", 18000, "t-x"),
-                result(11, "https://our.tunnel", "gom31 Honest Shop", "kim", "G0026722f", 3000, "t-ours"),
+                result(11, "https://our.tunnel", "gom31 Certified Safe Goods", "kim", "G0026722f", 3000, "t-ours"),
                 {"seq": 12, "ts": NOW - 300, "kind": "order", "data": {"order": "o12", "buyer": "lee"}}]
-        board = {"round": 3, "shops": [{"name": "gom31-honest-shop", "deals": 1, "stars": 5}, {"name": "elm", "deals": 9, "stars": 4}],
+        board = {"round": 3, "shops": [{"name": "gom31-certified-goods", "deals": 1, "stars": 5}, {"name": "elm", "deals": 9, "stars": 4}],
                  "buyers": [], "players": [{"owner": {"login": "gom31"}, "all": 120}, {"owner": {"login": "x"}, "all": 80}]}
         m = FakeMarket(rows, board)
         c = collect.Collector(market=m, clock=lambda: NOW)
