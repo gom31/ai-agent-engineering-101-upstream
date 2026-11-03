@@ -14,6 +14,7 @@ import time
 import uuid
 
 from agents import loop
+from core import atomic, paths
 from core import card as cardmod
 from core import reflex
 from core.events import EventWriter
@@ -25,6 +26,37 @@ DEADLINE = 270             # the kit stops market_buyer after 300 s
 MAX_TURNS = 10
 REVIEWS_SHOWN = 2
 HEADERS = {"A2A-Version": "1.0"}
+PRICE_FACT_EVERY = 600     # seconds between rebuilds of memory/facts/shop_prices.json
+
+
+def shop_prices(shops, now=None):
+    """User 11/3 23:4x: surplus first, at the shops that sell cheap. Each shop's median paid share of list price over
+    the market's settles (the last two ledger days), keyed by shop URL; rebuilt from the ledger every 10 minutes."""
+    now = now or time.time()
+    path = paths.memory() / "facts" / "shop_prices.json"
+    fact = atomic.read_json(path, default=None) or {}
+    if now - fact.get("ts", 0) > PRICE_FACT_EVERY:
+        cat = {}
+        try:
+            cat = json.loads((paths.root() / ".market" / "catalog.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            pass
+        shares = {}
+        for f in sorted((paths.memory() / "market").glob("ledger-*.jsonl"))[-2:]:
+            for line in open(f, encoding="utf-8"):
+                if '"kind": "settle"' not in line:
+                    continue
+                try:
+                    x = json.loads(line)["data"]
+                except (ValueError, KeyError):
+                    continue
+                lp = (cat.get(x.get("sku") or x.get("item")) or {}).get("list_price")
+                if lp and x.get("amount") is not None and x.get("shop"):
+                    shares.setdefault(x["shop"].rstrip("/"), []).append(x["amount"] / lp)
+        fact = {"ts": now, "shops": {u: {"median_share": round(sorted(v)[len(v) // 2], 2), "deals": len(v)}
+                                     for u, v in shares.items()}}
+        atomic.write_json(path, fact)
+    return {s["name"]: fact["shops"].get((s.get("url") or "").rstrip("/")) for s in shops}
 
 
 class A2A:
@@ -147,14 +179,22 @@ class BuyerCore:
                  f"Order {o.get('order')}: category {o.get('item')}, budget {o['budget']}, kind {kind}"
                  + (f", use within {o['use_within_hours']} h" if o.get("use_within_hours") else "")
                  + f". {int(self.deadline() - self.clock())} s left for the whole order.",
-                 "Pick the shop and the SKU (act.pick). Shops that cheated us are already left out."
-                 + (" For goods, prefer a shop whose reviews or card show a warranty (a broken item is refunded)."
-                    if kind == "goods" else ""), ""]
-        for s in list(shops.values())[:25]:
+                 "Pick the shop and the SKU (act.pick). Shops that cheated us are already left out.",
+                 "Surplus first (half of buyer ALL): surplus = the SKU's list price - what we pay. Prefer the shop that "
+                 "sells cheapest against list (its market median below; lower is better), and among its SKUs the one "
+                 "with the highest list price we can still buy within the budget at that shop's usual share. A shop "
+                 "with no market record is worth a try when the known ones are near list."
+                 + (" A warranty helps (a broken item is refunded)." if kind == "goods" else ""), ""]
+        prices = shop_prices(list(shops.values()))
+        order_shops = sorted(shops.values(), key=lambda s: (prices.get(s["name"]) or {}).get("median_share", 0.8))
+        for s in order_shops[:25]:
             me = call(self.ctx, "me.counterpart", {"name": s["name"], "side": "shop"})["result"]
             rv = s.get("reviews") or []
             st = [r["stars"] for r in rv if isinstance(r.get("stars"), (int, float))]
-            lines.append(f"* {safe_name(s['name'])}: reviews {len(rv)}" + (f", average {sum(st) / len(st):.1f} stars" if st else ""))
+            mp = prices.get(s["name"])
+            lines.append(f"* {safe_name(s['name'])}: reviews {len(rv)}" + (f", average {sum(st) / len(st):.1f} stars" if st else "")
+                         + (f"; sells at a median {mp['median_share']:.0%} of list over {mp['deals']} market deals"
+                            if mp else "; no market record yet"))
             for r in rv[:REVIEWS_SHOWN]:
                 ex = call(self.ctx, "calc.extract", {"text": str(r.get("review") or ""), "max_excerpt": 100})["result"]
                 lines.append(f"    review {r.get('stars')}*: {ex['excerpt']}")
@@ -226,10 +266,13 @@ class BuyerCore:
         high list price bought near half of it. For such an order the strategy gives a target share of list."""
         b = (self.ctx.strategy.get("buyer") or {})
         lp = c.get("list_price") or 0
-        if kind != "goods" or not b.get("big_list") or lp < b["big_list"]:
+        if kind == "goods" and b.get("big_list") is not None and lp >= b["big_list"]:
+            t, o = b.get("target_share", 0.55), b.get("open_share", 0.45)
+        elif b.get("food_target_share") is not None and lp:   # user 11/3 23:4x: every order, food too
+            t, o = b["food_target_share"], b.get("food_open_share", b["food_target_share"] - 0.15)
+        else:
             return []
-        t, o = b.get("target_share", 0.55), b.get("open_share", 0.45)
-        return [f"Big goods order (list {lp}): aim to pay about {round(lp * t)} ({t:.0%} of list); open near "
+        return [f"Order (list {lp}): aim to pay about {round(lp * t)} ({t:.0%} of list); open near "
                 f"{round(lp * o)} ({o:.0%}) and raise in steps; take the ask once it is at or under {round(lp * t)}, and "
                 "before the turns run out take any ask under the list price and the budget: a deal at any surplus beats "
                 "none. A shop's warranty adds the price back to surplus if the item breaks."]

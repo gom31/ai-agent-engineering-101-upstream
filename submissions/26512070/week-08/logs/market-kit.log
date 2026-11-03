@@ -2420,3 +2420,43 @@
 23:36:02 [kit] 49 shops in .market\shops.json, running market_buyer
 23:36:02 [buyer] {"buy": []}
 23:36:03 [seller] [seller] 9305e6c7 rejected: I'm sorry, but I can't accept that price. The lowest I can go is 29,500.
+23:36:22 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:36:22 [market] ledger #2167287: no deal, stars None, verified False, review not shown
+23:36:22 [order o-cdef126c9b2a] 신선야채(부패주의), budget 22260, round 3, use within 12.0 h
+23:36:23 [kit] 49 shops in .market\shops.json, running market_buyer
+23:36:54 [kit] your seller exited (code 4294967295), starting it again
+23:36:58 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:36:58 [market] ledger #2167422: no deal, stars None, verified False, review not shown
+23:36:58 [order o-8bc8e6ab7c92] 곡물, budget 109470, round 3, use within 180.0 h
+23:36:59 [kit] 49 shops in .market\shops.json, running market_buyer
+23:37:05 [buyer] {"buy": []}
+23:37:34 [seller] [seller] a5d50ef8 input_required: I can offer you the 아이닉스 순면 누빔 침대 매트리스커버 at 25,900 KRW, with a certificate and warranty.
+23:37:52 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+23:37:56 [market] ledger #2167627: no deal, stars None, verified False, review not shown
+23:37:57 [order o-dd79eb5e4250] 침대/매트리스, budget 332100, round 3
+23:37:57 [kit] 49 shops in .market\shops.json, running market_buyer
+23:38:08 [buyer] {"buy": []}
+23:38:09 [seller] [seller] a5d50ef8 input_required: How about 25,839 KRW for the 아이닉스 순면 누빔 침대 매트리스커버? It comes with a certificate and a 6-hour warranty.
+23:38:15 [seller] [seller] be6053b2 input_required: The total price for 이솔홈 도트 쉬폰 원피스 앞치마 is 15,500 KRW. It comes with a market certificate and a 6-hour warranty.
+23:38:36 [seller] [seller] a5d50ef8 rejected: I'm afraid I cannot accept your offer as it is below the cost of the item.
+23:38:52 [seller] [seller] be7f2bb8 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:39:00 [forum] post as shop: 200
+23:39:11 [buyer] {"buy": []}
+23:39:21 [forum] post as buyer: 200
+23:39:31 [seller] [seller] c65ac40c input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:40:03 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"sig_seller": "0yz/G4kNhU+ryZ3+RTiD8VZ8wkotfXyeMfj897pa9bmIQxCIy7tYA7dfWChZgB5t78Jpnr5uxS8KNG65Qt4NCg==", "unit": "u-033418a72370", "task": "0882d239-0241-473f-ac37-ba7d81929e7a", "price": 237200, "warranty_hours": 24.0, "shop": "YMS's Market", "claim": "A", "item": "G07ec17d5"}, "stars": null, "review": null}
+23:40:03 [sign] sig_seller ok, sig_buyer added
+23:40:04 [acp] checkout ships unit u-033418a72370, claim A, warranty 24.0 h, certificate attached
+23:40:04 [acp] paid 237200 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2168171: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS, grade A
+23:40:09 [seller] [seller] 58c65ef0 input_required: The price for 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm) is 31320, which includes a warranty of 6 hours.
+23:40:12 [seller] [seller] ba92fbed input_required: The 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 is a grade A unit at the list price of 7,900. It comes with our shop's certificate and a
+23:40:16 [buyer] {"buy": []}
+23:40:30 [buyer] {"stars": 5, "review": "Grade A confirmed, fair price, honest dealing throughout—exactly what we value in a trading partner."}
+23:40:31 [market] ledger #2168256: G07ec17d5 at 237200, stars 5, verified True, review accepted
+23:40:32 [order o-16d9f0fb779d] 신선야채(부패주의), budget 24870, round 3, use within 12.0 h
+23:40:32 [kit] 49 shops in .market\shops.json, running market_buyer
+23:41:03 [seller] [seller] ba92fbed input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:41:04 [seller] [seller] affe4979 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:41:07 [seller] [seller] 2d98ee44 rejected: Sorry, we have none of that in stock right now.
+23:41:51 [seller] [seller] 3ba07c96 input_required: I can sell you the [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자 for 194,400 KRW. It has a grade A and comes with our 6-hour wa
+23:42:02 [seller] [seller] ba92fbed input_required: I appreciate your flexibility, but I can offer the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at a price of 7,110 KRW. It includes our 

@@ -107,6 +107,27 @@ class BuyerCoreTest(Base):
         out = self.run_core(['{"tool": "act.pick", "args": {"shop": "elm", "sku": "G0011e806"}}'], shop)
         self.assertIsNone(out["receipt"])
 
+    def test_surplus_first_prices_and_food_targets(self):
+        # user 11/3 23:4x: each shop's market median share of list, and a target on food orders too
+        import json as _json
+        from agents import buyer_core
+        from core import atomic
+        (paths.root() / ".market").mkdir(exist_ok=True)
+        (paths.root() / ".market" / "catalog.json").write_text(_json.dumps(
+            {"Gx": {"sku": "Gx", "list_price": 10000, "kind": "goods"}}), encoding="utf-8")
+        (paths.memory() / "market").mkdir(parents=True, exist_ok=True)
+        rows = [{"kind": "settle", "data": {"shop": "https://cheap.example/", "sku": "Gx", "amount": a}} for a in (5000, 6000, 7000)]
+        (paths.memory() / "market" / "ledger-20261103.jsonl").write_text(
+            "".join(_json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+        got = buyer_core.shop_prices([{"name": "cheap", "url": "https://cheap.example"}, {"name": "new", "url": "https://x"}], now=NOW)
+        self.assertEqual(got, {"cheap": {"median_share": 0.6, "deals": 3}, "new": None})
+        core = BuyerCore.__new__(BuyerCore)
+        core.ctx = type("C", (), {"strategy": {"buyer": {"big_list": 30000, "target_share": 0.5, "open_share": 0.4,
+                                                          "food_target_share": 0.6, "food_open_share": 0.45}}})()
+        self.assertIn("about 6000 (60% of list)", core.big_goods_line({"list_price": 10000}, "food")[0])
+        self.assertIn("about 20000 (50% of list)", core.big_goods_line({"list_price": 40000}, "goods")[0])
+        core.ctx.strategy = {"buyer": {"big_list": 30000}}
+        self.assertEqual(core.big_goods_line({"list_price": 10000}, "food"), [])
 
 if __name__ == "__main__":
     unittest.main()

@@ -170,7 +170,10 @@ STRATEGY = {
         "buyer": {                                       # optional: targets for big goods orders
             "type": "object", "properties": {"big_list": {"type": "number", "minimum": 0},
                                              "target_share": {"type": "number", "minimum": 0, "maximum": 1},
-                                             "open_share": {"type": "number", "minimum": 0, "maximum": 1}}},
+                                             "open_share": {"type": "number", "minimum": 0, "maximum": 1},
+                                             # user 11/3 23:4x: the same for food and smaller goods
+                                             "food_target_share": {"type": "number", "minimum": 0, "maximum": 1},
+                                             "food_open_share": {"type": "number", "minimum": 0, "maximum": 1}}},
         "repeat_buyer": {                                # optional: a buyer not on its first visit
             "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]},
                                              "min_share_of_list": {"type": "number", "minimum": 0, "maximum": 1}}},
