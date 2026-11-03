@@ -44,7 +44,7 @@ def run_forum():
 
 def once(state, w, now=None):
     """Run what is due. Each job fails on its own: an alert, and the other jobs still run."""
-    from outer import collect, slice as outer_slice
+    from outer import collect, slice as outer_slice, watch
     now = now or time.time()
     done = {}
 
@@ -55,6 +55,8 @@ def once(state, w, now=None):
             done[name] = f"failed: {type(e).__name__}: {e}"[:300]
             bus.alert("outer", "warn", f"{name}_failed", done[name])
             print(f"[outer] {name}: {done[name]}", flush=True)
+
+    job("watch", lambda: watch.check(state, now))
 
     def collect_round():
         c = collect.Collector()

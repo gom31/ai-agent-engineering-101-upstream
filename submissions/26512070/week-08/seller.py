@@ -13,6 +13,7 @@ import argparse
 import asyncio
 import json
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -30,7 +31,7 @@ from a2a.server.tasks import InMemoryTaskStore, TaskUpdater  # noqa: E402
 from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill  # noqa: E402
 
 from agents.seller_core import SellerCore, load_key  # noqa: E402
-from core import bus, paths  # noqa: E402
+from core import atomic, bus, paths  # noqa: E402
 
 SHOP = json.loads((HERE / "config" / "shop.json").read_text(encoding="utf-8"))
 TURN_SECONDS = 50          # one reply; buyers wait for it
@@ -68,6 +69,27 @@ class Seller(AgentExecutor):
         task = context.current_task
         self.core.cancel(task.id)
         await TaskUpdater(event_queue=event_queue, task_id=task.id, context_id=task.context_id).cancel()
+
+
+def heartbeat(core, every=60):
+    """bus/status/inner.json once a minute while the seller runs: the outer runtime's sign that the inner side is up."""
+    def run():
+        while True:
+            try:
+                s, _, _ = bus.load_validated(paths.memory() / "strategy" / "active.json", "strategy", reader="seller-status")
+                inv = atomic.read_json(Path(core_market()) / "inventory.json", default=None) or {}
+                bus.write_status("inner", kit_version="4", round=inv.get("round"),
+                                 strategy_version=(s or {}).get("version"),
+                                 last_hour={"open_negotiations": len(core.open)})
+            except Exception as e:                       # the heartbeat must never stop the shop
+                print(f"[seller] status: {type(e).__name__}: {e}", flush=True)
+            time.sleep(every)
+    threading.Thread(target=run, daemon=True).start()
+
+
+def core_market():
+    import os
+    return os.environ.get("MARKET_DIR") or str(paths.root() / ".market")
 
 
 def make_card(url, description, examples):
@@ -110,4 +132,5 @@ if __name__ == "__main__":
     ap.add_argument("--key", default=str(HERE / "shop_key.pem"))
     a = ap.parse_args()
     core = SellerCore(SHOP["name"], load_key(a.key))
+    heartbeat(core)
     uvicorn.run(build(a.port, core), host="127.0.0.1", port=a.port, log_level="warning")
