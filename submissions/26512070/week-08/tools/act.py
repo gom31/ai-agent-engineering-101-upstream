@@ -77,11 +77,21 @@ def unit_list_price(ctx, unit):
     return u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
 
 
+def unit_floor(ctx, unit, first_time):
+    """The list floor for this unit, or 0 for a unit held longer than playbook.seller.clearance_hours (11/4 05:0x:
+    unsold stock is cleared at cost x (1 + min_margin) so its cash goes back into the best sellers)."""
+    pb = ((ctx.strategy.get("playbook") or {}).get("seller") or {})
+    u = mf.unit(ctx, unit) or {}
+    if pb.get("clearance_hours") and u.get("supplied_at") and ctx.now() - u["supplied_at"] >= pb["clearance_hours"] * 3600:
+        return 0
+    return list_floor(ctx.strategy, first_time, unit_list_price(ctx, unit))
+
+
 def _repeat_floor(ctx, unit, price):
     """User 11/3: a buyer that is not on its first visit negotiates from the list price, down to min_share_of_list
     of it at most (user 22:25: 0.9 - at list, returning buyers stopped at 90% and walked: 1 sale in 25 min)."""
     lp = unit_list_price(ctx, unit)
-    floor = list_floor(ctx.strategy, ctx.situation.get("first_time"), lp)
+    floor = unit_floor(ctx, unit, ctx.situation.get("first_time"))
     if floor and price < floor:
         share = (ctx.strategy.get("repeat_buyer") or {}).get("min_share_of_list", 1.0)
         raise Refused(f"{price} is below {floor} ({share:.0%} of the list price {lp}); "

@@ -158,6 +158,10 @@ def apply_change(strategy, change):
     if bad:
         raise Refused(f"an option may not change {bad}", f"options change only {list(CHANGE_KEYS)}")
     s = copy.deepcopy(strategy)
+    change = dict(change)
+    for k in ("context", "priorities"):          # 11/4 05:0x: a brief sent context as one string and was refused
+        if isinstance(change.get(k), str):
+            change[k] = [change[k]]
     for k, v in change.items():
         if k == "playbook" and isinstance(v, dict) and isinstance(s.get(k), dict):   # two levels: playbook.restock.*
             s[k] = {**s[k], **{r: ({**s[k].get(r, {}), **x} if isinstance(x, dict) else x) for r, x in v.items()}}

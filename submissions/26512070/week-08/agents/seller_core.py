@@ -194,8 +194,7 @@ class SellerCore:
         if c is None or not c.get("list_price"):
             return None
         lp, offer, ask = c["list_price"], st["offer"], st["ask"]
-        floor = max(math.ceil(c["cost"] * (1 + pb["min_margin"])),
-                    act.list_floor(ctx.strategy, st.get("first_time"), act.unit_list_price(ctx, unit)))
+        floor = max(math.ceil(c["cost"] * (1 + pb["min_margin"])), act.unit_floor(ctx, unit, st.get("first_time")))
         top = max(floor, round(lp * pb["open_share"]))
         new_ask = top if ask is None else max(floor, ask - round(lp * pb["step_share"]))
         last = st["turns"] >= MAX_TURNS - 1
@@ -263,7 +262,7 @@ class SellerCore:
             low = call(ctx, "check.price", {"unit": c["unit"], "price": max(1, c["cost"] - 1)})
             lowest = (low["result"].get("lowest_allowed") if low["ok"] else c["cost"])
             # 11/4: the floor act.counter/accept enforce, from the same helper and the same list price
-            lowest = max(lowest, act.list_floor(strat, st.get("first_time"), act.unit_list_price(ctx, c["unit"])))
+            lowest = max(lowest, act.unit_floor(ctx, c["unit"], st.get("first_time")))
             lines.append(f"- unit {c['unit']}: {c['name']} ({c['sku']}, {c['kind']}), cost {c['cost']}, list price "
                          f"{c['list_price']}, lowest price the limits allow now {lowest}, category median {med}, grade now {c['grade_now']}, hours left "
                          f"{c['hours_left']}, certificate {'yes' if c['has_cert'] else 'no'}, "

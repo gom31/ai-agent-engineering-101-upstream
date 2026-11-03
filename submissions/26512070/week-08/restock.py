@@ -122,9 +122,14 @@ def build_buy_list(ctx, now=None):
     room = check.room(ctx)
     money = min(max(0, room["cash"] or 0), max(0, room["stock"]))
     cap = pb["max_line_share"] * money                   # one line may take at most this much of the window's money
-    wants = [(x["sku"], max(0, min(x["target"] - x["have"],
-                                   int(cap // room["worst"](x["sku"])) if room["worst"](x["sku"]) else 0) if pb["max_line_share"] < 1
-                                else x["target"] - x["have"])) for x in lines]
+    def line_units(x):
+        lack, w = x["target"] - x["have"], room["worst"](x["sku"])
+        if pb["max_line_share"] >= 1 or not w:
+            return max(0, lack)
+        # 11/4 05:0x: the cap kept G1515d951 (asked 33 times in 30 min, 1 held) at 0 units because one unit costs
+        # more than the cap; a line that fits the money gets at least one unit
+        return max(0, min(lack, max(int(cap // w), 1 if w <= money else 0)))
+    wants = [(x["sku"], line_units(x)) for x in lines]
     got = act.allocate(room, wants)
     for x, (_, q, why) in zip(lines, got):
         x["buy"], x["short"] = q, (why if q < x["target"] - x["have"] else None)

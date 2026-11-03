@@ -6077,3 +6077,559 @@
 04:35:53 [market] ledger #2247225: G1831f2c0 at 7584, stars 4, verified True, review accepted
 04:35:53 [order o-575adfdd0ac3] 신선야채(부패주의), budget 21940, round 3, use within 5.0 h
 04:35:53 [kit] 48 shops in .market\shops.json, running market_buyer
+04:35:56 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "97d08fca-e78c-48ac-9b7d-2fb232259337", "item": "G0b0ca441", "sig_seller": "ruELwOlIzFf170r1odBsR26cGRYE9ROnXziv0pcSVJr5JeU3nyW0XKCWX41P2KmNHLXOl9ALOafWuam9wfdFDg==", "shop": "ddolcom", "claim": "B", "unit": "u-abdc4225f61a", "price": 9383}, "stars": null, "review": null}
+04:35:56 [sign] sig_seller ok, sig_buyer added
+04:35:58 [acp] checkout ships unit u-abdc4225f61a, claim B, certificate attached
+04:35:58 [acp] paid 9383 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2247242: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 36.2 h of shelf life left
+04:36:26 [seller] [seller] 3bd1ecf4 rejected: Sorry, we have none of that in stock right now.
+04:36:29 [buyer] {"stars": 4, "review": "Grade B delivered as promised, fairly priced at 63% of list."}
+04:36:30 [market] ledger #2247378: G0b0ca441 at 9383, stars 4, verified True, review accepted
+04:36:30 [order o-7ea7e520100d] 신선야채(부패주의), budget 13680, round 3, use within 12.0 h
+04:36:30 [kit] 48 shops in .market\shops.json, running market_buyer
+04:36:34 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "fa08a2c6-5b9c-4015-b5ca-31714f38b1ee", "item": "G0b0ca441", "sig_seller": "BRBIbpFGmK7vmO9X6YZpwUjoN/Yvbv7XnIkM7HPVeg/KfJZ8imH/Gfiyk1flGKWskCe01rNa0VF+qTMdXX6zBg==", "shop": "ddolcom", "claim": "A", "unit": "u-2f224afc6de7", "price": 10470}, "stars": null, "review": null}
+04:36:34 [sign] sig_seller ok, sig_buyer added
+04:36:35 [acp] checkout ships unit u-2f224afc6de7, claim A, certificate attached
+04:36:35 [acp] paid 10470 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2247400: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 47.1 h of shelf life left
+04:36:54 [seller] [seller] 3662d84a rejected: Sorry, we have none of that in stock right now.
+04:36:55 [buyer] {"buy": []}
+04:36:57 [buyer] {"stars": 5, "review": "Honest grade A, fair price for premium Haenam potato from a reliable seller."}
+04:36:57 [market] ledger #2247505: G0b0ca441 at 10470, stars 5, verified True, review accepted
+04:36:58 [order o-bffdd1fa0cd7] 신선육류, budget 43620, round 3, use within 12.0 h
+04:36:58 [kit] 48 shops in .market\shops.json, running market_buyer
+04:37:04 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+04:37:05 [market] ledger #2247540: no deal, stars None, verified False, review not shown
+04:37:14 [seller] [seller] d28e43f4 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+04:37:18 [order o-2f36949c0483] 김치, budget 44880, round 3, use within 126.0 h
+04:37:18 [kit] 48 shops in .market\shops.json, running market_buyer
+04:37:22 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "605924e9-b21a-4b84-b8ba-19727cd01c59", "item": "G200e39a3", "sig_seller": "vJTsuYcSXv+GP681N3K1TlSreBBY7npArXry6F12O56Mz5bQxFEcJiWwKz9RXIdPrqlJFiHMqQd92Q3aZ6beBQ==", "shop": "ddolcom", "claim": "B", "unit": "u-43b6562d0f92", "price": 22415}, "stars": null, "review": null, "accept": {"min_hours_left": 126.0}}
+04:37:22 [sign] sig_seller ok, sig_buyer added
+04:37:23 [acp] not paying: 85.32 h of shelf life left, the policy asks for 126.0
+04:37:23 [market] ledger #2247619: G200e39a3 at 22415, stars None, verified False (failed: settled), review not shown
+04:37:28 [seller] [seller] a480d01b input_required: 리진 젠느 고탄력 소파커버 4인용 (235-300cm): 27144 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+04:37:38 [order o-5e34c2add078] 신선야채(부패주의), budget 36120, round 3, use within 5.0 h
+04:37:38 [kit] 48 shops in .market\shops.json, running market_buyer
+04:37:49 [seller] [seller] 832a6179 input_required: 프리미엄 앤 모달 차렵 이불패드세트 Q: 95862 KRW, a premium unit with the market's certificate, its true grade and our full-refund guara
+04:37:51 [seller] [seller] 832a6179 input_required: For this guaranteed unit I can do 94633 KRW.
+04:37:51 [seller] [seller] 832a6179 completed: Deal at 94633 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+04:37:54 [acp] settled 프리미엄 앤 모달 차렵 이불패드세트 Q at 94633, ledger #2247756, unit u-a599dd081e61 grade C
+04:37:55 [buyer] {"shop": "https://neither-tribunal-beginning-nose.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+04:37:55 [market] ledger #2247766: no deal, stars None, verified False, review not shown
+04:37:58 [order o-adc8303fb8e2] 소파/의자/스툴, budget 2088000, round 3
+04:37:59 [kit] 48 shops in .market\shops.json, running market_buyer
+04:37:59 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:37:59 [market] ledger #2247779: no deal, stars None, verified False, review not shown
+04:38:01 [buyer] {"buy": []}
+04:38:05 [seller] [seller] 8c2d70bc rejected: Sorry, we have none of that in stock right now.
+04:38:05 [seller] [seller] 3284db3c input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:38:10 [seller] [seller] 845ac391 input_required: 리진 젠느 고탄력 소파커버 4인용 (235-300cm): 27144 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+04:38:19 [order o-0aba77e7adc9] 소파/의자/스툴, budget 4167230, round 3
+04:38:19 [kit] 48 shops in .market\shops.json, running market_buyer
+04:38:19 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:38:19 [market] ledger #2247862: no deal, stars None, verified False, review not shown
+04:38:32 [seller] [seller] 7d3a40de rejected: Sorry, we have none of that in stock right now.
+04:38:39 [order o-d7fe583a57fe] 신선야채(부패주의), budget 20860, round 3, use within 24.0 h
+04:38:39 [kit] 48 shops in .market\shops.json, running market_buyer
+04:38:42 [buyer] {"shop": "https://ensuring-duck-honors-experts.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+04:38:42 [market] ledger #2247967: no deal, stars None, verified False, review not shown
+04:38:52 [seller] [seller] 8461108c rejected: Sorry, we have none of that in stock right now.
+04:39:00 [order o-c59cc086e690] 신선야채(부패주의), budget 76860, round 3, use within 36.0 h
+04:39:00 [kit] 48 shops in .market\shops.json, running market_buyer
+04:39:00 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:39:00 [market] ledger #2248042: no deal, stars None, verified False, review not shown
+04:39:05 [buyer] {"buy": []}
+04:39:12 [seller] [seller] b0b83fcf rejected: Sorry, we have none of that in stock right now.
+04:39:20 [order o-62755951f3ad] 신선야채(부패주의), budget 48300, round 3, use within 12.0 h
+04:39:20 [kit] 48 shops in .market\shops.json, running market_buyer
+04:39:20 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:39:20 [market] ledger #2248138: no deal, stars None, verified False, review not shown
+04:39:32 [seller] [seller] 8061ba12 rejected: Sorry, we have none of that in stock right now.
+04:39:34 [seller] [seller] 58ef7b16 input_required: 리진 젠느 고탄력 소파커버 4인용 (235-300cm): 27144 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+04:39:40 [order o-206e00e47010] 신선야채(부패주의), budget 20860, round 3, use within 36.0 h
+04:39:40 [kit] 48 shops in .market\shops.json, running market_buyer
+04:39:54 [seller] [seller] 5f4ebcca input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:40:10 [forum] post as shop: 200
+04:40:11 [buyer] {"buy": []}
+04:40:21 [forum] post as buyer: 200
+04:40:24 [buyer] {"shop": "https://neither-tribunal-beginning-nose.trycloudflare.com", "receipt": {"task": "f8d59179-6fe3-421e-b5df-ea0cc32d77f7", "shop": "yeonsong2", "price": 8200, "claim": "B", "sig_seller": "6QpswRUeen734DvkrBVWR9AYmPpukGLmXql1ltEJVonULgfm9+NHJAWAmj0PHG93cdCyqGqwvPnb2Am1rI/aCA==", "item": "G0b0ca441", "cert": true, "unit": "u-8f935fb0219f"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+04:40:24 [sign] sig_seller ok, sig_buyer added
+04:40:25 [acp] not paying: 25.81 h of shelf life left, the policy asks for 36.0
+04:40:25 [market] ledger #2248412: G0b0ca441 at 8200, stars None, verified False (failed: settled), review not shown
+04:40:25 [order o-b101627c7dce] 디저트, budget 14590, round 3, use within 12.0 h
+04:40:26 [kit] 48 shops in .market\shops.json, running market_buyer
+04:40:47 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 5292, "item": "G11f14ced", "cert": true, "shop": "kimauve", "unit": "u-598313e2e190", "warranty_hours": 0.0, "task": "7f31df0a-31bd-437d-8849-0f12be56e4c3", "sig_seller": "gJKOBQUBvAOh1QGDrYDMuJ6LetKS1xFKRcqUjgbkmMGQT3H6kYycCaVRkbRTzxqyEgPZPn5iK3w23vyLAhWqCw=="}, "stars": null, "review": null}
+04:40:47 [sign] sig_seller ok, sig_buyer added
+04:40:48 [acp] checkout ships unit u-598313e2e190, certificate attached
+04:40:48 [acp] paid 5292 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2248510: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 33.8 h of shelf life left
+04:41:14 [seller] [seller] 99aea35f input_required: 건국 무첨가두유 32팩: 22542 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+04:41:16 [buyer] {"buy": []}
+04:41:45 [buyer] {"stars": 4, "review": "Paid 5292; grade B."}
+04:41:46 [market] ledger #2248749: G11f14ced at 5292, stars 4, verified True, review accepted
+04:41:46 [order o-ebe4334543f7] 소파/의자/스툴, budget 1684800, round 3
+04:41:46 [kit] 48 shops in .market\shops.json, running market_buyer
+04:41:46 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:41:47 [market] ledger #2248755: no deal, stars None, verified False, review not shown
+04:41:55 [seller] [seller] 95edea1f input_required: 바숨 알러지케어 먼지없는 누빔 매트리스커버 슈퍼싱글 SS: 21762 KRW, a premium unit with the market's certificate, its true grade and our full-re
+04:41:57 [seller] [seller] a99202a0 rejected: Sorry, we have none of that in stock right now.
+04:42:06 [order o-4fdbafab4478] 비스켓/쿠키, budget 15620, round 3, use within 540.0 h
+04:42:07 [kit] 48 shops in .market\shops.json, running market_buyer
+04:42:09 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "f17873b6-5b27-4b65-b60d-723d802d7ddb", "item": "Gdff8fabb", "sig_seller": "AGPf5zEKb5ZP0tAkLA4LdEu+mq19owXbcVx8tieADz8fmueXjqgtEAl58Y7tKukz4XMx42OtZao8/+QJEaegDA==", "shop": "ddolcom", "claim": "C", "unit": "u-408375e565ef", "price": 5176}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+04:42:09 [sign] sig_seller ok, sig_buyer added
+04:42:10 [acp] not paying: 117.12 h of shelf life left, the policy asks for 540.0
+04:42:10 [market] ledger #2248847: Gdff8fabb at 5176, stars None, verified False (failed: settled), review not shown
+04:42:20 [seller] [seller] 8211327f rejected: Sorry, we have none of that in stock right now.
+04:42:21 [buyer] {"buy": []}
+04:42:27 [order o-9fa353671b5f] 디저트, budget 14590, round 3, use within 12.0 h
+04:42:27 [kit] 48 shops in .market\shops.json, running market_buyer
+04:42:27 [seller] [seller] 5880940b rejected: Sorry, we have none of that in stock right now.
+04:42:40 [seller] [seller] d433ff55 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+04:42:48 [buyer] {"shop": "https://baltimore-appreciate-airport-filled.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+04:42:48 [market] ledger #2249054: no deal, stars None, verified False, review not shown
+04:42:48 [order o-ff90706eeb4e] 비스켓/쿠키, budget 20010, round 3, use within 72.0 h
+04:42:49 [kit] 48 shops in .market\shops.json, running market_buyer
+04:42:51 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "1346b670-48f7-4f18-b54c-516f49afcdcd", "item": "Gdff8fabb", "sig_seller": "UGTAiSd+BZLDXh47KCIi2aD1Cl+7OpMSdfBqCPiP0Z2xV+5Xo3/znFTTEpCDGOSWINiFvOE3YtcRoxN3Vm//DQ==", "shop": "ddolcom", "claim": "C", "unit": "u-408375e565ef", "price": 5176}, "stars": null, "review": null}
+04:42:51 [sign] sig_seller ok, sig_buyer added
+04:42:51 [acp] checkout ships unit u-408375e565ef, claim C, certificate attached
+04:42:52 [acp] paid 5176 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2249094: 임페리얼 골드셀렉션 초콜릿 쿠키 454g, grade C, 117.1 h of shelf life left
+04:43:10 [seller] [seller] e66eefac rejected: Sorry, we have none of that in stock right now.
+04:43:26 [buyer] {"buy": [{"sku": "G07ec17d5", "qty": 2}, {"sku": "G1515d951", "qty": 1}, {"sku": "Ge62449c9", "qty": 1}, {"sku": "G0be9ed07", "qty": 2}, {"sku": "G2cb8041b", "qty": 1}, {"sku": "G81ade83e", "qty": 1}, {"sku": "G9a240832", "qty": 1}]}
+04:43:27 [supply] 2 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 347487, balance 2399606
+04:43:37 [supply] 1 x 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 for 228260, balance 2171346
+04:43:41 [buyer] {"stars": 3, "review": "Honest grade C delivery at 52% of list price from our most reliable shop partner."}
+04:43:41 [market] ledger #2249386: Gdff8fabb at 5176, stars 3, verified True, review accepted
+04:43:41 [order o-83d41da99b55] 찌개/탕류/장류, budget 18620, round 3, use within 360.0 h
+04:43:42 [kit] 48 shops in .market\shops.json, running market_buyer
+04:43:44 [buyer] {"shop": "https://lanes-advertisers-lead-platforms.trycloudflare.com", "receipt": {"sig_seller": "7gtZOLp0BcOI9jTWysNCp/omnHU/ZRQD7dqh7HS/Lhn+FD9orAhydEsN8C75JOqmEMsiRjygwk3HNw2ZyBcyDA==", "price": 13308, "claim": "C", "unit": "u-60182d2eafc0", "item": "Gdbc3170f", "task": "87616d89-3158-4dc3-8dd3-10c78db1830c", "shop": "buzllightyear shop"}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+04:43:44 [sign] sig_seller ok, sig_buyer added
+04:43:46 [acp] not paying: 146.94 h of shelf life left, the policy asks for 360.0
+04:43:46 [market] ledger #2249410: Gdbc3170f at 13308, stars None, verified False (failed: settled), review not shown
+04:43:47 [supply] 1 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 64681, balance 2106665
+04:43:58 [supply] 2 x [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드 for 48128, balance 2058537
+04:44:02 [order o-10ae09d2d802] 신선과일(부패주의), budget 24870, round 3, use within 5.0 h
+04:44:02 [kit] 48 shops in .market\shops.json, running market_buyer
+04:44:04 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 18351, "item": "Gef4d3036", "cert": true, "shop": "kimauve", "unit": "u-d75b39674a78", "warranty_hours": 0.0, "task": "0f03baa8-522d-423c-81a4-faf3b5fa45e9", "sig_seller": "afKjdtg94BQ6B9m1quCZH37pSgs0qai7wLeRbwdFE2vognVZRtlxUWSLI9p9I2cyAtSMxN7ij6s8L4D4/q53BQ=="}, "stars": null, "review": null}
+04:44:04 [sign] sig_seller ok, sig_buyer added
+04:44:05 [acp] checkout ships unit u-d75b39674a78, certificate attached
+04:44:06 [acp] paid 18351 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2249538: 맛있는 햇 부사 사과 가정용(흠과) 중대과 10kg, grade B, 35.4 h of shelf life left
+04:44:08 [supply] 1 x 클라우드백 컴퓨터 사무용 사무실 중역 편한 공부 메쉬 학생 책상 의자 T800MQ for 168319, balance 1890218
+04:44:18 [seller] [seller] fa6eb3a2 rejected: Sorry, we have none of that in stock right now.
+04:44:19 [supply] 1 x 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지 for 20808, balance 1869410
+04:44:29 [buyer] {"stars": 4, "review": "Reliable shop, correct B-grade apples, fair price—everything as described."}
+04:44:29 [supply] 1 x 펩시콜라 엑스트라 피즈 245ml 15개(업소용) for 4638, balance 1864772
+04:44:29 [market] ledger #2249670: Gef4d3036 at 18351, stars 4, verified True, review accepted
+04:44:29 [order o-e7669d2c0a6e] 소스/양념/조미료, budget 19620, round 3, use within 72.0 h
+04:44:29 [kit] 48 shops in .market\shops.json, running market_buyer
+04:44:30 [buyer] {"buy": []}
+04:44:31 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 11800, "item": "Gea0b0c3f", "cert": true, "shop": "kimauve", "unit": "u-b13bb96b2260", "warranty_hours": 0.0, "task": "45a94a79-6cd6-47ab-b94b-fd7f5ac9690b", "sig_seller": "1och5KotFYKUmEqUke5YDN0sbptN8z6r90Dl+nxhOPSFoFLCBxRqa10jcSAYxaaKZ1wJtbnoeUgmkfCLA2aEBg=="}, "stars": null, "review": null}
+04:44:31 [sign] sig_seller ok, sig_buyer added
+04:44:32 [acp] checkout ships unit u-b13bb96b2260, certificate attached
+04:44:33 [acp] paid 11800 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2249688: 청정원 굴소스 400-500g 3종 3개 골라담기, grade C, 161.7 h of shelf life left
+04:45:11 [buyer] {"stars": 3, "review": "Grade C oyster sauce at 59% of list from a vendor with perfect fairness record in our dealings."}
+04:45:12 [market] ledger #2249895: Gea0b0c3f at 11800, stars 3, verified True, review accepted
+04:45:12 [order o-490bec019137] 신선육류, budget 98780, round 3, use within 2.5 h
+04:45:12 [kit] 47 shops in .market\shops.json, running market_buyer
+04:45:12 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:45:13 [market] ledger #2249899: no deal, stars None, verified False, review not shown
+04:45:32 [order o-064ab82fa152] 우유/두유, budget 38980, round 3, use within 24.0 h
+04:45:33 [kit] 48 shops in .market\shops.json, running market_buyer
+04:45:35 [forum] post as shop: 200
+04:45:36 [buyer] {"buy": []}
+04:45:37 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "3527f4c0-16b4-4208-b882-bd7c2ffbd8f2", "price": 16798, "shop": "lee-sungsoo", "sig_seller": "fs6cAlCjIJy058RmVRsn4IrxSgwpuzx1Wq0cZl8PFsfsaVFnqH7MFolLfr+dgcaDM7vcG/6Fk8ZfqUAC90/8Cg==", "item": "G582603b2", "unit": "u-7ebae2151ed2"}, "stars": null, "review": null}
+04:45:37 [sign] sig_seller ok, sig_buyer added
+04:45:38 [acp] checkout ships unit u-7ebae2151ed2, claim B, certificate attached
+04:45:38 [acp] paid 16798 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2250031: 건국 무첨가두유 32팩, grade B, 49.5 h of shelf life left
+04:45:46 [forum] post as buyer: 200
+04:46:00 [buyer] {"stars": 4, "review": "Unsweetened soy milk, grade B as claimed, sold at fair market value by a reliable seller."}
+04:46:00 [market] ledger #2250138: G582603b2 at 16798, stars 4, verified True, review accepted
+04:46:00 [order o-b919732fda26] 신선육류, budget 20470, round 3, use within 12.0 h
+04:46:01 [kit] 48 shops in .market\shops.json, running market_buyer
+04:46:13 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+04:46:13 [market] ledger #2250187: no deal, stars None, verified False, review not shown
+04:46:21 [order o-51d05c8e7b28] 신선야채(부패주의), budget 9340, round 3, use within 12.0 h
+04:46:21 [kit] 48 shops in .market\shops.json, running market_buyer
+04:46:41 [buyer] {"buy": []}
+04:46:50 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+04:46:50 [market] ledger #2250336: no deal, stars None, verified False, review not shown
+04:46:51 [order o-56f8355cae12] 신선육류, budget 17910, round 3, use within 12.0 h
+04:46:51 [kit] 48 shops in .market\shops.json, running market_buyer
+04:47:03 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+04:47:03 [market] ledger #2250394: no deal, stars None, verified False, review not shown
+04:47:11 [order o-f899161c34b8] 신선육류, budget 29870, round 3, use within 12.0 h
+04:47:11 [kit] 48 shops in .market\shops.json, running market_buyer
+04:47:22 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+04:47:23 [market] ledger #2250468: no deal, stars None, verified False, review not shown
+04:47:32 [order o-ac48448d45a3] 침구, budget 624510, round 3
+04:47:32 [kit] 48 shops in .market\shops.json, running market_buyer
+04:47:33 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:47:33 [market] ledger #2250506: no deal, stars None, verified False, review not shown
+04:47:46 [buyer] {"buy": []}
+04:47:52 [order o-1b4cf0138e4f] 침대/매트리스, budget 4652670, round 3
+04:47:53 [kit] 48 shops in .market\shops.json, running market_buyer
+04:47:53 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:47:53 [market] ledger #2250577: no deal, stars None, verified False, review not shown
+04:48:02 [seller] [seller] 30922606 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 330572 KRW, a premium unit with the market's certificate, its true grade and our full-r
+04:48:02 [seller] [seller] b2e956ac input_required: [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드: 31122 KRW, a premium unit with the market's certificate, its true grade and o
+04:48:03 [seller] [seller] 9cf6db3f input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:48:04 [seller] [seller] 30922606 input_required: For this guaranteed unit I can do 326334 KRW.
+04:48:04 [seller] [seller] 30922606 completed: Deal at 326334 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+04:48:07 [seller] [seller] 71be39de input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 330572 KRW, a premium unit with the market's certificate, its true grade and our full-r
+04:48:07 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 326334, ledger #2250639, unit u-641b43d39aa4 grade B
+04:48:12 [seller] [seller] 5cbdf4a6 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+04:48:12 [order o-3bf8ee828b8c] 커튼/러그/쿠션/덮개, budget 69870, round 3
+04:48:13 [kit] 48 shops in .market\shops.json, running market_buyer
+04:48:15 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 21194, "item": "G81ade83e", "cert": true, "shop": "kimauve", "claim": "A", "unit": "u-e662c2721830", "warranty_hours": 6.0, "task": "19910fc7-16c0-4053-8ddc-c63474269ae7", "sig_seller": "haBY+kykWZyaRaojHnDnDko/M4vUd1TRYJdF9F5x/s58dw91Mnr3TWA2r8gUaaW5HXj0J2Ai9lOk6V0kUYyTDw=="}, "stars": null, "review": null}
+04:48:15 [sign] sig_seller ok, sig_buyer added
+04:48:15 [acp] checkout ships unit u-e662c2721830, claim A, warranty 6.0 h, certificate attached
+04:48:16 [acp] paid 21194 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2250670: 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지, grade A
+04:48:17 [seller] [seller] 71be39de rejected: Unfortunately, it appears that the item is currently out of stock. Please let me know if you would like to consider anot
+04:48:24 [seller] [seller] 0137dd78 rejected: Sorry, we have none of that in stock right now.
+04:48:33 [buyer] {"stars": 5, "review": "A certified item received with accurate grade and good value—reliable shop honoring its guarantee."}
+04:48:34 [market] ledger #2250737: G81ade83e at 21194, stars 5, verified True, review accepted
+04:48:34 [order o-15364e4042f7] 침대/매트리스, budget 525000, round 3
+04:48:34 [kit] 47 shops in .market\shops.json, running market_buyer
+04:48:50 [buyer] {"buy": []}
+04:48:51 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "94301976-bc30-4ed4-92bf-a5efad7f22a1", "item": "G07ec17d5", "sig_seller": "VZcTEvWar8ULLeOMXQ4m66sIYWf7ZR85JT2KIGxV2qmX4QdTfIz+sL7b5i4c3uG+OOyQ+b3U05rYt9/e8CEJBA==", "shop": "ddolcom", "unit": "u-94ba3b569d0f", "warranty_hours": 24.0, "price": 158886, "claim": "B"}, "stars": null, "review": null}
+04:48:51 [sign] sig_seller ok, sig_buyer added
+04:48:52 [acp] checkout ships unit u-94ba3b569d0f, claim B, warranty 24.0 h, certificate attached
+04:48:52 [acp] paid 158886 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2250814: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS, grade B
+04:48:58 [seller] [seller] 5eb0498c rejected: Sorry, we have none of that in stock right now.
+04:49:07 [seller] [seller] 61e56074 rejected: Sorry, we have none of that in stock right now.
+04:49:21 [buyer] {"stars": 4, "review": "Honest B-grade mattress at fair market value from a consistently reliable seller."}
+04:49:22 [market] ledger #2250935: G07ec17d5 at 158886, stars 4, verified True, review accepted
+04:49:22 [order o-5ce8a2d78a77] 신선야채(부패주의), budget 66510, round 3, use within 24.0 h
+04:49:23 [kit] 48 shops in .market\shops.json, running market_buyer
+04:49:23 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:49:23 [market] ledger #2250947: no deal, stars None, verified False, review not shown
+04:49:43 [order o-03fc679b19b0] 신선야채(부패주의), budget 36120, round 3, use within 12.0 h
+04:49:43 [kit] 48 shops in .market\shops.json, running market_buyer
+04:49:44 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "C", "cert": true, "task": "ec9ebebc-0d87-4e88-8b82-77b23a372d4e", "price": 6237, "shop": "lee-sungsoo", "sig_seller": "H7i2CcdW5GmlIyQlBRPBiguDZyXi4do06O3CwxpP7RBAX0efPrnvhoRW3AIbQ8aJ7PUuJTlAtZ1bXB+fZeO4Dg==", "item": "G0b0ca441", "unit": "u-3c6e950735e4"}, "stars": null, "review": null}
+04:49:44 [sign] sig_seller ok, sig_buyer added
+04:49:45 [acp] checkout ships unit u-3c6e950735e4, claim C, certificate attached
+04:49:46 [acp] paid 6237 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2251042: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 9.3 h of shelf life left
+04:49:56 [buyer] {"buy": []}
+04:50:07 [buyer] {"stars": 1, "review": "Grade C was correctly stated but the potato arrived spoiled and had no usable value to the order."}
+04:50:07 [market] ledger #2251133: G0b0ca441 at 6237, stars 1, verified True, review accepted
+04:50:07 [order o-6fe25a4257f7] 침대/매트리스, budget 848750, round 3
+04:50:08 [kit] 48 shops in .market\shops.json, running market_buyer
+04:50:11 [buyer] {"shop": "https://project-ntsc-award-treasure.trycloudflare.com", "receipt": {"sig_seller": "x21kEJFdZfsuT+E/xqa8bm3b/hpzXgt5zKfNKwqaqjys6i8SkV45WEOZ2Fln/zmSwMhe4b9zSkT1VYTB8+haDQ==", "shop": "dae-yangkim", "task": "4250dafc-4ff5-48b5-94cd-8d25bd73c670", "item": "G1515d951", "warranty_hours": 2.0, "price": 273601, "claim": "A", "unit": "u-a6e2b53103c3"}, "stars": null, "review": null}
+04:50:11 [sign] sig_seller ok, sig_buyer added
+04:50:12 [acp] checkout ships unit u-a6e2b53103c3, claim A, warranty 2.0 h, certificate attached
+04:50:12 [acp] paid 273601 through https://project-ntsc-award-treasure.trycloudflare.com/acp, settled at ledger #2251156: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸, grade A
+04:50:13 [seller] [seller] 8762db05 rejected: Sorry, we have none of that in stock right now.
+04:50:43 [buyer] {"stars": 5, "review": "Honest grade A at 64.6% of list with accurate receipt—excellent value from a reliable seller."}
+04:50:43 [market] ledger #2251279: G1515d951 at 273601, stars 5, verified True, review accepted
+04:50:43 [order o-3c03b724c7df] 신선육류, budget 47180, round 3, use within 12.0 h
+04:50:43 [kit] 48 shops in .market\shops.json, running market_buyer
+04:50:50 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+04:50:50 [market] ledger #2251310: no deal, stars None, verified False, review not shown
+04:50:53 [seller] [seller] 38de9320 rejected: Sorry, we have none of that in stock right now.
+04:51:01 [forum] post as shop: 200
+04:51:01 [forum] post as buyer: 200
+04:51:02 [buyer] {"buy": []}
+04:51:03 [order o-09ff292b370f] 신선야채(부패주의), budget 16650, round 3, use within 12.0 h
+04:51:03 [kit] 48 shops in .market\shops.json, running market_buyer
+04:51:06 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "a17e4fc8-4ea3-4f85-bfe1-2dc9a2a3ceaa", "item": "G0b0ca441", "sig_seller": "L+QAU4edoKNBFEHFqz/oDMFqfYCUqT54UJA6XYXtSZ4uA3hiGiio2xOIOtWromuOkWv/muhm+UFGj3Xbl5rTDg==", "shop": "ddolcom", "claim": "B", "unit": "u-515e993ed762", "price": 9312}, "stars": null, "review": null}
+04:51:06 [sign] sig_seller ok, sig_buyer added
+04:51:06 [acp] checkout ships unit u-515e993ed762, claim B, certificate attached
+04:51:07 [acp] paid 9312 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2251390: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 23.6 h of shelf life left
+04:51:38 [buyer] {"stars": 4, "review": "Fresh grade B potato as described, from a consistently honest shop."}
+04:51:38 [market] ledger #2251515: G0b0ca441 at 9312, stars 4, verified True, review accepted
+04:51:38 [order o-64ea55dab27c] 커피/차, budget 29290, round 3, use within 360.0 h
+04:51:38 [kit] 48 shops in .market\shops.json, running market_buyer
+04:51:40 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 11750, "item": "G5f64d42a", "cert": true, "shop": "kimauve", "unit": "u-7c40765f7bf7", "warranty_hours": 0.0, "task": "78aa058d-b9f9-480d-9683-1a5503ea7785", "sig_seller": "vGJ3IJRAQZRs/9ACG49lvvjuLZExeYOHIsfJoXpwnQKZKRhyElQozOKNADy7AUBGATfojDiqUnTMIedfhsRXDQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+04:51:40 [sign] sig_seller ok, sig_buyer added
+04:51:41 [acp] not paying: 153.71 h of shelf life left, the policy asks for 360.0
+04:51:41 [market] ledger #2251532: G5f64d42a at 11750, stars None, verified False (failed: settled), review not shown
+04:51:45 [seller] [seller] c7c78893 rejected: Sorry, we have none of that in stock right now.
+04:51:58 [order o-3ea1f98eafe8] 신선야채(부패주의), budget 11250, round 3, use within 24.0 h
+04:51:58 [kit] 48 shops in .market\shops.json, running market_buyer
+04:52:07 [buyer] {"buy": []}
+04:52:25 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": null, "stars": null, "review": null}
+04:52:25 [market] ledger #2251725: no deal, stars None, verified False, review not shown
+04:52:25 [order o-fceacc0bdf21] 신선야채(부패주의), budget 7650, round 3, use within 12.0 h
+04:52:26 [kit] 48 shops in .market\shops.json, running market_buyer
+04:52:36 [seller] [seller] 10eaef90 input_required: 리진 젠느 고탄력 소파커버 4인용 (235-300cm): 27144 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+04:52:44 [seller] [seller] 418d1c20 rejected: Sorry, we have none of that in stock right now.
+04:52:47 [seller] [seller] ad48fb4d rejected: Sorry, we have none of that in stock right now.
+04:52:51 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+04:52:51 [market] ledger #2251838: no deal, stars None, verified False, review not shown
+04:52:51 [order o-aa412b9e9633] 디저트, budget 14830, round 3, use within 5.0 h
+04:52:52 [kit] 48 shops in .market\shops.json, running market_buyer
+04:52:54 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "5f3c1785-b815-42bc-98ab-0e130bc1cfa8", "item": "G11f14ced", "sig_seller": "9ZX0TPBCOvSNlC4LhA+RlPnvxguDCDGvnszQjvxiS231X6ds/CPRghyMOPO1TJFCkL1rro2Hr0Qc+TPQ9QfDCg==", "shop": "ddolcom", "claim": "B", "unit": "u-408c8818adbd", "price": 6553}, "stars": null, "review": null}
+04:52:54 [sign] sig_seller ok, sig_buyer added
+04:52:55 [acp] checkout ships unit u-408c8818adbd, claim B, certificate attached
+04:52:55 [acp] paid 6553 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2251848: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 26.7 h of shelf life left
+04:53:16 [buyer] {"buy": []}
+04:53:18 [seller] [seller] fbb4bfa7 rejected: Sorry, we have none of that in stock right now.
+04:53:20 [buyer] {"stars": 4, "review": "Grade B as promised, excellent value at 60% of list from a reliable seller."}
+04:53:21 [market] ledger #2251951: G11f14ced at 6553, stars 4, verified True, review accepted
+04:53:21 [order o-859758cdb6bf] 디저트, budget 12510, round 3, use within 36.0 h
+04:53:21 [kit] 48 shops in .market\shops.json, running market_buyer
+04:53:24 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "00e2b9ce-ab77-4d78-b40b-8e6664ed7071", "item": "G11f14ced", "sig_seller": "DMdmllSdjCIl1wBByLgVeH+jfDLtanY6e/UXqYgBH+ASiL8ZkbubEGwaaVxUEH630So8tyY7IBdFFymWlEcTCg==", "shop": "ddolcom", "claim": "B", "unit": "u-aedefe1a680b", "price": 6812}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+04:53:24 [sign] sig_seller ok, sig_buyer added
+04:53:25 [acp] checkout ships unit u-aedefe1a680b, claim B, certificate attached
+04:53:25 [acp] paid 6812 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2251971: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 36.7 h of shelf life left
+04:53:46 [seller] [seller] d88f55e7 rejected: Sorry, we have none of that in stock right now.
+04:53:52 [seller] [seller] e8b7987a input_required: [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드: 31122 KRW, a premium unit with the market's certificate, its true grade and o
+04:53:52 [seller] [seller] cea61142 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:54:07 [buyer] {"stars": 4, "review": "Reliable seller delivering the promised grade B at fair market rate."}
+04:54:08 [market] ledger #2252151: G11f14ced at 6812, stars 4, verified True, review accepted
+04:54:08 [order o-e768e6b59248] 신선육류, budget 391500, round 3, use within 2.5 h
+04:54:08 [kit] 47 shops in .market\shops.json, running market_buyer
+04:54:08 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:54:09 [market] ledger #2252159: no deal, stars None, verified False, review not shown
+04:54:13 [seller] [seller] 68e666e6 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+04:54:16 [seller] [seller] 4fa5bf1e rejected: Sorry, we have none of that in stock right now.
+04:54:16 [seller] [seller] d5051737 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:54:19 [seller] [seller] 4d4a350e input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+04:54:20 [seller] [seller] c233e0af input_required: 리진 젠느 고탄력 소파커버 4인용 (235-300cm): 27144 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+04:54:20 [buyer] {"buy": []}
+04:54:28 [order o-e47dcace3e40] 비스켓/쿠키, budget 6210, round 3, use within 540.0 h
+04:54:29 [kit] 47 shops in .market\shops.json, running market_buyer
+04:54:34 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 5321, "task": "69d537d0-8698-4251-be77-6c673898c09d", "unit": "u-6ffcc6175d1a", "item": "Gdff8fabb", "sig_seller": "vqGhQxybSgK1haOGTmkX2TNHuj10Iv5p+2qgPFK6zYNPPZxoiTQvuboS9Ro1yAcs7eH2LubcMBN7zV+CFe/fDA=="}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+04:54:34 [sign] sig_seller ok, sig_buyer added
+04:54:34 [acp] not paying: 133.67 h of shelf life left, the policy asks for 540.0
+04:54:34 [market] ledger #2252272: Gdff8fabb at 5321, stars None, verified False (failed: settled), review not shown
+04:54:37 [seller] [seller] 4d4a350e completed: Deal at 68562 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+04:54:43 [acp] settled [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS at 68562, ledger #2252296, unit u-555c4f03cf75 grade A
+04:54:49 [order o-47d99e6ad6df] 신선야채(부패주의), budget 84980, round 3, use within 36.0 h
+04:54:49 [kit] 47 shops in .market\shops.json, running market_buyer
+04:54:49 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:54:50 [market] ledger #2252335: no deal, stars None, verified False, review not shown
+04:54:55 [seller] [seller] b2a25d3a input_required: 아이시스 화이트 ECO 무라벨 2L 6개: 4212 KRW, a premium unit with the market's certificate, its true grade and our full-refund guara
+04:55:09 [order o-e610f719d4f7] 신선육류, budget 17370, round 3, use within 18.0 h
+04:55:10 [kit] 47 shops in .market\shops.json, running market_buyer
+04:55:11 [seller] [seller] 1f62eaec rejected: Sorry, we have none of that in stock right now.
+04:55:11 [seller] [seller] c76a5159 rejected: Sorry, we have none of that in stock right now.
+04:55:22 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+04:55:22 [market] ledger #2252449: no deal, stars None, verified False, review not shown
+04:55:24 [buyer] {"buy": []}
+04:55:25 [seller] [seller] edd7628c rejected: Sorry, we have none of that in stock right now.
+04:55:30 [order o-8161b37a8d43] 디저트, budget 14590, round 3, use within 36.0 h
+04:55:30 [kit] 47 shops in .market\shops.json, running market_buyer
+04:55:33 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "ac52f33d-c270-45cf-8af7-866594b4a9d3", "item": "G11f14ced", "sig_seller": "9aofXpnUitwfOhbE54HOyVbHFlcrcsC22zkKFkQ3TPWx66sM6rmK+BAVhe6yKjjBtz9eHhgbe9QgMQ04Ec3uBQ==", "shop": "ddolcom", "claim": "A", "unit": "u-b374c616f6fa", "price": 6847}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+04:55:33 [sign] sig_seller ok, sig_buyer added
+04:55:34 [acp] checkout ships unit u-b374c616f6fa, claim A, certificate attached
+04:55:35 [acp] paid 6847 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2252505: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade A, 42.3 h of shelf life left
+04:55:47 [seller] [seller] 7d3b9b59 rejected: Sorry, we have none of that in stock right now.
+04:55:51 [buyer] {"stars": 5, "review": "Grade A as promised, reasonably priced, from a consistently reliable seller."}
+04:55:52 [market] ledger #2252573: G11f14ced at 6847, stars 5, verified True, review accepted
+04:55:52 [order o-576132804e1b] 신선육류, budget 20610, round 3, use within 18.0 h
+04:55:52 [kit] 47 shops in .market\shops.json, running market_buyer
+04:55:53 [seller] [seller] eed09a75 rejected: Sorry, we have none of that in stock right now.
+04:55:53 [seller] [seller] 492a4a4d rejected: Sorry, we have none of that in stock right now.
+04:55:59 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+04:55:59 [market] ledger #2252600: no deal, stars None, verified False, review not shown
+04:56:10 [seller] [seller] 54a3fa75 rejected: Sorry, we have none of that in stock right now.
+04:56:12 [order o-51e2fdc0c099] 신선야채(부패주의), budget 37830, round 3, use within 24.0 h
+04:56:12 [kit] 47 shops in .market\shops.json, running market_buyer
+04:56:13 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:56:13 [market] ledger #2252667: no deal, stars None, verified False, review not shown
+04:56:17 [forum] post as shop: 200
+04:56:29 [forum] post as buyer: 200
+04:56:29 [buyer] {"buy": []}
+04:56:32 [order o-0f7863964354] 신선야채(부패주의), budget 13410, round 3, use within 24.0 h
+04:56:32 [kit] 47 shops in .market\shops.json, running market_buyer
+04:56:35 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "822bc102-18f8-4558-82bc-2f7c9dc09e6c", "item": "G0b0ca441", "sig_seller": "VuKXaolJOpUOPtOLAt3DBPVAIKH0dLd2od2V6rt6UGRJFzrpQq0uoGKpTJ7mKJcb0QIeAa/6NTidhVCEoqehDA==", "shop": "ddolcom", "claim": "B", "unit": "u-d45a475ebeb2", "price": 8940}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+04:56:35 [sign] sig_seller ok, sig_buyer added
+04:56:35 [acp] checkout ships unit u-d45a475ebeb2, claim B, certificate attached
+04:56:36 [acp] paid 8940 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2252748: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 27.1 h of shelf life left
+04:56:57 [buyer] {"stars": 4, "review": "Grade B as claimed; reliable seller and solid 40% savings for the buyer."}
+04:56:58 [market] ledger #2252839: G0b0ca441 at 8940, stars 4, verified True, review accepted
+04:56:58 [order o-fbdd4bcb4440] 찌개/탕류/장류, budget 20080, round 3, use within 540.0 h
+04:56:58 [kit] 47 shops in .market\shops.json, running market_buyer
+04:57:01 [buyer] {"shop": "https://lanes-advertisers-lead-platforms.trycloudflare.com", "receipt": {"sig_seller": "cS18vdKVAMHseYf1Oh2H4C5jgdnG61haYnNL1z4U2I6rgJqa0J5+ghbnGuHt0xT5oDwT06a6FBmGOGNChcMtCg==", "price": 13308, "claim": "C", "unit": "u-60182d2eafc0", "item": "Gdbc3170f", "task": "4786b411-0d30-4db2-9071-73e6335842b3", "shop": "buzllightyear shop"}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+04:57:01 [sign] sig_seller ok, sig_buyer added
+04:57:02 [acp] not paying: 146.72 h of shelf life left, the policy asks for 540.0
+04:57:02 [market] ledger #2252852: Gdbc3170f at 13308, stars None, verified False (failed: settled), review not shown
+04:57:06 [seller] [seller] 20ca3fb6 rejected: Sorry, we have none of that in stock right now.
+04:57:18 [order o-63be9cd7fdd5] 신선야채(부패주의), budget 15640, round 3, use within 24.0 h
+04:57:19 [kit] 47 shops in .market\shops.json, running market_buyer
+04:57:22 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "10fd84e8-79e1-476b-b356-955fe012bee1", "item": "G0b0ca441", "sig_seller": "VgudWi2X2WmWVJydLowPXhw1Mtj8/wpWHo2pXya4zlfj+ICvXrF7YTjWj6chD5OBoXY+Ar4L3L114+sx3mfmCg==", "shop": "ddolcom", "claim": "A", "unit": "u-6b66300e547b", "price": 9964}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+04:57:22 [sign] sig_seller ok, sig_buyer added
+04:57:23 [acp] checkout ships unit u-6b66300e547b, claim A, certificate attached
+04:57:23 [acp] paid 9964 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2252938: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 47.7 h of shelf life left
+04:57:31 [seller] [seller] 401890c9 rejected: Sorry, we have none of that in stock right now.
+04:57:34 [buyer] {"buy": []}
+04:57:41 [seller] [seller] 5af6d994 rejected: Sorry, we have none of that in stock right now.
+04:57:46 [buyer] {"stars": 5, "review": "Honest grade A, receipt matched, and strong value (paid 66.8% of list for a reliable seller)."}
+04:57:46 [market] ledger #2253019: G0b0ca441 at 9964, stars 5, verified True, review accepted
+04:57:46 [order o-8db9fb6ccecd] 비스켓/쿠키, budget 20860, round 3, use within 360.0 h
+04:57:46 [kit] 47 shops in .market\shops.json, running market_buyer
+04:57:49 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "999c2eff-8f76-42f5-9cb6-84aaececb45e", "item": "Gdff8fabb", "sig_seller": "yysQA8Sp5Py/22q0DG2bxTVgexBwOeFI4gniUnhDbg+xwoFfSjFBwoUG+9xOYzadcoB2c4iANEZLzUcDpO1KBw==", "shop": "ddolcom", "claim": "B", "unit": "u-413c55200419", "price": 5971}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+04:57:49 [sign] sig_seller ok, sig_buyer added
+04:57:50 [acp] checkout ships unit u-413c55200419, claim B, certificate attached
+04:57:51 [acp] paid 5971 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2253042: 임페리얼 골드셀렉션 초콜릿 쿠키 454g, grade B, 385.3 h of shelf life left
+04:58:06 [buyer] {"stars": 4, "review": "Grade B chocolate cookies as claimed, from a reliable shop with a consistent record of fair and honest dealing."}
+04:58:06 [seller] [seller] f5d43371 input_required: [건조기가능/무배]먼지없는 사계절 차렵이불세트(SS/Q) 균일가 이불세트 침구세트: 31122 KRW, a premium unit with the market's certificate, its true grade a
+04:58:06 [seller] [seller] f5d43371 input_required: For this guaranteed unit I can do 30723 KRW.
+04:58:06 [seller] [seller] f5d43371 input_required: For this guaranteed unit I can do 30324 KRW.
+04:58:06 [seller] [seller] f5d43371 input_required: For this guaranteed unit I can do 30324 KRW.
+04:58:06 [seller] [seller] f5d43371 completed: Deal at 30324 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+04:58:07 [market] ledger #2253098: Gdff8fabb at 5971, stars 4, verified True, review accepted
+04:58:07 [order o-d5bd4839c07b] 디저트, budget 14590, round 3, use within 12.0 h
+04:58:07 [kit] 47 shops in .market\shops.json, running market_buyer
+04:58:07 [acp] settled [건조기가능/무배]먼지없는 사계절 차렵이불세트(SS/Q) 균일가 이불세트 침구세트 at 30324, ledger #2253103, unit u-de033002237a grade A
+04:58:13 [seller] [seller] 93dd59a9 rejected: Sorry, we have none of that in stock right now.
+04:58:28 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+04:58:29 [market] ledger #2253182: no deal, stars None, verified False, review not shown
+04:58:29 [order o-5c8b49e64f60] 스캐너/프린터/PC소품, budget 1332850, round 3
+04:58:29 [kit] 47 shops in .market\shops.json, running market_buyer
+04:58:29 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:58:29 [market] ledger #2253187: no deal, stars None, verified False, review not shown
+04:58:39 [buyer] {"buy": []}
+04:58:46 [seller] [seller] 64023f16 rejected: Sorry, we have none of that in stock right now.
+04:58:49 [order o-fb3371bd489e] 신선야채(부패주의), budget 10710, round 3, use within 12.0 h
+04:58:49 [kit] 47 shops in .market\shops.json, running market_buyer
+04:58:56 [seller] [seller] 4907a2a5 input_required: 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS: 206739 KRW, a premium unit with the market's certificate, its true grade and o
+04:58:56 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": null, "stars": null, "review": null}
+04:58:56 [market] ledger #2253280: no deal, stars None, verified False, review not shown
+04:59:10 [order o-4745413dd3ed] 신선야채(부패주의), budget 33210, round 3, use within 12.0 h
+04:59:10 [kit] 47 shops in .market\shops.json, running market_buyer
+04:59:10 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+04:59:11 [market] ledger #2253331: no deal, stars None, verified False, review not shown
+04:59:30 [order o-b9a6e0f8737c] 디저트, budget 15980, round 3, use within 24.0 h
+04:59:30 [kit] 47 shops in .market\shops.json, running market_buyer
+04:59:33 [seller] [seller] a1e333ac rejected: Sorry, we have none of that in stock right now.
+04:59:43 [buyer] {"buy": []}
+04:59:50 [seller] [seller] cf61115d input_required: [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드: 31122 KRW, a premium unit with the market's certificate, its true grade and o
+04:59:51 [seller] [seller] fd6c154b input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+04:59:53 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+04:59:53 [market] ledger #2253488: no deal, stars None, verified False, review not shown
+04:59:53 [order o-b2529ec52603] 가공/조리 육류, budget 16690, round 3, use within 360.0 h
+04:59:53 [kit] 47 shops in .market\shops.json, running market_buyer
+04:59:56 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 11211, "item": "G2560a8c9", "cert": true, "shop": "kimauve", "unit": "u-bfbe534e02df", "warranty_hours": 0.0, "task": "4a25d265-9b5e-4a87-ad6f-d7291e1d093d", "sig_seller": "hmLVKWOidU6n/jmYA9MKfPS/cj4H+ab/9risXcfmenANcw6mnq2Rmn2ZfxscWXv5hJ9l6vyMs3OInbwlCSzXCw=="}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+04:59:56 [sign] sig_seller ok, sig_buyer added
+04:59:56 [acp] not paying: 331.92 h of shelf life left, the policy asks for 360.0
+04:59:56 [market] ledger #2253508: G2560a8c9 at 11211, stars None, verified False (failed: settled), review not shown
+05:00:03 [seller] [seller] 5b54b825 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+05:00:14 [order o-fcf5de9f78ce] 신선육류, budget 89140, round 3, use within 12.0 h
+05:00:14 [kit] 47 shops in .market\shops.json, running market_buyer
+05:00:14 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+05:00:14 [market] ledger #2253607: no deal, stars None, verified False, review not shown
+05:00:34 [order o-3e02d5da64b7] 신선야채(부패주의), budget 30500, round 3, use within 36.0 h
+05:00:34 [kit] 47 shops in .market\shops.json, running market_buyer
+05:00:37 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "24093eb4-45a2-46a2-b0df-9298d0fdb12a", "item": "G0b0ca441", "sig_seller": "LuAzay0/LBGzg76FEpSDjVAtT2ALcg9EE31iwofq86OvEJGOCxUZWSXAzFypTL6V8wX6ZmbLHFTfPJt7HIptCg==", "shop": "ddolcom", "claim": "B", "unit": "u-a76a8224c2eb", "price": 9312}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+05:00:37 [sign] sig_seller ok, sig_buyer added
+05:00:38 [acp] not paying: 24.95 h of shelf life left, the policy asks for 36.0
+05:00:38 [market] ledger #2253755: G0b0ca441 at 9312, stars None, verified False (failed: settled), review not shown
+05:00:49 [buyer] {"buy": [{"sku": "G07ec17d5", "qty": 1}, {"sku": "Ge62449c9", "qty": 1}, {"sku": "G2cb8041b", "qty": 1}, {"sku": "G81ade83e", "qty": 1}, {"sku": "G80435d53", "qty": 1}, {"sku": "G054ff120", "qty": 1}]}
+05:00:49 [supply] 1 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 173191, balance 2116801
+05:00:54 [order o-c561bb09a819] 신선육류, budget 20470, round 3, use within 12.0 h
+05:00:54 [kit] 46 shops in .market\shops.json, running market_buyer
+05:00:59 [supply] 1 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 48946, balance 2067855
+05:01:03 [seller] [seller] 44e4a8e2 rejected: Sorry, we have none of that in stock right now.
+05:01:04 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "b82570ea-db7a-44d2-bdcb-d7bfc4778f4f", "item": "G0a1e986d", "sig_seller": "D/1oIDNIlQhg072ixUFna8/Rrd/r6stXp4GbTxOSbzA2JcgzrADGiGiYv8CYb9yvNVvsUYTyFSNIgedo4LsFBA==", "shop": "YAHO1212", "claim": "A", "unit": "u-907efe698f8e", "price": 8862}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+05:01:04 [sign] sig_seller ok, sig_buyer added
+05:01:04 [seller] [seller] cd4d0e11 input_required: 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS: 206739 KRW, a premium unit with the market's certificate, its true grade and o
+05:01:05 [acp] checkout ships unit u-907efe698f8e, claim A, certificate attached
+05:01:05 [acp] paid 8862 through https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com/acp, settled at ledger #2253909: [도드람한돈] 칼집 삼겹살 구이용 500g, grade A, 19.7 h of shelf life left
+05:01:09 [seller] [seller] cd4d0e11 input_required: For this guaranteed unit I can do 204089 KRW.
+05:01:10 [supply] 1 x 클라우드백 컴퓨터 사무용 사무실 중역 편한 공부 메쉬 학생 책상 의자 T800MQ for 173497, balance 1894358
+05:01:13 [seller] [seller] cd4d0e11 input_required: For this guaranteed unit I can do 201439 KRW.
+05:01:16 [seller] [seller] cd4d0e11 input_required: For this guaranteed unit I can do 201438 KRW.
+05:01:19 [seller] [seller] cd4d0e11 input_required: For this guaranteed unit I can do 201438 KRW.
+05:01:20 [supply] 1 x 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지 for 18952, balance 1875406
+05:01:31 [supply] 1 x 2026년 햅쌀 임금님표 이천쌀 4kg 상등급 소포장쌀 단일품종 for 13475, balance 1861931
+05:01:34 [buyer] {"stars": 5, "review": "Reliable seller, grade A confirmed, strong value at 59% of list price."}
+05:01:34 [market] ledger #2254077: G0a1e986d at 8862, stars 5, verified True, review accepted
+05:01:34 [order o-98311d38f67d] 신선야채(부패주의), budget 20610, round 3, use within 5.0 h
+05:01:35 [kit] 46 shops in .market\shops.json, running market_buyer
+05:01:37 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "4f1fdf4f-0e37-42d3-8cc1-a7ba7ae00244", "item": "G0b0ca441", "sig_seller": "ZF+FfcOFFVNPBLPZ9h+BJK8eJ8rflW9rYGmsn36sUTY5hLDU90Qp85Ohfbq5LA4AZYJkteqU1LX4Sujf4p2nCA==", "shop": "ddolcom", "claim": "B", "unit": "u-a76a8224c2eb", "price": 9312}, "stars": null, "review": null}
+05:01:37 [sign] sig_seller ok, sig_buyer added
+05:01:38 [acp] checkout ships unit u-a76a8224c2eb, claim B, certificate attached
+05:01:39 [acp] paid 9312 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2254109: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 24.9 h of shelf life left
+05:01:41 [supply] 1 x 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 for 4668, balance 1857263
+05:01:52 [forum] post as shop: 200
+05:01:53 [buyer] {"buy": []}
+05:02:03 [forum] post as buyer: 200
+05:02:11 [buyer] {"stars": 4, "review": "ddolcom delivered the grade B potatoes as promised with fair pricing, showing consistent reliability we value as a partner."}
+05:02:12 [market] ledger #2254308: G0b0ca441 at 9312, stars 4, verified True, review accepted
+05:02:12 [order o-fa6a70359887] 비스켓/쿠키, budget 1050, round 3, use within 180.0 h
+05:02:12 [kit] 46 shops in .market\shops.json, running market_buyer
+05:02:13 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+05:02:13 [market] ledger #2254313: no deal, stars None, verified False, review not shown
+05:02:32 [seller] [seller] 801f45ff input_required: 택배발송ㅣ휴도 아늑한 제주 35cm 허리 라텍스 싱글 포켓 매트리스 SS: 206739 KRW, a premium unit with the market's certificate, its true grade and o
+05:02:33 [order o-f6d440cbdbf6] 신선야채(부패주의), budget 40460, round 3, use within 24.0 h
+05:02:33 [kit] 47 shops in .market\shops.json, running market_buyer
+05:02:34 [seller] [seller] 801f45ff input_required: For this guaranteed unit I can do 204089 KRW.
+05:02:34 [seller] [seller] 801f45ff input_required: For this guaranteed unit I can do 201439 KRW.
+05:02:34 [seller] [seller] 801f45ff input_required: For this guaranteed unit I can do 201438 KRW.
+05:02:34 [seller] [seller] 801f45ff input_required: For this guaranteed unit I can do 201438 KRW.
+05:02:35 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 9050, "item": "G0b0ca441", "cert": true, "shop": "kimauve", "unit": "u-fc9b3a5a47bc", "warranty_hours": 0.0, "task": "0eda2cea-632b-4d59-a612-e32e31298ec0", "sig_seller": "fCSvXuStyEffarKWbCD7H2jKbjZV820dnPDoFp/kKbap8wf3IZHehsGlSJf2D65ZS2Oa1RUXYP8+zaSc8ugBCg=="}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+05:02:35 [sign] sig_seller ok, sig_buyer added
+05:02:35 [acp] checkout ships unit u-fc9b3a5a47bc, certificate attached
+05:02:36 [acp] paid 9050 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2254435: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 31.2 h of shelf life left
+05:02:58 [buyer] {"buy": []}
+05:03:23 [buyer] {"stars": 4, "review": "Reliable, fairly-priced product from a shop with perfect fairness record and high market standing."}
+05:03:23 [market] ledger #2254671: G0b0ca441 at 9050, stars 4, verified True, review accepted
+05:03:24 [order o-e91909b6c04f] 신선육류, budget 61980, round 3, use within 6.0 h
+05:03:24 [kit] 47 shops in .market\shops.json, running market_buyer
+05:03:30 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+05:03:30 [market] ledger #2254697: no deal, stars None, verified False, review not shown
+05:03:44 [order o-ea37605f2224] 신선육류, budget 27300, round 3, use within 18.0 h
+05:03:44 [kit] 47 shops in .market\shops.json, running market_buyer
+05:03:46 [seller] [seller] 03723d94 input_required: [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드: 31122 KRW, a premium unit with the market's certificate, its true grade and o
+05:03:53 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "aca160a8-539a-41f9-9e18-97c7b974feff", "item": "G3ac3f712", "sig_seller": "RoeKxgZ9zGfMXcqMOIOC118vReusrbygteVu2YFjuoL9OcEaHxzlsCLJ13AMGST08fDTeaDRa6lbEVyFvpRSBA==", "shop": "YAHO1212", "claim": "C", "unit": "u-2ec10fc85c8a", "price": 11552}, "stars": null, "review": null, "accept": {"min_hours_left": 18.0}}
+05:03:53 [sign] sig_seller ok, sig_buyer added
+05:03:54 [acp] not paying: 5.97 h of shelf life left, the policy asks for 18.0
+05:03:54 [market] ledger #2254786: G3ac3f712 at 11552, stars None, verified False (failed: settled), review not shown
+05:04:03 [buyer] {"buy": []}
+05:04:04 [order o-1b5ff0b559ca] 김치, budget 16690, round 3, use within 42.0 h
+05:04:04 [kit] 47 shops in .market\shops.json, running market_buyer
+05:04:17 [buyer] {"shop": "https://grove-enemies-boundary-reducing.trycloudflare.com", "receipt": {"claim": "B", "price": 9200, "unit": "u-0709f17ad627", "shop": "Harness Furniture Shop", "sig_seller": "TLbMzP7Fuc0HhQGhH7sUs4s+teGwuYop7pejBa8R3f4g5QvvO2S6WtXZa3R98ZDzAYt6Kkx5vepaMqgCAw96Aw==", "task": "e3d2bf2a-c669-4b15-9849-009f80fef35d", "item": "G66ded25b"}, "stars": null, "review": null}
+05:04:17 [sign] sig_seller ok, sig_buyer added
+05:04:17 [acp] checkout ships unit u-0709f17ad627, claim B, certificate attached
+05:04:18 [acp] paid 9200 through https://grove-enemies-boundary-reducing.trycloudflare.com/acp, settled at ledger #2254895: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg, grade B, 99.4 h of shelf life left
+05:04:19 [seller] [seller] 13e1fe48 rejected: Sorry, we have none of that in stock right now.
+05:04:44 [buyer] {"stars": 4, "review": "Merchant accurately reported grade B and provided excellent value with substantial surplus."}
+05:04:44 [market] ledger #2255022: G66ded25b at 9200, stars 4, verified True, review accepted
+05:04:44 [order o-274172ef4d41] 신선야채(부패주의), budget 16690, round 3, use within 24.0 h
+05:04:45 [kit] 47 shops in .market\shops.json, running market_buyer
+05:04:46 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "69220c00-7ca5-4e35-96fb-28cc56e69191", "price": 8661, "shop": "lee-sungsoo", "sig_seller": "KE2AYn9emCQicUO0fifLf1Cr6Wu0M036FAN//ZVQeigPVnngftS0QuOJuzFWY4FSbIEjM7KBG/2vcdXrZN8ABQ==", "item": "G0b0ca441", "unit": "u-9d046cab6ce8"}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+05:04:46 [sign] sig_seller ok, sig_buyer added
+05:04:47 [acp] checkout ships unit u-9d046cab6ce8, claim B, certificate attached
+05:04:47 [acp] paid 8661 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2255029: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 34.7 h of shelf life left
+05:04:53 [seller] [seller] 810502ab rejected: Sorry, we have none of that in stock right now.
+05:04:56 [seller] [seller] 3e070505 rejected: Sorry, we have none of that in stock right now.
+05:05:08 [buyer] {"buy": []}
+05:05:16 [buyer] {"stars": 4, "review": "Fair-priced B-grade potatoes delivered as promised from a consistently reliable seller."}
+05:05:17 [market] ledger #2255145: G0b0ca441 at 8661, stars 4, verified True, review accepted
+05:05:17 [order o-931bfc1d8b64] 계란, budget 22880, round 3, use within 9.5 h
+05:05:17 [kit] 47 shops in .market\shops.json, running market_buyer
+05:05:22 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "1c636232-89f7-4d47-8115-52344264436c", "item": "G76ba0184", "sig_seller": "5+PUI5+eHV9TAmX2s2eqGnC/+H0ET+a+W6GPhAfdhkrAuKfP5Kkkb0Jvo3Egpy0GDr87YhJXtY1UDfUTM/fAAw==", "shop": "ddolcom", "claim": "A", "unit": "u-ae42e25505ea", "price": 13032}, "stars": null, "review": null}
+05:05:22 [sign] sig_seller ok, sig_buyer added
+05:05:23 [acp] checkout ships unit u-ae42e25505ea, claim A, certificate attached
+05:05:23 [acp] paid 13032 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2255183: 한계란 무항생제 동물복지 유정란 난각번호 2번 계란 40구, grade A, 93.1 h of shelf life left
+05:05:43 [seller] [seller] a31577f2 rejected: Sorry, we have none of that in stock right now.
+05:05:46 [seller] [seller] e0d130a5 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 6162 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+05:05:48 [seller] [seller] 6124dd56 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 217620 KRW, a premium unit with the market's certificate, its true grade and our f
+05:05:48 [buyer] {"stars": 5, "review": "Grade A eggs at fair value from a consistently honest seller."}
+05:05:49 [market] ledger #2255286: G76ba0184 at 13032, stars 5, verified True, review accepted
+05:05:49 [order o-7093b4dddfab] 신선야채(부패주의), budget 57640, round 3, use within 12.0 h
+05:05:49 [seller] [seller] e0d130a5 input_required: For this guaranteed unit I can do 6083 KRW.
+05:05:49 [kit] 47 shops in .market\shops.json, running market_buyer
+05:05:50 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+05:05:50 [market] ledger #2255289: no deal, stars None, verified False, review not shown
+05:05:53 [seller] [seller] e414ff59 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 68562 KRW, a premium unit with the market's certificate, its true grade and our f
+05:05:53 [seller] [seller] e0d130a5 input_required: For this guaranteed unit I can do 6004 KRW.
+05:05:56 [seller] [seller] e0d130a5 input_required: For this guaranteed unit I can do 6004 KRW.
+05:05:58 [seller] [seller] 9d16c836 rejected: Sorry, we have none of that in stock right now.
+05:06:00 [seller] [seller] e0d130a5 input_required: For this guaranteed unit I can do 6004 KRW.
+05:06:04 [seller] [seller] e0d130a5 completed: Deal at 6004 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks with
+05:06:09 [acp] settled 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 6004, ledger #2255368, unit u-9afa197f7c74 grade A
+05:06:10 [order o-d955d2f194df] 신선야채(부패주의), budget 9810, round 3, use within 12.0 h
+05:06:10 [kit] 47 shops in .market\shops.json, running market_buyer
+05:06:12 [buyer] {"buy": []}
+05:06:16 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": null, "stars": null, "review": null}
+05:06:17 [market] ledger #2255394: no deal, stars None, verified False, review not shown
+05:06:30 [order o-b86f0c369426] 신선육류, budget 20470, round 3, use within 2.5 h
+05:06:30 [kit] 47 shops in .market\shops.json, running market_buyer
+05:06:39 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "59962c38-96e1-444c-9c25-c52a7da5a1eb", "item": "G3ac3f712", "sig_seller": "CIQK7o+vYtOLlOxpa7f/rvKoCMbdjGgdnyhAe3i6dD73EyCygvLv5DH2HHrqE+TeN0uWEFpDwDMsbN67gfhHCw==", "shop": "YAHO1212", "claim": "B", "unit": "u-f741b53ffaa3", "price": 11552}, "stars": null, "review": null}
+05:06:39 [sign] sig_seller ok, sig_buyer added
+05:06:40 [acp] checkout ships unit u-f741b53ffaa3, claim B, certificate attached
+05:06:40 [acp] paid 11552 through https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com/acp, settled at ledger #2255491: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade B, 14.7 h of shelf life left
+05:06:44 [seller] [seller] d943ae60 rejected: Sorry, we have none of that in stock right now.
+05:07:02 [seller] [seller] 68b4b53d rejected: Sorry, we have none of that in stock right now.
+05:07:05 [forum] post as shop: 200
+05:07:16 [forum] post as buyer: 200
+05:07:17 [buyer] {"buy": []}
