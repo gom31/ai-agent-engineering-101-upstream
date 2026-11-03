@@ -7,7 +7,6 @@ as a confirmed customer gets "no first-visit discount". Hidden demand: buyer fav
 import os
 import shutil
 import sys
-import time
 import unittest
 from pathlib import Path
 
@@ -22,7 +21,7 @@ from core import atomic, paths  # noqa: E402
 from outer import collect  # noqa: E402
 from tests.test_calc_check import NOW, STRATEGY, UNITS, Base  # noqa: E402
 
-V4 = dict(STRATEGY, welcome_food={"restock_at": ["09:00", "17:00"], "sell_hours": 8, "share_of_cost": 0.6},
+V4 = dict(STRATEGY, welcome_food={"each_supply_window": True, "share_of_cost": 0.6},
           limits=dict(STRATEGY["limits"], below_cost={
               "allowed": True, "only_in_phase": "exposure", "max_loss_share_of_cost": 0.4,
               "first_deal_only": True, "kinds": ["food"], "max_list_price": 30000, "grades": ["A"]}))
@@ -74,12 +73,15 @@ class WelcomeFoodTest(Base):
         finally:
             os.environ.pop("MARKET_DIR", None)
 
-    def test_batch_time(self):
-        lt = time.localtime(NOW)
-        nine = time.mktime((lt.tm_year, lt.tm_mon, lt.tm_mday, 9, 0, 0, 0, 0, -1))
-        self.assertTrue(restock.welcome_slot(V4, nine + 600).endswith("09:00"))
-        self.assertIsNone(restock.welcome_slot(V4, nine + 3600))
-        self.assertIsNone(restock.welcome_slot(STRATEGY, nine + 600))
+    def test_supply_window(self):
+        self.assertEqual(restock.window({}, NOW), (None, None))                              # no window info
+        self.assertEqual(restock.window({"restock": {"open": True, "closes_at": NOW + 120}}, NOW)[0], "open")
+        self.assertEqual(restock.window({"restock": {"open": False, "opens_at": NOW + 60}}, NOW)[0], "soon")
+        self.assertEqual(restock.window({"restock": {"open": False, "opens_at": NOW + 900}}, NOW)[0], "closed")
+        # just before it opens and while it is open is the same window
+        soon = restock.window({"restock": {"open": False, "opens_at": NOW + 60}}, NOW)[1]
+        open_ = restock.window({"restock": {"open": True, "closes_at": NOW + 60 + 180}}, NOW + 60)[1]
+        self.assertLessEqual(abs(soon - open_), 1)
 
     def test_hidden_demand(self):
         cat = {"G1": {"category": "식품>김치"}, "G2": {"category": "식품>음료"}}

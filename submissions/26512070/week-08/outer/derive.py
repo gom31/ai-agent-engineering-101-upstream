@@ -77,7 +77,8 @@ def inventory(state, w, inv, now):
     # storage, an estimate: goods in stock pay 1% of cost a day
     last = state.get("storage_ts") or now
     goods = sum(u.get("cost") or 0 for u in cur.values() if u.get("kind") == "goods" and u.get("grade") != "expired")
-    state["storage_due"] = state.get("storage_due", 0.0) + goods * STORAGE_PER_DAY * max(0, now - last) / 86400
+    per_day = inv.get("storage_per_day") if isinstance(inv.get("storage_per_day"), (int, float)) else STORAGE_PER_DAY
+    state["storage_due"] = state.get("storage_due", 0.0) + goods * per_day * max(0, now - last) / 86400
     state["storage_ts"] = now
     if now - state.get("storage_emitted", 0) >= STORAGE_EMIT and state["storage_due"] >= 1:
         w.emit("loss.storage", {"amount": round(state["storage_due"]), "estimated": True, "goods_cost": goods})

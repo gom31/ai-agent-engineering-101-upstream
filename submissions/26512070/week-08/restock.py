@@ -1,9 +1,11 @@
 """Our restock, the kit's hook (Round 3): "restock": {"cmd": "py restock.py --state {state}"}.
 
-The kit runs this every 60 s and reads the last JSON line {"buy": [{"sku", "qty"}, ...]}. The model is asked
-only when something changed (stock, units about to expire, our recent sales, the balance band, the strategy)
-or REASK_MINUTES passed; otherwise it buys nothing without a model call. The model looks things up and
-ends with act.buy, which runs check.buy (cash floor, stock cap, units per SKU, food share).
+The kit runs this every 60 s and reads the last JSON line {"buy": [{"sku", "qty"}, ...]}. Supply opens once every
+20 minutes for 3 minutes (agent.md, 11/3; inventory.json "restock": open, opens_at, closes_at), and stock bought in
+a window has to last until the next one. So the model is asked once per window: when the window is open or opens
+within LEAD seconds (the kit waits up to 90 s per line for it). At other times nothing is bought and no model is
+called. Without window information (an older market) it falls back to asking when something changed. The model
+looks things up and ends with act.buy, which runs check.buy (cash floor, stock cap, units per SKU, food share).
 
 Bankruptcy (HARNESS.md 6, user 2026-11-03): with a restock hook the kit files only when the hook asks, so
 this files ("bankrupt": true) when the shop is stuck: below the kit's bankrupt line, filings left, and no
@@ -26,7 +28,8 @@ from tools import market_files as mf  # noqa: E402
 from tools.registry import Ctx, call  # noqa: E402
 
 REASK_MINUTES = 20
-BATCH_MINUTES = 30         # a Welcome Food batch time asks the model once within this window
+LEAD = 75                  # plan this many seconds before a window opens at the latest (a model turn takes ~40 s)
+WINDOW_MINUTES = 3
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
 
 
@@ -36,27 +39,25 @@ def stuck(inv):
             and not live)
 
 
-def welcome_slot(strategy, now):
-    """The Welcome Food batch time we are in (its first BATCH_MINUTES), e.g. '2026-11-05 09:00', or None."""
-    wf = strategy.get("welcome_food") or {}
-    for t in wf.get("restock_at") or []:
-        try:
-            hh, mm = (int(x) for x in t.split(":"))
-        except ValueError:
-            continue
-        lt = time.localtime(now)
-        start = time.mktime((lt.tm_year, lt.tm_mon, lt.tm_mday, hh, mm, 0, 0, 0, -1))
-        if 0 <= now - start < BATCH_MINUTES * 60:
-            return time.strftime("%Y-%m-%d ", lt) + t
-    return None
+def window(inv_raw, now):
+    """(state, minute the window opens) from inventory.json's restock: ('open'|'soon'|'closed'|None, minute|None)."""
+    r = inv_raw.get("restock") if isinstance(inv_raw.get("restock"), dict) else None
+    if not r:
+        return None, None
+    if r.get("open"):
+        start = (r.get("closes_at") or now) - WINDOW_MINUTES * 60
+        return "open", int(start // 60)
+    opens = r.get("opens_at")
+    if opens and 0 <= opens - now <= LEAD:
+        return "soon", int(opens // 60)
+    return "closed", int(opens // 60) if opens else None
 
 
 def signature(ctx):
     inv = call(ctx, "me.inventory", {})["result"]
     sold = call(ctx, "market.selling", {"hours": 2})["result"]["our_deals"]
     return {"units": inv["units"], "expiring": len(inv["expiring_12h"]), "sold_2h": sold,
-            "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version"),
-            "welcome": welcome_slot(ctx.strategy, time.time())}, inv
+            "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version")}, inv
 
 
 def situation(ctx, inv):
@@ -82,13 +83,16 @@ def situation(ctx, inv):
              "SKUs in the catalog):"]
     for d in mf.read(ctx, "demand.json", default=[]) or []:
         lines.append(f"- {d.get('item')} ({d.get('kind')}, {d.get('median_price')}, {d.get('skus')})")
-    slot = welcome_slot(ctx.strategy, time.time())
+    r = mf.inventory(ctx).get("restock") or {}
+    if r:
+        nxt = r.get("opens_at")
+        lines.append(f"\nSupply window: {'open until ' + time.strftime('%H:%M:%S', time.localtime(r['closes_at'])) if r.get('open') and r.get('closes_at') else 'opens ' + (time.strftime('%H:%M:%S', time.localtime(nxt)) if nxt else 'soon')}. "
+                     "Supply opens about every 20 minutes for 3; what you buy now has to last until the next window.")
     wf, bc = ctx.strategy.get("welcome_food") or {}, lim.get("below_cost") or {}
-    if slot:
-        lines.append(f"\nWelcome Food batch time ({slot}): buy food for first-time buyers (list price up to "
-                     f"{bc.get('max_list_price')}, sold only at grade {bc.get('grades')} now), sized to sell within "
-                     f"{wf.get('sell_hours')} h. What arrives at which grade is the market's; market.buyer_prefs "
-                     "shows which food categories buyers want.")
+    if wf:
+        lines.append(f"Welcome Food (strategy): each window brings food for first-time buyers (list price up to "
+                     f"{bc.get('max_list_price')}, discounted only while grade {bc.get('grades')} now). What arrives at "
+                     "which grade is the market's draw; market.buyer_prefs shows which food categories buyers want.")
     lines.append("\nFind SKUs with market.sku (a category word or a name), then act.buy a plan (or an empty plan).")
     return "\n".join(lines)
 
@@ -117,14 +121,23 @@ def main():
         sig, inv = signature(ctx)
         state_path = paths.memory() / "facts" / "restock_state.json"
         last = atomic.read_json(state_path, default=None) or {}
-        if last.get("sig") == sig and t0 - last.get("ts", 0) < REASK_MINUTES * 60:
+        win, minute = window(inv_raw, t0)
+        if win is not None:                              # the market's supply windows decide when
+            done = last.get("window") is not None and minute is not None and abs(minute - last["window"]) <= 2
+            if win == "closed" or done:
+                w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False,
+                                        "window": win, "window_done": done})
+                print(json.dumps({"buy": []}))
+                return
+            sig["window"] = minute
+        elif last.get("sig") == sig and t0 - last.get("ts", 0) < REASK_MINUTES * 60:
             w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False})
             print(json.dumps({"buy": []}))
             return
         d, trace = loop.decide("restock", ctx, situation(ctx, inv), deadline=t0 + DEADLINE)
         plan = d["plan"] if d else []
         if d is not None:                               # a failed turn is tried again next time
-            atomic.write_json(state_path, {"sig": sig, "ts": t0})
+            atomic.write_json(state_path, {"sig": sig, "ts": t0, "window": minute})
         refused = next((t["observation"][:200] for t in trace if "refused" in str(t["observation"])), None)
         w.emit("restock.plan", {"lines": len(plan), "plan": plan, "refused": refused, "used_model": True,
                                 "why": (d or {}).get("why") or (d or {}).get("thought"),

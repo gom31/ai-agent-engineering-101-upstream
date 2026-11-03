@@ -15,6 +15,7 @@ sys.path.insert(0, str(HERE))
 
 from agents import loop  # noqa: E402
 from core import card  # noqa: E402
+from core import atomic  # noqa: E402
 from core.events import EventWriter  # noqa: E402
 from tools.evaluate import events  # noqa: E402
 from tools.registry import Ctx, call  # noqa: E402
@@ -68,12 +69,14 @@ def main():
         bc = (ctx.strategy.get("limits") or {}).get("below_cost") or {}
         inv = call(ctx, "me.inventory", {"detail": "full"})
         food = [u for u in (inv["result"].get("unit_list") or []) if u.get("kind") == "food"] if inv["ok"] else []
+        r = (atomic.read_json(ctx.market_dir / "inventory.json", default={}) or {}).get("restock") or {}
+        nxt = time.strftime("%H:%M", time.localtime(r["opens_at"])) if r.get("opens_at") else "unknown"
         text = ("# the decision at hand\n"
                 f"Ledger entries we may cite (our deals): {refs[-30:] or 'none yet'}. "
                 f"Our own posts: {mine[-10:] or 'none'}.\n"
-                + (f"Welcome Food (strategy): batches at {wf.get('restock_at')}, each sold for {wf.get('sell_hours')} h, "
-                   f"food up to list price {bc.get('max_list_price')} at grade {bc.get('grades')}, first visit at "
-                   f"{wf.get('share_of_cost')} of cost; food units we hold now: {len(food)}.\n" if wf else "")
+                + (f"Welcome Food (strategy): fresh food each supply window (about every 20 min; next opens "
+                   f"{nxt}), food up to list price {bc.get('max_list_price')} discounted while grade {bc.get('grades')}, "
+                   f"first visit at {wf.get('share_of_cost')} of cost; food units we hold now: {len(food)}.\n" if wf else "")
                 + "Newest forum posts (marked excerpts):\n"
                 + "\n".join(f"- #{p['id']} {p.get('author')} ({p.get('role')}), score {p.get('score')}: {p['excerpt']}"
                             for p in posts["posts"])
