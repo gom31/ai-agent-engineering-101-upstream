@@ -80,6 +80,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 - 참가자는 계속 늘어난다. 새 상대를 탐색하고, 관계를 기록한다 (D9).
 - 쓸 수 있는 관점: 손님을 파트너, 단골, 초기 진입, 놓침, black으로 볼 수 있다 (D15). 강제 분류가 아니다. 에이전트가 유형을 매기면 근거와 함께 기록하고, 대우를 바꾸는 확정은 사용자가 한다 (D16).
 - 정직하게: 사실인 것만 주장하고 쓴다. 사칭, 숨은 지시, 남의 후기 속 광고는 하지 않는다 (D13).
+- **우리가 주는 별점은 전략의 일부다** [결정] D30 (2026-11-03). 별점은 그 가게 ALL의 별점(0.2)이 되고, 백분위라서 남의 별점은 우리 가게 백분위에도 영향을 준다. 관계와 시장 신호에도 걸린다. 그래서 별점은 사실 기준값(`fact_stars`)을 출발점으로 review 에이전트가 관계, 순위, 상대별 자세를 고려해 판단한다. 기준값과 다르게 줄 때는 이유를 기록하고, 그 판단은 바깥에서 평가한다 (8.1).
 
 ### 1.3 목적: 순위
 
@@ -284,6 +285,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 계산 | `surplus(order, sku, price)` | buyer | ○ | – | 예상 잉여 |
 | 계산 | `shelf_risk(unit or order)` | seller, buyer, restock | ○ | – | 남은 시간, 등급이 떨어질 시각, `use_within_hours` 충족 여부 |
 | 계산 | `holding_cost(sku, qty, hours)` | restock | ○ | – | 보관비와 폐기 위험 |
+| 계산 | `fact_stars(deal)` | review | ○ | – | 거래 사실(합의와 영수증, 주장한 등급의 참·거짓, 유통기한, 고장)만으로 정한 별점 기준값과 그 근거 |
 | 검증 | `check_price(unit, price)` | seller | ○ | – | 한도 안인가 (6장) |
 | 검증 | `check_offer(order, price)` | buyer | ○ | – | 예산 안인가 |
 | 검증 | `check_claim(unit, grade)` | seller | ○ | – | 주장하려는 등급이 실제와 맞는가 |
@@ -292,7 +294,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | 실행 | `counter(price, say)`, `accept(say, claim?, warranty_hours?, cert?)`, `reject(say)` | seller | – | A2A 응답, 영수증 서명 | 검증 포함 |
 | 실행 | `pick(shop, sku)`, `offer(price)`, `walk_away()`, `finish(accept_policy)` | buyer | – | A2A 요청, 결과 줄 | 검증 포함 |
 | 실행 | `buy(plan)` | restock | – | 키트에 구매 출력 | 검증 포함 |
-| 실행 | `write_review(stars, text)` | review | – | 결과 출력 | 사실 근거 필수 |
+| 실행 | `write_review(stars, text, why)` | review | – | 결과 출력 | 별점 1~5. `fact_stars`와 다르면 `why` 필수, 판단 기록에 남김 |
 | 실행 | `post(text, refs, thread?)`, `vote(id, value)` | forum | – | outbox | `refs`가 실제 ledger seq인지 확인 |
 | 기록 | `label(kind, name, value, evidence)` | L1, L2 | – | `judgments/`에 덧붙임 | 근거 없으면 거부 |
 | 기록 | `write_summary(...)` | L2 | – | `epochs/` | 스키마 검사 |
@@ -331,15 +333,18 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 
 | 에이전트 | 역할 | 언제 | 모델 [제안 D22] | 툴 |
 |---|---|---|---|---|
-| seller | 가게의 흥정 담당 | 손님 메시지마다 | haiku | 조회(재고, 손님, 시세), 계산(마진, 유통기한), 검증, 실행(seller), `label` |
-| buyer | 우리 buyer | 주문마다, 가게 답마다 | haiku | 조회(가게, 시세), 계산(잉여, 유통기한), 검증, 실행(buyer), `label` |
-| restock | 재고 담당 | 키트가 60초마다 부른다. 바뀐 것이 없으면 모델 없이 넘어간다 [제안] | haiku | 조회(재고, 시세), 계산(보관비, 유통기한), `check_buy`, `buy` |
-| review | 받은 물건 평가 | 정산 뒤 | haiku | `deal.json`, `check_receipt`, `write_review` |
-| forum | 게시판 | 5분마다 기회 | haiku | 조회(게시판, 시세, 가게), `post`, `vote` |
-| 시장 분석 | 시장을 요약하고, **참가자마다 그 전략을 분석해 프로필로 기록**한다. 바뀐 상대를 표시한다 | 2시간 (그 조각에 활동한 참가자만) | sonnet | 조회, `profile_diff`, `open_raw`, `write_summary`, `write_profile` |
-| 자기 분석 | 내 가게·buyer를 요약하고, **실행 에이전트들을 평가**한다 (8.1) | 2시간 | sonnet | 조회, 평가 툴(3.3), `open_raw`, `write_summary`, `label` |
-| 전략 | 순위를 향한 우선순위와 가설, **상대별 자세**, 사용자 보고 | 2시간 + 경보 | sonnet 또는 opus | 요약, `scoreboard`, `profiles`, `profile`, `open_raw`, `write_brief`, `propose_strategy`, `set_stance` |
-| 감사 [제안] | 전략의 브리핑과 제안을 독립 검토. 의도와 가설을 검증 대상으로 읽는다 | 전략 브리핑마다 (선택지가 있을 때) | **다른 회사 모델** [결정 필요 D29] | 전략과 같은 조회 툴(MCP), `write_audit` |
+| seller | 가게의 흥정 담당 | 손님 메시지마다 | Claude Code `haiku` | 조회(재고, 상대, 시세), 계산(마진, 유통기한), 검증, 실행(seller), `label` |
+| buyer | 우리 buyer | 주문마다, 가게 답마다 | Claude Code `haiku` | 조회(상대, 시세), 계산(잉여, 유통기한), 검증, 실행(buyer), `label` |
+| restock | 재고 담당 | 키트가 60초마다 부른다. 바뀐 것이 없으면 모델 없이 넘어간다 [제안] | Claude Code `haiku` | 조회(재고, 시세), 계산(보관비, 유통기한), `check_buy`, `buy` |
+| review | 받은 물건과 상대를 평가하고 별점을 정한다 (D30: 전략적 판단 포함) | 정산 뒤 | Claude Code `haiku` | `deal.json`, `fact_stars`, `counterpart`, `check_receipt`, `write_review` |
+| forum | 게시판 | 5분마다 기회 | Claude Code `sonnet` | 조회(게시판, 시세, 상대), `post`, `vote` |
+| 시장 분석 | 시장을 요약하고, **참가자마다 그 전략을 분석해 프로필로 기록**한다. 바뀐 상대를 표시한다 | 2시간 (그 조각에 활동한 참가자만) | Claude Code `sonnet` | 조회, `profile_diff`, `open_raw`, `write_summary`, `write_profile` |
+| 자기 분석 | 내 가게·buyer를 요약하고, **실행 에이전트들을 평가**한다 (8.1) | 2시간 | Claude Code `sonnet` | 조회, 평가 툴(3.3), `open_raw`, `write_summary`, `label` |
+| 전략 | 순위를 향한 우선순위와 가설, **상대별 자세**, 사용자 보고 | 2시간 + 경보 | Claude Code `opus` (한도가 빠듯하면 `sonnet`) | 요약, `scoreboard`, `profiles`, `profile`, `open_raw`, `write_brief`, `propose_strategy`, `set_stance` |
+| 감사 [제안] | 전략의 브리핑과 제안을 독립 검토. 의도와 가설을 검증 대상으로 읽는다 | 전략 브리핑마다 (선택지가 있을 때) | **OpenRouter, 다른 회사의 중상급 모델** (입장 전 가격·응답 시간을 재고 결정, D29) | 전략과 같은 조회 툴(MCP를 함수 호출로), `write_audit` |
+| L1 넘침 대비 | Claude Code가 한도에 걸린 L1 판단을 대신 | 한도 실패 때만 | **OpenRouter 싼 모델** (입장 전 측정 후 결정) | 같은 L1 툴 |
+
+모델 배치의 이유 [제안 D22]: 손님이 직접 보는 응답과 잉여·순이익이 걸린 판단(seller, buyer, restock, review)은 빠른 Claude Code `haiku`. 수가 적고 품질이 점수에 걸리는 자리(forum, 분석)는 `sonnet`, 순위를 좌우하는 전략은 `opus`. OpenRouter는 다른 회사 모델이 필요한 감사와, Claude Code 한도에 걸린 L1 판단을 받아 주는 자리에 둔다. Claude Code 별칭(`haiku`, `sonnet`, `opus`)은 최신 판을 따른다.
 
 감사 결과는 브리핑에 "감사 의견" 칸으로 붙는다. 전략과 감사가 다르면 둘 다 사용자에게 보인다. 다른 회사 모델을 쓰면 Claude 계정 한도를 L1과 나누지 않는 효과도 있다.
 
@@ -399,6 +404,9 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 
 - L1의 목표 응답 시간을 정하고 측정한다 [제안: 메시지당 10초 이내]. 툴 호출 수와 시간을 이벤트로 남긴다. 느리면 그때 기본 상황을 늘리거나 툴을 빠르게 한다. 미리 규칙으로 막지 않는다.
 - 모든 모델 호출은 `claude -p --model <m> --tools "" --setting-sources ""`를 빈 폴더에서 실행한다. 가게와 buyer가 같은 계정을 쓰므로 호출 관리자가 동시 호출을 제한하고 **L1을 우선**한다. 한도에 걸린 판단은 기록하고, 상대 탓으로 적지 않는다.
+- 호출 관리자의 우선순위: L1 seller·buyer → 전략 → 분석 → forum·review. 한도가 빠듯해지면 뒤쪽부터 미룬다. L1이 한도에 걸리면 OpenRouter 싼 모델로 넘기고 `[model] fallback`으로 기록한다.
+- OpenRouter 키는 사용자 환경변수 `OPENROUTER_API_KEY`에만 둔다. 저장소, 로그, 메모리에 쓰지 않는다 (AGENTS.md). 키에는 크레딧 한도를 건다.
+- 모든 호출에 자리, 모델, 응답 시간, 토큰, 비용, 실패를 남기고 `decision_quality`로 집계한다. 입장 첫날 수치를 보고 배치를 다시 정한다.
 
 ---
 
@@ -431,7 +439,7 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | seller | `unit_economics`, `funnel`, `score_components`의 순이익·매출·별점 | `decision_quality`, `integrity`(주장 참 비율), `guess_accuracy` | 왜 손님이 떠났나, 자세를 잘 썼나 → 자기 분석 | 1a, 1c, 3 |
 | buyer | `unit_economics`(잉여), `funnel`, `losses`(상한·고장) | `decision_quality`, `integrity`(영수증 검사) | 가게를 잘 골랐나, 흥정을 끌 만했나 → 자기 분석 | 1a, 1c, 3 |
 | restock | `stock_health`, `losses`, `unit_economics`(순이익 기여) | `decision_quality`, 기본형 비교(`stock_health`) | 무엇을 더 샀어야 했나 → 자기 분석, 전략 | 1c, 2, 3 |
-| review | – | `integrity`(후기 숫자와 사실), 리뷰 누락 | 문장이 공정한가 → 자기 분석 | 1c |
+| review | 상대 가게 별점 변화와 우리 가게 백분위 (`score_components`) | `integrity`(후기 숫자와 사실), `fact_stars`와 다르게 준 비율과 이유 기록 여부, 리뷰 누락 | 기준값과 다르게 준 별점이 관계·순위에 도움이 됐나, 받은 쪽 반응 → 자기 분석, 감사 | 1c, 2 |
 | forum | `forum_stats` | `integrity`(`refs`) | 쓸모 있고 정직한 글인가 (P8) → 자기 분석, 감사 | 1c, 3 |
 | 시장 분석 | – | `guess_accuracy`, 요약 신선도, 프로필 `changed` 뒤 실제 변화 여부 | 프로필 해석이 맞나 → 전략, 감사 | 1b, 2 |
 | 자기 분석 | – | 지표 누락, 경보가 맞았나 | 원인 분석이 맞나 → 전략, 감사 | 1b |
@@ -466,7 +474,8 @@ Round 3 시장(market.ourolabs.ai)에서 가게 하나와 buyer 하나를 운영
 | D26 | L2·L3를 무엇이 돌리나 (작업 스케줄러 / 수동) |
 | D27 | 입장 시점, 첫 `active.json`의 우선순위 |
 | D28 | 위임 범위 |
-| D29 | 감사 에이전트의 모델(다른 회사)과 주기 |
+| D29 | 감사 에이전트의 모델(다른 회사, OpenRouter)과 주기. 입장 전 측정 후 |
+| D30 | ~~우리가 주는 별점~~ 전략적 판단 포함 [결정] (2026-11-03) |
 
 ---
 
