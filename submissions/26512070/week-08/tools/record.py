@@ -33,6 +33,9 @@ def _sit(ctx, key):
 
 
 def _need_evidence(findings):
+    if any(not isinstance(f, dict) for f in findings):      # 11/4 05:3x: a brief sent plain strings and crashed here
+        raise Refused("each finding is an object {claim, evidence: [...]}, not a string",
+                      'write [{"claim": "...", "evidence": ["ledger 123", "eval.funnel ..."]}]')
     bad = [f["claim"][:60] for f in findings if not f.get("evidence")]
     if bad:
         raise Refused(f"findings without evidence: {bad}", "add ledger numbers, event kinds or tool results")
