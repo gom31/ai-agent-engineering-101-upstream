@@ -93,6 +93,18 @@ class CollectTest(Base):
         self.assertTrue(out["board"].startswith("skipped"))
         self.assertEqual(atomic.read_json(paths.memory() / "facts" / "live.json")["selling"]["deals"], 1)
 
+    def test_new_round_restarts_the_counts(self):
+        r2 = dict(result(10, "https://elm", "Elm", "kim", "lamp", 100, "t-a"), round=2)
+        r3 = dict(result(11, "https://elm", "Elm", "kim", "G0011e806", 18000, "t-b"), round=3)
+        c = collect.Collector(market=FakeMarket([r2, r3]), clock=lambda: NOW)
+        try:
+            c.round(start=9)
+        finally:
+            c.close()
+        live = atomic.read_json(paths.memory() / "facts" / "live.json")
+        self.assertEqual((live["round"], live["selling"]["deals"], [s["sku"] for s in live["selling"]["skus"]]),
+                         (3, 1, ["G0011e806"]))
+
     def test_match_broken(self):
         news = [{"name": "lamp", "broke_at": NOW}]
         buys = [{"ts": NOW - 3600, "name": "lamp", "order": "o1"}, {"ts": NOW - 8 * 3600, "name": "lamp", "order": "o0"}]

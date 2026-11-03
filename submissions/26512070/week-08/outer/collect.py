@@ -71,6 +71,12 @@ def fold(state, row, me, catalog):
         return None
     if seq is not None:
         state["last_seq"] = seq
+    rnd = row.get("round")
+    if rnd is not None and state.get("round") is not None and rnd != state["round"]:
+        # a new round: what sold before does not tell what sells now (Round 3 has other products)
+        state.update(hours={}, shops={}, customers={}, round_started=row.get("ts"))
+    if rnd is not None:
+        state["round"] = rnd
     d = row.get("data") or {}
     ts = row.get("ts") or time.time()
     if row.get("kind") == "join" and d.get("name"):
@@ -135,10 +141,10 @@ def live(state, catalog, now, hours=6):
             cats[c] = cats.get(c, 0) + n
     top = sorted(skus.items(), key=lambda x: -x[1])[:50]
     return {
-        "updated": now, "window_hours": hours,
-        "selling": {"deals": deals, "updated": now,
+        "updated": now, "window_hours": hours, "round": state.get("round"),
+        "selling": {"deals": deals, "updated": now, "round": state.get("round"),
                     "skus": [{"sku": s, "name": (catalog.get(s) or {}).get("name"), "kind": (catalog.get(s) or {}).get("kind"),
-                              "sold": n} for s, n in top],
+                              "sold": n, **({} if s in catalog else {"in_catalog": False})} for s, n in top],
                     "categories": [{"category": c, "sold": n} for c, n in sorted(cats.items(), key=lambda x: -x[1])[:30]]},
         "sku": {s: {"sold_6h": n} for s, n in top},
         "customer": {n: {"deals_with_us": c["deals"], "first": c["first"], "last": c["last"], "paid_total": c["paid"],

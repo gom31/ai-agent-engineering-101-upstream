@@ -101,7 +101,8 @@ def selling(ctx, hours=6, kind=None, limit=10):
                                      for s, n in sorted(ours.items(), key=lambda x: -x[1])[:limit]],
             "our_deals": sum(ours.values()),
             "market": market, "market_categories": (live.get("categories") or [])[:limit],
-            "market_deals": live.get("deals"), "market_updated": live.get("updated"),
+            "market_deals": live.get("deals"), "market_updated": live.get("updated"), "market_round": live.get("round"),
+            "not_in_catalog": [r["sku"] for r in market if r.get("in_catalog") is False],
             "note": None if live else "no market collection yet (the outer runtime writes it)"}
 
 
