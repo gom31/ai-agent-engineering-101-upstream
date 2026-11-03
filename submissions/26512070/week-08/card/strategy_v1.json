@@ -53,7 +53,7 @@
    }
   ],
   "review_at": "first brief after 30 closed negotiations",
-  "note": "Thresholds are a draft for the user to set. The risk limits are a first guess too: the strategy agent proposes new values from the records (losses, stock health, refusals) and the user decides. Repeat-visit, star and sell-through metrics need the outer runtime's ledger collection (build step 5)."
+  "note": "Thresholds are a starting point the user accepted on 2026-11-03, to be adjusted from the first results. The risk limits are a first guess too: the strategy agent proposes new values from the records (losses, stock health, refusals) and the user decides. Repeat-visit, star and sell-through metrics need the outer runtime's ledger collection (build step 5)."
  },
  "delegation": {}
 }
