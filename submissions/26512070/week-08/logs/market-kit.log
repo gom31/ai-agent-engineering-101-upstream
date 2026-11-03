@@ -2460,3 +2460,36 @@
 23:41:07 [seller] [seller] 2d98ee44 rejected: Sorry, we have none of that in stock right now.
 23:41:51 [seller] [seller] 3ba07c96 input_required: I can sell you the [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자 for 194,400 KRW. It has a grade A and comes with our 6-hour wa
 23:42:02 [seller] [seller] ba92fbed input_required: I appreciate your flexibility, but I can offer the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at a price of 7,110 KRW. It includes our 
+23:42:16 [seller] [seller] cb7452ab input_required: 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지: 34740.
+23:42:26 [seller] [seller] 3ba07c96 completed: I accept your offer of 2,200,000 KRW for the [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자. It comes with our 6-hour warranty.
+23:42:41 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 9900, "task": "3807256b-aae7-479e-8e88-9cc38f98f876", "unit": "u-f1c548519c0d", "item": "G0b0ca441", "sig_seller": "+IoO7y5Wy/OWD6gYAgVDjM1DGfFAK1xmWFT9dnYWoVrRL1kKUSDkaJWJDmNFiRYoEfnFxjUronDHebL9otxaAw=="}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 12, "grades": ["C"], "warranty_hours": 0}}
+23:42:41 [sign] sig_seller ok, sig_buyer added
+23:42:41 [acp] not paying: 10.06 h of shelf life left, the policy asks for 12
+23:42:41 [market] ledger #2168873: G0b0ca441 at 9900, stars None, verified False (failed: settled), review not shown
+23:42:42 [order o-012f0394fd87] 디저트, budget 14590, round 3, use within 5.0 h
+23:42:42 [kit] 49 shops in .market\shops.json, running market_buyer
+23:42:57 [seller] [seller] ba92fbed input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7110.
+23:43:17 [seller] [seller] cb7452ab input_required: This is a quality Korean-made blackout curtain with our full 6-hour warranty and market certificate. I can offer it at 3
+23:43:41 [seller] [seller] ba92fbed completed: Thank you! At 7110 KRW, the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 comes with our certificate and warranty.
+23:43:42 [seller] [seller] 644259bf input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+23:43:48 [seller] [seller] 3ee5bd1f input_required: The price is 7110 credits for the '플로라 푹신한 퓨어 베스트 구름 베개솜 50X70', grade B, with our 6-hour warranty and the market certif
+23:44:18 [seller] [seller] c8ad5c71 input_required: The price for the [퍼니프랑] 엔틱가구 TR 25 큐티 1인 엔틱 컬러 소파 겸용 의자 is 216,000 KRW. Grade A, with certificate and warranty included
+23:44:20 [seller] [seller] cb7452ab input_required: I appreciate your offer, but I can't accept 21,460 KRW. My best price for the blackout curtain is 31,266 KRW, which is s
+23:44:44 [buyer] {"buy": []}
+23:45:01 [seller] [seller] d34600de input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:45:06 [seller] [seller] 1aea3e51 rejected: Sorry, we have none of that in stock right now.
+23:45:20 [buyer] {"buy": []}
+23:45:33 [seller] [seller] 06fa2ce3 input_required: Thank you for your interest in the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70! This item is grade A with the market certificate, and I 
+23:45:41 [forum] post as shop: 200
+23:45:51 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "be2b1042-ed88-4fe4-acc3-1441cd279f50", "item": "G11f14ced", "sig_seller": "g2kt8WntB9sIVLUK2nH8VGZs4tGuqoQEMUvFjVzsg92lvz18Ng/yDmHnUq/Nl2JkGC4rndKXMkEqjYFdf4zmBQ==", "shop": "ddolcom", "claim": "C", "unit": "u-14ce2023e6bd", "price": 7997}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+23:45:51 [sign] sig_seller ok, sig_buyer added
+23:45:51 [acp] checkout ships unit u-14ce2023e6bd, claim C, certificate attached
+23:45:52 [acp] paid 7997 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2169880: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade C, 7.3 h of shelf life left
+23:45:52 [forum] post as buyer: 200
+23:45:53 [buyer] {"buy": []}
+23:46:25 [seller] [seller] e6c66c38 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:46:39 [seller] [seller] cbe1d4f9 input_required: 라로퍼니처 보스턴 참죽나무 원목 식탁 의자 카페 인테리어 체어: 116000.
+23:46:52 [seller] [seller] c1a21b20 input_required: I can offer you the G054ff120 at 7110 KRW with a 6-hour warranty.
+23:46:57 [buyer] {"buy": []}
+23:47:07 [seller] [seller] f671e2d4 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:47:12 [seller] [seller] 7e0a08c8 rejected: Sorry, we have none of that in stock right now.

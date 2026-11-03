@@ -43,7 +43,7 @@ CALL_TIMEOUT = 60
 # calls run into their deadline, so the buyer handled 7 orders in 15 min (106 in 54 min before). A trading seat
 # gives Claude this long, then asks the fallback for that call (Claude stays first on the next one).
 TRADING = ("seller", "buyer")
-TRADING_CLAUDE_TIMEOUT = 15
+TRADING_CLAUDE_TIMEOUT = 6      # 11/3 23:4x: at 15 s, 46 of 53 seller calls ran out (buyers waited ~20 s a message)
 RATE_WORDS = ("rate limit", "rate_limit", "usage limit", "429", "overloaded", "quota")
 _EMPTY = None
 _writer = None
