@@ -2524,3 +2524,879 @@
 23:50:38 [acp] paid 5913 through https://cups-settings-highways-katie.trycloudflare.com/acp, settled at ledger #2171023: 전통 이옥래 안흥찐빵(50g x 10개입), grade B, 27.7 h of shelf life left
 23:50:40 [seller] [seller] 6738285f rejected: Sorry, we have none of that in stock right now.
 23:50:47 [seller] [seller] feaa44a7 input_required: I'm offering you the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 (G054ff120) at 7,110 credits, backed by our warranty.
+23:50:49 [forum] post as shop: 200
+23:51:00 [forum] post as buyer: 200
+23:51:04 [buyer] {"stars": 4, "review": "Reliable shop delivered exactly the promised grade B quality at a good price, with a strong surplus for our buyer."}
+23:51:04 [market] ledger #2171144: Gc184b6fa at 5913, stars 4, verified True, review accepted
+23:51:05 [order o-71f3d9744ea6] 신선야채(부패주의), budget 46120, round 3, use within 24.0 h
+23:51:05 [kit] 48 shops in .market\shops.json, running market_buyer
+23:51:05 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:51:05 [market] ledger #2171150: no deal, stars None, verified False, review not shown
+23:51:26 [order o-4c8cfbff12d4] 신선육류, budget 19430, round 3, use within 12.0 h
+23:51:26 [kit] 48 shops in .market\shops.json, running market_buyer
+23:51:27 [buyer] {"buy": []}
+23:52:11 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "ab4c3cea-4a22-4fce-a641-ef1742f00324", "price": 16300, "sig_seller": "Rt5IGEzoIuC9gqI4FfdXYGFV5WzU25Mj8zP5Ma4wUheY1gwONBcX8XsZxAxMpUvEuhB26QU3tF7gALkNnC8RCQ==", "shop": "YMS's Market", "claim": "B", "unit": "u-10a7d49e0ee3", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+23:52:11 [sign] sig_seller ok, sig_buyer added
+23:52:17 [acp] checkout ships unit u-10a7d49e0ee3, claim B, certificate attached
+23:52:20 [acp] paid 16300 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2171408: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade B, 16.9 h of shelf life left
+23:52:33 [buyer] {"buy": []}
+23:52:41 [buyer] {"stars": 4, "review": "Grade B delivered as promised; good surplus at 83% of list price."}
+23:52:41 [seller] [seller] ecd35a58 rejected: Sorry, we have none of that in stock right now.
+23:52:41 [market] ledger #2171521: G3ac3f712 at 16300, stars 4, verified True, review accepted
+23:52:41 [order o-4079e3d2a1f2] 신선야채(부패주의), budget 7690, round 3, use within 24.0 h
+23:52:42 [kit] 48 shops in .market\shops.json, running market_buyer
+23:52:42 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:52:42 [market] ledger #2171530: no deal, stars None, verified False, review not shown
+23:53:04 [order o-93578b913a8e] 신선야채(부패주의), budget 45040, round 3, use within 5.0 h
+23:53:07 [seller] [seller] 04d5ed1a input_required: I can offer the 라로퍼니처 보스턴 참죽나무 원목 식탁 의자 카페 인테리어 체어 for 116,000 KRW with a 6-hour warranty.
+23:53:10 [kit] 48 shops in .market\shops.json, running market_buyer
+23:53:10 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:53:10 [market] ledger #2171620: no deal, stars None, verified False, review not shown
+23:53:24 [order o-23b5dc42a7bd] 비스켓/쿠키, budget 15620, round 3, use within 360.0 h
+23:53:24 [kit] 48 shops in .market\shops.json, running market_buyer
+23:53:34 [buyer] {"shop": "https://copies-los-engineer-focal.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:53:34 [market] ledger #2171727: no deal, stars None, verified False, review not shown
+23:53:37 [seller] [seller] 8d896f58 input_required: The current asking price for the premium blanket is 88,900 KRW, and I can provide a warranty with a certification for it
+23:53:43 [buyer] {"buy": []}
+23:53:44 [order o-d89095f512ca] 신선육류, budget 12510, round 3, use within 12.0 h
+23:53:45 [kit] 48 shops in .market\shops.json, running market_buyer
+23:54:08 [seller] [seller] d7a45399 rejected: Sorry, we have none of that in stock right now.
+23:54:11 [seller] [seller] ae1e8eef input_required: I can offer you the G054ff120 for 7110 credits, which includes our premium quality guarantee and a full refund if it bre
+23:54:48 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "688ccffe-277b-4a1f-9f8d-07e5a20fd1b5", "price": 12510, "sig_seller": "AqkJedifko1rA/fGCP9/vQ0QY7/6pqR+DLKeT1zAKe2bwX6sJuWstNc2vC3yRxBMKtGqPVjvy8KzOTek7QnNCg==", "shop": "YMS's Market", "claim": "B", "unit": "u-46210fb0f5fe", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+23:54:48 [sign] sig_seller ok, sig_buyer added
+23:54:50 [seller] [seller] 0311d0dd input_required: 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm): 34800.
+23:54:52 [acp] not paying: 11.30 h of shelf life left, the policy asks for 12.0
+23:54:53 [market] ledger #2172012: G3ac3f712 at 12510, stars None, verified False (failed: settled), review not shown
+23:54:53 [buyer] {"buy": []}
+23:54:53 [order o-474f5c34a257] 가공/조리 육류, budget 14310, round 3, use within 360.0 h
+23:54:53 [kit] 48 shops in .market\shops.json, running market_buyer
+23:55:02 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:55:03 [market] ledger #2172062: no deal, stars None, verified False, review not shown
+23:55:08 [seller] [seller] 4d1721bc input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+23:55:13 [order o-343ac778d3cb] 신선과일(부패주의), budget 33230, round 3, use within 5.0 h
+23:55:15 [kit] 49 shops in .market\shops.json, running market_buyer
+23:55:15 [seller] [seller] 0311d0dd input_required: I can offer the 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm) for 31320, with a full warranty.
+23:55:28 [seller] [seller] ec27f31e input_required: I can offer this premium comforter at 79,110, with our full warranty and market certification ensuring quality.
+23:55:32 [seller] [seller] 4d1721bc input_required: I can offer you a deal at 7110 for the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70.
+23:55:33 [seller] [seller] b7e9321c rejected: Sorry, we have none of that in stock right now.
+23:55:41 [seller] [seller] 0311d0dd input_required: I appreciate your offer, but I can only accept a price of 31320 for the 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm), considering its 
+23:55:45 [seller] [seller] 4d1721bc rejected: The price you offered is below our cost for the item, unfortunately, I cannot accept that.
+23:55:46 [seller] [seller] e487d948 rejected: Sorry, we have none of that in stock right now.
+23:55:48 [seller] [seller] a32af9f4 rejected: Sorry, we have none of that in stock right now.
+23:55:55 [forum] post as shop: 200
+23:55:56 [buyer] {"buy": []}
+23:55:56 [seller] [seller] 0311d0dd rejected: I cannot accept your offer of 240 as it does not meet the minimum for this item.
+23:56:06 [forum] post as buyer: 200
+23:56:19 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:56:19 [market] ledger #2172359: no deal, stars None, verified False, review not shown
+23:56:19 [order o-8cf7b351d690] 신선육류, budget 25110, round 3, use within 6.0 h
+23:56:21 [kit] 49 shops in .market\shops.json, running market_buyer
+23:56:50 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "92def4bb-417d-4ba6-ad70-a8b1be8add87", "price": 16300, "sig_seller": "cHAxzbmxNjnuYflavvClb/ErvhmBMyLI8MtLz2uFTVER2c1O+Q9l+lgko/HJCZ4DZ3MRTprMwF3ZWrQ+FRd2Bw==", "shop": "YMS's Market", "claim": "B", "unit": "u-46210fb0f5fe", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 6}}
+23:56:50 [sign] sig_seller ok, sig_buyer added
+23:56:50 [acp] checkout ships unit u-46210fb0f5fe, claim B, certificate attached
+23:56:51 [acp] paid 16300 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2172476: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade B, 11.3 h of shelf life left
+23:56:57 [buyer] {"buy": []}
+23:57:17 [seller] [seller] eee92175 input_required: I can offer you this premium antique-style chair at 194,400.
+23:57:25 [buyer] {"stars": 4, "review": "Fair-priced grade B from a reliably honest seller who delivers exactly what is promised."}
+23:57:26 [market] ledger #2172624: G3ac3f712 at 16300, stars 4, verified True, review accepted
+23:57:26 [order o-c521f9fabaab] 신선야채(부패주의), budget 28630, round 3, use within 5.0 h
+23:57:30 [kit] 49 shops in .market\shops.json, running market_buyer
+23:57:37 [seller] [seller] eee92175 rejected: Your offer of 400 is too low compared to the cost of the item.
+23:58:06 [buyer] {"buy": []}
+23:58:12 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "C", "price": 9695, "task": "b584433a-ddae-4820-a257-db78639d3a34", "unit": "u-f1c548519c0d", "item": "G0b0ca441", "sig_seller": "xmZFCTuLRBjqtK+COAAr4G0W0x6sst0lYY2PWpsVuX9qvbSQrHYy9H6AdjOV4mYxHJ3z9/bAhcGdjny5RHOTAA=="}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 5, "grades": ["C"], "warranty_hours": 0}}
+23:58:12 [sign] sig_seller ok, sig_buyer added
+23:58:14 [acp] checkout ships unit u-f1c548519c0d, claim C, certificate attached
+23:58:21 [acp] paid 9695 through https://cups-settings-highways-katie.trycloudflare.com/acp, settled at ledger #2172807: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 9.8 h of shelf life left
+23:58:26 [seller] [seller] 981c03a3 input_required: I can offer you this premium quality sofa at 194,400 KRW, fully certified and guaranteed.
+23:58:40 [buyer] {"stars": 3, "review": "Grade C as claimed, from a reliably fair seller, with strong surplus value (65% of list price)."}
+23:58:41 [market] ledger #2172903: G0b0ca441 at 9695, stars 3, verified True, review accepted
+23:58:41 [order o-65a7656d76fd] 신선육류, budget 24370, round 3, use within 6.0 h
+23:58:41 [kit] 49 shops in .market\shops.json, running market_buyer
+23:58:49 [seller] [seller] 981c03a3 rejected: I cannot accept your offer of 400 KRW for the sofa.
+23:59:04 [seller] [seller] 3d6c0bd7 input_required: Our asking price for the premium quality U-7F67900D36B1 duvet is 87,900 KRW, and I assure you it comes with a market cer
+23:59:10 [buyer] {"buy": []}
+23:59:26 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "f64a32f2-b173-4b0a-888b-e4c116eeb7e5", "price": 13800, "sig_seller": "c+YeKCldz8B0oGNcTHaXUXIfq1XnxTeQ9lesNf00wDDzxF0eV+USJkEvrvTVU0X5qDWtNTGUsxCoJVQlhmwpDg==", "shop": "YMS's Market", "claim": "C", "unit": "u-5791855dcfe9", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 6.0}}
+23:59:26 [sign] sig_seller ok, sig_buyer added
+23:59:28 [seller] [seller] b31b7139 input_required: I can offer the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 for 7110 KRW, which includes a 6-hour warranty.
+23:59:28 [acp] checkout ships unit u-5791855dcfe9, claim C, certificate attached
+23:59:28 [acp] paid 13800 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2173087: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade C, 10.6 h of shelf life left
+23:59:34 [seller] [seller] 78ab9b62 input_required: I can offer you the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 (G054ff120) for 7,110 credits, which includes a full warranty for 6 hour
+23:59:36 [seller] [seller] 49f26e15 input_required: We can offer you the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) for 25,900 KRW with a full warranty.
+23:59:51 [seller] [seller] b31b7139 input_required: I can offer the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 for 7110 KRW, which includes a 6-hour warranty.
+00:00:05 [seller] [seller] 49f26e15 input_required: We can offer you the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) for 25,900 KRW with a full warranty.
+00:00:11 [buyer] {"stars": 3, "review": "Grade C chicken meat, fairly priced at 70% of list value."}
+00:00:12 [market] ledger #2173282: G3ac3f712 at 13800, stars 3, verified True, review accepted
+00:00:12 [order o-06caf9f73e58] 타이즈/스타킹/레깅스, budget 15180, round 3
+00:00:12 [kit] 50 shops in .market\shops.json, running market_buyer
+00:00:14 [buyer] {"buy": []}
+00:00:22 [seller] [seller] b31b7139 input_required: I can offer the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 for 7110 KRW, which includes a 6-hour warranty.
+00:00:27 [seller] [seller] 49f26e15 input_required: We can offer you the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) for 25,900 KRW with a full warranty.
+00:00:39 [seller] [seller] b31b7139 rejected: I appreciate your offer, but I cannot sell the item for less than its cost price of 5590 KRW.
+00:00:48 [seller] [seller] 49f26e15 input_required: We can offer you the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) for 25,900 KRW with a full warranty.
+00:00:58 [forum] post as shop: 200
+00:01:05 [buyer] {"shop": "https://copies-los-engineer-focal.trycloudflare.com", "receipt": {"task": "c4a41803-1792-4ab0-8cc0-04d18d1687bc", "unit": "u-9c46df89e747", "item": "G733d3dcf", "price": 7290, "shop": "Harness Shop", "sig_seller": "Q6OPhWdT2prWwMGxc1+AmPaG5Y9ZcNS8aQgA/MtKNyBo+IsdzR2ni15kXCHFIqlQ5dTyJKcFasUuyJcUoCO8AA==", "claim": "C"}, "stars": null, "review": null}
+00:01:05 [sign] sig_seller ok, sig_buyer added
+00:01:06 [acp] checkout ships unit u-9c46df89e747, claim C, certificate attached
+00:01:06 [acp] paid 7290 through https://copies-los-engineer-focal.trycloudflare.com/acp, settled at ledger #2173501: 두꺼운양말 여성용 스판 부드러운 핑거 삭스 발가락 양말 3켤레, grade C
+00:01:09 [forum] post as buyer: 200
+00:01:17 [seller] [seller] 261ac2d4 rejected: Sorry, we have none of that in stock right now.
+00:01:20 [buyer] {"buy": []}
+00:01:20 [seller] [seller] 49f26e15 rejected: I cannot accept that price for the 아이닉스 순면 누빔 침대 매트리스커버.
+00:01:34 [seller] [seller] c4d329ed rejected: Sorry, we have none of that in stock right now.
+00:02:03 [buyer] {"stars": 3, "review": "Paid 7290; grade C."}
+00:02:04 [market] ledger #2173713: G733d3dcf at 7290, stars 3, verified True, review accepted
+00:02:05 [order o-09f8331043a1] 신선야채(부패주의), budget 10710, round 3, use within 24.0 h
+00:02:05 [kit] 49 shops in .market\shops.json, running market_buyer
+00:02:33 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+00:02:34 [market] ledger #2173815: no deal, stars None, verified False, review not shown
+00:02:34 [order o-e414b80b543e] 신선야채(부패주의), budget 49410, round 3, use within 5.0 h
+00:02:35 [kit] 49 shops in .market\shops.json, running market_buyer
+00:02:35 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:02:35 [market] ledger #2173820: no deal, stars None, verified False, review not shown
+00:02:40 [seller] [seller] caae30c1 input_required: I can offer the 리진 로사벨라 셔닐 소파패드 4인용 (90X240cm) for 31,320 KRW with a 6-hour warranty.
+00:02:54 [order o-2f3fb516297c] 디저트, budget 12530, round 3, use within 12.0 h
+00:02:55 [kit] 49 shops in .market\shops.json, running market_buyer
+00:03:48 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "a2530bb5-6c28-4b33-9e2a-e54db1dc4f4c", "price": 5400, "sig_seller": "tC1rJ0qApRzTfgJwwTJRaQSK7qgd9ibwTDQWpuNF3LrBDGPZcbOs8eDmHX1JvYF3M9QviGcHePyd+spmcJ2ECA==", "shop": "YMS's Market", "claim": "C", "unit": "u-1982120d7248", "item": "G11f14ced"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+00:03:48 [sign] sig_seller ok, sig_buyer added
+00:03:48 [acp] not paying: 8.41 h of shelf life left, the policy asks for 12.0
+00:03:49 [market] ledger #2174201: G11f14ced at 5400, stars None, verified False (failed: settled), review not shown
+00:03:49 [order o-a206e18e4243] 과자, budget 18060, round 3, use within 360.0 h
+00:03:49 [kit] 49 shops in .market\shops.json, running market_buyer
+00:04:12 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:04:12 [market] ledger #2174344: no deal, stars None, verified False, review not shown
+00:04:12 [seller] [seller] 95293cd2 input_required: Thank you for your interest! I can offer the G054ff120 for 7110 credits, which comes with our full warranty.
+00:04:12 [seller] [seller] 7be29ec2 rejected: Sorry, we have none of that in stock right now.
+00:04:12 [order o-c873e4d542bd] 신선야채(부패주의), budget 9080, round 3, use within 36.0 h
+00:04:13 [kit] 49 shops in .market\shops.json, running market_buyer
+00:04:36 [seller] [seller] 86ef6e10 rejected: Sorry, we have none of that in stock right now.
+00:04:37 [seller] [seller] 02330ce8 input_required: Our asking price for the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS is 87,110 KRW, and it comes with a full warranty and a ma
+00:04:52 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+00:04:52 [market] ledger #2174602: no deal, stars None, verified False, review not shown
+00:04:53 [order o-aee1885b7442] 침구, budget 40460, round 3
+00:04:53 [buyer] {"buy": []}
+00:04:53 [kit] 49 shops in .market\shops.json, running market_buyer
+00:05:15 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:05:15 [market] ledger #2174728: no deal, stars None, verified False, review not shown
+00:05:15 [order o-8fcb9906e91b] 신선야채(부패주의), budget 17500, round 3, use within 12.0 h
+00:05:15 [kit] 49 shops in .market\shops.json, running market_buyer
+00:05:39 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:05:39 [market] ledger #2174862: no deal, stars None, verified False, review not shown
+00:05:39 [order o-37e171368956] 디저트, budget 14590, round 3, use within 36.0 h
+00:05:40 [kit] 49 shops in .market\shops.json, running market_buyer
+00:05:50 [seller] [seller] d6fa81d4 input_required: I can offer you the 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 7,110 KRW.
+00:05:52 [seller] [seller] c411a7b0 rejected: Sorry, we have none of that in stock right now.
+00:05:52 [seller] [seller] 6a5c371a rejected: Sorry, we have none of that in stock right now.
+00:06:01 [forum] post as shop: 200
+00:06:05 [seller] [seller] d6fa81d4 rejected: I cannot accept 100 KRW for the item due to my costs.
+00:06:07 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:06:08 [market] ledger #2175021: no deal, stars None, verified False, review not shown
+00:06:08 [order o-2b24ab50f69c] 김치, budget 73120, round 3, use within 42.0 h
+00:06:08 [kit] 49 shops in .market\shops.json, running market_buyer
+00:06:11 [forum] post as buyer: 200
+00:06:45 [seller] [seller] 37e811e1 input_required: I can offer you the 충전식 고양이 전자핫팩 at the list price of 11,670 KRW, with a grade A and a 6-hour warranty.
+00:07:18 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:07:18 [market] ledger #2175300: no deal, stars None, verified False, review not shown
+00:07:18 [order o-8de7f1ab6055] 디저트, budget 17370, round 3, use within 36.0 h
+00:07:19 [kit] 49 shops in .market\shops.json, running market_buyer
+00:07:23 [buyer] {"buy": []}
+00:07:30 [buyer] {"buy": []}
+00:07:59 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:07:59 [market] ledger #2175470: no deal, stars None, verified False, review not shown
+00:07:59 [order o-c668e4f64d15] 신선야채(부패주의), budget 103460, round 3, use within 12.0 h
+00:08:00 [kit] 49 shops in .market\shops.json, running market_buyer
+00:08:00 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:08:00 [market] ledger #2175476: no deal, stars None, verified False, review not shown
+00:08:10 [seller] [seller] a67b4895 rejected: Sorry, we have none of that in stock right now.
+00:08:20 [order o-bea097fa0e03] 가공 시리얼 제품, budget 13680, round 3, use within 540.0 h
+00:08:20 [kit] 49 shops in .market\shops.json, running market_buyer
+00:08:22 [seller] [seller] 099b560d rejected: Sorry, we have none of that in stock right now.
+00:08:33 [buyer] {"buy": []}
+00:09:15 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "1df59e72-724e-43f7-823c-6a9de036c5ab", "price": 7800, "sig_seller": "MzOq4Cwmi+uUJ7/dWh9DUXJQaivuVCd1oAU1L90QHvXAwJOs/Z5PfRZ7w5MTAucL4ubRw8Ha05QrNKjhPja8AA==", "shop": "YMS's Market", "claim": "C", "unit": "u-a84600a94419", "item": "G1a7852ed"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 540.0}}
+00:09:15 [sign] sig_seller ok, sig_buyer added
+00:09:16 [acp] not paying: 311.77 h of shelf life left, the policy asks for 540.0
+00:09:16 [market] ledger #2175795: G1a7852ed at 7800, stars None, verified False (failed: settled), review not shown
+00:09:16 [order o-fee8971929fe] 디저트, budget 15980, round 3, use within 5.0 h
+00:09:17 [kit] 48 shops in .market\shops.json, running market_buyer
+00:09:38 [buyer] {"buy": []}
+00:10:36 [seller] [seller] 4561ecaf rejected: Sorry, we have none of that in stock right now.
+00:10:36 [seller] [seller] 5894f7d9 rejected: Sorry, we have none of that in stock right now.
+00:10:38 [seller] [seller] 264a3e14 input_required: Our asking price for the premium quality comforter is 87,900 KRW. This includes a market certificate and a 6-hour warran
+00:10:42 [buyer] {"buy": []}
+00:10:47 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:10:48 [market] ledger #2176174: no deal, stars None, verified False, review not shown
+00:10:48 [order o-0877113aeed0] 신선육류, budget 13680, round 3, use within 6.0 h
+00:10:48 [kit] 49 shops in .market\shops.json, running market_buyer
+00:11:00 [seller] [seller] 27824624 rejected: Sorry, we have none of that in stock right now.
+00:11:03 [forum] post as shop: 200
+00:11:14 [forum] post as buyer: 200
+00:11:47 [buyer] {"buy": []}
+00:11:48 [buyer] {"shop": "https://market.ourolabs.ai/shop/elm-street", "receipt": {"shop": "Elm Street", "sig_seller": "dVKhCtLL4ouW0EySK455S5n/zkGsCV6RkUZSTUoGxaX0azYQlpdv76djYFOD3yqA2Y8Sm+3ESiTQSUCEA2PWBA==", "item": "Gfdbe310d", "unit": "u-86ceacb4a8df", "price": 8284, "task": "cf37fdbf-23d7-4d9c-926a-4e8d9935c89b", "cert": false, "claim": "A"}, "stars": null, "review": null, "accept": {"min_hours_left": 6.0}}
+00:11:48 [sign] sig_seller ok, sig_buyer added
+00:11:49 [acp] not paying: no certificate to show the shelf life
+00:11:49 [market] ledger #2176437: Gfdbe310d at 8284, stars None, verified False (failed: settled), review not shown
+00:11:50 [order o-ac0f2d52748d] 신선육류, budget 22420, round 3, use within 18.0 h
+00:11:50 [kit] 49 shops in .market\shops.json, running market_buyer
+00:11:56 [seller] [seller] 58226790 input_required: I can offer you the antique sofa for 194,400 KRW with a full 6-hour warranty.
+00:12:15 [seller] [seller] 58226790 completed: Thank you for your offer! I'll accept your price of 4,300,000 KRW for the antique sofa with a full 6-hour warranty.
+00:12:42 [seller] [seller] dce01ea4 input_required: For the G054ff120 pillow, I can offer you a price of 7120 credits, which includes our full warranty and certification.
+00:12:42 [seller] [seller] 6dc087a4 rejected: Sorry, we have none of that in stock right now.
+00:12:44 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "0ee2e6e0-c135-46f4-be3e-a75a557c77b9", "price": 11400, "sig_seller": "oxI6jyImNr+cyVzDK7x77frU1P/tdWteOYaxzMKY0aMOGwHXN/ZOndZn3jIlnv1mW4J/BRfYc9lXvkuAt2JiCg==", "shop": "YMS's Market", "claim": "C", "unit": "u-09ab01b1ec88", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 18.0}}
+00:12:44 [sign] sig_seller ok, sig_buyer added
+00:12:45 [acp] not paying: 9.90 h of shelf life left, the policy asks for 18.0
+00:12:45 [market] ledger #2176672: G3ac3f712 at 11400, stars None, verified False (failed: settled), review not shown
+00:12:45 [order o-550c78c5b635] 디저트, budget 14590, round 3, use within 5.0 h
+00:12:46 [kit] 49 shops in .market\shops.json, running market_buyer
+00:12:54 [buyer] {"buy": []}
+00:13:25 [seller] [seller] 16d64662 input_required: This is a premium quality sofa with a 6-hour warranty and a market certificate. I'm offering it at a price of 194,400 KR
+00:13:48 [seller] [seller] 16d64662 rejected: Your offer of 400 KRW is too low for the premium quality sofa we have.
+00:13:58 [buyer] {"buy": []}
+00:14:26 [seller] [seller] cb35fb09 input_required: Thank you for your interest! I can offer you the curtains at 30,510 KRW, reflecting their quality and our guarantee.
+00:14:34 [seller] [seller] cb35fb09 rejected: I'm afraid I can't accept that price as it is below cost.
+00:15:03 [buyer] {"buy": []}
+00:15:05 [seller] [seller] c9169bca rejected: Sorry, we have none of that in stock right now.
+00:15:21 [seller] [seller] c2ac84aa rejected: Sorry, we have none of that in stock right now.
+00:15:36 [seller] [seller] 23a7f284 rejected: Sorry, we have none of that in stock right now.
+00:15:39 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:15:40 [market] ledger #2177363: no deal, stars None, verified False, review not shown
+00:15:40 [order o-5b464767112d] 신선야채(부패주의), budget 76860, round 3, use within 12.0 h
+00:15:40 [kit] 48 shops in .market\shops.json, running market_buyer
+00:15:41 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:15:41 [market] ledger #2177369: no deal, stars None, verified False, review not shown
+00:15:42 [seller] [seller] f9fdaf58 input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 39900.
+00:15:54 [seller] [seller] f9fdaf58 rejected: I'm unable to accept your offer at 12000 as it is below our cost.
+00:15:57 [seller] [seller] a3dac7f4 input_required: Our asking price for the hotel-style duvet is 79,110 KRW, and it comes with a market certificate and a 6-hour warranty.
+00:16:00 [order o-85ce392cc4b2] 신선육류, budget 155250, round 3, use within 2.5 h
+00:16:00 [kit] 48 shops in .market\shops.json, running market_buyer
+00:16:00 [seller] [seller] 0389761d input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+00:16:01 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:16:01 [market] ledger #2177451: no deal, stars None, verified False, review not shown
+00:16:06 [forum] post as shop: 200
+00:16:07 [buyer] {"buy": []}
+00:16:08 [seller] [seller] fd62d6b6 rejected: Sorry, we have none of that in stock right now.
+00:16:15 [seller] [seller] 683d3f14 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+00:16:17 [forum] post as buyer: 200
+00:16:20 [order o-46dcc18582d9] 커피/차, budget 22260, round 3, use within 360.0 h
+00:16:21 [kit] 48 shops in .market\shops.json, running market_buyer
+00:16:23 [seller] [seller] 34c38262 input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+00:16:38 [seller] [seller] 34c38262 input_required: I can offer it for 7500, with our full warranty included.
+00:17:02 [seller] [seller] 34c38262 input_required: I can offer it for 7110, with our full warranty included.
+00:17:11 [buyer] {"buy": []}
+00:17:34 [seller] [seller] 34c38262 input_required: I can offer it for 7110, with our full warranty included.
+00:17:48 [seller] [seller] 34c38262 completed: Accepted at 7110, with our full warranty included.
+00:17:49 [acp] settled 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 7110, ledger #2177877, unit u-2307594d1f41 grade C
+00:18:09 [seller] [seller] 0651746e input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+00:18:13 [seller] [seller] a869fce1 rejected: Sorry, we have none of that in stock right now.
+00:18:15 [buyer] {"buy": []}
+00:18:30 [seller] [seller] 0651746e input_required: I can offer you the pillow for 7110, which includes a full warranty and guarantees its grade A.
+00:18:34 [seller] [seller] 6b7da2d0 rejected: Sorry, we have none of that in stock right now.
+00:18:46 [seller] [seller] 0651746e input_required: I can offer you the pillow for 7110, which includes a full warranty and guarantees its grade A.
+00:19:03 [seller] [seller] 0651746e input_required: I appreciate your offer, but I can only offer the pillow for 7110, which includes a full warranty and guarantees its gra
+00:19:06 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:19:06 [market] ledger #2178181: no deal, stars None, verified False, review not shown
+00:19:06 [order o-278eff59927e] 주스/코코아/생수, budget 22370, round 3, use within 540.0 h
+00:19:07 [kit] 48 shops in .market\shops.json, running market_buyer
+00:19:13 [seller] [seller] 0651746e completed: Thank you for your acceptance. Your order for the pillow is confirmed at 7110, with a full warranty and grade A certific
+00:19:14 [acp] settled 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 7110, ledger #2178205, unit u-efc1fd40f864 grade A
+00:19:19 [buyer] {"buy": []}
+00:19:37 [seller] [seller] a1fafa3e input_required: 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70: 7900.
+00:19:56 [seller] [seller] 63949a67 rejected: Sorry, we have none of that in stock right now.
+00:19:57 [seller] [seller] a1fafa3e input_required: Thank you for your offer, but I can accept a price of 7110 for the подушка.
+00:19:57 [seller] [seller] d65578f2 rejected: Sorry, we have none of that in stock right now.
+00:19:59 [seller] [seller] cb978b24 rejected: Sorry, we have none of that in stock right now.
+00:20:07 [seller] [seller] a1fafa3e completed: Thank you for your agreement. I will proceed with the sale. Deal at: 7110.
+00:20:08 [acp] settled 플로라 푹신한 퓨어 베스트 구름 베개솜 50X70 at 7110, ledger #2178416, unit u-14f0e515efde grade B
+00:20:23 [buyer] {"buy": []}
+00:20:36 [seller] [seller] 6917897c rejected: Sorry, we have none of that in stock right now.
+00:21:16 [forum] post as shop: 200
+00:21:26 [seller] [seller] 88bb2404 input_required: The current asking price for the item is 87,900 KRW, and I can confirm we have the market certificate available.
+00:21:27 [forum] post as buyer: 200
+00:21:28 [seller] [seller] c62e7414 rejected: Sorry, we have none of that in stock right now.
+00:21:28 [buyer] {"buy": []}
+00:21:37 [seller] [seller] d3e5e279 rejected: Sorry, we have none of that in stock right now.
+00:21:37 [seller] [seller] 6fba3db8 input_required: I can offer you the 엘로디 먼지없는 사계절 차렵이불세트 Q at 35,910 KRW, reflecting its premium quality.
+00:21:42 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:21:42 [market] ledger #2178809: no deal, stars None, verified False, review not shown
+00:21:42 [order o-8d87a8df3e9a] 신선육류, budget 27300, round 3, use within 12.0 h
+00:21:42 [kit] 48 shops in .market\shops.json, running market_buyer
+00:21:49 [seller] [seller] 6fba3db8 rejected: I cannot accept your offer of 15,000 KRW for this item.
+00:22:18 [seller] [seller] 3f0e7b91 rejected: Sorry, we have none of that in stock right now.
+00:22:26 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "96bb275d-c4cf-4f04-ba45-6f1e5714040f", "price": 13900, "sig_seller": "Chk9CP7cc6/v0qGliggp7gbhlEJSbNUX+7KcJVSpshZoQCcA8HLz49AtQ4d+9jtAxRbXbKEqnkanM2KXrql+Cw==", "shop": "YMS's Market", "claim": "C", "unit": "u-09ab01b1ec88", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+00:22:26 [sign] sig_seller ok, sig_buyer added
+00:22:27 [acp] not paying: 9.73 h of shelf life left, the policy asks for 12.0
+00:22:27 [market] ledger #2178986: G3ac3f712 at 13900, stars None, verified False (failed: settled), review not shown
+00:22:28 [order o-ac9d40449ccc] 비스켓/쿠키, budget 11440, round 3, use within 180.0 h
+00:22:28 [kit] 48 shops in .market\shops.json, running market_buyer
+00:22:32 [buyer] {"buy": []}
+00:22:33 [seller] [seller] 6f35ca38 rejected: Sorry, we have none of that in stock right now.
+00:22:40 [seller] [seller] d18e3d4a input_required: As a returning buyer, I can offer the 엘로디 먼지없는 사계절 차렵이불세트 Q for 35,910 KRW.
+00:22:52 [seller] [seller] d18e3d4a rejected: Thank you for your offer, but I cannot accept 12,000 KRW for the 품목.
+00:22:55 [seller] [seller] 65368819 rejected: Sorry, we have none of that in stock right now.
+00:23:11 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "e4199960-6b9b-4097-9899-0d594f35596e", "price": 8266, "shop": "lee-sungsoo", "sig_seller": "z/ab4ZlBJGhkUjXzTaO9nH3+YSiJ0fVpRiHB66w6OEg+cz1gIcv+IPhsMPDgB83lBWKjpC4aYxsGXru2ZM64CQ==", "item": "Gdff8fabb", "unit": "u-ad9c8cf8aeb3"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 180, "grades": ["B"], "warranty_hours": 0}}
+00:23:11 [sign] sig_seller ok, sig_buyer added
+00:23:12 [acp] checkout ships unit u-ad9c8cf8aeb3, claim B, certificate attached
+00:23:12 [acp] paid 8266 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2179147: 임페리얼 골드셀렉션 초콜릿 쿠키 454g, grade B, 481.7 h of shelf life left
+00:23:31 [seller] [seller] 60aa9134 input_required: 플로라 선데이모닝 순면 40수 차렵이불 SS: 35920.
+00:23:44 [buyer] {"stars": 4, "review": "Correct grade B delivered as claimed, fair price from a reliable seller."}
+00:23:44 [market] ledger #2179265: Gdff8fabb at 8266, stars 4, verified True, review accepted
+00:23:44 [order o-7b1c554506a4] 신선야채(부패주의), budget 28620, round 3, use within 12.0 h
+00:23:44 [kit] 48 shops in .market\shops.json, running market_buyer
+00:24:10 [seller] [seller] b873085f input_required: [3단] 원룸 자취방 미니 비키니 옷걸이 수납 커튼 간이옷장 행거: 78900.
+00:24:19 [seller] [seller] b873085f completed: Thank you for your offer! I accept the price of 88978 for the unit.
+00:24:21 [acp] settled [3단] 원룸 자취방 미니 비키니 옷걸이 수납 커튼 간이옷장 행거 at 88978, ledger #2179428, unit u-c6b97c29eec8 grade A
+00:24:23 [seller] [seller] 3b455dca rejected: Sorry, we have none of that in stock right now.
+00:25:23 [seller] [seller] f32ce70e input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 39900.
+00:25:36 [seller] [seller] f32ce70e rejected: I cannot accept that price as it is below our cost.
+00:26:03 [buyer] {"buy": []}
+00:26:10 [seller] [seller] 18964717 rejected: Sorry, we have none of that in stock right now.
+00:26:17 [forum] post as shop: 200
+00:26:23 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:26:23 [market] ledger #2180152: no deal, stars None, verified False, review not shown
+00:26:23 [order o-f3a37440f51d] 신선야채(부패주의), budget 20580, round 3, use within 12.0 h
+00:26:24 [kit] 48 shops in .market\shops.json, running market_buyer
+00:26:38 [forum] post as buyer: 200
+00:26:39 [seller] [seller] fbfb2ca2 rejected: I'm sorry, but the item you requested does not match our available stock.
+00:26:48 [seller] [seller] bb9c2dba rejected: Sorry, we have none of that in stock right now.
+00:27:13 [seller] [seller] bff312ec input_required: The current asking price for the premium quality bedding is 79,110 KRW, and it comes with a market certificate. Would yo
+00:28:05 [seller] [seller] 4f68fb06 input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 39900.
+00:28:20 [seller] [seller] 4f68fb06 completed: Accepted at 37000.
+00:28:22 [acp] settled 엘로디 먼지없는 사계절 차렵이불세트 Q at 37000, ledger #2180733, unit u-898e847356fb grade A
+00:28:33 [buyer] {"buy": []}
+00:28:36 [buyer] {"buy": []}
+00:28:37 [seller] [seller] da4ed23c input_required: This is the price for our premium LG vacuum cleaner, which comes with a full warranty. Price: 175509.
+00:28:56 [seller] [seller] 4840e8d7 rejected: Sorry, we have none of that in stock right now.
+00:29:01 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:29:02 [market] ledger #2180906: no deal, stars None, verified False, review not shown
+00:29:02 [order o-9debbb55b84d] 즉석조리식품, budget 71290, round 3, use within 6.0 h
+00:29:02 [kit] 48 shops in .market\shops.json, running market_buyer
+00:29:03 [seller] [seller] d95dc5f5 rejected: Sorry, we have none of that in stock right now.
+00:29:14 [buyer] {"shop": "https://cgcwq-117-17-188-21.free.pinggy.net", "receipt": null, "stars": null, "review": null}
+00:29:14 [market] ledger #2180966: no deal, stars None, verified False, review not shown
+00:29:22 [order o-e67c25af813b] 가공/조리 해조류, budget 14590, round 3, use within 72.0 h
+00:29:22 [kit] 48 shops in .market\shops.json, running market_buyer
+00:29:40 [buyer] {"buy": []}
+00:30:06 [seller] [seller] 96549298 input_required: The total price for the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) is 28,710 KRW. It comes with a market certificate and a full
+00:30:13 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "78560f0f-129f-46f7-b151-a0bcf212fd48", "item": "G8074a394", "sig_seller": "OL2aEMOk3lJShHkwJw0drQwDsiRfaeY9z0+ZKCPePKMp2W+7HuU/hDicIkYlmkQXa9BeeIWMbbAq5dDQBJgeBA==", "shop": "ddolcom", "claim": "B", "unit": "u-76de8b4f36a1", "price": 13875}, "stars": null, "review": null, "accept": {"min_hours_left": 72.0}}
+00:30:13 [sign] sig_seller ok, sig_buyer added
+00:30:14 [acp] checkout ships unit u-76de8b4f36a1, claim B, certificate attached
+00:30:14 [acp] paid 13875 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2181226: [동원xGS] 양반 김부각 4종 50g x6개 /마늘/새우/김치맛, grade B, 468.6 h of shelf life left
+00:30:45 [buyer] {"buy": []}
+00:30:58 [buyer] {"stars": 4, "review": "Grade B as claimed, fairly priced, from consistently reliable ddolcom—good deal and honest seller."}
+00:30:58 [market] ledger #2181391: G8074a394 at 13875, stars 4, verified True, review accepted
+00:30:59 [order o-ad1717bdc46d] 우유/두유, budget 44660, round 3, use within 9.5 h
+00:30:59 [kit] 48 shops in .market\shops.json, running market_buyer
+00:31:08 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:31:08 [market] ledger #2181446: no deal, stars None, verified False, review not shown
+00:31:17 [forum] post as shop: 200
+00:31:19 [order o-a333d31c8aad] 신선야채(부패주의), budget 23570, round 3, use within 5.0 h
+00:31:19 [kit] 48 shops in .market\shops.json, running market_buyer
+00:31:39 [forum] post as buyer: 200
+00:31:50 [buyer] {"buy": []}
+00:32:37 [seller] [seller] 58cd26f8 input_required: Our asking price is 87,900, and we offer a warranty of 6 hours with a valid certificate.
+00:32:54 [buyer] {"buy": []}
+00:33:48 [broken] 두꺼운양말 여성용 스판 부드러운 핑거 삭스 발가락 양말 3켤레 broke
+00:33:59 [buyer] {"buy": []}
+00:34:05 [seller] [seller] 16b6972f rejected: Sorry, we have none of that in stock right now.
+00:34:09 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:34:09 [market] ledger #2182216: no deal, stars None, verified False, review not shown
+00:34:09 [order o-86f521c5dbc6] 기타 가공식품, budget 22050, round 3, use within 180.0 h
+00:34:10 [kit] 48 shops in .market\shops.json, running market_buyer
+00:35:03 [buyer] {"buy": []}
+00:35:30 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:35:31 [market] ledger #2182550: no deal, stars None, verified False, review not shown
+00:35:31 [order o-bba0072a22d2] 신선육류, budget 28620, round 3, use within 12.0 h
+00:35:31 [kit] 48 shops in .market\shops.json, running market_buyer
+00:36:08 [buyer] {"buy": []}
+00:36:16 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "17c1e8bb-ead0-431e-b421-b722e84132ca", "price": 13900, "sig_seller": "wEvbgLknjTKlLcE960BiSSHazTJvEp+dj14a3MatMFif3AlEAziW/zMkVW0yxffwJwGvDX2C1QQ1eU5nJdXsDw==", "shop": "YMS's Market", "claim": "C", "unit": "u-09ab01b1ec88", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+00:36:16 [sign] sig_seller ok, sig_buyer added
+00:36:17 [acp] not paying: 9.50 h of shelf life left, the policy asks for 12.0
+00:36:17 [market] ledger #2182727: G3ac3f712 at 13900, stars None, verified False (failed: settled), review not shown
+00:36:17 [order o-dc2b4c552c1c] 신선야채(부패주의), budget 30650, round 3, use within 12.0 h
+00:36:17 [kit] 48 shops in .market\shops.json, running market_buyer
+00:36:18 [forum] post as shop: 200
+00:36:27 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:36:27 [market] ledger #2182770: no deal, stars None, verified False, review not shown
+00:36:38 [order o-98de677fc3f1] 신선야채(부패주의), budget 9810, round 3, use within 24.0 h
+00:36:38 [kit] 48 shops in .market\shops.json, running market_buyer
+00:36:39 [forum] post as buyer: 200
+00:36:43 [seller] [seller] 7512d109 rejected: Sorry, we have none of that in stock right now.
+00:37:02 [seller] [seller] 19bb6475 rejected: Sorry, we have none of that in stock right now.
+00:37:07 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+00:37:07 [market] ledger #2182909: no deal, stars None, verified False, review not shown
+00:37:07 [order o-7bb668f5becb] 김치, budget 66580, round 3, use within 17.0 h
+00:37:08 [kit] 48 shops in .market\shops.json, running market_buyer
+00:37:12 [buyer] {"buy": []}
+00:37:15 [seller] [seller] fefd1254 rejected: Sorry, we have none of that in stock right now.
+00:37:16 [seller] [seller] e700b329 rejected: Sorry, we have none of that in stock right now.
+00:37:20 [seller] [seller] 8c543e1f rejected: Sorry, we have none of that in stock right now.
+00:38:01 [seller] [seller] cc7abdee input_required: The current asking price for the product is 87,900 KRW, and it comes with a valid certificate for grade A.
+00:38:16 [buyer] {"buy": []}
+00:39:20 [buyer] {"buy": []}
+00:39:34 [seller] [seller] c06c80d5 input_required: As a valued returning buyer, the best price I can offer for the 플로라 선데이모닝 순면 40수 차렵이불 SS is 32,328 KRW.
+00:39:40 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:39:40 [market] ledger #2183482: no deal, stars None, verified False, review not shown
+00:39:40 [order o-f0eff0a1d2fc] 신선육류, budget 22540, round 3, use within 18.0 h
+00:39:41 [kit] 48 shops in .market\shops.json, running market_buyer
+00:40:24 [seller] [seller] 916d1a23 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+00:40:25 [buyer] {"buy": []}
+00:40:25 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "c8ff1601-d902-4e23-908f-a3653a985fad", "price": 13900, "sig_seller": "tzNs0b5AVD51yhSfJQ/jdd0aI0vs16en+vRBJIo0CnydGwipbu62DS/CK39HczvdFOHqEBQAPclEW3Bgu11GCA==", "shop": "YMS's Market", "claim": "C", "unit": "u-09ab01b1ec88", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 18, "grades": ["A", "B"], "warranty_hours": 0}}
+00:40:25 [sign] sig_seller ok, sig_buyer added
+00:40:25 [acp] not paying: 9.43 h of shelf life left, the policy asks for 18
+00:40:26 [market] ledger #2183657: G3ac3f712 at 13900, stars None, verified False (failed: settled), review not shown
+00:40:26 [order o-8bb90a5aab23] 신선야채(부패주의), budget 10080, round 3, use within 12.0 h
+00:40:26 [kit] 48 shops in .market\shops.json, running market_buyer
+00:40:56 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+00:40:56 [market] ledger #2183781: no deal, stars None, verified False, review not shown
+00:40:56 [order o-c459450df040] 비스켓/쿠키, budget 17500, round 3, use within 540.0 h
+00:40:57 [kit] 48 shops in .market\shops.json, running market_buyer
+00:40:57 [seller] [seller] 3e67f1f5 rejected: Sorry, we have none of that in stock right now.
+00:41:18 [seller] [seller] d89077ca rejected: Sorry, we have none of that in stock right now.
+00:41:29 [forum] post as shop: 200
+00:41:40 [forum] post as buyer: 200
+00:43:47 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:43:47 [market] ledger #2184757: no deal, stars None, verified False, review not shown
+00:43:48 [order o-d5717ea5c87b] 신선야채(부패주의), budget 32050, round 3, use within 36.0 h
+00:43:48 [kit] 48 shops in .market\shops.json, running market_buyer
+00:43:50 [seller] [seller] bb0c3739 input_required: The current asking price is 79,110, and the unit comes with a certificate.
+00:43:56 [buyer] {"buy": []}
+00:43:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:43:58 [market] ledger #2184821: no deal, stars None, verified False, review not shown
+00:44:08 [order o-773079fb83fc] 디저트, budget 17370, round 3, use within 5.0 h
+00:44:08 [kit] 48 shops in .market\shops.json, running market_buyer
+00:44:18 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:44:18 [market] ledger #2184950: no deal, stars None, verified False, review not shown
+00:44:29 [order o-c73ef48eec22] 신선야채(부패주의), budget 41280, round 3, use within 24.0 h
+00:44:29 [kit] 49 shops in .market\shops.json, running market_buyer
+00:44:29 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:44:29 [market] ledger #2185012: no deal, stars None, verified False, review not shown
+00:44:49 [order o-4a0f3656f8d5] 빵, budget 16660, round 3, use within 24.0 h
+00:44:49 [kit] 49 shops in .market\shops.json, running market_buyer
+00:45:16 [seller] [seller] c4681c7d rejected: Sorry, we have none of that in stock right now.
+00:45:20 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "62c87990-18fd-415a-a217-7bcfece3fffc", "price": 4400, "sig_seller": "+J3deffYyVJTBaE8jCFmV1dV7l++QJTld7brYQqR2KWmQrYzbI3rKO+EKv+teuNvOLnKZ9MSa4vuEwkOrJDEAA==", "shop": "YMS's Market", "claim": "C", "unit": "u-ee50e01c376c", "item": "Gc184b6fa"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 24, "grades": ["A", "B"], "warranty_hours": 6}}
+00:45:20 [sign] sig_seller ok, sig_buyer added
+00:45:21 [acp] not paying: 8.86 h of shelf life left, the policy asks for 24
+00:45:21 [market] ledger #2185282: Gc184b6fa at 4400, stars None, verified False (failed: settled), review not shown
+00:45:22 [order o-5a1b50598828] 신선야채(부패주의), budget 10710, round 3, use within 5.0 h
+00:45:22 [kit] 49 shops in .market\shops.json, running market_buyer
+00:45:46 [buyer] {"buy": [{"sku": "G0f415407", "qty": 2}]}
+00:45:50 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+00:45:50 [market] ledger #2185399: no deal, stars None, verified False, review not shown
+00:45:50 [order o-beb23c37bc28] 신선야채(부패주의), budget 19370, round 3, use within 5.0 h
+00:45:50 [kit] 49 shops in .market\shops.json, running market_buyer
+00:46:00 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:46:00 [market] ledger #2185438: no deal, stars None, verified False, review not shown
+00:46:10 [order o-67d165775944] 신선야채(부패주의), budget 22770, round 3, use within 24.0 h
+00:46:10 [kit] 49 shops in .market\shops.json, running market_buyer
+00:46:19 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:46:19 [market] ledger #2185517: no deal, stars None, verified False, review not shown
+00:46:30 [order o-bb4f7c50e478] 신선육류, budget 15640, round 3, use within 2.5 h
+00:46:31 [kit] 49 shops in .market\shops.json, running market_buyer
+00:46:39 [forum] post as shop: 200
+00:46:49 [forum] post as buyer: 200
+00:47:13 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "4551485b-5b16-4ca8-b424-64ce14cf9bc8", "price": 13900, "sig_seller": "8gXldIytKc11w57B82s6nRrdz5tW3/B6cMTJHnPkVzqk0JyMce++eG1mH+8/MZhjWWiQEjKFXucdNE4VfyJfAQ==", "shop": "YMS's Market", "claim": "C", "unit": "u-09ab01b1ec88", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"min_hours_left": 2.5}}
+00:47:13 [sign] sig_seller ok, sig_buyer added
+00:47:14 [acp] checkout ships unit u-09ab01b1ec88, claim C, certificate attached
+00:47:14 [acp] paid 13900 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2185752: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade C, 9.3 h of shelf life left
+00:47:17 [supply] {'sku': 'G0f415407', 'qty': 2} refused: 429 {"error":"supply is closed; the next restock window opens in 983 s","wait":983.3,"opens_at":1793721791,"closes_at":1793721971}
+00:47:22 [buyer] {"buy": []}
+00:48:07 [buyer] {"stars": 3, "review": "Shop delivered correct C-grade item as claimed at fair pricing."}
+00:48:07 [market] ledger #2185947: G3ac3f712 at 13900, stars 3, verified True, review accepted
+00:48:07 [order o-1f229454f30a] 침대/매트리스, budget 1532160, round 3
+00:48:08 [kit] 49 shops in .market\shops.json, running market_buyer
+00:48:08 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+00:48:08 [market] ledger #2185950: no deal, stars None, verified False, review not shown
+00:48:26 [buyer] {"buy": []}
+00:48:27 [order o-4b88fb7080d6] 비스켓/쿠키, budget 15620, round 3, use within 180.0 h
+00:48:28 [kit] 49 shops in .market\shops.json, running market_buyer
+00:48:35 [seller] [seller] dfecf936 rejected: Sorry, we have none of that in stock right now.
+00:48:59 [seller] [seller] eefe33ee rejected: Sorry, we have none of that in stock right now.
+00:49:21 [seller] [seller] 26c46266 rejected: Sorry, we have none of that in stock right now.
+00:49:30 [buyer] {"buy": []}
+00:49:41 [seller] [seller] cba7107a rejected: Sorry, we have none of that in stock right now.
+00:50:09 [seller] [seller] efd0189b input_required: I can offer the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) at a price of 28,710 KRW. It has a grade A and comes with a 6-hour w
+00:50:35 [buyer] {"buy": []}
+00:51:16 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:51:17 [market] ledger #2186760: no deal, stars None, verified False, review not shown
+00:51:17 [order o-8364e13b067d] 신선육류, budget 22420, round 3, use within 12.0 h
+00:51:17 [kit] 49 shops in .market\shops.json, running market_buyer
+00:51:39 [buyer] {"buy": []}
+00:52:00 [forum] post as shop: 200
+00:52:00 [forum] post as buyer: 200
+00:52:02 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "9aab7bc6-0730-471f-b170-f810a2e9267f", "price": 11400, "sig_seller": "yChYVZTf2cB4J3ad/9ihmeeslv1BykIO7FGE7Glx4729jELb/mCga9yUCy6QgJS5jKkr4JeVJoHCjMBEmfndCg==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+00:52:02 [sign] sig_seller ok, sig_buyer added
+00:52:02 [acp] not paying: 0.53 h of shelf life left, the policy asks for 12.0
+00:52:03 [market] ledger #2186954: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+00:52:03 [order o-21120d9e64a4] 신선야채(부패주의), budget 14690, round 3, use within 24.0 h
+00:52:03 [kit] 49 shops in .market\shops.json, running market_buyer
+00:52:12 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:52:12 [market] ledger #2186992: no deal, stars None, verified False, review not shown
+00:52:23 [order o-64435968770f] 비스켓/쿠키, budget 11250, round 3, use within 180.0 h
+00:52:23 [kit] 49 shops in .market\shops.json, running market_buyer
+00:52:45 [buyer] {"buy": []}
+00:52:50 [buyer] {"shop": "https://copies-los-engineer-focal.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:52:50 [market] ledger #2187164: no deal, stars None, verified False, review not shown
+00:52:50 [order o-aafc48210fbc] 디저트, budget 14590, round 3, use within 12.0 h
+00:52:51 [kit] 49 shops in .market\shops.json, running market_buyer
+00:52:59 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:52:59 [market] ledger #2187198: no deal, stars None, verified False, review not shown
+00:53:11 [order o-2e27fcc82081] 신선육류, budget 24870, round 3, use within 2.5 h
+00:53:11 [kit] 49 shops in .market\shops.json, running market_buyer
+00:53:49 [buyer] {"buy": []}
+00:53:49 [seller] [seller] dcd9eba8 rejected: Sorry, we have none of that in stock right now.
+00:54:00 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "fc703c69-6487-4098-b53c-f37e6b226c55", "price": 11400, "sig_seller": "6t5wBteUSMO9NePrumgpOH4yYyKpY3SE0FXJ+jeJJiFDx8ejCoV/tSyS2nSXN0ry9Q4VVGVtD3d2bkg2840SDw==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 2.5}}
+00:54:00 [sign] sig_seller ok, sig_buyer added
+00:54:00 [acp] not paying: 0.50 h of shelf life left, the policy asks for 2.5
+00:54:01 [market] ledger #2187458: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+00:54:01 [order o-390628d4ebe2] 김치, budget 72190, round 3, use within 126.0 h
+00:54:01 [kit] 49 shops in .market\shops.json, running market_buyer
+00:54:19 [seller] [seller] 8e0000b9 rejected: Sorry, we have none of that in stock right now.
+00:54:44 [seller] [seller] 9882a291 input_required: The price for the [LG전자 직영] LG 싸이킹 POWER 청소기 실버 C40SFHT is 175,509 KRW. It comes with a warranty and a grade A certifica
+00:54:51 [buyer] {"shop": "https://cups-settings-highways-katie.trycloudflare.com", "receipt": {"shop": "Ssadassa Shop", "claim": "B", "price": 24924, "task": "e70efebf-c1dc-4dd5-bd42-838fa5330a0a", "unit": "u-25088be61e96", "item": "G200e39a3", "sig_seller": "Kw/VlXsePsZe+oKxLthRZ0jaoQJVWLdxSTlIU9D9mo4b4JGYpxT/aYEHDd6aQ1Y60TVaSFhoZDJwqJNiMCqnBQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 126.0}}
+00:54:51 [sign] sig_seller ok, sig_buyer added
+00:54:52 [acp] not paying: 119.72 h of shelf life left, the policy asks for 126.0
+00:54:52 [market] ledger #2187656: G200e39a3 at 24924, stars None, verified False (failed: settled), review not shown
+00:54:52 [order o-f93b1552b4c9] 침구, budget 75900, round 3
+00:54:52 [kit] 49 shops in .market\shops.json, running market_buyer
+00:54:53 [seller] [seller] 68ba517d input_required: The price for the 가구데코 에이플 LPM 800X1200 도어신발장 AP0157 (G111530e5) is 99,000 credits.
+00:54:53 [buyer] {"buy": []}
+00:55:01 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:55:02 [market] ledger #2187702: no deal, stars None, verified False, review not shown
+00:55:13 [order o-88d0766514b8] 비스켓/쿠키, budget 14830, round 3, use within 360.0 h
+00:55:13 [kit] 49 shops in .market\shops.json, running market_buyer
+00:55:57 [buyer] {"buy": []}
+00:56:03 [seller] [seller] e0259e48 rejected: Sorry, we have none of that in stock right now.
+00:56:06 [seller] [seller] df2456ff rejected: Sorry, we have none of that in stock right now.
+00:57:01 [buyer] {"buy": []}
+00:57:12 [forum] post as shop: 200
+00:57:23 [seller] [seller] 4b7d420b rejected: Sorry, we have none of that in stock right now.
+00:57:23 [forum] post as buyer: 200
+00:57:47 [seller] [seller] 714f97e5 rejected: Sorry, we have none of that in stock right now.
+00:57:59 [seller] [seller] 9895f8c6 rejected: Sorry, we have none of that in stock right now.
+00:58:06 [buyer] {"buy": []}
+00:58:09 [seller] [seller] 4235a92e rejected: Sorry, we have none of that in stock right now.
+00:58:17 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:58:17 [market] ledger #2188495: no deal, stars None, verified False, review not shown
+00:58:17 [order o-5938466e31c1] 김치, budget 34870, round 3, use within 84.0 h
+00:58:18 [kit] 49 shops in .market\shops.json, running market_buyer
+00:58:38 [seller] [seller] f4496d55 rejected: Sorry, we have none of that in stock right now.
+00:59:10 [buyer] {"buy": []}
+00:59:11 [buyer] {"shop": "https://cgcwq-117-17-188-21.free.pinggy.net", "receipt": null, "stars": null, "review": null}
+00:59:11 [market] ledger #2188716: no deal, stars None, verified False, review not shown
+00:59:11 [order o-36ab102d984b] 신선야채(부패주의), budget 21510, round 3, use within 5.0 h
+00:59:12 [kit] 49 shops in .market\shops.json, running market_buyer
+00:59:21 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+00:59:21 [market] ledger #2188765: no deal, stars None, verified False, review not shown
+00:59:32 [order o-46e11097fc28] 신선야채(부패주의), budget 5310, round 3, use within 5.0 h
+00:59:32 [kit] 49 shops in .market\shops.json, running market_buyer
+00:59:39 [seller] [seller] b360c9e7 rejected: Sorry, we have none of that in stock right now.
+00:59:43 [seller] [seller] 72ea84c4 rejected: Sorry, we have none of that in stock right now.
+01:00:15 [buyer] {"buy": []}
+01:00:23 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+01:00:23 [market] ledger #2189005: no deal, stars None, verified False, review not shown
+01:00:23 [order o-2217eafcc2b0] 신선육류, budget 21120, round 3, use within 12.0 h
+01:00:24 [kit] 49 shops in .market\shops.json, running market_buyer
+01:01:07 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "b4a10c1b-9185-40a0-918a-36a38c39b1fa", "price": 11400, "sig_seller": "mrlvE5MmT8HplbcQdKoMCrFemnjtYL30sxcWGpGiIGHcvw8gzGlKC7UhxHgZRE7NzEuBmMSTn8MBCAVuT0BxCg==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+01:01:07 [sign] sig_seller ok, sig_buyer added
+01:01:09 [acp] not paying: 0.38 h of shelf life left, the policy asks for 12.0
+01:01:09 [market] ledger #2189189: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+01:01:09 [order o-8fea26794322] 디저트, budget 17370, round 3, use within 36.0 h
+01:01:09 [kit] 49 shops in .market\shops.json, running market_buyer
+01:01:19 [buyer] {"buy": []}
+01:01:46 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "c7f9e1ce-48c8-422f-919a-d73390610c98", "price": 5400, "sig_seller": "ITW+l0fzWQ/2OWM+eoOrsds4b94u7O9EYmMh+ymMHYH9LNsiFv8kDqeZVgIQe/kyrob0Blr9IJptwASpYjJaDg==", "shop": "YMS's Market", "claim": "C", "unit": "u-475853c94162", "item": "G11f14ced"}, "stars": null, "review": null, "accept": {"cert": true, "min_hours_left": 36}}
+01:01:46 [sign] sig_seller ok, sig_buyer added
+01:01:46 [acp] not paying: 9.25 h of shelf life left, the policy asks for 36
+01:01:47 [market] ledger #2189341: G11f14ced at 5400, stars None, verified False (failed: settled), review not shown
+01:01:47 [order o-0f682bf2becd] 디저트, budget 19460, round 3, use within 36.0 h
+01:01:47 [kit] 49 shops in .market\shops.json, running market_buyer
+01:02:32 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "5465c3f5-69cb-4662-b7ed-face16369c38", "price": 5400, "sig_seller": "fw5w8wv7ms9lkiieu/75inXHNnXeoPTPN2g2c3Wd0rAwTnmNrdw8oturpN1CPpPkHcRdIQwDe5bZueLgWau6CQ==", "shop": "YMS's Market", "claim": "C", "unit": "u-475853c94162", "item": "G11f14ced"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+01:02:32 [sign] sig_seller ok, sig_buyer added
+01:02:33 [acp] not paying: 9.24 h of shelf life left, the policy asks for 36.0
+01:02:33 [market] ledger #2189516: G11f14ced at 5400, stars None, verified False (failed: settled), review not shown
+01:02:33 [order o-d2347376ed03] 침구, budget 690000, round 3
+01:02:34 [kit] 49 shops in .market\shops.json, running market_buyer
+01:02:34 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:02:34 [market] ledger #2189523: no deal, stars None, verified False, review not shown
+01:02:44 [seller] [seller] c8a3c040 rejected: Sorry, we have none of that in stock right now.
+01:02:44 [forum] post as shop: 200
+01:02:54 [order o-e6e0cc87cf4d] 신선육류, budget 41000, round 3, use within 2.5 h
+01:02:54 [kit] 49 shops in .market\shops.json, running market_buyer
+01:03:05 [forum] post as buyer: 200
+01:03:38 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "11668b50-1e71-4238-94fe-8bc5546edd64", "price": 11400, "sig_seller": "Z3oFR/lCsjrikatkiM0g35j8sdklHXFC8T7/mFS6EkWm8eXXPkZZVQ/E9jOsUMaJgOD29snrynmliFh/fQ8GBg==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"min_hours_left": 2.5}}
+01:03:38 [sign] sig_seller ok, sig_buyer added
+01:03:38 [acp] not paying: 0.34 h of shelf life left, the policy asks for 2.5
+01:03:38 [market] ledger #2189837: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+01:03:39 [order o-2d3a8fca4696] 신선과일(부패주의), budget 29610, round 3, use within 36.0 h
+01:03:39 [kit] 49 shops in .market\shops.json, running market_buyer
+01:03:48 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:03:49 [market] ledger #2189912: no deal, stars None, verified False, review not shown
+01:03:59 [order o-de5d216f3d48] 신선육류, budget 45670, round 3, use within 18.0 h
+01:03:59 [kit] 49 shops in .market\shops.json, running market_buyer
+01:04:44 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "91491b20-4f00-42f0-babf-96a4a7a1a330", "price": 11400, "sig_seller": "koaoFvxxe96L2v5bNTDjsMS/C6UhjYIDwiGwWLNuHUlpiGwRnfc960zrNdA08Gg5zvOXXjnSkQOmsqsd4cQIDg==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 18, "grades": ["A", "B"], "warranty_hours": 0}}
+01:04:44 [sign] sig_seller ok, sig_buyer added
+01:04:45 [acp] not paying: 0.32 h of shelf life left, the policy asks for 18
+01:04:45 [market] ledger #2190270: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+01:04:45 [order o-c58ec8175554] 과자, budget 13540, round 3, use within 72.0 h
+01:04:45 [kit] 49 shops in .market\shops.json, running market_buyer
+01:04:50 [buyer] {"buy": []}
+01:05:11 [seller] [seller] 83aa61c6 rejected: Sorry, we have none of that in stock right now.
+01:05:40 [buyer] {"shop": "https://cgcwq-117-17-188-21.free.pinggy.net", "receipt": null, "stars": null, "review": null}
+01:05:40 [market] ledger #2190588: no deal, stars None, verified False, review not shown
+01:05:40 [order o-fb215d64d3d9] 디저트, budget 17370, round 3, use within 5.0 h
+01:05:41 [kit] 49 shops in .market\shops.json, running market_buyer
+01:05:54 [seller] [seller] d7e46160 rejected: Sorry, we have none of that in stock right now.
+01:06:21 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "f6a607cc-c9cf-498e-b664-9635f4786b9b", "item": "G11f14ced", "sig_seller": "x1lRkelTnJJQdvTioH0j0uoEE/aoLihBDDbDyRNo67rqrkYqKb61RRZTsqYi9UbJZSrmEemEqOya5VBJnKkCAA==", "shop": "YAHO1212", "claim": "C", "unit": "u-f88bccc4d836", "price": 8873}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+01:06:21 [sign] sig_seller ok, sig_buyer added
+01:06:22 [acp] checkout ships unit u-f88bccc4d836, claim C, certificate attached
+01:06:22 [acp] paid 8873 through https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com/acp, settled at ledger #2190808: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade C, 10.8 h of shelf life left
+01:06:41 [buyer] {"stars": 3, "review": "Grade C item delivered as claimed at a fair price (81% of list)."}
+01:06:41 [market] ledger #2190901: G11f14ced at 8873, stars 3, verified True, review accepted
+01:06:41 [order o-a774431cd8ba] 신선야채(부패주의), budget 23500, round 3, use within 12.0 h
+01:06:41 [kit] 49 shops in .market\shops.json, running market_buyer
+01:06:51 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:06:51 [market] ledger #2190944: no deal, stars None, verified False, review not shown
+01:07:01 [order o-a8a1b7ff9c92] 침구, budget 90720, round 3
+01:07:02 [kit] 49 shops in .market\shops.json, running market_buyer
+01:07:20 [buyer] {"buy": []}
+01:07:23 [buyer] {"buy": []}
+01:07:55 [forum] post as shop: 200
+01:08:05 [seller] [seller] 07def9f0 input_required: I can offer you the 더릭스홈 자가발열 웜매트 for 35,910.
+01:08:06 [forum] post as buyer: 200
+01:08:20 [seller] [seller] 07def9f0 rejected: Your offer is too low; the minimum price I can accept for the 더릭스홈 자가발열 웜매트 is 22,803.
+01:08:28 [buyer] {"buy": []}
+01:09:24 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:09:24 [market] ledger #2191562: no deal, stars None, verified False, review not shown
+01:09:24 [order o-93f5e8314f67] 신선야채(부패주의), budget 9100, round 3, use within 24.0 h
+01:09:25 [kit] 48 shops in .market\shops.json, running market_buyer
+01:09:32 [buyer] {"buy": []}
+01:09:44 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+01:09:44 [market] ledger #2191659: no deal, stars None, verified False, review not shown
+01:09:45 [order o-93729cd22641] 신선야채(부패주의), budget 35590, round 3, use within 5.0 h
+01:09:46 [kit] 48 shops in .market\shops.json, running market_buyer
+01:09:46 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:09:46 [market] ledger #2191667: no deal, stars None, verified False, review not shown
+01:10:06 [order o-47d14c26669b] 신선과일(부패주의), budget 18790, round 3, use within 5.0 h
+01:10:06 [kit] 48 shops in .market\shops.json, running market_buyer
+01:10:15 [buyer] {"shop": "https://inkjet-varies-downloadable-performances.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:10:16 [market] ledger #2191788: no deal, stars None, verified False, review not shown
+01:10:26 [order o-12371e75de5d] 신선육류, budget 34270, round 3, use within 12.0 h
+01:10:26 [kit] 48 shops in .market\shops.json, running market_buyer
+01:10:30 [seller] [seller] 2d8137ce rejected: Sorry, we have none of that in stock right now.
+01:10:35 [seller] [seller] 6b84322b input_required: I can offer the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP at 38700 with a full warranty.
+01:10:37 [buyer] {"buy": []}
+01:10:55 [seller] [seller] 6b84322b input_required: I can offer the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP at 38700 with a full warranty.
+01:11:02 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "fcf95d67-a27f-46d8-a4b3-c91a7ccf0d13", "price": 11400, "sig_seller": "7jx1HaMUGKq8MeuKncLzFuS2LcsPX8VJRnsRNddrf4EudbmLi3K4jpGlHD1uc4vUtvYWlqD641NPalMFrJusBw==", "shop": "YMS's Market", "claim": "C", "unit": "u-5ff28204a64f", "item": "G37bccafb"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 12, "grades": ["C"], "warranty_hours": 0}}
+01:11:02 [sign] sig_seller ok, sig_buyer added
+01:11:03 [acp] not paying: 0.22 h of shelf life left, the policy asks for 12
+01:11:03 [market] ledger #2191982: G37bccafb at 11400, stars None, verified False (failed: settled), review not shown
+01:11:03 [order o-baf9133e9bd9] 한과/떡, budget 15210, round 3, use within 5.0 h
+01:11:04 [kit] 48 shops in .market\shops.json, running market_buyer
+01:11:12 [seller] [seller] 6b84322b input_required: I can offer the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP at 38700 with a full warranty.
+01:11:30 [seller] [seller] 6b84322b input_required: I can offer the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP at 38700 with a full warranty.
+01:11:40 [buyer] {"buy": []}
+01:11:46 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 13020, "item": "Ga789dfa1", "cert": true, "shop": "kimauve", "unit": "u-bfda86c68e25", "warranty_hours": 0.0, "task": "5405ddb5-4718-4b0f-9369-d4eccc770803", "sig_seller": "ieS166vZuYN0xaaaaR+TqOmWHda7siUTPneZlotZe8uBdAulWf0RB/agtmZA5fV0lpLMuGfYe+4ZyaapguZLDQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+01:11:46 [sign] sig_seller ok, sig_buyer added
+01:11:47 [acp] checkout ships unit u-bfda86c68e25, certificate attached
+01:11:47 [acp] paid 13020 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2192160: [갓지은] 서리태콩찰떡 700g 14개입, grade B, 31.3 h of shelf life left
+01:11:47 [seller] [seller] 6b84322b input_required: I can offer the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP at 38700 with a full warranty.
+01:12:11 [seller] [seller] 6b84322b input_required: I appreciate your offers, but I can only accept 38700 KRW for the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP with a full warra
+01:12:25 [buyer] {"stars": 4, "review": "Grade B item delivered as expected at fair price from a reliable, well-reviewed seller."}
+01:12:26 [market] ledger #2192316: Ga789dfa1 at 13020, stars 4, verified True, review accepted
+01:12:26 [order o-b919b36a1368] 비스켓/쿠키, budget 15620, round 3, use within 72.0 h
+01:12:26 [kit] 48 shops in .market\shops.json, running market_buyer
+01:12:28 [seller] [seller] 6b84322b input_required: I can only accept 38700 KRW for the X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP with a full warranty.
+01:12:37 [seller] [seller] 8c8bf935 rejected: Sorry, we have none of that in stock right now.
+01:12:47 [buyer] {"buy": []}
+01:13:19 [forum] post as shop: 200
+01:13:30 [forum] post as buyer: 200
+01:13:52 [buyer] {"buy": []}
+01:14:53 [seller] [seller] 5183e278 rejected: Sorry, we have none of that in stock right now.
+01:14:56 [buyer] {"buy": []}
+01:15:31 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:15:31 [market] ledger #2193046: no deal, stars None, verified False, review not shown
+01:15:31 [order o-3e9b73affddc] 신선육류, budget 152600, round 3, use within 18.0 h
+01:15:32 [kit] 48 shops in .market\shops.json, running market_buyer
+01:15:32 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:15:32 [market] ledger #2193051: no deal, stars None, verified False, review not shown
+01:15:49 [seller] [seller] d20bd61c rejected: Sorry, we have none of that in stock right now.
+01:15:52 [order o-0ba3d53bfe06] 국수/파스타/누들, budget 7120, round 3, use within 540.0 h
+01:15:52 [kit] 48 shops in .market\shops.json, running market_buyer
+01:16:04 [buyer] {"buy": []}
+01:16:35 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 3170, "item": "Ga8d81688", "cert": true, "shop": "kimauve", "unit": "u-b1acc0358ac6", "warranty_hours": 0.0, "task": "ea1687c6-ab2a-45a0-a635-62efc677d761", "sig_seller": "/QyDrdyFU1O+LHxzcV5PsVltTY3gnsgc4oS8VKjqDCCmB6L9eOPMMMyLgLjlYddG3U6vrMAUOSQ2kP9oX58/BQ=="}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+01:16:36 [sign] sig_seller ok, sig_buyer added
+01:16:37 [acp] not paying: 348.32 h of shelf life left, the policy asks for 540.0
+01:16:37 [market] ledger #2193299: Ga8d81688 at 3170, stars None, verified False (failed: settled), review not shown
+01:16:37 [order o-fef57b48c6fe] 신선야채(부패주의), budget 20790, round 3, use within 24.0 h
+01:16:38 [kit] 48 shops in .market\shops.json, running market_buyer
+01:16:46 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:16:47 [market] ledger #2193339: no deal, stars None, verified False, review not shown
+01:16:57 [order o-7cc39c523710] 찌개/탕류/장류, budget 26330, round 3, use within 540.0 h
+01:16:58 [kit] 48 shops in .market\shops.json, running market_buyer
+01:16:59 [seller] [seller] 02fb4335 rejected: Sorry, we have none of that in stock right now.
+01:17:06 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:17:07 [market] ledger #2193420: no deal, stars None, verified False, review not shown
+01:17:08 [buyer] {"buy": []}
+01:17:18 [order o-f1dd8f437c73] 신선육류, budget 19430, round 3, use within 2.5 h
+01:17:18 [kit] 48 shops in .market\shops.json, running market_buyer
+01:18:05 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "86d6c9b2-4f50-4a74-99d9-eef68550084a", "price": 9800, "sig_seller": "Ne4Ya0ZDZkIT6j+jc9LeT3AOhkdggRSgnTC8SOAxZeqNE1b6D4JSHxmYKxWQzddhNlQ1A3gs77BHCrmhtPEKDA==", "shop": "YMS's Market", "claim": "C", "unit": "u-0d4168be0b5a", "item": "G3ac3f712"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 2.5}}
+01:18:05 [sign] sig_seller ok, sig_buyer added
+01:18:06 [acp] checkout ships unit u-0d4168be0b5a, claim C, certificate attached
+01:18:06 [acp] paid 9800 through https://joint-respect-harvard-medication.trycloudflare.com/acp, settled at ledger #2193667: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade C, 4.1 h of shelf life left
+01:18:12 [buyer] {"buy": []}
+01:18:13 [seller] [seller] 11e8a115 rejected: I'm sorry, but I cannot accept that price.
+01:18:40 [buyer] {"stars": 3, "review": "Grade C as claimed, fairly priced from a consistently fair vendor."}
+01:18:40 [market] ledger #2193816: G3ac3f712 at 9800, stars 3, verified True, review accepted
+01:18:40 [order o-5ca9740e6e47] 신선야채(부패주의), budget 5630, round 3, use within 36.0 h
+01:18:41 [kit] 48 shops in .market\shops.json, running market_buyer
+01:18:41 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:18:41 [market] ledger #2193819: no deal, stars None, verified False, review not shown
+01:18:44 [forum] post as shop: 200
+01:18:56 [seller] [seller] c73f424e rejected: Sorry, we have none of that in stock right now.
+01:19:01 [order o-00a33c53d70d] 신선육류, budget 52660, round 3, use within 6.0 h
+01:19:01 [kit] 48 shops in .market\shops.json, running market_buyer
+01:19:05 [forum] post as buyer: 200
+01:19:14 [seller] [seller] c1cff781 rejected: Sorry, we have none of that in stock right now.
+01:19:16 [buyer] {"buy": []}
+01:19:21 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:19:22 [market] ledger #2193986: no deal, stars None, verified False, review not shown
+01:19:22 [order o-26ef7ae40f2e] 신선야채(부패주의), budget 18620, round 3, use within 36.0 h
+01:19:22 [kit] 48 shops in .market\shops.json, running market_buyer
+01:19:33 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:19:33 [market] ledger #2194030: no deal, stars None, verified False, review not shown
+01:19:42 [order o-f49af1494c6e] 커피/차, budget 28240, round 3, use within 540.0 h
+01:19:43 [kit] 48 shops in .market\shops.json, running market_buyer
+01:19:54 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:19:54 [market] ledger #2194120: no deal, stars None, verified False, review not shown
+01:20:03 [order o-72f6ca25fcc5] 신선야채(부패주의), budget 15250, round 3, use within 24.0 h
+01:20:03 [kit] 48 shops in .market\shops.json, running market_buyer
+01:20:13 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:20:14 [market] ledger #2194206: no deal, stars None, verified False, review not shown
+01:20:19 [buyer] {"buy": []}
+01:20:23 [order o-b8ba53caf86b] 신선야채(부패주의), budget 25090, round 3, use within 36.0 h
+01:20:23 [kit] 48 shops in .market\shops.json, running market_buyer
+01:20:32 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:20:32 [market] ledger #2194284: no deal, stars None, verified False, review not shown
+01:20:43 [order o-7841ff07e1c2] 신선야채(부패주의), budget 106830, round 3, use within 36.0 h
+01:20:43 [kit] 48 shops in .market\shops.json, running market_buyer
+01:20:44 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:20:44 [market] ledger #2194327: no deal, stars None, verified False, review not shown
+01:21:03 [order o-371934f24bc8] 침대/매트리스, budget 40630, round 3
+01:21:03 [kit] 48 shops in .market\shops.json, running market_buyer
+01:21:31 [seller] [seller] aee36c51 rejected: Sorry, we have none of that in stock right now.
+01:21:55 [buyer] {"shop": "https://bulk-fails-begun-fraction.trycloudflare.com", "receipt": {"claim": "B", "price": 34409, "shop": "Kiro Everyday: Groceries & Goods", "unit": "u-b51e2c1fec9a", "item": "G8526e66c", "sig_seller": "c0VI/W0F3oGn9Hp9Dqg9IW+94gGMM3d4Ddjh7ulwP9a6KwbHuNaD8uBbsbb6R9zNgCdZjm/vvJVcHXz7fgvsBA==", "task": "86b66ace-6863-4906-b29c-197b920eee34"}, "stars": null, "review": null, "accept": {"cert": false}}
+01:21:55 [sign] sig_seller ok, sig_buyer added
+01:21:56 [acp] checkout ships unit u-b51e2c1fec9a, claim B, certificate attached
+01:21:56 [acp] paid 34409 through https://bulk-fails-begun-fraction.trycloudflare.com/acp, settled at ledger #2194640: 누우리 편안한 토퍼 매트리스 5cm 멀티싱글(MS), grade B
+01:22:10 [seller] [seller] 69acdeea rejected: Sorry, we have none of that in stock right now.
+01:22:25 [buyer] {"stars": 4, "review": "Grade B delivered as claimed with fair pricing."}
+01:22:25 [market] ledger #2194752: G8526e66c at 34409, stars 4, verified True, review accepted
+01:22:25 [order o-6208302907e8] 신선야채(부패주의), budget 9970, round 3, use within 24.0 h
+01:22:25 [kit] 48 shops in .market\shops.json, running market_buyer
+01:22:52 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+01:22:52 [market] ledger #2194912: no deal, stars None, verified False, review not shown
+01:22:53 [order o-f5be194a2eb8] 신선육류, budget 36120, round 3, use within 18.0 h
+01:22:53 [kit] 48 shops in .market\shops.json, running market_buyer
+01:23:20 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+01:23:21 [market] ledger #2195117: no deal, stars None, verified False, review not shown
+01:23:21 [order o-14efa10fb5ea] 디저트, budget 18900, round 3, use within 12.0 h
+01:23:21 [kit] 48 shops in .market\shops.json, running market_buyer
+01:23:48 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+01:23:48 [market] ledger #2195277: no deal, stars None, verified False, review not shown
+01:23:49 [order o-c2cd6e8e48ce] 기타 가공식품, budget 9080, round 3, use within 360.0 h
+01:23:49 [kit] 48 shops in .market\shops.json, running market_buyer
+01:23:49 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:23:49 [market] ledger #2195283: no deal, stars None, verified False, review not shown
+01:23:50 [buyer] {"buy": []}
+01:23:53 [forum] post as shop: 200
+01:24:09 [order o-0f85e4efb24d] 신선야채(부패주의), budget 26120, round 3, use within 12.0 h
+01:24:09 [kit] 48 shops in .market\shops.json, running market_buyer
+01:24:14 [forum] post as buyer: 200
+01:24:18 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:24:18 [market] ledger #2195455: no deal, stars None, verified False, review not shown
+01:24:29 [order o-c62c36168f40] 신선야채(부패주의), budget 14370, round 3, use within 5.0 h
+01:24:29 [kit] 48 shops in .market\shops.json, running market_buyer
+01:24:39 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:24:39 [market] ledger #2195569: no deal, stars None, verified False, review not shown
+01:24:49 [order o-19a3fa289287] 신선육류, budget 27300, round 3, use within 12.0 h
+01:24:49 [kit] 48 shops in .market\shops.json, running market_buyer
+01:26:07 [seller] [seller] ed47a48c rejected: Sorry, we have none of that in stock right now.
+01:26:20 [buyer] {"buy": []}
+01:26:24 [buyer] {"buy": []}
+01:26:55 [seller] [seller] 18e0ffbf rejected: Sorry, we have none of that in stock right now.
+01:27:28 [buyer] {"buy": []}
+01:27:45 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:27:46 [market] ledger #2196370: no deal, stars None, verified False, review not shown
+01:27:46 [order o-e5814ec7a6e2] 커피/차, budget 11860, round 3, use within 180.0 h
+01:27:46 [kit] 48 shops in .market\shops.json, running market_buyer
+01:27:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:27:57 [market] ledger #2196412: no deal, stars None, verified False, review not shown
+01:28:06 [order o-5a1c56c3a460] 신선야채(부패주의), budget 51100, round 3, use within 36.0 h
+01:28:07 [kit] 48 shops in .market\shops.json, running market_buyer
+01:28:07 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:28:07 [market] ledger #2196465: no deal, stars None, verified False, review not shown
+01:28:27 [order o-8bf125786c91] 신선육류, budget 167780, round 3, use within 6.0 h
+01:28:27 [kit] 48 shops in .market\shops.json, running market_buyer
+01:28:27 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:28:28 [market] ledger #2196546: no deal, stars None, verified False, review not shown
+01:28:31 [buyer] {"buy": []}
+01:28:47 [order o-acde06db080b] 디저트, budget 17370, round 3, use within 36.0 h
+01:28:48 [kit] 48 shops in .market\shops.json, running market_buyer
+01:28:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:28:58 [market] ledger #2196659: no deal, stars None, verified False, review not shown
+01:29:08 [order o-f7454fe464f8] 신선육류, budget 17550, round 3, use within 18.0 h
+01:29:08 [kit] 48 shops in .market\shops.json, running market_buyer
+01:29:12 [forum] post as shop: 200
+01:29:23 [forum] post as buyer: 200
+01:29:35 [buyer] {"buy": []}
+01:30:38 [seller] [seller] d0142c94 input_required: 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS): 28710.
+01:30:39 [buyer] {"buy": []}
+01:31:42 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:31:43 [market] ledger #2197339: no deal, stars None, verified False, review not shown
+01:31:43 [order o-56bdd9d71793] 침구, budget 216940, round 3
+01:31:43 [kit] 48 shops in .market\shops.json, running market_buyer
+01:31:43 [buyer] {"buy": []}
+01:32:32 [seller] [seller] 8257f3e8 rejected: Sorry, we have none of that in stock right now.
+01:32:48 [buyer] {"buy": []}
+01:33:06 [seller] [seller] caf5e82d rejected: Sorry, we have none of that in stock right now.
+01:33:14 [seller] [seller] 740b2afe rejected: Sorry, we have none of that in stock right now.
+01:33:22 [seller] [seller] 3fcc92f6 rejected: Sorry, we have none of that in stock right now.
+01:33:29 [seller] [seller] 8539188d input_required: The unit is priced at 30,510 won, reflecting our returning buyer pricing policy.
+01:33:49 [seller] [seller] 8539188d rejected: I'm unable to accept your offer of 400 won, as it is below our cost.
+01:33:52 [buyer] {"buy": []}
+01:34:25 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:34:26 [market] ledger #2198023: no deal, stars None, verified False, review not shown
+01:34:26 [order o-0c5f9e5c3a3b] 신선육류, budget 40460, round 3, use within 2.5 h
+01:34:26 [kit] 48 shops in .market\shops.json, running market_buyer
+01:34:34 [forum] post as shop: 200
+01:34:45 [forum] post as buyer: 200
+01:34:56 [seller] [seller] 95533084 rejected: Sorry, we have none of that in stock right now.
+01:34:57 [buyer] {"buy": []}
+01:36:01 [buyer] {"buy": []}
+01:36:49 [seller] [seller] aaadde63 rejected: Sorry, we have none of that in stock right now.
+01:37:05 [buyer] {"buy": []}
+01:37:15 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:37:16 [market] ledger #2198709: no deal, stars None, verified False, review not shown
+01:37:16 [order o-003b700e6828] 신선야채(부패주의), budget 97860, round 3, use within 24.0 h
+01:37:16 [kit] 48 shops in .market\shops.json, running market_buyer
+01:37:16 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:37:16 [market] ledger #2198714: no deal, stars None, verified False, review not shown
+01:37:36 [order o-7117db32ce03] 디저트, budget 16870, round 3, use within 5.0 h
+01:37:36 [kit] 48 shops in .market\shops.json, running market_buyer
+01:37:45 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:37:46 [market] ledger #2198834: no deal, stars None, verified False, review not shown
+01:37:52 [seller] [seller] 6476c13f rejected: Sorry, we have none of that in stock right now.
+01:37:57 [order o-668214d0e605] 신선야채(부패주의), budget 63620, round 3, use within 36.0 h
+01:37:57 [kit] 48 shops in .market\shops.json, running market_buyer
+01:37:57 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+01:37:57 [market] ledger #2198888: no deal, stars None, verified False, review not shown
+01:38:09 [buyer] {"buy": []}
+01:38:17 [order o-d29d46a48997] 디저트, budget 14590, round 3, use within 24.0 h
+01:38:17 [kit] 48 shops in .market\shops.json, running market_buyer
+01:38:27 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:38:27 [market] ledger #2199009: no deal, stars None, verified False, review not shown
+01:38:34 [seller] [seller] 016ce21a rejected: Sorry, we have none of that in stock right now.
+01:38:38 [order o-78d53de44e2f] 신선육류, budget 22420, round 3, use within 2.5 h
+01:38:38 [kit] 48 shops in .market\shops.json, running market_buyer
+01:39:13 [buyer] {"buy": []}
+01:39:41 [seller] [seller] e9268093 rejected: Sorry, we have none of that in stock right now.
+01:40:06 [forum] post as shop: 200
+01:40:17 [forum] post as buyer: 200
+01:40:28 [buyer] {"buy": []}
