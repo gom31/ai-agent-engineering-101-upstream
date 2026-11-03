@@ -167,7 +167,8 @@ STRATEGY = {
         "restock": {                                     # optional: how restock picks its candidates
             "type": "object", "properties": {"per_asked_category": {"type": "integer", "minimum": 1, "maximum": 20}}},
         "repeat_buyer": {                                # optional: a buyer not on its first visit
-            "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]}}},
+            "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]},
+                                             "min_share_of_list": {"type": "number", "minimum": 0, "maximum": 1}}},
         "first_visit": {                                 # optional: what a buyer's first visit gets
             "type": "object", "properties": {"price": {"type": "string", "enum": ["at_cost"]}}},
         "certified_only": {"type": "boolean"},           # optional: sell only units with the market's certificate

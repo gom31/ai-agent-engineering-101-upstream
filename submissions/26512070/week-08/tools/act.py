@@ -8,6 +8,7 @@ What an act.* tool returns is the decision; the entry point carries it out (an A
 line for the kit). act.post and act.vote write to .market/outbox.jsonl themselves, which the kit posts.
 """
 import json
+import math
 import re
 
 from core import atomic, paths
@@ -63,14 +64,17 @@ def _seller_unit(ctx, unit):
 
 
 def _repeat_floor(ctx, unit, price):
-    """User 11/3: a buyer that is not on its first visit negotiates at or above the list price."""
-    if (ctx.strategy.get("repeat_buyer") or {}).get("min_price") != "list" or ctx.situation.get("first_time") is not False:
+    """User 11/3: a buyer that is not on its first visit negotiates from the list price, down to min_share_of_list
+    of it at most (user 22:25: 0.9 - at list, returning buyers stopped at 90% and walked: 1 sale in 25 min)."""
+    rb = ctx.strategy.get("repeat_buyer") or {}
+    if rb.get("min_price") != "list" or ctx.situation.get("first_time") is not False:
         return
     u = mf.unit(ctx, unit) or {}
     lp = u.get("list_price") or (mf.catalog(ctx).get(u.get("sku")) or {}).get("list_price")
-    if lp and price < lp:
-        raise Refused(f"{price} is below the list price {lp}; a returning buyer pays at least list (strategy)",
-                      f"ask {lp} or more")
+    floor = math.ceil(lp * rb.get("min_share_of_list", 1.0)) if lp else None
+    if floor and price < floor:
+        raise Refused(f"{price} is below {floor} ({rb.get('min_share_of_list', 1.0):.0%} of the list price {lp}); "
+                      "a returning buyer pays at least that (strategy)", f"ask {floor} or more")
 
 
 @tool("act.counter", "Seller: answer with a price for the unit (and choose the unit on the first turn). Checks the "

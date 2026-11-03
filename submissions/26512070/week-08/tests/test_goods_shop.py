@@ -46,12 +46,12 @@ class GoodsShopTest(Base):
         self.ok("act.counter", price=3800, say="3800 KRW")                               # a returning buyer
 
     def test_returning_buyer_at_list_and_warranty_reserve(self):
-        v9 = json.loads((HERE / "card" / "strategy_v9.json").read_text(encoding="utf-8"))
+        v9 = json.loads((HERE / "card" / "strategy_v11.json").read_text(encoding="utf-8"))
         atomic.write_json(paths.memory() / "strategy" / "active.json", dict(v9, approved="test"))
         self.ctx.situation = {"unit": "u-goods", "first_time": False, "offer": 4000, "ask": 4800}
-        self.assertIn("below the list price 4500", self.refused("act.counter", price=4400, say="4400 KRW")["reason"])
+        self.assertIn("below 4050 (90% of the list price 4500", self.refused("act.counter", price=4000, say="4400 KRW")["reason"])
         self.ok("act.counter", price=4800, say="4800 KRW")
-        self.assertIn("below the list price", self.refused("act.accept", say="Deal.")["reason"])   # offer 4000
+        self.assertIn("90% of the list price", self.refused("act.accept", say="Deal.")["reason"])   # offer 4000
         self.ok("act.accept", say="Deal.", price=4800)
         self.ctx.situation = {"unit": "u-goods", "first_time": True}
         self.ok("act.counter", price=3000, say="3000 KRW")                    # a first visit stays at cost
