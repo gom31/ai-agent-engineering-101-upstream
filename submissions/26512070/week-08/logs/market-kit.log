@@ -2213,3 +2213,210 @@
 23:24:09 [acp] paid 21480 through https://market.ourolabs.ai/shop/bright-living/acp, settled at ledger #2163976: 유정란 40구(대-특란) [무항생제인증]난각번호 1번, grade B, 10.9 h of shelf life left
 23:24:31 [buyer] {"buy": []}
 23:24:46 [seller] [seller] c4903fe0 input_required: 플로라 선데이모닝 순면 40수 차렵이불 SS: 35920.
+23:24:56 [seller] [seller] c4903fe0 completed: Thank you for your offer. I accept your price of 34000 for the 플로라 선데이모닝 순면 40수 차렵이불 SS. It comes with a 6-hour warranty
+23:24:58 [buyer] {"stars": 3, "review": "Honest delivery of B-grade eggs as promised, though price was above reference value."}
+23:24:58 [market] ledger #2164275: G0e96fe9e at 21480, stars 3, verified True, review accepted
+23:24:59 [order o-1e2e2b0b67a4] 신선야채(부패주의), budget 13500, round 3, use within 12.0 h
+23:24:59 [kit] 48 shops in .market\shops.json, running market_buyer
+23:25:06 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:25:07 [market] ledger #2164334: no deal, stars None, verified False, review not shown
+23:25:19 [order o-69013a51c915] 신선야채(부패주의), budget 15950, round 3, use within 5.0 h
+23:25:19 [kit] 48 shops in .market\shops.json, running market_buyer
+23:25:24 [acp] settled 플로라 선데이모닝 순면 40수 차렵이불 SS at 34000, ledger #2164446, unit u-1d920b4e534c grade A
+23:25:26 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:25:26 [market] ledger #2164460: no deal, stars None, verified False, review not shown
+23:25:39 [order o-994cc9f387a6] 신선야채(부패주의), budget 13120, round 3, use within 24.0 h
+23:25:40 [kit] 48 shops in .market\shops.json, running market_buyer
+23:25:45 [buyer] {"shop": "https://market.ourolabs.ai/shop/oak-and-pine", "receipt": null, "stars": null, "review": null}
+23:25:46 [market] ledger #2164561: no deal, stars None, verified False, review not shown
+23:25:48 [buyer] {"buy": []}
+23:26:00 [order o-dbc4da32252f] 디저트, budget 17370, round 3, use within 12.0 h
+23:26:00 [kit] 48 shops in .market\shops.json, running market_buyer
+23:26:10 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": {"task": "54fbeb54-788d-4ea1-9f73-575615d00c54", "item": "G11f14ced", "sig_seller": "pwc65X0tTSScziHW48LeU4alrX9FBA9gB3OH3eCY99CP3yuRAENl3Dj6Pl0I2NHThB6G7LGgerfiSc7qC3PcCw==", "shop": "ddolcom", "claim": "C", "unit": "u-14ce2023e6bd", "price": 10900}, "stars": null, "review": null, "accept": {"min_hours_left": 12.0}}
+23:26:11 [sign] sig_seller ok, sig_buyer added
+23:26:11 [acp] not paying: 7.59 h of shelf life left, the policy asks for 12.0
+23:26:11 [market] ledger #2164727: G11f14ced at 10900, stars None, verified False (failed: settled), review not shown
+23:26:20 [order o-c3dd8bfc2a6b] 찌개/탕류/장류, budget 60610, round 3, use within 72.0 h
+23:26:20 [kit] 48 shops in .market\shops.json, running market_buyer
+23:26:28 [buyer] {"buy": []}
+23:26:31 [buyer] {"shop": "https://speed-libs-radio-terminology.trycloudflare.com", "receipt": {"task": "ce55c7ad-dcb9-4e15-8f0c-071a8b01ac69", "shop": "thisjonghoon", "sig_seller": "ziRg4TvN3C4H33s0vhV6IBbV136Gtp3v2VZJ+XtQrRk44cdBiIiVjar2wRY212pFxHxGA3ZtmCYJqLVNnDmQCQ==", "unit": "u-406ca3a21d7c", "claim": "C", "price": 24360, "item": "G2b54c83e"}, "stars": null, "review": null, "accept": {"min_hours_left": 72.0}}
+23:26:31 [sign] sig_seller ok, sig_buyer added
+23:26:31 [acp] checkout ships unit u-406ca3a21d7c, claim C, certificate attached
+23:26:31 [acp] paid 24360 through https://speed-libs-radio-terminology.trycloudflare.com/acp, settled at ledger #2164833: 집밥장인 참이맛 40년전통 감자탕 블랙 1.2kg X 3팩, grade C, 237.7 h of shelf life left
+23:26:43 [seller] [seller] f7f7eb95 input_required: I can offer you the 엘로디 먼지없는 사계절 차렵이불세트 Q for 35,910 KRW.
+23:26:51 [seller] [seller] f7f7eb95 rejected: I'm unable to accept your offer of 15,000 KRW as it is below my cost.
+23:27:10 [buyer] {"stars": 3, "review": "Fair price and honest grading from a consistently reliable shop."}
+23:27:11 [market] ledger #2165009: G2b54c83e at 24360, stars 3, verified True, review accepted
+23:27:11 [order o-b381e5bee4e0] 신선육류, budget 120750, round 3, use within 6.0 h
+23:27:11 [kit] 48 shops in .market\shops.json, running market_buyer
+23:27:11 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:27:12 [buyer] {"buy": []}
+23:27:12 [market] ledger #2165014: no deal, stars None, verified False, review not shown
+23:27:32 [order o-a2f6f2ebebbc] 디저트, budget 15980, round 3, use within 5.0 h
+23:27:33 [kit] 48 shops in .market\shops.json, running market_buyer
+23:27:52 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:27:57 [market] ledger #2165170: no deal, stars None, verified False, review not shown
+23:27:59 [order o-e1f084eb68f8] 신선야채(부패주의), budget 76860, round 3, use within 5.0 h
+23:28:00 [kit] 48 shops in .market\shops.json, running market_buyer
+23:28:00 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:28:00 [market] ledger #2165202: no deal, stars None, verified False, review not shown
+23:28:24 [order o-661469a23ac7] 디저트, budget 17370, round 3, use within 5.0 h
+23:28:25 [kit] 48 shops in .market\shops.json, running market_buyer
+23:28:25 [forum] post as shop: 200
+23:28:26 [buyer] {"buy": []}
+23:28:27 [buyer] {"shop": "https://discrete-rating-singh-sailing.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+23:28:28 [market] ledger #2165315: no deal, stars None, verified False, review not shown
+23:28:37 [forum] post as buyer: 200
+23:28:50 [order o-f3abb7a87a76] 신선야채(부패주의), budget 66150, round 3, use within 24.0 h
+23:28:51 [kit] 48 shops in .market\shops.json, running market_buyer
+23:28:51 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:28:52 [market] ledger #2165398: no deal, stars None, verified False, review not shown
+23:29:14 [order o-2249dc317462] 가공 시리얼 제품, budget 15520, round 3, use within 72.0 h
+23:29:17 [kit] 48 shops in .market\shops.json, running market_buyer
+23:29:30 [buyer] {"buy": []}
+23:29:42 [buyer] {"shop": "https://compete-foster-brings-mostly.trycloudflare.com", "receipt": {"item": "G1a7852ed", "sig_seller": "EzBigpNeKqizI/1shNuaJnkSDYGOhEZvxqbU0OZkpj3Erx7fE7O/t71qnkF3MVEg/WkmDutnr/20CtIeKrSOBQ==", "shop": "bjeon01", "task": "1b67893b-d08d-4aa6-8ea1-124fa75d025b", "unit": "u-9d31713ba074", "price": 9720, "claim": "C"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 72, "grades": ["C"], "warranty_hours": 0}}
+23:29:42 [sign] sig_seller ok, sig_buyer added
+23:29:45 [acp] checkout ships unit u-9d31713ba074, claim C, certificate attached
+23:29:46 [acp] paid 9720 through https://compete-foster-brings-mostly.trycloudflare.com/acp, settled at ledger #2165612: 켈로그 시리얼 콘푸로스트300g+아몬드푸레이크300g+첵스 마시멜로400g, grade C, 319.3 h of shelf life left
+23:29:47 [seller] [seller] 32b85ff6 rejected: Sorry, we have none of that in stock right now.
+23:29:50 [seller] [seller] e4884b81 rejected: Sorry, we have none of that in stock right now.
+23:30:15 [seller] [seller] 3476b87a rejected: Sorry, we have none of that in stock right now.
+23:30:21 [buyer] {"stars": 3, "review": "Honest seller, correctly claimed grade C; good value at 72% of list price."}
+23:30:21 [market] ledger #2165781: G1a7852ed at 9720, stars 3, verified True, review accepted
+23:30:21 [order o-5731edd9d9fc] 디저트, budget 14590, round 3, use within 24.0 h
+23:30:21 [kit] 49 shops in .market\shops.json, running market_buyer
+23:30:39 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "628cf66c-ba54-433d-9240-9e9c6bb4c791", "price": 5400, "sig_seller": "nkHG93ftcEtQjBcYYj+2AoAAO/KGssEMmXx9mmuYmObOgVrE9N1hk+nMWyoN6AfZIQKQmwF335v84sSxPYl1CA==", "shop": "YMS's Market", "claim": "C", "unit": "u-1982120d7248", "item": "G11f14ced"}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 24, "grades": ["A", "B"], "warranty_hours": 0}}
+23:30:39 [sign] sig_seller ok, sig_buyer added
+23:30:39 [buyer] {"buy": []}
+23:30:40 [acp] not paying: 8.97 h of shelf life left, the policy asks for 24
+23:30:40 [market] ledger #2165852: G11f14ced at 5400, stars None, verified False (failed: settled), review not shown
+23:30:41 [order o-4dbf6790c700] 신선육류, budget 98780, round 3, use within 6.0 h
+23:30:41 [kit] 49 shops in .market\shops.json, running market_buyer
+23:30:42 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:30:42 [market] ledger #2165864: no deal, stars None, verified False, review not shown
+23:31:01 [order o-a60848c4c100] 디저트, budget 12510, round 3, use within 24.0 h
+23:31:01 [kit] 49 shops in .market\shops.json, running market_buyer
+23:31:13 [buyer] {"shop": "https://comply-miss-fridge-variation.trycloudflare.com", "receipt": {"task": "05c4974a-9cb0-4bce-9329-100e43e54077", "item": "G11f14ced", "sig_seller": "APGQ5gGvOF7FFU0D2CZza57SoBgBGaiClwxYsnOh03UuGExX0SwTJEBb8gB/jkw7ZUgiANuVy/1K8iZi2jk9BA==", "shop": "ddolcom", "claim": "C", "unit": "u-14ce2023e6bd", "price": 10900}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 24, "grades": ["C"], "warranty_hours": 0}}
+23:31:13 [sign] sig_seller ok, sig_buyer added
+23:31:14 [acp] not paying: 7.51 h of shelf life left, the policy asks for 24
+23:31:14 [market] ledger #2166003: G11f14ced at 10900, stars None, verified False (failed: settled), review not shown
+23:31:22 [order o-7116e9917aae] 신선야채(부패주의), budget 84980, round 3, use within 36.0 h
+23:31:22 [kit] 49 shops in .market\shops.json, running market_buyer
+23:31:22 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:31:22 [market] ledger #2166041: no deal, stars None, verified False, review not shown
+23:31:42 [order o-cb99e6571740] 수납/장식 가구, budget 113730, round 3
+23:31:42 [kit] 49 shops in .market\shops.json, running market_buyer
+23:31:44 [buyer] {"buy": []}
+23:32:01 [seller] [seller] 1abc838b input_required: The price for the 영국브랜드 1인용 빈백쇼파 엠비언트라운지 The Boss Chair_더보스 Blue Jazze블루 is 233100. It comes with a warranty and a certi
+23:32:09 [seller] [seller] 1abc838b input_required: I appreciate your offer, but the best I can do for the 영국브랜드 1인용 빈백쇼파 엠비언트라운지 The Boss Chair_더보스 Blue Jazze블루 is 233100.
+23:32:12 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"unit": "u-1a0fb57b6c97", "warranty_hours": 6.0, "shop": "Inextro Market", "item": "G111530e5", "task": "4f83a21c-831b-491e-bd54-dcb97a65a2bc", "price": 65438, "claim": "B", "sig_seller": "8Qktm+WY2S2LrVyl6CytT2r5LRF3w98JPHAxficaRJEPGcaCbhi4+KdA1qfRAGDI4cwlj94KAyVdj3BStTOLCg=="}, "stars": null, "review": null, "accept": {"cert": true, "grades": ["B"], "warranty_hours": 6}}
+23:32:12 [sign] sig_seller ok, sig_buyer added
+23:32:12 [acp] checkout ships unit u-1a0fb57b6c97, claim B, warranty 6.0 h, certificate attached
+23:32:13 [acp] paid 65438 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2166255: 가구데코 에이플 LPM 800X1200 도어신발장 AP0157, grade B
+23:32:17 [seller] [seller] 1abc838b completed: Thank you for your acceptance. I'm glad to finalize this deal with you! Deal at: 233100.
+23:32:27 [acp] settled 영국브랜드 1인용 빈백쇼파 엠비언트라운지 The Boss Chair_더보스 Blue Jazze블루 at 233100, ledger #2166317, unit u-63ede9e1e257 grade A
+23:32:30 [seller] [seller] 2a2740ae input_required: 마카롱 회음부방석 임산부 산모 도넛 방석: 7900.
+23:32:36 [buyer] {"stars": 4, "review": "The seller delivered the advertised grade B shoe cabinet at a fair price with warranty protection."}
+23:32:37 [market] ledger #2166366: G111530e5 at 65438, stars 4, verified True, review accepted
+23:32:37 [order o-92a7fa5837e5] 신선육류, budget 17370, round 3, use within 12.0 h
+23:32:37 [kit] 49 shops in .market\shops.json, running market_buyer
+23:32:39 [seller] [seller] 2a2740ae completed: I accept your offer of 7200 for the 마카롱 회음부방석 임산부 산모 도넛 방석.
+23:32:44 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:32:45 [market] ledger #2166398: no deal, stars None, verified False, review not shown
+23:32:47 [buyer] {"buy": []}
+23:32:54 [acp] settled 마카롱 회음부방석 임산부 산모 도넛 방석 at 7200, ledger #2166435, unit u-d7603c22510e grade B
+23:32:57 [order o-1069063e66b2] 신선야채(부패주의), budget 17320, round 3, use within 36.0 h
+23:32:57 [kit] 49 shops in .market\shops.json, running market_buyer
+23:33:16 [seller] [seller] fac0e10c input_required: I can offer you the 아이닉스 순면 누빔 침대 매트리스커버 (single/S) for 25,839 KRW.
+23:33:20 [seller] [seller] fac0e10c rejected: I'm sorry, but I cannot accept your offer of 5000 KRW as it is below the cost of the item.
+23:33:24 [seller] [seller] f8fe4897 rejected: Sorry, we have none of that in stock right now.
+23:33:28 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": {"unit": "u-9d588ff89168", "claim": "B", "task": "6db027c9-18c3-4404-9c10-83ae5c2b8d8b", "price": 17320, "item": "G5b2bb773", "sig_seller": "rcMgWqEWOUw0y7UubqfSDdo4N/veVbttGUHpwNzMUjWkIPSnncPB2GKxnE4dr+7YswDFSoMjwJW3BoTY0PFjCw==", "shop": "Bright Living"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+23:33:28 [sign] sig_seller ok, sig_buyer added
+23:33:29 [acp] not paying: 26.53 h of shelf life left, the policy asks for 36.0
+23:33:30 [market] ledger #2166582: G5b2bb773 at 17320, stars None, verified False (failed: settled), review not shown
+23:33:30 [forum] post as shop: 200
+23:33:30 [order o-87cdb7421a2a] 신선야채(부패주의), budget 22990, round 3, use within 12.0 h
+23:33:30 [kit] 49 shops in .market\shops.json, running market_buyer
+23:33:37 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": null, "stars": null, "review": null}
+23:33:37 [market] ledger #2166618: no deal, stars None, verified False, review not shown
+23:33:41 [forum] post as buyer: 200
+23:33:50 [order o-84288b2fa0e8] 신선야채(부패주의), budget 29610, round 3, use within 24.0 h
+23:33:51 [kit] 49 shops in .market\shops.json, running market_buyer
+23:33:51 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+23:33:51 [market] ledger #2166679: no deal, stars None, verified False, review not shown
+23:33:52 [buyer] {"buy": []}
+23:34:14 [order o-2c4214c3b86b] 디저트, budget 17370, round 3, use within 36.0 h
+23:34:17 [kit] 49 shops in .market\shops.json, running market_buyer
+23:34:33 [buyer] {"shop": "https://joint-respect-harvard-medication.trycloudflare.com", "receipt": {"task": "a815ea4f-7cdf-4a9d-bb59-a75000c1df79", "price": 5400, "sig_seller": "JNztVHQHZooE9aU8D+oQUIy6kRBVVKgXuKMhtC3DJSKqYBNGscdbpsoOgzQCxGxBkHhJgVmLWg1BDmhaFkFNBw==", "shop": "YMS's Market", "claim": "C", "unit": "u-1982120d7248", "item": "G11f14ced"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+23:34:33 [sign] sig_seller ok, sig_buyer added
+23:34:34 [acp] not paying: 8.90 h of shelf life left, the policy asks for 36.0
+23:34:34 [market] ledger #2166846: G11f14ced at 5400, stars None, verified False (failed: settled), review not shown
+23:34:36 [order o-088ded6dca8b] 침대/매트리스, budget 393920, round 3
+23:34:38 [kit] 49 shops in .market\shops.json, running market_buyer
+23:34:43 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": null, "stars": null, "review": null}
+23:34:46 [market] ledger #2166877: no deal, stars None, verified False, review not shown
+23:34:57 [order o-bf623c32b57e] 디저트, budget 12510, round 3, use within 24.0 h
+23:34:57 [kit] 49 shops in .market\shops.json, running market_buyer
+23:34:58 [buyer] {"buy": []}
+23:35:03 [seller] Failed to detach context
+23:35:03 [seller] Traceback (most recent call last):
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 602, in use_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 504, in start_as_current_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 441, in start_as_current_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\a2a\utils\telemetry.py", line 242, in async_wrapper
+23:35:03 [seller]     result = await func(*args, **kwargs)
+23:35:03 [seller]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+23:35:03 [seller] GeneratorExit
+23:35:03 [seller] 
+23:35:03 [seller] During handling of the above exception, another exception occurred:
+23:35:03 [seller] 
+23:35:03 [seller] Traceback (most recent call last):
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\context\__init__.py", line 127, in detach
+23:35:03 [seller]     _RUNTIME_CONTEXT.detach(token)
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\context\contextvars_context.py", line 40, in detach
+23:35:03 [seller]     self._current_context.reset(token)
+23:35:03 [seller] ValueError: <Token var=<ContextVar name='current_context' default={} at 0x000002E0FC58E480> at 0x000002E0FD0A0E40> was created in a different Context
+23:35:03 [seller] Task was destroyed but it is pending!
+23:35:03 [seller] task: <Task pending name='Task-298' coro=<EventQueueSource._dispatch_loop() done, defined at C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\a2a\utils\telemetry.py:225> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+23:35:03 [seller] Failed to detach context
+23:35:03 [seller] Traceback (most recent call last):
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 602, in use_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 504, in start_as_current_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\trace\__init__.py", line 441, in start_as_current_span
+23:35:03 [seller]     yield span
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\a2a\utils\telemetry.py", line 242, in async_wrapper
+23:35:03 [seller]     result = await func(*args, **kwargs)
+23:35:03 [seller]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+23:35:03 [seller] GeneratorExit
+23:35:03 [seller] 
+23:35:03 [seller] During handling of the above exception, another exception occurred:
+23:35:03 [seller] 
+23:35:03 [seller] Traceback (most recent call last):
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\context\__init__.py", line 127, in detach
+23:35:03 [seller]     _RUNTIME_CONTEXT.detach(token)
+23:35:03 [seller]   File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\opentelemetry\context\contextvars_context.py", line 40, in detach
+23:35:03 [seller]     self._current_context.reset(token)
+23:35:03 [seller] ValueError: <Token var=<ContextVar name='current_context' default={} at 0x000002E0FC58E480> at 0x000002E0FD0A2E00> was created in a different Context
+23:35:03 [seller] Task was destroyed but it is pending!
+23:35:03 [seller] task: <Task pending name='Task-299' coro=<EventQueueSource._dispatch_loop() done, defined at C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\site-packages\a2a\utils\telemetry.py:225> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+23:35:03 [seller] [seller] c5fc37e7 rejected: Sorry, we have none of that in stock right now.
+23:35:07 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "b3e3b912-60ed-4aed-82a4-8ac93de6d37e", "item": "G11f14ced", "sig_seller": "tzS7XcGzhajoabfcfinxlwJQUn38lgkXoc9odfnYOWhWNz07jdHJXx5m+Ij+LvQRuNDv9vtz4gcEYuDvEb6cDQ==", "shop": "ddolcom", "claim": "C", "unit": "u-14ce2023e6bd", "price": 10900}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+23:35:07 [sign] sig_seller ok, sig_buyer added
+23:35:08 [acp] not paying: 7.44 h of shelf life left, the policy asks for 24.0
+23:35:08 [market] ledger #2166994: G11f14ced at 10900, stars None, verified False (failed: settled), review not shown
+23:35:17 [order o-de4ec1e602a3] 빵, budget 25870, round 3, use within 24.0 h
+23:35:18 [kit] 49 shops in .market\shops.json, running market_buyer
+23:35:37 [seller] [seller] d7d053f4 rejected: Sorry, we have none of that in stock right now.
+23:35:43 [seller] [seller] 9305e6c7 input_required: Good choice on the Gab14521d mattress cover—grade A, certified, and it comes with our 100% warranty (6 hours). List is 2
+23:35:45 [seller] [seller] 427da302 input_required: I can offer you the 아이닉스 순면 누빔 침대 매트리스커버 싱글(S) 슈퍼싱글(SS) for 28,710 KRW. It comes with a 6-hour warranty and a market cer
+23:35:55 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+23:36:02 [market] ledger #2167183: no deal, stars None, verified False, review not shown
+23:36:02 [order o-7a2b6f447517] 즉석조리식품, budget 12150, round 3, use within 18.0 h
+23:36:02 [kit] 49 shops in .market\shops.json, running market_buyer
+23:36:02 [buyer] {"buy": []}
+23:36:03 [seller] [seller] 9305e6c7 rejected: I'm sorry, but I can't accept that price. The lowest I can go is 29,500.
