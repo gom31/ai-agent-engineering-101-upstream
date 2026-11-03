@@ -63,7 +63,7 @@ def signature(ctx):
             "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version")}, inv
 
 
-def candidates(ctx, held_skus, room, first=()):
+def candidates(ctx, held_skus, room, first=(), asked=()):
     """One goods SKU per goods demand category (nearest the category's median list price, and at most a tenth of the
     room so one line cannot eat it): categories named in `first` first, then the ones with the most SKUs."""
     cat = mf.catalog(ctx)
@@ -85,6 +85,28 @@ def candidates(ctx, held_skus, room, first=()):
                      "list_price": c["list_price"], "worst_cost": round(c["list_price"] * 0.75),
                      "first": any(f and f in (d.get("category") or "") for f in first), "skus": d.get("skus") or 0})
     rows.sort(key=lambda r: (not r["first"], -r["skus"]))     # asked-for first, then the categories with most SKUs
+    per = (ctx.strategy.get("restock") or {}).get("per_asked_category")
+    if per:
+        # User 11/3 22:06: buy what buyers need, for more deals. An order takes only certain SKUs of its category, so
+        # the SKUs buyers asked us for come first (most asked first, held or not), then more SKUs of the asked-for
+        # categories near the category's median price (cheapest-first picked sprays and gum from noisy categories);
+        # categories nobody asked for are left out.
+        demand = {x.get("item"): x for x in mf.read(ctx, "demand.json", default=[]) or []}
+        top = [dict(sku=s, name=(cat[s].get("name") or "")[:40], category=(cat[s].get("category") or "").split(">")[-1],
+                    list_price=cat[s].get("list_price"), worst_cost=round((cat[s].get("list_price") or 0) * 0.75),
+                    first=True, skus=0)
+               for s in asked if s in cat and cat[s].get("kind") == "goods"]
+        extra = []
+        for r in rows:
+            if not r["first"]:
+                continue
+            d = demand.get(r["category"]) or {}
+            med = d.get("median_price") or r["list_price"]
+            more = sorted((c for c in by.get(d.get("category"), []) if c.get("list_price")
+                           and c["sku"] not in asked), key=lambda c: abs(c["list_price"] - med))[:per]
+            extra += [dict(r, sku=c["sku"], name=(c.get("name") or "")[:40], list_price=c["list_price"],
+                           worst_cost=round(c["list_price"] * 0.75)) for c in more]
+        rows = top + extra
     return rows[:CANDIDATES]
 
 
@@ -129,7 +151,7 @@ def situation(ctx, inv):
                       (inv["balance"] or 0) - (lim.get("cash_floor") or 0) - reserve))
     missed = call(ctx, "me.missed", {"hours": 6})["result"]
     first = [c["category"] for c in missed.get("categories") or []]
-    rows = candidates(ctx, held_skus, room, first)
+    rows = candidates(ctx, held_skus, room, first, [s["sku"] for s in missed.get("skus") or [] if s.get("sku")])
     lines.append(f"\nRoom to stock now: about {room} (the stock cap {start_cap} minus stock {inv['stock_value']}, and "
                  f"the balance above the floor"
                  + (f" and the warranty reserve {reserve} for {open_n} sales ({open_total}) still in warranty"

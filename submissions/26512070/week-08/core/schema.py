@@ -164,6 +164,8 @@ STRATEGY = {
                            "kinds": {"type": "array", "items": {"type": "string", "enum": ["food", "goods"]}},
                            # cash kept for refunds: this share of our sales still in warranty (check.buy)
                            "reserve_share": {"type": "number", "minimum": 0, "maximum": 1}}},
+        "restock": {                                     # optional: how restock picks its candidates
+            "type": "object", "properties": {"per_asked_category": {"type": "integer", "minimum": 1, "maximum": 20}}},
         "repeat_buyer": {                                # optional: a buyer not on its first visit
             "type": "object", "properties": {"min_price": {"type": "string", "enum": ["list"]}}},
         "first_visit": {                                 # optional: what a buyer's first visit gets
