@@ -1,14 +1,13 @@
 """eval.*: every deterministic metric of HARNESS.md 3.3, computed from raw events (core/kinds.py).
 
 All take since/until (unix seconds) or epoch to cut a slice, and return numbers with the sample size,
-so a reader can tell a real change from noise. The outer runtime calls them every slice; they scan
-raw files, so they are not for the inner runtime's hot path.
+so a reader can tell a real change from noise. They read the L1 index (core.index: events filed by kind
+and day, updated from a cursor), so a call opens only the kinds and days it needs.
 """
 import json
 import statistics
 
-from core import atomic, paths
-from core.kinds import SOURCES
+from core import atomic, index, paths
 from tools.registry import Refused, tool
 
 _SLICE = {"since": {"type": ["number", "null"]}, "until": {"type": ["number", "null"]},
@@ -17,27 +16,8 @@ _SCOPE = {"type": "string", "enum": ["seller", "buyer", "restock", "review", "fo
 
 
 def events(kinds=None, since=None, until=None, epoch=None):
-    """Raw events of the given kinds in a slice, oldest first. Broken lines are skipped."""
-    out = []
-    for src in SOURCES:
-        d = paths.raw() / src
-        if not d.is_dir():
-            continue
-        for f in sorted(d.glob("*.jsonl")):
-            with open(f, encoding="utf-8") as fh:
-                for line in fh:
-                    try:
-                        e = json.loads(line)
-                    except ValueError:
-                        continue
-                    if kinds and e.get("kind") not in kinds:
-                        continue
-                    if since is not None and e["ts"] < since or until is not None and e["ts"] >= until:
-                        continue
-                    if epoch is not None and e.get("epoch") != epoch:
-                        continue
-                    out.append(e)
-    return sorted(out, key=lambda e: e["ts"])
+    """Raw events of the given kinds in a slice, oldest first: from the L1 index (core.index), not a rescan of raw."""
+    return index.events(kinds, since, until, epoch)
 
 
 def _rate(n, d):
