@@ -60,6 +60,19 @@ def shop_prices(shops, now=None):
     return {s["name"]: fact["shops"].get((s.get("url") or "").rstrip("/")) for s in shops}
 
 
+def shop_trouble(r):
+    """0 fine, 1 pay trouble, 2 refuses us (11/4 02:4x: totato2203-r3, the cheapest by market share, refused 105 of
+    106 orders, and the rules picked it first every time)."""
+    r = r or {}
+    tries = r.get("deals", 0) + r.get("no_deal", 0)
+    last = [x.get("verdict", "") for x in (r.get("last") or [])[:3]]
+    if (tries >= 5 and r.get("fair", 0) / tries < 0.1) or (len(last) == 3 and all(v.startswith("no deal") for v in last)):
+        return 2
+    if r.get("unpaid", 0) >= 2 and r.get("unpaid", 0) >= r.get("paid", 0):
+        return 1
+    return 0
+
+
 class A2A:
     """The A2A v1.0 client: read the card, keep one task, send text."""
 
@@ -190,12 +203,8 @@ class BuyerCore:
         prices = shop_prices(list(shops.values()))
         rf = (reflex.load().get("shops") or {})
 
-        def unpaid_often(s):
-            r = rf.get(s["name"]) or {}
-            return r.get("unpaid", 0) >= 2 and r.get("unpaid", 0) >= r.get("paid", 0)
-
         ceil_share = self.playbook()["ceiling_share"]
-        for s in sorted(shops.values(), key=lambda s: (unpaid_often(s),
+        for s in sorted(shops.values(), key=lambda s: (shop_trouble(rf.get(s["name"])),
                                                        (prices.get(s["name"]) or {}).get("median_share", 0.8))):
             share = min((prices.get(s["name"]) or {}).get("median_share", 0.75), ceil_share)
             fit = [k for k in s["skus"] if (cat.get(k) or {}).get("list_price")
@@ -264,10 +273,7 @@ class BuyerCore:
                  + (" A warranty helps (a broken item is refunded)." if kind == "goods" else ""), ""]
         prices = shop_prices(list(shops.values()))
         rf = (reflex.load().get("shops") or {})
-        def unpaid_often(s):    # 11/4 02:3x: 18 of 50 agreed deals were not paid (food short of shelf life)
-            r = rf.get(s["name"]) or {}
-            return r.get("unpaid", 0) >= 2 and r.get("unpaid", 0) >= r.get("paid", 0)
-        order_shops = sorted(shops.values(), key=lambda s: (unpaid_often(s),
+        order_shops = sorted(shops.values(), key=lambda s: (shop_trouble(rf.get(s["name"])),
                                                             (prices.get(s["name"]) or {}).get("median_share", 0.8)))
         for s in order_shops[:25]:
             me = call(self.ctx, "me.counterpart", {"name": s["name"], "side": "shop"})["result"]

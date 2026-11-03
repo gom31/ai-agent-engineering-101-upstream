@@ -3983,3 +3983,5 @@
 02:49:11 [forum] post as buyer: 200
 02:49:19 [order o-f172a2564044] 주스/코코아/생수, budget 28620, round 3, use within 540.0 h
 02:49:19 [kit] 48 shops in .market\shops.json, running market_buyer
+02:49:44 [buyer] {"buy": []}
+02:50:01 [kit] your seller exited (code 4294967295), starting it again
