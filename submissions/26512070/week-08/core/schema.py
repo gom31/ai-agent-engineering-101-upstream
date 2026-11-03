@@ -199,7 +199,10 @@ STRATEGY = {
                     "market_top": {"type": "integer", "minimum": 0, "maximum": 30},
                     "market_units": {"type": "integer", "minimum": 0, "maximum": 8},
                     # one line's share of the money the window may spend (breadth over depth), 1 = no cap
-                    "max_line_share": {"type": "number", "minimum": 0.05, "maximum": 1}}}}},
+                    "max_line_share": {"type": "number", "minimum": 0.05, "maximum": 1},
+                    "food_top": {"type": "integer", "minimum": 0, "maximum": 30},
+                    "food_units": {"type": "integer", "minimum": 0, "maximum": 8},
+                    "food_min_shelf_hours": {"type": "number", "minimum": 0}}}}},
     },
 }
 

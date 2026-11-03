@@ -47,7 +47,10 @@ def playbook(ctx):
     pb = ((ctx.strategy.get("playbook") or {}).get("restock") or {})
     return {"mode": pb.get("mode", "rules"), "cover_windows": pb.get("cover_windows", 2),
             "market_top": pb.get("market_top", 5), "market_units": pb.get("market_units", 2),
-            "max_line_share": pb.get("max_line_share", 1.0)}
+            "max_line_share": pb.get("max_line_share", 1.0),
+            # user 11/4 02:4x: sell food too - the market's best sellers, only food that keeps (shelf hours)
+            "food_top": pb.get("food_top", 8), "food_units": pb.get("food_units", 3),
+            "food_min_shelf_hours": pb.get("food_min_shelf_hours", 72)}
 
 
 def build_buy_list(ctx, now=None):
@@ -62,25 +65,43 @@ def build_buy_list(ctx, now=None):
         if u.get("grade") != "expired":
             have[u["sku"]] = have.get(u["sku"], 0) + 1
     missed = call(ctx, "me.missed", {"hours": 6})
-    sell = call(ctx, "market.selling", {"hours": 6})
+    sell = call(ctx, "market.selling", {"hours": 6, "limit": 30})
+    sell_food = call(ctx, "market.selling", {"hours": 6, "kind": "food", "limit": 30})
     want = {}
+    def keeps(sku):         # goods always; food only when it keeps long enough to sell (playbook)
+        c = cat.get(sku) or {}
+        return c.get("kind") == "goods" or (lim.get("food_share_max", 0) > 0 and c.get("kind") == "food"
+                                            and (c.get("shelf_hours") or 0) >= pb["food_min_shelf_hours"])
     for x in (missed["result"].get("skus") or []) if missed["ok"] else []:
-        if x.get("kind") == "goods":
+        if keeps(x["sku"]):
             want[x["sku"]] = want.get(x["sku"], 0) + x.get("asked", 0)
     for x in (sell["result"].get("ours") or []) if sell["ok"] else []:
-        if (cat.get(x["sku"]) or {}).get("kind") == "goods":
+        if keeps(x["sku"]):
             want[x["sku"]] = want.get(x["sku"], 0) + x.get("sold", 0)
     lines = []
-    for sku, n in sorted(want.items(), key=lambda kv: -kv[1]):
+    # 11/4 03:0x benchmark (winun1127, dae-yangkim): profit comes from deep stock of the best sellers with a high
+    # list price, so the list is ordered by expected sales value (asked/sold x list price), not by count
+    for sku, n in sorted(want.items(), key=lambda kv: -kv[1] * ((cat.get(kv[0]) or {}).get("list_price") or 0)):
         if sku not in cat:
             continue
-        target = max(1, min(lim["max_units_per_sku"], math.ceil(pb["cover_windows"] * n / WINDOWS_PER_6H)))
-        lines.append({"sku": sku, "target": target, "have": have.get(sku, 0), "why": f"wanted {n} in 6 h"})
-    market = [x for x in ((sell["result"].get("market") or []) if sell["ok"] else [])
-              if x.get("kind") == "goods" and x["sku"] in cat and x["sku"] not in want]
+        per = pb["food_units"] if cat[sku].get("kind") == "food" else lim["max_units_per_sku"]
+        target = max(1, min(per, lim["max_units_per_sku"], math.ceil(pb["cover_windows"] * n / WINDOWS_PER_6H)))
+        lines.append({"sku": sku, "target": target, "have": have.get(sku, 0), "why": f"wanted {n} in 6 h",
+                      "value": n * (cat[sku].get("list_price") or 0)})
+    market = sorted((x for x in ((sell["result"].get("market") or []) if sell["ok"] else [])
+                     if x.get("kind") == "goods" and x["sku"] in cat and x["sku"] not in want),
+                    key=lambda x: -x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0))
     for x in market[:pb["market_top"]]:
         lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["market_units"]),
-                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} in 6 h"})
+                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} in 6 h",
+                      "value": x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0)})
+    food = [x for x in ((sell_food["result"].get("market") or []) if sell_food["ok"] else [])
+            if x.get("kind") == "food" and x["sku"] in cat and x["sku"] not in want and keeps(x["sku"])]
+    for x in food[:pb["food_top"]]:
+        lines.append({"sku": x["sku"], "target": min(lim["max_units_per_sku"], pb["food_units"]),
+                      "have": have.get(x["sku"], 0), "why": f"market sold {x.get('sold')} food in 6 h",
+                      "value": x.get("sold", 0) * (cat[x["sku"]].get("list_price") or 0)})
+    lines.sort(key=lambda x: -x["value"])               # one order for all: expected sales value
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
     room = check.room(ctx)
