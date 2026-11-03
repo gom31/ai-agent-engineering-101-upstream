@@ -3455,3 +3455,22 @@
 01:47:04 [seller] [seller] d8b02bfe input_required: I can offer you the 충전식 고양이 전자핫팩 USB 휴대용 손난로 핫팩 핸디워머 주머니 손날로 at the list price of 11,670 KRW with a full warranty.
 01:47:05 [order o-b3b8fa2b7197] 신선육류, budget 24720, round 3, use within 6.0 h
 01:47:05 [kit] 48 shops in .market\shops.json, running market_buyer
+01:47:49 [buyer] {"buy": []}
+01:47:55 [kit] your seller exited (code 4294967295), starting it again
+01:48:53 [buyer] {"buy": []}
+01:48:54 [seller] [seller] 044fb4de input_required: Our asking price is 79,110 for the [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS, which carries a warranty. It is certified and 
+01:49:42 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:49:43 [market] ledger #2202231: no deal, stars None, verified False, review not shown
+01:49:43 [order o-4ad62c4b8bf3] 비스켓/쿠키, budget 13120, round 3, use within 540.0 h
+01:49:43 [kit] 48 shops in .market\shops.json, running market_buyer
+01:49:52 [buyer] {"shop": "https://bulk-fails-begun-fraction.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:49:52 [market] ledger #2202266: no deal, stars None, verified False, review not shown
+01:49:57 [buyer] {"buy": []}
+01:50:03 [order o-fe6b7d4e5dd2] 침구, budget 77670, round 3
+01:50:04 [kit] 48 shops in .market\shops.json, running market_buyer
+01:50:17 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+01:50:17 [market] ledger #2202373: no deal, stars None, verified False, review not shown
+01:50:24 [order o-ee717bfc6eb8] 커튼/러그/쿠션/덮개, budget 47320, round 3
+01:50:24 [kit] 48 shops in .market\shops.json, running market_buyer
+01:50:28 [forum] post as shop: 200
+01:50:39 [forum] post as buyer: 200
