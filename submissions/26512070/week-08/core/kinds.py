@@ -29,6 +29,7 @@ KINDS = {
     # review and forum
     "review.written": "we reviewed a deal. data: stars, fact_stars, why",
     "forum.posted": "we posted. data: as (shop|buyer), refs_valid (bool), post_id",
+    "forum.turn": "one forum turn. data: action (post|skip|None), as, refs, votes, why",
     "forum.votes": "votes our posts received, counted. data: post_id, likes, dislikes",
     # model calls (every seat)
     "model.call": "one model call. data: seat, model, ms, ok, rate_limited, fallback, prompt_chars",

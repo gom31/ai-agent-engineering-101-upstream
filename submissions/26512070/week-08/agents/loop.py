@@ -31,7 +31,7 @@ ROLES = {
               "final": ["act.pick", "act.offer", "act.walk_away", "act.finish"], "steps": 3},
     "restock": {"look": ["me.inventory", "market.sku", "market.selling", "calc.holding_cost", "calc.shelf_risk",
                          "check.buy", "memory.card_section"],
-                "final": ["act.buy"], "steps": 5},
+                "final": ["act.buy"], "steps": 7},
     "review": {"look": ["me.counterpart", "memory.card_section"], "final": ["act.review"], "steps": 2},
     "forum": {"look": ["market.forum", "market.sku", "market.selling", "me.counterpart", "act.vote",
                        "memory.card_section"],
