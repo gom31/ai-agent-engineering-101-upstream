@@ -30,7 +30,8 @@ from tools.registry import Ctx, call  # noqa: E402
 REASK_MINUTES = 20
 LEAD = 75                  # plan this many seconds before a window opens at the latest (a model turn takes ~40 s)
 WINDOW_MINUTES = 3
-PLANS_PER_WINDOW = 2       # a plan of 10 lines takes the kit ~100 s (one supply call per 10 s); a window is 180 s
+PLANS_PER_WINDOW = 4       # a plan of 10 lines takes the kit ~100 s (one supply call per 10 s); windows run 10 min (seen 11/3)
+CANDIDATES = 40            # goods SKUs offered in the situation, one per demand category, so a plan needs no search
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
 
 
@@ -61,15 +62,41 @@ def signature(ctx):
             "balance_band": (inv["balance"] or 0) // 200_000, "strategy": ctx.strategy.get("version")}, inv
 
 
+def candidates(ctx, held_skus, room, first=()):
+    """One goods SKU per goods demand category (nearest the category's median list price, and at most a tenth of the
+    room so one line cannot eat it): categories named in `first` first, then the ones with the most SKUs."""
+    cat = mf.catalog(ctx)
+    by = {}
+    for s, c in cat.items():
+        if c.get("kind") == "goods" and s not in held_skus:
+            by.setdefault(c.get("category"), []).append(c)
+    rows = []
+    for d in mf.read(ctx, "demand.json", default=[]) or []:
+        if d.get("kind") != "goods" or d.get("category") not in by:
+            continue
+        cap = max(room / 10, 1) / 0.75                    # worst-case cost is 75% of list
+        fit = [c for c in by[d["category"]] if c.get("list_price") and c["list_price"] <= cap]
+        if not fit:
+            continue
+        med = d.get("median_price") or 0
+        c = min(fit, key=lambda c: abs(c["list_price"] - med))
+        rows.append({"sku": c["sku"], "name": (c.get("name") or "")[:40], "category": d.get("item"),
+                     "list_price": c["list_price"], "worst_cost": round(c["list_price"] * 0.75),
+                     "first": any(f and f in (d.get("category") or "") for f in first), "skus": d.get("skus") or 0})
+    rows.sort(key=lambda r: (not r["first"], -r["skus"]))     # asked-for first, then the categories with most SKUs
+    return rows[:CANDIDATES]
+
+
 def situation(ctx, inv):
     lim = ctx.strategy.get("limits") or {}
     start = inv.get("start") or 5_000_000
     sell = call(ctx, "market.selling", {"hours": 6})["result"]
-    held = {}
+    held, held_skus = {}, set()
     for u in mf.inventory(ctx).get("units", []):
         if u.get("grade") != "expired":
             c = mf.catalog(ctx).get(u["sku"]) or {}
             held[c.get("category") or u["sku"]] = held.get(c.get("category") or u["sku"], 0) + 1
+            held_skus.add(u["sku"])
     lines = ["# the decision at hand",
              f"Phase {ctx.strategy.get('phase')}. Balance {inv['balance']} (floor {lim.get('cash_floor')}); stock "
              f"{inv['units']} units worth {inv['stock_value']} (cap {round((lim.get('max_stock_share') or 0) * start)}); "
@@ -89,13 +116,25 @@ def situation(ctx, inv):
     if r:
         nxt = r.get("opens_at")
         lines.append(f"\nSupply window: {'open until ' + time.strftime('%H:%M:%S', time.localtime(r['closes_at'])) if r.get('open') and r.get('closes_at') else 'opens ' + (time.strftime('%H:%M:%S', time.localtime(nxt)) if nxt else 'soon')}. "
-                     "Supply opens about every 20 minutes for 3; what you buy now has to last until the next window.")
+                     "Supply opens about every 20 minutes; what you buy now has to last until the next window.")
     wf, bc = ctx.strategy.get("welcome_food") or {}, lim.get("below_cost") or {}
     if wf:
         lines.append(f"Welcome Food (strategy): each window brings food for first-time buyers (list price up to "
                      f"{bc.get('max_list_price')}, discounted only while grade {bc.get('grades')} now). What arrives at "
                      "which grade is the market's draw; market.buyer_prefs shows which food categories buyers want.")
-    lines.append("\nFind SKUs with market.sku (a category word or a name), then act.buy a plan (or an empty plan).")
+    start_cap = round((lim.get("max_stock_share") or 0) * start)
+    room = max(0, min(start_cap - (inv["stock_value"] or 0), (inv["balance"] or 0) - (lim.get("cash_floor") or 0)))
+    missed = call(ctx, "me.missed", {"hours": 6})["result"]
+    first = [c["category"] for c in missed.get("categories") or []]
+    rows = candidates(ctx, held_skus, room, first)
+    lines.append(f"\nRoom to stock now: about {room} (the stock cap {start_cap} minus stock {inv['stock_value']}, and "
+                 f"the balance above the floor; costs are drawn on arrival, at most 75% of list).")
+    if rows:
+        lines.append("Goods candidates, one per demand category (ones buyers asked us for first; sku, list price, "
+                     "worst-case cost, category, name):")
+        lines += [f"- {r['sku']} {r['list_price']} {r['worst_cost']} {r['category']}: {r['name']}" for r in rows]
+    lines.append("\nPick from the candidates or find others with market.sku, then act.buy a plan of up to 10 lines "
+                 "(or an empty plan). This window allows a few plans in a row.")
     return "\n".join(lines)
 
 
