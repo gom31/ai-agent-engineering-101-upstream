@@ -215,11 +215,9 @@ class BuyerCore:
         hist, offers, asks = [], [], []
         try:
             a = self.connect(shop["url"])
-            need = (f" It must have at least {o['use_within_hours']:g} h of shelf life left, shown by the market's "
-                    "certificate; send a unit that has." if kind == "food" and o.get("use_within_hours") else "")
-            # 11/4 01:3x: agreed food deals were refused at payment for too little shelf life (e.g. 9 h for a
-            # longer use window); the shop's offers carry no hours, so the need goes in the first message
-            state, text, receipt = a.send(f"I want to buy {c.get('name') or sku} ({sku}).{need}")
+            # 11/4 02:2x: stating the shelf life needed in the first message (01:47) made shops refuse at once -
+            # food orders agreed 2 of 26 after it, 44 of 118 before; the kit checks the hours before paying anyway
+            state, text, receipt = a.send(f"I want to buy {c.get('name') or sku} ({sku}).")
         except Exception as e:
             return self.finish_none(shop, f"no deal: could not reach the shop ({type(e).__name__})", shop_obj=shop)
         outcome = None

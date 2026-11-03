@@ -3654,3 +3654,12 @@
 02:18:29 [kit] 48 shops in .market\shops.json, running market_buyer
 02:18:38 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
 02:18:39 [market] ledger #2209849: no deal, stars None, verified False, review not shown
+02:18:49 [order o-31dedbebdf0e] 신선생선, budget 31410, round 3, use within 6.0 h
+02:18:49 [kit] 48 shops in .market\shops.json, running market_buyer
+02:18:58 [buyer] {"shop": "https://clinical-mpg-microphone-optimum.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:18:59 [market] ledger #2209934: no deal, stars None, verified False, review not shown
+02:19:10 [order o-348e1c510de4] 비스켓/쿠키, budget 20860, round 3, use within 72.0 h
+02:19:10 [kit] 48 shops in .market\shops.json, running market_buyer
+02:19:23 [buyer] {"buy": []}
+02:19:31 [seller] [seller] e2bf3456 input_required: I can offer the 이솔홈 도트 쉬폰 원피스 앞치마 for 13,950 KRW with a grade A certification and a 6-hour warranty.
+02:19:43 [seller] [seller] e2bf3456 rejected: I cannot accept that price for the 이솔홈 도트 쉬폰 원피스 앞치마.
