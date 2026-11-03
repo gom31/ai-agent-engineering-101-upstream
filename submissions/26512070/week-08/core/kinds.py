@@ -33,6 +33,9 @@ KINDS = {
     "forum.turn": "one forum turn. data: action (post|skip|None), as, refs, votes, why",
     "forum.votes": "votes our posts received, counted. data: post_id, likes, dislikes",
     # outer runtime
+    "slice.step": "one step of a 2-hour slice. data: role, ok, s, steps, why",
+    "slice.done": "a slice ended. data: slice, steps",
+    "strategy.installed": "a strategy version was installed. data: version, epoch, approved, phase",
     "collect.round": "one collection round. data: rows, our_sales, broken, cursor, board",
     # model calls (every seat)
     "model.call": "one model call. data: seat, model, ms, ok, rate_limited, fallback, prompt_chars",

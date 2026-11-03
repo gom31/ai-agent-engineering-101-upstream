@@ -18,7 +18,7 @@ import time
 
 from agents import model as models
 from core import card
-from tools import act, calc, check, query  # noqa: F401  (registers the tools)
+from tools import act, calc, check, evaluate, query, record  # noqa: F401  (registers the tools)
 from tools.registry import TOOLS, call
 
 # HARNESS.md 3.4: what each L1 role sees (look-ups) and how it can end its turn (finals).
@@ -36,6 +36,21 @@ ROLES = {
     "forum": {"look": ["market.forum", "market.sku", "market.selling", "me.counterpart", "act.vote",
                        "memory.card_section"],
               "final": ["act.post", "act.skip"], "steps": 5},
+    # outer runtime (HARNESS.md 2.3): seat = the model seat in agents.model, reader = how the card frames the intent
+    "market analyst": {"look": ["market.selling", "market.sku", "market.forum", "me.counterpart", "memory.profiles",
+                                "memory.profile", "memory.summary", "eval.forum", "rec.profile", "memory.card_section"],
+                       "final": ["rec.summary"], "steps": 8, "seat": "analyst", "reader": "strategist", "timeout": 240},
+    "self analyst": {"look": ["eval.funnel", "eval.unit_economics", "eval.losses", "eval.stock_health",
+                              "eval.decision_quality", "eval.integrity", "eval.forum", "eval.guess_accuracy",
+                              "eval.experiment", "eval.score", "me.inventory", "memory.summary", "memory.card_section"],
+                     "final": ["rec.summary"], "steps": 8, "seat": "analyst", "reader": "strategist", "timeout": 240},
+    "strategy": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.proposals",
+                          "eval.audits", "memory.summary", "memory.profiles", "memory.profile", "me.counterpart",
+                          "rec.stance", "memory.card_section"],
+                 "final": ["rec.brief"], "steps": 8, "seat": "strategy", "reader": "strategist", "timeout": 240},
+    "audit": {"look": ["eval.score", "eval.experiment", "eval.unit_economics", "eval.losses", "eval.audits",
+                       "memory.summary", "memory.card_section"],
+              "final": ["rec.audit"], "steps": 5, "seat": "audit", "reader": "auditor", "timeout": 240},
 }
 FORMAT = ('Answer with ONE JSON object and nothing else: {"thought": "<one short sentence>", "tool": "<tool name>", '
           '"args": {...}}')
@@ -60,7 +75,7 @@ def system_prompt(role, strategy, allowed=None):
     r = ROLES[role]
     look = [n for n in r["look"] if allowed is None or n in allowed]
     final = [n for n in r["final"] if allowed is None or n in allowed]
-    _, text = card.assemble(role, "executor", strategy=strategy)
+    _, text = card.assemble(role, r.get("reader", "executor"), strategy=strategy)
     return (f"{text}\n\n# your tools\nLook things up (then keep going):\n{tools_text(look)}\n\n"
             f"End your turn with one of:\n{tools_text(final)}\n\n{FORMAT}"), look, final
 
@@ -80,7 +95,8 @@ def parse(answer):
 def decide(role, ctx, situation_text, deadline=None, allowed=None, model_call=None, steps=None):
     """(decision dict or None, trace). ctx.situation must already hold what the act.* tools act on."""
     system, look, final = system_prompt(role, ctx.strategy, allowed)
-    model_call = model_call or (lambda prompt, system, timeout: models.call(role, prompt, system=system, timeout=timeout))
+    seat = ROLES[role].get("seat", role)
+    model_call = model_call or (lambda prompt, system, timeout: models.call(seat, prompt, system=system, timeout=timeout))
     trace = []
     for step in range(1, (steps or ROLES[role]["steps"]) + 1):
         left = None if deadline is None else deadline - time.time()
@@ -92,7 +108,8 @@ def decide(role, ctx, situation_text, deadline=None, allowed=None, model_call=No
             prompt += "\n\n# your steps so far in this turn\n" + "\n".join(
                 f"step {t['step']}: {t['answer']}\nobservation: {t['observation']}" for t in trace)
         prompt += f"\n\n{FORMAT}"
-        timeout = models.CALL_TIMEOUT if left is None else max(5, min(models.CALL_TIMEOUT, left - 3))
+        per_call = ROLES[role].get("timeout", models.CALL_TIMEOUT)
+        timeout = per_call if left is None else max(5, min(per_call, left - 3))
         try:
             answer = model_call(prompt, system, timeout)
         except models.ModelError as e:
