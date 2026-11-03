@@ -5,8 +5,9 @@ only when something changed (stock, units about to expire, our recent sales, the
 or REASK_MINUTES passed; otherwise it buys nothing without a model call. The model looks things up and
 ends with act.buy, which runs check.buy (cash floor, stock cap, units per SKU, food share).
 
-Bankruptcy (HARNESS.md 6): never filed from here. When the shop is stuck (below the kit's bankrupt line with
-nothing to sell) an urgent alert asks the user.
+Bankruptcy (HARNESS.md 6, user 2026-11-03): with a restock hook the kit files only when the hook asks, so
+this files ("bankrupt": true) when the shop is stuck: below the kit's bankrupt line, filings left, and no
+unit left to sell. Code decides it, not the model, and an urgent alert tells the user.
 """
 import argparse
 import json
@@ -26,6 +27,12 @@ from tools.registry import Ctx, call  # noqa: E402
 
 REASK_MINUTES = 20
 DEADLINE = 150             # the kit starts the next restock only after this one ended (and stops it at 300 s)
+
+
+def stuck(inv):
+    live = [u for u in inv.get("units") or [] if u.get("grade") != "expired"]
+    return ((inv.get("balance") or 0) < (inv.get("bankrupt_line") or 0) and (inv.get("bankruptcies_left") or 0) > 0
+            and not live)
 
 
 def signature(ctx):
@@ -72,9 +79,13 @@ def main():
         w.context(strategy_version=ctx.strategy.get("version"), epoch=ctx.strategy.get("epoch"),
                   card_version=card.load()[0])
         inv_raw = mf.inventory(ctx)
-        if (inv_raw.get("balance") or 0) < (inv_raw.get("bankrupt_line") or 0) and not inv_raw.get("units"):
-            bus.alert("restock", "urgent", "bankrupt_line", "the shop is below the bankrupt line with nothing to sell; "
-                      "filing is the user's call", {"balance": inv_raw.get("balance")})
+        if stuck(inv_raw):
+            bus.alert("restock", "urgent", "bankrupt", "below the bankrupt line with nothing to sell: filed for "
+                      "bankruptcy (the money given counts against profit)",
+                      {"balance": inv_raw.get("balance"), "left": inv_raw.get("bankruptcies_left")})
+            w.emit("restock.plan", {"lines": 0, "refused": None, "used_model": False, "bankrupt": True})
+            print(json.dumps({"buy": [], "bankrupt": True}))
+            return
         sig, inv = signature(ctx)
         state_path = paths.memory() / "facts" / "restock_state.json"
         last = atomic.read_json(state_path, default=None) or {}

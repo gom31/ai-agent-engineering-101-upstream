@@ -95,3 +95,23 @@ class StrategyTest(Base):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ShopCardAndBankruptTest(unittest.TestCase):
+    def test_strategy_v3_shop_card_fits_the_schema(self):
+        from core import schema
+        s = atomic.read_json(HERE / "card" / "strategy_v3.json")
+        self.assertEqual(schema.validate(s, schema.STRATEGY), [])
+        bad = dict(s, shop_card={"description": "x", "name": "Another Name"})
+        self.assertTrue(schema.validate(bad, schema.STRATEGY))       # the name is not the strategy's to change
+
+    def test_restock_files_only_when_stuck(self):
+        import restock
+        unit = {"unit": "u", "grade": "A"}
+        self.assertTrue(restock.stuck({"balance": 400000, "bankrupt_line": 500000, "bankruptcies_left": 2, "units": []}))
+        self.assertTrue(restock.stuck({"balance": 400000, "bankrupt_line": 500000, "bankruptcies_left": 1,
+                                       "units": [{"unit": "x", "grade": "expired"}]}))
+        self.assertFalse(restock.stuck({"balance": 400000, "bankrupt_line": 500000, "bankruptcies_left": 2,
+                                        "units": [unit]}))
+        self.assertFalse(restock.stuck({"balance": 400000, "bankrupt_line": 500000, "bankruptcies_left": 0, "units": []}))
+        self.assertFalse(restock.stuck({"balance": 600000, "bankrupt_line": 500000, "bankruptcies_left": 2, "units": []}))

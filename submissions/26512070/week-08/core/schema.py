@@ -152,6 +152,11 @@ STRATEGY = {
         "phase": _STR,
         "priorities": {"type": "array", "items": _STR},
         "context": {"type": "array", "items": _STR},   # optional: what the analysts and strategy saw, for executors
+        "shop_card": {                                   # optional: what our A2A card tells other agents (name is fixed)
+            "type": "object", "required": ["description"],
+            "properties": {"description": {"type": "string", "minLength": 1, "maxLength": 600},
+                           "examples": {"type": "array", "items": _STR}},
+            "additionalProperties": False},
         "limits": LIMITS,
         "experiment": {"type": "object"},
         "delegation": {"type": "object"},

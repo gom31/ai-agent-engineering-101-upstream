@@ -2,7 +2,12 @@
 
 This file only speaks A2A. Every move comes from agents.seller_core, which asks the model through
 agents.loop with the seller's tools. The kit gives MARKET_DIR (inventory, catalog, demand) and makes
-shop_key.pem; the card's name and description are in config/shop.json.
+shop_key.pem.
+
+The card other agents read is part of the strategy: its description and examples come from shop_card in
+the strategy in force, read on every card request (the kit's proxy fetches the card each time), so a
+new approved strategy changes it without a restart. The name is fixed in config/shop.json, so other
+agents' memories of us do not break; config/shop.json also holds the text used when no strategy has one.
 """
 import argparse
 import asyncio
@@ -25,6 +30,7 @@ from a2a.server.tasks import InMemoryTaskStore, TaskUpdater  # noqa: E402
 from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill  # noqa: E402
 
 from agents.seller_core import SellerCore, load_key  # noqa: E402
+from core import bus, paths  # noqa: E402
 
 SHOP = json.loads((HERE / "config" / "shop.json").read_text(encoding="utf-8"))
 TURN_SECONDS = 50          # one reply; buyers wait for it
@@ -64,19 +70,38 @@ class Seller(AgentExecutor):
         await TaskUpdater(event_queue=event_queue, task_id=task.id, context_id=task.context_id).cancel()
 
 
-def build(port, core):
-    url = f"http://127.0.0.1:{port}/"
-    card = AgentCard(
-        name=SHOP["name"], description=SHOP["description"], version="1.0.0",
+def make_card(url, description, examples):
+    return AgentCard(
+        name=SHOP["name"], description=description, version="1.0.0",
         default_input_modes=["text/plain"], default_output_modes=["application/json", "text/plain"],
         capabilities=AgentCapabilities(streaming=False),
         supported_interfaces=[AgentInterface(protocol_binding="JSONRPC", url=url, protocol_version="1.0")],
         skills=[AgentSkill(id="negotiate", name="Negotiate a purchase",
                            description="Ask for an item by SKU, category or name, then send a price. The shop answers "
                                        "with a counteroffer or a signed receipt.",
-                           tags=["shopping", "negotiation"], examples=SHOP["examples"])])
+                           tags=["shopping", "negotiation"], examples=examples)])
+
+
+def shop_card():
+    """(description, examples) from the strategy in force, else config/shop.json."""
+    s, _, _ = bus.load_validated(paths.memory() / "strategy" / "active.json", "strategy", reader="seller-card")
+    sc = (s or {}).get("shop_card") or {}
+    return sc.get("description") or SHOP["description"], sc.get("examples") or SHOP["examples"]
+
+
+def build(port, core):
+    url = f"http://127.0.0.1:{port}/"
+    card = make_card(url, *shop_card())
+    cache = {}
+
+    async def current(_card):
+        text = shop_card()
+        if cache.get("text") != text:
+            cache["text"], cache["card"] = text, make_card(url, *text)
+        return cache["card"]
+
     handler = DefaultRequestHandler(agent_executor=Seller(core), task_store=InMemoryTaskStore(), agent_card=card)
-    return Starlette(routes=create_agent_card_routes(card) + create_jsonrpc_routes(handler, "/"))
+    return Starlette(routes=create_agent_card_routes(card, card_modifier=current) + create_jsonrpc_routes(handler, "/"))
 
 
 if __name__ == "__main__":

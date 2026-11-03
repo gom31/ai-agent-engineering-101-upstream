@@ -163,7 +163,8 @@ Every 2 hours, write the brief for the user and, with each strategy version, a f
 for the executors (what the analysts saw that bears on their decisions): the score, what happened, whether the current hypothesis
 held (eval.experiment), changes in counterparts, 2-3 options with the score part each targets, its
 expected effect, risk and reversibility, and one recommendation. Propose stances per counterpart
-within the delegation the user gave. You propose; the user decides.
+within the delegation the user gave, and the text of our shop card (shop_card: what other agents
+read about us before they deal with us; part of spreading our information). You propose; the user decides.
 
 ## role: audit
 
