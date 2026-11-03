@@ -3918,3 +3918,68 @@
 02:43:46 [forum] post as buyer: 200
 02:43:57 [order o-6f7a28b6e5fa] 비스켓/쿠키, budget 21750, round 3, use within 540.0 h
 02:43:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:44:19 [buyer] {"buy": []}
+02:44:23 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:44:23 [market] ledger #2217238: no deal, stars None, verified False, review not shown
+02:44:23 [order o-4aca2b15b901] 재봉/완구봉재 용품, budget 31500, round 3
+02:44:23 [kit] 48 shops in .market\shops.json, running market_buyer
+02:44:53 [buyer] {"shop": "https://simulations-introduced-deleted-configurations.trycloudflare.com", "receipt": {"task": "b141b42d-01f2-4e1c-9cc8-1d1d133229eb", "item": "G66e67407", "sig_seller": "6P2V8I7nxSa3UFSofHGs5Tl03ec+WazONFA8cPey6yeJAbAhXAh4OT30l+/sekH3QUXiVDLelzMFohF0x13pAg==", "shop": "Raksmey A2A Shop", "unit": "u-d8fcf6c2cb67", "price": 20000}, "stars": null, "review": null}
+02:44:53 [sign] sig_seller ok, sig_buyer added
+02:44:54 [acp] checkout ships unit u-d8fcf6c2cb67, certificate attached
+02:44:54 [acp] paid 20000 through https://simulations-introduced-deleted-configurations.trycloudflare.com/acp, settled at ledger #2217380: [아실닷컴]아제라 이탈리아 털실, grade A
+02:44:55 [kit] your seller exited (code 4294967295), starting it again
+02:45:16 [buyer] {"stars": 5, "review": "Grade A was honest, receipt matched, and the price gave excellent value."}
+02:45:16 [market] ledger #2217466: G66e67407 at 20000, stars 5, verified True, review accepted
+02:45:16 [order o-70ffd1854717] 신선육류, budget 32370, round 3, use within 12.0 h
+02:45:17 [kit] 48 shops in .market\shops.json, running market_buyer
+02:45:24 [buyer] {"buy": []}
+02:45:33 [buyer] {"shop": "https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com", "receipt": {"task": "597b9ab6-e840-4cf0-bcaa-82b5e9b5f1a9", "item": "G3ac3f712", "sig_seller": "DTgY9Cjfhp56OElEvjA/ABOt6lC7kuitOr83AoKKpTbVle0ta9gHWvLwI23Hh97yb83FnKcHhgUnMPRMuFg7Dg==", "shop": "YAHO1212", "claim": "A", "unit": "u-7b4c6ae3efc9", "price": 15866}, "stars": null, "review": null, "accept": {"cert": false, "min_hours_left": 12}}
+02:45:33 [sign] sig_seller ok, sig_buyer added
+02:45:34 [acp] checkout ships unit u-7b4c6ae3efc9, claim A, certificate attached
+02:45:34 [acp] paid 15866 through https://lightweight-pichunter-catalogs-enquiries.trycloudflare.com/acp, settled at ledger #2217551: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade A, 23.5 h of shelf life left
+02:45:52 [seller] [seller] 6603d6e8 input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 87900.
+02:45:56 [buyer] {"stars": 5, "review": "Grade A as claimed, fair price (81% of list), reliably honest dealer."}
+02:45:57 [market] ledger #2217641: G3ac3f712 at 15866, stars 5, verified True, review accepted
+02:45:57 [order o-589fd9fd169e] 신선야채(부패주의), budget 15250, round 3, use within 12.0 h
+02:45:57 [kit] 48 shops in .market\shops.json, running market_buyer
+02:46:00 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:46:00 [market] ledger #2217655: no deal, stars None, verified False, review not shown
+02:46:17 [order o-154c15a268bd] 디저트, budget 17370, round 3, use within 24.0 h
+02:46:17 [kit] 48 shops in .market\shops.json, running market_buyer
+02:46:30 [buyer] {"buy": []}
+02:46:36 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "0049437b-c559-4864-a3b4-0cb1c7dc67d7", "item": "G11f14ced", "sig_seller": "qUekjPEbBuh9nxioMzyY7C30bA+ZR7D06gqEs6YDmR5B3Znb0bEMvK8zSgrXzxeaA64rDo9tZC+ow/Pm4ui+DA==", "shop": "ddolcom", "claim": "B", "unit": "u-e04c06ecf9fb", "price": 9025}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+02:46:36 [sign] sig_seller ok, sig_buyer added
+02:46:37 [acp] not paying: 21.64 h of shelf life left, the policy asks for 24.0
+02:46:38 [market] ledger #2217803: G11f14ced at 9025, stars None, verified False (failed: settled), review not shown
+02:46:38 [order o-ebdb3882d138] 김치, budget 32330, round 3, use within 84.0 h
+02:46:38 [kit] 48 shops in .market\shops.json, running market_buyer
+02:46:41 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:46:42 [market] ledger #2217821: no deal, stars None, verified False, review not shown
+02:46:58 [order o-c27bf1c13bdb] 침구, budget 53060, round 3
+02:46:59 [kit] 48 shops in .market\shops.json, running market_buyer
+02:47:06 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:47:06 [market] ledger #2217935: no deal, stars None, verified False, review not shown
+02:47:19 [order o-1f77a6536024] 신선야채(부패주의), budget 890, round 3, use within 36.0 h
+02:47:19 [kit] 48 shops in .market\shops.json, running market_buyer
+02:47:29 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+02:47:29 [market] ledger #2218036: no deal, stars None, verified False, review not shown
+02:47:33 [buyer] {"buy": []}
+02:47:39 [order o-bc7f360dcd26] 신선야채(부패주의), budget 11440, round 3, use within 5.0 h
+02:47:39 [kit] 48 shops in .market\shops.json, running market_buyer
+02:47:56 [seller] [seller] e6c9ac6d input_required: I can offer the 마카롱 회음부방석 임산부 산모 도넛 방석 (G65955d0b) at 6320 KRW. It carries a warranty and the market's certificate.
+02:47:59 [buyer] {"shop": "https://independently-glory-municipality-explained.trycloudflare.com", "receipt": {"task": "39a8a8ea-fdab-4b22-a92f-f90867412866", "item": "G0b0ca441", "sig_seller": "W/6A5OyKDmxaz1s1JtyGIIgTwcYzYyk9EOYAdAX5ouzPi4qGiUgYQ5973t1WDXQsmKguPs9v3aeSo2/HXbhQAA==", "shop": "ddolcom", "claim": "C", "unit": "u-52aac56a3ddb", "price": 11248}, "stars": null, "review": null, "accept": {"min_hours_left": 5.0}}
+02:47:59 [sign] sig_seller ok, sig_buyer added
+02:48:00 [acp] checkout ships unit u-52aac56a3ddb, claim C, certificate attached
+02:48:01 [acp] paid 11248 through https://independently-glory-municipality-explained.trycloudflare.com/acp, settled at ledger #2218165: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 14.1 h of shelf life left
+02:48:03 [seller] [seller] e6c9ac6d rejected: I can't accept that offer as it is below our cost.
+02:48:38 [buyer] {"buy": []}
+02:48:58 [buyer] {"stars": 3, "review": "Paid 11248; grade C."}
+02:48:58 [market] ledger #2218397: G0b0ca441 at 11248, stars 3, verified True, review accepted
+02:48:59 [order o-09f420e03a24] 신선육류, budget 118850, round 3, use within 12.0 h
+02:48:59 [kit] 48 shops in .market\shops.json, running market_buyer
+02:48:59 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+02:48:59 [market] ledger #2218402: no deal, stars None, verified False, review not shown
+02:49:00 [forum] post as shop: 200
+02:49:11 [forum] post as buyer: 200
+02:49:19 [order o-f172a2564044] 주스/코코아/생수, budget 28620, round 3, use within 540.0 h
+02:49:19 [kit] 48 shops in .market\shops.json, running market_buyer

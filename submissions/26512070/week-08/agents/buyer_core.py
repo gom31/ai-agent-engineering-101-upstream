@@ -43,16 +43,17 @@ def shop_prices(shops, now=None):
             pass
         shares = {}
         for f in sorted((paths.memory() / "market").glob("ledger-*.jsonl"))[-2:]:
-            for line in open(f, encoding="utf-8"):
-                if '"kind": "settle"' not in line:
-                    continue
-                try:
-                    x = json.loads(line)["data"]
-                except (ValueError, KeyError):
-                    continue
-                lp = (cat.get(x.get("sku") or x.get("item")) or {}).get("list_price")
-                if lp and x.get("amount") is not None and x.get("shop"):
-                    shares.setdefault(x["shop"].rstrip("/"), []).append(x["amount"] / lp)
+            with open(f, encoding="utf-8") as fh:
+                for line in fh:
+                    if '"kind": "settle"' not in line:
+                        continue
+                    try:
+                        x = json.loads(line)["data"]
+                    except (ValueError, KeyError):
+                        continue
+                    lp = (cat.get(x.get("sku") or x.get("item")) or {}).get("list_price")
+                    if lp and x.get("amount") is not None and x.get("shop"):
+                        shares.setdefault(x["shop"].rstrip("/"), []).append(x["amount"] / lp)
         fact = {"ts": now, "shops": {u: {"median_share": round(sorted(v)[len(v) // 2], 2), "deals": len(v)}
                                      for u, v in shares.items()}}
         atomic.write_json(path, fact)
@@ -153,8 +154,10 @@ class BuyerCore:
             return self.finish_none("", "no deal: no shop that is not blocked has what this order accepts")
 
         ctx.situation = {"budget": o["budget"], "shops": shops}
-        d, trace = loop.decide("buyer", ctx, self.pick_text(shops, kind), deadline=self.deadline(),
-                               model_call=self.model_call, allowed=["act.pick"] + loop.ROLES["buyer"]["look"])
+        d = self.rule_pick(shops) if self.rules() else None
+        if d is None:
+            d, trace = loop.decide("buyer", ctx, self.pick_text(shops, kind), deadline=self.deadline(),
+                                   model_call=self.model_call, allowed=["act.pick"] + loop.ROLES["buyer"]["look"])
         guard = None
         if d is None:
             d, guard = self.guard_pick(shops), "no valid pick from the model"
@@ -164,6 +167,79 @@ class BuyerCore:
                                         "explored": not known, "guard": guard, "shops": len(shops)},
                          order=o.get("order"), counterpart=shop["name"])
         return self.negotiate(shop, d["sku"], kind)
+
+    # --- the rules (HARNESS 14, D34; user 11/4 03:2x: benchmark myeonggi - fast, cheap, high-list goods)
+
+    def playbook(self):
+        pb = ((self.ctx.strategy.get("playbook") or {}).get("buyer") or {})
+        return {"mode": pb.get("mode", "agent"), "ceiling_share": pb.get("ceiling_share", 0.8)}   # rules when the strategy says so
+
+    def rules(self):
+        return self.playbook()["mode"] == "rules"
+
+    def shares(self, lp, kind):
+        """(open, target) shares of list for this order, from strategy.buyer (v14)."""
+        b = self.ctx.strategy.get("buyer") or {}
+        if kind == "goods" and b.get("big_list") is not None and lp >= b["big_list"]:
+            return b.get("open_share", 0.4), b.get("target_share", 0.5)
+        return b.get("food_open_share", 0.45), b.get("food_target_share", 0.6)
+
+    def rule_pick(self, shops):
+        """The cheapest shop first (pay trouble last), and there the highest-list SKU we can likely buy in budget."""
+        cat = mf.catalog(self.ctx)
+        prices = shop_prices(list(shops.values()))
+        rf = (reflex.load().get("shops") or {})
+
+        def unpaid_often(s):
+            r = rf.get(s["name"]) or {}
+            return r.get("unpaid", 0) >= 2 and r.get("unpaid", 0) >= r.get("paid", 0)
+
+        ceil_share = self.playbook()["ceiling_share"]
+        for s in sorted(shops.values(), key=lambda s: (unpaid_often(s),
+                                                       (prices.get(s["name"]) or {}).get("median_share", 0.8))):
+            share = min((prices.get(s["name"]) or {}).get("median_share", 0.75), ceil_share)
+            fit = [k for k in s["skus"] if (cat.get(k) or {}).get("list_price")
+                   and share * cat[k]["list_price"] <= self.order["budget"]]
+            if fit:
+                sku = max(fit, key=lambda k: cat[k]["list_price"])
+                r = call(self.ctx, "act.pick", {"shop": s["name"], "sku": sku,
+                                                "why": "rules: cheapest shop, highest list in budget"})
+                if r["ok"]:
+                    return r["result"]
+        return None
+
+    def rule_turn(self, c, kind, hist, offers, turn):
+        """One move by rule, or None (an exception for the agent). Our offer rises from the open share to the
+        ceiling by the last turn but one; an ask at or under our bid (or the target) is taken, an ask over the
+        ceiling at the last turn is left."""
+        lp, budget = c.get("list_price") or 0, self.order["budget"]
+        last = hist[-1] if hist else {}
+        if not lp or last.get("looks_like_instruction"):
+            return None
+        asks = [h["price"] for h in hist if h["from"] == "shop" and h["price"] is not None]
+        if turn > 2 and not asks:
+            return None                                    # the shop names no price: the agent reads it
+        o_share, t_share = self.shares(lp, kind)
+        ceil_share = max(t_share, self.playbook()["ceiling_share"])
+        now = o_share + (ceil_share - o_share) * min(1.0, (turn - 1) / max(1, MAX_TURNS - 2))
+        bid = min(budget, round(lp * now))
+        if offers:
+            bid = max(bid, offers[-1])                     # never go down
+        ask = asks[-1] if asks else None
+        ceiling = min(budget, round(lp * ceil_share))
+        if ask is not None and ask <= min(budget, max(bid, round(lp * t_share))):
+            price, why = ask, "rules: the ask is at or under our bid"
+        elif ask is not None and turn >= MAX_TURNS - 1 and ask <= ceiling:
+            price, why = ask, "rules: last turns, the ask is under the ceiling"
+        elif ask is not None and turn >= MAX_TURNS:
+            return {"action": "walk_away", "why": f"rules: ask {ask} over the ceiling {ceiling}"}
+        else:
+            price, why = (min(bid, ask - 1) if ask else bid), f"rules: {now:.0%} of list"
+        price = max(1, price)
+        r = call(self.ctx, "act.offer", {"price": price, "say": f"I can pay {price} KRW."})
+        if not r["ok"]:
+            return None
+        return dict(r["result"], thought=why)
 
     def guard_pick(self, shops):
         """Fallback pick: the shop whose reviews average highest (unknown shops after reviewed ones), its first SKU."""
@@ -237,9 +313,15 @@ class BuyerCore:
             if state != "TASK_STATE_INPUT_REQUIRED":
                 break
             ctx.situation = {"budget": o["budget"]}
-            d, trace = loop.decide("buyer", ctx, self.turn_text(shop, sku, c, kind, hist, offers, turn),
-                                   deadline=self.deadline(), model_call=self.model_call,
-                                   allowed=["act.offer", "act.walk_away"] + loop.ROLES["buyer"]["look"])
+            d, trace = (self.rule_turn(c, kind, hist, offers, turn) if self.rules() else None), []
+            if d is None:
+                if self.rules():
+                    self.events.emit("exec.anomaly", {"role": "buyer", "kind": "turn_needs_agent", "then": "agent",
+                                                      "situation": {"turn": turn, "last": hist[-1] if hist else None}},
+                                     order=o.get("order"), counterpart=shop["name"])
+                d, trace = loop.decide("buyer", ctx, self.turn_text(shop, sku, c, kind, hist, offers, turn),
+                                       deadline=self.deadline(), model_call=self.model_call,
+                                       allowed=["act.offer", "act.walk_away"] + loop.ROLES["buyer"]["look"])
             if d is None:
                 d = {"action": "walk_away", "why": "no valid move from the model"}
             self.events.emit("buyer.decision", {"action": d["action"], "price": d.get("price"),
@@ -325,8 +407,13 @@ class BuyerCore:
                 f"{c.get('shelf_hours')} h"
                 + (f"; the order must be usable for {o['use_within_hours']} h" if o.get("use_within_hours") else "")
                 + ". Set what the checkout must show before the kit pays (act.finish).")
-        d, _ = loop.decide("buyer", ctx, text, deadline=self.deadline(), model_call=self.model_call,
-                           allowed=["act.finish"] + loop.ROLES["buyer"]["look"])
+        if self.rules():                     # goods: no conditions; food: the order's use window (v14)
+            pol = {"min_hours_left": o["use_within_hours"]} if kind == "food" and o.get("use_within_hours") else {}
+            r = call(ctx, "act.finish", {"accept": pol, "why": "rules"})
+            d = r["result"] if r["ok"] else None
+        else:
+            d, _ = loop.decide("buyer", ctx, text, deadline=self.deadline(), model_call=self.model_call,
+                               allowed=["act.finish"] + loop.ROLES["buyer"]["look"])
         accept = d["accept"] if d else ({"min_hours_left": o["use_within_hours"]}
                                         if kind == "food" and o.get("use_within_hours") else {})
         self.close_events(shop, "fair", agreed, receipt["price"], c.get("list_price"), "completed", accept=accept,

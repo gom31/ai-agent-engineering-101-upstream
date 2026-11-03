@@ -128,6 +128,29 @@ class BuyerCoreTest(Base):
         self.assertIn("about 20000 (50% of list)", core.big_goods_line({"list_price": 40000}, "goods")[0])
         core.ctx.strategy = {"buyer": {"big_list": 30000}}
         self.assertEqual(core.big_goods_line({"list_price": 10000}, "food"), [])
+    def test_rules_mode_haggles_without_the_model(self):
+        # 11/4 03:2x (HARNESS 14 step 4, benchmark myeonggi): offers by rule, no model call at all
+        from core import atomic
+        path = paths.memory() / "strategy" / "active.json"
+        st = atomic.read_json(path)
+        st["buyer"] = {"big_list": 30000, "target_share": 0.5, "open_share": 0.4,
+                       "food_target_share": 0.6, "food_open_share": 0.45}
+        st["playbook"] = {"buyer": {"mode": "rules", "ceiling_share": 0.8}}
+        atomic.write_json(path, st)
+        shop = Shop([("TASK_STATE_INPUT_REQUIRED", "Asking 21000.", None),
+                     ("TASK_STATE_INPUT_REQUIRED", "Asking 14000.", None),
+                     ("TASK_STATE_INPUT_REQUIRED", "Asking 13900.", None),
+                     ("TASK_STATE_COMPLETED", "Deal at 13900.", receipt(13900))])
+
+        def no_model(p, s, t):
+            raise AssertionError("the model was called in rules mode")
+        core = BuyerCore(dict(ORDER), SHOPS, model_call=no_model, connect=shop, clock=lambda: NOW)
+        try:
+            out = core.run()
+        finally:
+            core.close()
+        self.assertEqual(shop.sent[1:], ["I can pay 10454 KRW.", "I can pay 11470 KRW.", "I can pay 13900 KRW."])
+        self.assertEqual((out["receipt"]["price"], out["accept"]), (13900, {"min_hours_left": 48}))
 
 if __name__ == "__main__":
     unittest.main()
