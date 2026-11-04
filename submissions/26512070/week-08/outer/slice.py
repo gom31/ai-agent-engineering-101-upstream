@@ -123,7 +123,10 @@ def strategy_text(ctx):
     for kind in ("market", "self"):
         r = call(ctx, "memory.summary", {"kind": kind})
         lines.append(f"This slice's {kind} summary: {_j(r['result'] if r['ok'] else r['reason'], 2500)}")
-    from outer import benchmark
+    from outer import benchmark, health
+    lines.append("Health (last 30 min, outer/health.py: what the shop, the buyer and restock did, and what crossed a "
+                 "threshold): " + health.summary(atomic.read_json(paths.memory() / "facts" / "health.json",
+                                                                  default=None))[:2000])
     bench = atomic.read_json(paths.memory() / "facts" / "benchmark.json", default=None)
     lines.append("Benchmark (the top players by board profit and buyer ALL, last 6 h of the public ledger; copy what "
                  "wins - the SKUs they sell that we lack, their prices, their speed): " + benchmark.summary(bench)[:2500])
