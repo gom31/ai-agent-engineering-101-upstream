@@ -165,6 +165,12 @@ class BuyerCore:
             if skus and s["name"] not in blocked:
                 shops[s["name"]] = dict(s, skus=skus)
         if not shops:
+            if kind == "goods" and acceptable:
+                # user 11/4 10:3x: a goods order no shop can serve is demand nobody supplies - restock reads these and
+                # our shop stocks one of its SKUs for the next buyer who needs it (our own buyer cannot buy from us)
+                atomic.append_line(paths.memory() / "facts" / "unserved.jsonl", json.dumps(
+                    {"ts": ctx.now(), "order": o.get("order"), "category": o.get("item"), "budget": o.get("budget"),
+                     "skus": acceptable[:30]}, ensure_ascii=False))
             return self.finish_none("", "no deal: no shop that is not blocked has what this order accepts")
 
         ctx.situation = {"budget": o["budget"], "shops": shops}

@@ -120,6 +120,23 @@ def build_buy_list(ctx, now=None):
         if sku in cat and keeps(sku):
             per = pb["food_units"] if cat[sku].get("kind") == "food" else pb["market_units"]
             add(sku, min(lim["max_units_per_sku"], per), f"top shops sold {sold} in 6 h", sold * (lp or 0))
+    # user 11/4 10:3x: goods orders our buyer saw that no shop could serve (memory/facts/unserved.jsonl): stock the
+    # SKU of each that sells most in the market and fits its budget at our usual price
+    uf = paths.memory() / "facts" / "unserved.jsonl"
+    if uf.exists():
+        sold = {x["sku"]: x.get("sold", 0) for x in ((sell["result"].get("market") or []) if sell["ok"] else [])}
+        for line in uf.read_text(encoding="utf-8").splitlines()[-200:]:
+            try:
+                u = json.loads(line)
+            except ValueError:
+                continue
+            if u.get("ts", 0) < now - 6 * 3600:
+                continue
+            fit = [k for k in u.get("skus") or [] if k in cat and cat[k].get("kind") == "goods"
+                   and cat[k].get("list_price") and 0.75 * cat[k]["list_price"] <= (u.get("budget") or 0)]
+            if fit:
+                k = max(fit, key=lambda k: (sold.get(k, 0), -cat[k]["list_price"]))
+                add(k, 2, f"an order no shop could serve ({u.get('category')})", cat[k]["list_price"])
     lines.sort(key=lambda x: -x["value"])               # one order for all: expected sales value
     top = [x for x in lines if cat[x["sku"]].get("kind") == "goods"][:pb["top_n"]]
     for x in lines:

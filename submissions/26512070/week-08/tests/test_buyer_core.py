@@ -2,6 +2,7 @@
 
     py -m unittest discover -s tests      # from submissions/26512070/week-08
 """
+import json
 import os
 import shutil
 import sys
@@ -173,6 +174,17 @@ class BuyerCoreTest(Base):
         finally:
             core.close()
         self.assertEqual((out["receipt"]["price"], len([t for t in shop.sent if t.startswith("I want to buy")])), (13000, 2))
+    def test_goods_order_no_shop_serves_is_recorded(self):
+        # 11/4 10:3x: restock stocks what no shop could serve
+        order = dict(ORDER, order="o9", item="소파", budget=900000, acceptable=["G0026722f"], kind="goods")
+        core = BuyerCore(order, [dict(SHOPS[0], offers=[])], model_call=None, connect=Shop([]), clock=lambda: NOW)
+        try:
+            out = core.run()
+        finally:
+            core.close()
+        self.assertIsNone(out["receipt"])
+        rows = (paths.memory() / "facts" / "unserved.jsonl").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(json.loads(rows[-1])["skus"], ["G0026722f"])
 
 if __name__ == "__main__":
     unittest.main()
