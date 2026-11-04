@@ -11,6 +11,9 @@ _UNIT = {"type": "string", "minLength": 1}
 _PRICE = {"type": "integer", "minimum": 0}
 
 
+BREAK_WINDOW_H = 6          # agent.md: goods can break up to 6 hours after the sale
+
+
 def warranty_reserve(ctx):
     """Cash kept for refunds (user 11/3): our sales still inside the warranty, times the strategy's reserve share.
     Returns (reserve, open sales total, open count). The settle time is when the collector saw it (a little late,
@@ -20,6 +23,8 @@ def warranty_reserve(ctx):
     if not hours or not share:
         return 0, 0, 0
     kinds, cat, now = w.get("kinds") or ["goods"], mf.catalog(ctx), ctx.now()
+    hours = min(hours, BREAK_WINDOW_H)   # 11/4 12:4x: goods break only within 6 h of the sale (agent.md), so a
+    # longer warranty adds no refund risk past that and holds no more cash
     open_ = [e["data"]["price"] for e in index.events(["seller.settled"], since=now - hours * 3600)
              if now - e["ts"] < hours * 3600 and (cat.get(e["data"].get("sku")) or {}).get("kind") in kinds
              and isinstance(e["data"].get("price"), (int, float))]
