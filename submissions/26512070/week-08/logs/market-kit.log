@@ -13352,3 +13352,18 @@
 10:36:28 [acp] settled [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증) at 28600, ledger #2342584, unit u-bd7048bc4116 grade B
 10:36:29 [seller] [seller] 97b079e5 rejected: Sorry, we have none of that in stock right now.
 10:36:29 [seller] [seller] d69f9cc9 rejected: Sorry, we have none of that in stock right now.
+10:36:45 [seller] [seller] eefed8a3 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+10:36:52 [buyer] {"buy": []}
+10:36:57 [buyer] {"shop": "https://ikdvk-182-222-217-13.free.pinggy.net", "receipt": {"sig_seller": "K4VrzZ526VH7/bV/tsKExm1bB39C2RWMNOckJd7nLH6TB6R2yT+MxTnRB7Utw2B74Xea8AuiJuFtJqxIamblCA==", "price": 20371, "unit": "u-651011eef19f", "task": "bb872d65-d9be-4803-ba7d-85a935ac9a86", "shop": "outseop-26510122", "item": "G200e39a3"}, "stars": null, "review": null, "accept": {"min_hours_left": 126.0}}
+10:36:57 [sign] sig_seller ok, sig_buyer added
+10:37:01 [acp] not paying: 78.29 h of shelf life left, the policy asks for 126.0
+10:37:01 [market] ledger #2342699: G200e39a3 at 20371, stars None, verified False (failed: settled), review not shown
+10:37:02 [order o-26571cb8dc18] 디저트, budget 17370, round 3, use within 5.0 h
+10:37:02 [kit] 45 shops in .market\shops.json, running market_buyer
+10:37:02 [forum] post as shop: 200
+10:37:14 [forum] post as buyer: 200
+10:37:29 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"price": 7993, "sig_seller": "O4655kaf5woeO+aw41LrEfh4JPoYe+gYIOkrnvld9Oyk61WRbIUKJoJmJlwBpsEG+NMNPqlUPV5OJ1wduby/BA==", "task": "b4c7a323-9cd1-4aa7-935a-2b152f84f3f1", "shop": "Inextro Market", "unit": "u-660c806aa2be", "claim": "B", "item": "G06a54b11"}, "stars": null, "review": null}
+10:37:30 [sign] sig_seller ok, sig_buyer added
+10:37:37 [acp] checkout ships unit u-660c806aa2be, claim B, certificate attached
+10:37:39 [acp] paid 7993 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2342819: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade B, 27.5 h of shelf life left
+10:37:48 [kit] your seller exited (code 4294967295), starting it again

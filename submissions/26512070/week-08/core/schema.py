@@ -202,7 +202,11 @@ STRATEGY = {
                     "max_line_share": {"type": "number", "minimum": 0.05, "maximum": 1},
                     "food_top": {"type": "integer", "minimum": 0, "maximum": 30},
                     "food_units": {"type": "integer", "minimum": 0, "maximum": 8},
-                    "food_min_shelf_hours": {"type": "number", "minimum": 0}}},
+                    "food_min_shelf_hours": {"type": "number", "minimum": 0},
+                    "top_n": {"type": "integer", "minimum": 0, "maximum": 10},
+                    "top_units": {"type": "integer", "minimum": 1, "maximum": 20},
+                    "top_line_share": {"type": "number", "minimum": 0.05, "maximum": 1},
+                    "units_cap": {"type": "integer", "minimum": 1, "maximum": 20}}},
                 "seller": {"type": "object", "properties": {     # 11/4 02:5x: the seller's rules
                     "mode": {"type": "string", "enum": ["rules", "shadow", "agent"]},
                     "open_share": {"type": "number", "minimum": 0.5, "maximum": 1.5},

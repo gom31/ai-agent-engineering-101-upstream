@@ -50,7 +50,11 @@ def playbook(ctx):
             "max_line_share": pb.get("max_line_share", 1.0),
             # user 11/4 02:4x: sell food too - the market's best sellers, only food that keeps (shelf hours)
             "food_top": pb.get("food_top", 8), "food_units": pb.get("food_units", 3),
-            "food_min_shelf_hours": pb.get("food_min_shelf_hours", 72)}
+            "food_min_shelf_hours": pb.get("food_min_shelf_hours", 72),
+            # user 11/4 10:3x: the best sellers deeper - the top_n goods lines by value may hold top_units and take
+            # top_line_share of the money; other lines stay at units_cap
+            "top_n": pb.get("top_n", 0), "top_units": pb.get("top_units", 20), "top_line_share": pb.get("top_line_share", 0.5),
+            "units_cap": pb.get("units_cap", 12)}
 
 
 def build_buy_list(ctx, now=None):
@@ -117,6 +121,13 @@ def build_buy_list(ctx, now=None):
             per = pb["food_units"] if cat[sku].get("kind") == "food" else pb["market_units"]
             add(sku, min(lim["max_units_per_sku"], per), f"top shops sold {sold} in 6 h", sold * (lp or 0))
     lines.sort(key=lambda x: -x["value"])               # one order for all: expected sales value
+    top = [x for x in lines if cat[x["sku"]].get("kind") == "goods"][:pb["top_n"]]
+    for x in lines:
+        if x in top:
+            x["top"] = True
+            x["target"] = min(lim["max_units_per_sku"], max(x["target"], pb["top_units"]))
+        else:
+            x["target"] = min(x["target"], pb["units_cap"])
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
     room = check.room(ctx)
@@ -128,7 +139,8 @@ def build_buy_list(ctx, now=None):
             return max(0, lack)
         # 11/4 05:0x: the cap kept G1515d951 (asked 33 times in 30 min, 1 held) at 0 units because one unit costs
         # more than the cap; a line that fits the money gets at least one unit
-        return max(0, min(lack, max(int(cap // w), 1 if w <= money else 0)))
+        c = pb["top_line_share"] * money if x.get("top") else cap
+        return max(0, min(lack, max(int(c // w), 1 if w <= money else 0)))
     wants = [(x["sku"], line_units(x)) for x in lines]
     got = act.allocate(room, wants)
     for x, (_, q, why) in zip(lines, got):
