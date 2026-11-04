@@ -54,7 +54,9 @@ def playbook(ctx):
             # user 11/4 10:3x: the best sellers deeper - the top_n goods lines by value may hold top_units and take
             # top_line_share of the money; other lines stay at units_cap
             "top_n": pb.get("top_n", 0), "top_units": pb.get("top_units", 20), "top_line_share": pb.get("top_line_share", 0.5),
-            "units_cap": pb.get("units_cap", 12)}
+            "units_cap": pb.get("units_cap", 12),
+            "own_sales": pb.get("own_sales", False), "own_cover": pb.get("own_cover", 1.5),
+            "probe_units": pb.get("probe_units", 2)}
 
 
 def build_buy_list(ctx, now=None):
@@ -148,6 +150,19 @@ def build_buy_list(ctx, now=None):
             x["target"] = min(lim["max_units_per_sku"], pb["top_units"], max(x["target"], math.ceil(n / 6)))
         else:
             x["target"] = min(x["target"], pb["units_cap"])
+    # user 11/4 15:0x: depth follows OUR sell-through. 14:00-15:00 G1515d951 sold all 32 we bought while 10 sofas
+    # (G5e3784e6) chosen by the market's sales sold none. Goods: up to 1.5x what we sold in the last 2 h (fast sellers
+    # are filled even outside the top 3), nothing more of a SKU we hold that does not sell, 2 to try a new one.
+    if pb["own_sales"]:
+        o2 = call(ctx, "market.selling", {"hours": 2, "limit": 30})
+        own = {x["sku"]: x.get("sold", 0) for x in ((o2["result"].get("ours") or []) if o2["ok"] else [])}
+        for x in lines:
+            if cat[x["sku"]].get("kind") != "goods":
+                continue
+            n = own.get(x["sku"], 0)
+            probe = pb["probe_units"] if (x["have"] == 0 and n == 0) else 0
+            x["target"] = min(lim["max_units_per_sku"], max(math.ceil(n * pb["own_cover"]), probe))
+            x["own_sold_2h"] = n
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
     room = check.room(ctx)
