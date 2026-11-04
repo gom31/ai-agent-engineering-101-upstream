@@ -1,4 +1,4 @@
-"""calc.fact_stars with playbook.review: 4 for a good deal, 5 only for grade A at five_share of its value or less.
+"""calc.fact_stars with playbook.review: 4 for a deal, 5 only at five_share of its value or less, by price only.
 
     py -m unittest discover -s tests      # from submissions/26512070/week-08
 """
@@ -25,8 +25,9 @@ class ReviewRulesTest(Base):
             deal = {"receipt": {"price": price}, "settled": {"grade": grade, "value": value, "claim_honest": True}}
             return call(Ctx(caller="review"), "calc.fact_stars", {"deal": deal, "agreed_price": price})["result"]["stars"]
         self.assertEqual(stars(7500), 4)            # a fair deal
-        self.assertEqual(stars(6000), 5)            # really cheap, grade A
-        self.assertEqual(stars(5000, grade="B"), 3)  # B is one less, and no 5 for B
+        self.assertEqual(stars(6000), 5)            # really cheap
+        self.assertEqual(stars(5000, grade="B"), 5)  # by price only, not by grade (user 11/4 13:5x)
+        self.assertEqual(stars(7500, grade="C"), 4)
         self.assertEqual(stars(9500), 3)            # over 90% of the value
 
 

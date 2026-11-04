@@ -150,7 +150,9 @@ def fact_stars(ctx, deal, agreed_price=None):
     if settled.get("value") == 0:
         return {"stars": 1, "reasons": ["the item was worth nothing to the order (spoiled or not usable)"]}
     g = settled.get("grade")
-    if g == "B":
+    if rv.get("base") is not None:          # user 11/4 13:5x: by price only, not by grade
+        pass
+    elif g == "B":
         stars -= 1
         reasons.append("grade B")
     elif g == "C":
@@ -160,7 +162,7 @@ def fact_stars(ctx, deal, agreed_price=None):
     if value and price is not None and price > 0.9 * value:
         stars -= 1
         reasons.append(f"paid {price} of a {value} value (saved under 10%)")
-    if five is not None and g == "A" and value and price is not None and price <= five * value:
+    if five is not None and value and price is not None and price <= five * value:
         stars = 5
-        reasons.append(f"grade A at {price} of a {value} value ({price / value:.0%})")
+        reasons.append(f"{price} of a {value} value ({price / value:.0%})")
     return {"stars": max(1, min(5, stars)), "reasons": reasons or ["receipt matched, honest grade, fair value"]}
