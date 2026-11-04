@@ -73,7 +73,11 @@ def main():
         if shop:
             known = call(ctx, "me.counterpart", {"name": shop, "side": "shop"})["result"]
             text += f"\nWhat we know of this shop: {json.dumps(known, ensure_ascii=False, default=str)[:800]}"
-        d, _ = loop.decide("review", ctx, text, deadline=time.time() + DEADLINE)
+        rules = ((ctx.strategy.get("playbook") or {}).get("review") or {}).get("mode") == "rules"
+        d = ({"stars": fact["stars"], "text": f"Paid {r.get('price')}; " + "; ".join(fact["reasons"]) + ".",
+              "why": "rules"} if rules else None)            # 11/4: the baseline as it is, no model call
+        if d is None:
+            d, _ = loop.decide("review", ctx, text, deadline=time.time() + DEADLINE)
         if d is None:
             d = {"stars": fact["stars"], "text": f"Paid {r.get('price')}; " + "; ".join(fact["reasons"]) + ".",
                  "why": "", "guard": "no valid review from the model"}

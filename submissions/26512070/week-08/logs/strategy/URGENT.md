@@ -1,5 +1,8 @@
 # Alerts (newest first)
 
+- 11-04 13:45 **warn** health: 49% of visits found no stock; most asked [('G1515d951', 38), ('G9a240832', 11), ('Ge62449c9', 1)]
+- 11-04 13:40 **warn** health: 50% of visits found no stock; most asked [('G1515d951', 41), ('G9a240832', 9), ('Ge62449c9', 1)]
+- 11-04 12:59 **warn** health: 52% of agreed deals were not paid: [('N h of shelf life left,', 20), ('N {"error":"unit u-NcNfcaN is not in', 1)]
 - 11-04 12:12 **warn** health: 51% of real buyers left at our opening ask
 - 11-04 12:07 **warn** health: 53% of real buyers left at our opening ask
 - 11-04 12:01 **warn** health: 56% of real buyers left at our opening ask

@@ -138,7 +138,11 @@ def extract(ctx, text, max_excerpt=160):
        "properties": {"deal": {"type": "object"}, "agreed_price": {"type": ["integer", "null"]}}})
 def fact_stars(ctx, deal, agreed_price=None):
     settled, receipt = deal.get("settled") or {}, deal.get("receipt") or {}
-    reasons, stars = [], 5
+    # user 11/4 12:5x: shop stars are a percentile among shops, so our buyer's 5s lift our competitors; a good deal
+    # is 4 (playbook.review.base) and 5 only for grade A bought at five_share of its value or less
+    rv = ((ctx.strategy.get("playbook") or {}).get("review") or {})
+    base, five = rv.get("base", 5), rv.get("five_share")
+    reasons, stars = [], base
     if agreed_price is not None and receipt.get("price") is not None and receipt["price"] > agreed_price:
         return {"stars": 1, "reasons": [f"receipt {receipt['price']} is above the agreed {agreed_price}"]}
     if settled.get("claim") and settled.get("claim_honest") is False:
@@ -156,4 +160,7 @@ def fact_stars(ctx, deal, agreed_price=None):
     if value and price is not None and price > 0.9 * value:
         stars -= 1
         reasons.append(f"paid {price} of a {value} value (saved under 10%)")
-    return {"stars": max(1, stars), "reasons": reasons or ["receipt matched, honest grade, good value"]}
+    if five is not None and g == "A" and value and price is not None and price <= five * value:
+        stars = 5
+        reasons.append(f"grade A at {price} of a {value} value ({price / value:.0%})")
+    return {"stars": max(1, min(5, stars)), "reasons": reasons or ["receipt matched, honest grade, fair value"]}

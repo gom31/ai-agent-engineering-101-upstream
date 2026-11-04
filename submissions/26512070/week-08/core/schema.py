@@ -216,6 +216,10 @@ STRATEGY = {
                     "clearance_hours": {"type": "number", "minimum": 1},
                     "hot_open_share": {"type": "number", "minimum": 0.5, "maximum": 1.5},
                     "hot_n": {"type": "integer", "minimum": 0, "maximum": 20}}},
+                "review": {"type": "object", "properties": {     # 11/4 12:5x: the stars our buyer gives
+                    "mode": {"type": "string", "enum": ["rules", "agent"]},
+                    "base": {"type": "integer", "minimum": 1, "maximum": 5},
+                    "five_share": {"type": "number", "minimum": 0, "maximum": 1}}},
                 "buyer": {"type": "object", "properties": {      # 11/4 02:4x: the buyer's rules
                     "mode": {"type": "string", "enum": ["rules", "agent"]},
                     "ceiling_share": {"type": "number", "minimum": 0.3, "maximum": 1},
