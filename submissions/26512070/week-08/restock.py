@@ -12,6 +12,7 @@ this files ("bankrupt": true) when the shop is stuck: below the kit's bankrupt l
 unit left to sell. Code decides it, not the model, and an urgent alert tells the user.
 """
 import argparse
+import collections
 import json
 import math
 import sys
@@ -56,7 +57,7 @@ def playbook(ctx):
             "top_n": pb.get("top_n", 0), "top_units": pb.get("top_units", 20), "top_line_share": pb.get("top_line_share", 0.5),
             "units_cap": pb.get("units_cap", 12),
             "own_sales": pb.get("own_sales", False), "own_cover": pb.get("own_cover", 1.5),
-            "probe_units": pb.get("probe_units", 2)}
+            "probe_units": pb.get("probe_units", 2), "food_cap": pb.get("food_cap", 3)}
 
 
 def build_buy_list(ctx, now=None):
@@ -156,13 +157,34 @@ def build_buy_list(ctx, now=None):
     if pb["own_sales"]:
         o2 = call(ctx, "market.selling", {"hours": 2, "limit": 30})
         own = {x["sku"]: x.get("sold", 0) for x in ((o2["result"].get("ours") or []) if o2["ok"] else [])}
+        # 11/4 15:4x: demand = what we sold + what visitors asked for and found missing, both in 2 h - counting sales
+        # alone under-bought what kept selling out (G6b9db161: 5 sold, 17 asked and missed; water G7fa48eaa: 20 asked)
+        missed = collections.Counter()
+        for f in (paths.memory() / "raw" / "seller").glob("*.jsonl"):
+            with open(f, encoding="utf-8") as fh:
+                for line in fh:
+                    if '"seller.missed"' not in line:
+                        continue
+                    try:
+                        e = json.loads(line)
+                    except ValueError:
+                        continue
+                    if e.get("ts", 0) >= now - 7200:
+                        for k in (e.get("data") or {}).get("skus") or []:
+                            missed[k] += 1
         for x in lines:
-            if cat[x["sku"]].get("kind") != "goods":
-                continue
-            n = own.get(x["sku"], 0)
-            probe = pb["probe_units"] if (x["have"] == 0 and n == 0) else 0
-            x["target"] = min(lim["max_units_per_sku"], max(math.ceil(n * pb["own_cover"]), probe))
-            x["own_sold_2h"] = n
+            kind = cat[x["sku"]].get("kind")
+            n = own.get(x["sku"], 0) + missed.get(x["sku"], 0)
+            want_units = math.ceil(n * pb["own_cover"])
+            if kind == "goods":
+                probe = pb["probe_units"] if (x["have"] == 0 and n == 0) else 0
+                x["target"] = min(lim["max_units_per_sku"], max(want_units, probe))
+            elif kind == "food":                    # food keeps its baseline and grows with demand, up to food_cap
+                x["target"] = min(lim["max_units_per_sku"], pb["food_cap"], max(x["target"], want_units))
+            x["own_sold_2h"], x["missed_2h"] = own.get(x["sku"], 0), missed.get(x["sku"], 0)
+        # the money goes first to what sells and is asked for most (then value): water asked 20 times came last
+        # behind a 2.2M sofa that sells a few, and the cash ran out before it
+        lines.sort(key=lambda x: (-(x.get("own_sold_2h", 0) + x.get("missed_2h", 0)), -x["value"]))
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow
     from tools import act
     room = check.room(ctx)
