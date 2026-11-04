@@ -14359,3 +14359,71 @@
 11:33:47 [buyer] {"buy": []}
 11:33:57 [seller] [seller] 25031397 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
 11:33:58 [seller] [seller] 25031397 completed: Deal at 13246 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:34:03 [buyer] {"stars": 4, "review": "Grade B as marked, fair price at 63% of list from an honestly run shop that refused to sell us substandard shelf life."}
+11:34:03 [market] ledger #2357968: G200e39a3 at 23919, stars 4, verified True, review accepted
+11:34:03 [order o-e7495b9ca787] 신선야채(부패주의), budget 17130, round 3, use within 5.0 h
+11:34:04 [kit] 47 shops in .market\shops.json, running market_buyer
+11:34:05 [buyer] {"shop": "https://ensuring-duck-honors-experts.trycloudflare.com", "receipt": {"shop": "psyoung82", "sig_seller": "umc6ONenwu+P4UTy9c+SAFYQcDOMOCfoI1a8dg94idhi28ZgmEgHkwWeDSCwegvr1t5uNZ5fm/iFyuyUdXYaDQ==", "task": "7e75ea82-bf7a-4e42-8e88-72f731d6cfec", "price": 7078, "item": "G0b0ca441", "unit": "u-0503b4b33338"}, "stars": null, "review": null}
+11:34:05 [sign] sig_seller ok, sig_buyer added
+11:34:06 [acp] checkout ships unit u-0503b4b33338, certificate attached
+11:34:07 [acp] paid 7078 through https://ensuring-duck-honors-experts.trycloudflare.com/acp, settled at ledger #2357981: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 21.8 h of shelf life left
+11:34:29 [seller] [seller] 48a48e4e input_required: [1개+1개]코코도르 벚꽃 디퓨저 200m X 2개 l 홈인테리어 & 선물추천: 10434 KRW, a premium unit with the market's certificate, its true grade and
+11:34:39 [buyer] {"stars": 4, "review": "Grade B as promised from a reliable seller with consistent fair dealing."}
+11:34:39 [market] ledger #2358115: G0b0ca441 at 7078, stars 4, verified True, review accepted
+11:34:39 [order o-1fa578e5f407] 신선야채(부패주의), budget 103460, round 3, use within 12.0 h
+11:34:40 [kit] 47 shops in .market\shops.json, running market_buyer
+11:34:40 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+11:34:40 [market] ledger #2358120: no deal, stars None, verified False, review not shown
+11:34:49 [seller] [seller] 2bd13d8f input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:34:52 [buyer] {"buy": []}
+11:35:00 [order o-9b0b24c9adf5] 디저트, budget 17370, round 3, use within 24.0 h
+11:35:00 [kit] 47 shops in .market\shops.json, running market_buyer
+11:35:02 [buyer] {"shop": "https://ensuring-duck-honors-experts.trycloudflare.com", "receipt": {"claim": "B", "sig_seller": "bc0PHivTmtkB1GXwG3FXBGqQtscX/FbuvKzSMlBpQABTxtat+lrmD0YGYV2015nNcrxsZLWVFynUUOrJVUquAg==", "task": "5c947855-6646-4c0a-a250-048dfef25ac8", "price": 6413, "item": "G06a54b11", "unit": "u-bfeb07e0a8e9", "shop": "psyoung82"}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+11:35:02 [sign] sig_seller ok, sig_buyer added
+11:35:03 [acp] checkout ships unit u-bfeb07e0a8e9, claim B, certificate attached
+11:35:04 [acp] paid 6413 through https://ensuring-duck-honors-experts.trycloudflare.com/acp, settled at ledger #2358224: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade B, 37.3 h of shelf life left
+11:35:14 [forum] post as shop: 200
+11:35:25 [forum] post as buyer: 200
+11:35:28 [seller] [seller] cf080050 input_required: [모던하우스] ON NEW 린넨스타일 3중방한 3도씨커튼 창문형 140x180 1장 화이트 높이조절밴드: 25086 KRW, a premium unit with the market's certificate, its 
+11:35:31 [buyer] {"stars": 4, "review": "Grade B product arrived as stated, reliable seller offering strong value at 47% of list price."}
+11:35:31 [market] ledger #2358341: G06a54b11 at 6413, stars 4, verified True, review accepted
+11:35:32 [order o-d823cb938723] 신선야채(부패주의), budget 28620, round 3, use within 12.0 h
+11:35:32 [kit] 47 shops in .market\shops.json, running market_buyer
+11:35:37 [seller] [seller] ed7a29bf input_required: 라디앙 1단서랍 스틸 드레스룸행거 600: 73260 KRW, a premium unit with the market's certificate, its true grade and our full-refund guar
+11:35:38 [seller] [seller] ed7a29bf completed: Deal at 73260 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:35:40 [acp] settled 라디앙 1단서랍 스틸 드레스룸행거 600 at 73260, ledger #2358374, unit u-b9d8e01b71bb grade A
+11:35:45 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": {"unit": "u-18e5367933eb", "claim": "B", "task": "e645d872-a513-4a4a-bba2-deca19c5aa23", "price": 24965, "item": "Gfd464abc", "sig_seller": "LRB1u85zF8SYSmTmrsNFSOA2Kb4lKf6XxcxOfmzzqbGaOWzimG/hcOk4J87VkaIPYj/yakT0e2AWNq6INsTuBg==", "shop": "Bright Living"}, "stars": null, "review": null}
+11:35:45 [sign] sig_seller ok, sig_buyer added
+11:35:46 [acp] checkout ships unit u-18e5367933eb, claim B, certificate attached
+11:35:46 [acp] paid 24965 through https://market.ourolabs.ai/shop/bright-living/acp, settled at ledger #2358407: 구기자(청양) 200g, grade B, 34.5 h of shelf life left
+11:35:51 [seller] [seller] 9859206f input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:35:58 [buyer] {"buy": []}
+11:36:43 [buyer] {"stars": 3, "review": "Paid 24965; grade B; paid 24965 of a 21900 value (saved under 10%)."}
+11:36:43 [market] ledger #2358625: Gfd464abc at 24965, stars 3, verified True, review accepted
+11:36:44 [order o-7aa18225bc50] 디저트, budget 12510, round 3, use within 12.0 h
+11:36:44 [kit] 47 shops in .market\shops.json, running market_buyer
+11:37:04 [seller] [seller] cfdde635 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:37:04 [buyer] {"buy": []}
+11:37:08 [seller] [seller] 885405c8 input_required: 켈로그 프링글스 2+2+2+1 골라담기 GS단독: 9546 KRW, a premium unit with the market's certificate, its true grade and our full-refund g
+11:37:12 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+11:37:13 [market] ledger #2358744: no deal, stars None, verified False, review not shown
+11:37:13 [order o-2fef8bb1ac9d] 신선야채(부패주의), budget 17910, round 3, use within 12.0 h
+11:37:14 [kit] 47 shops in .market\shops.json, running market_buyer
+11:37:17 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "e9cee56d-4bed-474b-9fc6-de68f1afd9c1", "price": 8772, "shop": "lee-sungsoo", "sig_seller": "gi1nr+Jy9ACe95Usv58P6dbtvmiIj2BX7hwhdI8MKEQbd8itdgtlgRv2TfC5G7NwxP5/ZhxU4YdZu+vMyAqJBA==", "item": "G0b0ca441", "unit": "u-de502b6d94ff"}, "stars": null, "review": null}
+11:37:17 [sign] sig_seller ok, sig_buyer added
+11:37:18 [acp] checkout ships unit u-de502b6d94ff, claim B, certificate attached
+11:37:18 [acp] paid 8772 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2358775: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 30.8 h of shelf life left
+11:37:42 [buyer] {"stars": 4, "review": "Honest Grade B delivery at fair value, consistent with the shop's reliable record."}
+11:37:42 [market] ledger #2358862: G0b0ca441 at 8772, stars 4, verified True, review accepted
+11:37:42 [order o-41de67f3c152] 우유/두유, budget 43620, round 3, use within 9.5 h
+11:37:43 [kit] 47 shops in .market\shops.json, running market_buyer
+11:37:44 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "C", "cert": true, "task": "9e39aeb9-809c-4b1e-8e19-5f4802f27cd8", "price": 16988, "shop": "lee-sungsoo", "sig_seller": "44S1IRX85YCOtbOmQi91tVA+C+4A6XMkxdKXYn7khzbx9AdxIbAa8uzGm0umd5YzSw0eWI+D7oneY0QgAzu7Cw==", "item": "G582603b2", "unit": "u-4aecf190365a"}, "stars": null, "review": null}
+11:37:45 [sign] sig_seller ok, sig_buyer added
+11:37:45 [acp] checkout ships unit u-4aecf190365a, claim C, certificate attached
+11:37:45 [acp] paid 16988 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2358873: 건국 무첨가두유 32팩, grade C, 42.8 h of shelf life left
+11:38:07 [buyer] {"stars": 3, "review": "Grade C as claimed, fairly priced by a reliably honest seller."}
+11:38:08 [market] ledger #2358976: G582603b2 at 16988, stars 3, verified True, review accepted
+11:38:08 [order o-c29916ed45a9] 신선야채(부패주의), budget 10230, round 3, use within 36.0 h
+11:38:08 [kit] 48 shops in .market\shops.json, running market_buyer
+11:38:09 [seller] [seller] 03ea0913 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:38:09 [buyer] {"buy": []}

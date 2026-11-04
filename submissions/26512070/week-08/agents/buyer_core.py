@@ -42,7 +42,7 @@ def shop_prices(shops, now=None):
             cat = json.loads((paths.root() / ".market" / "catalog.json").read_text(encoding="utf-8"))
         except (OSError, ValueError):
             pass
-        shares = {}
+        shares, warranty = {}, {}
         for f in sorted((paths.memory() / "market").glob("ledger-*.jsonl"))[-2:]:
             with open(f, encoding="utf-8") as fh:
                 for line in fh:
@@ -55,7 +55,13 @@ def shop_prices(shops, now=None):
                     lp = (cat.get(x.get("sku") or x.get("item")) or {}).get("list_price")
                     if lp and x.get("amount") is not None and x.get("shop"):
                         shares.setdefault(x["shop"].rstrip("/"), []).append(x["amount"] / lp)
-        fact = {"ts": now, "shops": {u: {"median_share": round(sorted(v)[len(v) // 2], 2), "deals": len(v)}
+                        if (cat.get(x.get("sku") or x.get("item")) or {}).get("kind") == "goods":
+                            w = warranty.setdefault(x["shop"].rstrip("/"), [0, 0])
+                            w[0] += 1
+                            w[1] += 1 if (x.get("warranty_hours") or 0) > 0 else 0
+        fact = {"ts": now, "shops": {u: {"median_share": round(sorted(v)[len(v) // 2], 2), "deals": len(v),
+                                         "goods_warranty_share": round(warranty[u][1] / warranty[u][0], 2)
+                                         if warranty.get(u) else None}
                                      for u, v in shares.items()}}
         atomic.write_json(path, fact)
     return {s["name"]: fact["shops"].get((s.get("url") or "").rstrip("/")) for s in shops}
@@ -239,8 +245,23 @@ class BuyerCore:
         rf = (reflex.load().get("shops") or {})
 
         ceil_share = self.playbook()["ceiling_share"]
-        for s in sorted(shops.values(), key=lambda s: (shop_trouble(rf.get(s["name"])),
-                                                       (prices.get(s["name"]) or {}).get("median_share", 0.8))):
+        goods = (self.order.get("kind") or "") == "goods" or any((cat.get(k) or {}).get("kind") == "goods"
+                                                                  for k in (self.order.get("acceptable") or [])[:3])
+
+        def expected(s):
+            # 11/4 11:4x benchmark: the top buyers close 47-64% of orders at the shops that deal; we closed 42% going to
+            # the cheapest by market share first (one refused 105 of 106 of our orders). Rank by the chance it deals
+            # with us (our own record, smoothed) x the surplus share it leaves; for goods a warranty counts too (the
+            # top buyers' goods are 75% under warranty: a break refunds the price)
+            r = rf.get(s["name"]) or {}
+            tries = r.get("fair", 0) + r.get("no_deal", 0) + r.get("cheated", 0)
+            p = (r.get("fair", 0) + 1) / (tries + 2)
+            mp = prices.get(s["name"]) or {}
+            e = p * (1 - min(mp.get("median_share", 0.75), 1.0))
+            if goods:
+                e *= 1 + 0.5 * (mp.get("goods_warranty_share") or 0)
+            return e
+        for s in sorted(shops.values(), key=lambda s: (shop_trouble(rf.get(s["name"])), -expected(s))):
             share = min((prices.get(s["name"]) or {}).get("median_share", 0.75), ceil_share)
             fit = [k for k in s["skus"] if (cat.get(k) or {}).get("list_price")
                    and share * cat[k]["list_price"] <= self.order["budget"]]

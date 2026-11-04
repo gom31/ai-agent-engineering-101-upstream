@@ -121,7 +121,7 @@ class BuyerCoreTest(Base):
         (paths.memory() / "market" / "ledger-20261103.jsonl").write_text(
             "".join(_json.dumps(r) + "\n" for r in rows), encoding="utf-8")
         got = buyer_core.shop_prices([{"name": "cheap", "url": "https://cheap.example"}, {"name": "new", "url": "https://x"}], now=NOW)
-        self.assertEqual(got, {"cheap": {"median_share": 0.6, "deals": 3}, "new": None})
+        self.assertEqual(got, {"cheap": {"median_share": 0.6, "deals": 3, "goods_warranty_share": 0.0}, "new": None})
         core = BuyerCore.__new__(BuyerCore)
         core.ctx = type("C", (), {"strategy": {"buyer": {"big_list": 30000, "target_share": 0.5, "open_share": 0.4,
                                                           "food_target_share": 0.6, "food_open_share": 0.45}}})()

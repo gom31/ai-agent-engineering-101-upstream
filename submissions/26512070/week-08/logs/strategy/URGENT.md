@@ -1,5 +1,6 @@
 # Alerts (newest first)
 
+- 11-04 11:35 **warn** health: 61% of real buyers left at our opening ask
 - 11-04 11:30 **warn** health: 54% of real buyers left at our opening ask
 - 11-04 11:24 **warn** health: 52% of real buyers left at our opening ask
 - 11-04 10:35 **warn** health: the buyer paid nothing in 30 min (52 orders)
