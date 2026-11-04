@@ -14459,3 +14459,662 @@
 11:39:32 [acp] not paying: 115.69 h of shelf life left, the policy asks for 360.0
 11:39:33 [market] ledger #2359380: G010744b7 at 18163, stars None, verified False (failed: settled), review not shown
 11:39:34 [seller] [seller] 5315b9b4 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:39:44 [seller] [seller] 5315b9b4 completed: Deal at 206460 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:39:49 [order o-205807114fc7] 신선야채(부패주의), budget 30500, round 3, use within 5.0 h
+11:39:50 [kit] 49 shops in .market\shops.json, running market_buyer
+11:39:51 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 206460, ledger #2359467, unit u-376c9213d755 grade A
+11:39:52 [seller] [seller] 946143bf input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:39:59 [buyer] {"shop": "https://market.ourolabs.ai/shop/bright-living", "receipt": {"unit": "u-78a9033cec07", "claim": "A", "task": "d8c71cd8-a928-42f8-8e70-0fc11f29f7f1", "price": 24965, "item": "Gfd464abc", "sig_seller": "iBifPl9XyRDRorY+WPO0MC+C6khk8dJMpf6KQ8rBVFTlmGC4pluR13jV+i7AreHWomg4+e2XUJlaFBmRNlnRCA==", "shop": "Bright Living"}, "stars": null, "review": null}
+11:39:59 [sign] sig_seller ok, sig_buyer added
+11:40:00 [acp] checkout ships unit u-78a9033cec07, claim A, certificate attached
+11:40:00 [acp] paid 24965 through https://market.ourolabs.ai/shop/bright-living/acp, settled at ledger #2359510: 구기자(청양) 200g, grade A, 46.0 h of shelf life left
+11:40:20 [buyer] {"buy": []}
+11:40:25 [seller] [seller] 5e0946a4 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:40:30 [forum] post as shop: 200
+11:40:33 [seller] [seller] 5e0946a4 input_required: For this guaranteed unit I can do 203670 KRW.
+11:40:38 [seller] [seller] 5e0946a4 input_required: For this guaranteed unit I can do 200880 KRW.
+11:40:40 [seller] [seller] 51136214 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:40:42 [forum] post as buyer: 200
+11:40:42 [seller] [seller] 5e0946a4 input_required: For this guaranteed unit I can do 200880 KRW.
+11:40:47 [seller] [seller] ac0d3727 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:40:48 [seller] [seller] 5e0946a4 completed: Deal at 200880 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:40:51 [seller] [seller] ac0d3727 completed: Deal at 17022 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:40:53 [acp] settled 건국 무첨가두유 32팩 at 17022, ledger #2359738, unit u-f3c80b3c6768 grade B
+11:40:56 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 200880, ledger #2359747, unit u-8f000f490688 grade A
+11:40:57 [buyer] {"stars": 4, "review": "Paid 24965; paid 24965 of a 21900 value (saved under 10%)."}
+11:40:58 [market] ledger #2359755: Gfd464abc at 24965, stars 4, verified True, review accepted
+11:40:58 [order o-91774dde039d] 신선야채(부패주의), budget 49410, round 3, use within 36.0 h
+11:40:58 [kit] 50 shops in .market\shops.json, running market_buyer
+11:41:00 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": null, "stars": null, "review": null}
+11:41:00 [market] ledger #2359771: no deal, stars None, verified False, review not shown
+11:41:15 [seller] [seller] 094f2783 input_required: [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증): 28046 KRW, a premium unit with the market's certificate, its true gr
+11:41:18 [order o-c448aabd8cba] 신선야채(부패주의), budget 16670, round 3, use within 24.0 h
+11:41:18 [kit] 50 shops in .market\shops.json, running market_buyer
+11:41:26 [buyer] {"buy": []}
+11:41:30 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+11:41:30 [market] ledger #2359907: no deal, stars None, verified False, review not shown
+11:41:35 [seller] [seller] ae1972a2 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:41:38 [order o-65909c06bf34] 신선육류, budget 114450, round 3, use within 2.5 h
+11:41:38 [kit] 50 shops in .market\shops.json, running market_buyer
+11:41:39 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+11:41:39 [market] ledger #2359936: no deal, stars None, verified False, review not shown
+11:41:55 [seller] [seller] 0275e113 input_required: 켈로그 프링글스 2+2+2+1 골라담기 GS단독: 9546 KRW, a premium unit with the market's certificate, its true grade and our full-refund g
+11:41:59 [order o-a92b25c52bf6] 즉석조리식품, budget 13540, round 3, use within 2.5 h
+11:41:59 [kit] 50 shops in .market\shops.json, running market_buyer
+11:42:16 [seller] [seller] 66f52364 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:42:23 [buyer] {"shop": "https://supplies-enhancement-especially-occurred.trycloudflare.com", "receipt": {"unit": "u-736d779d3c0a", "task": "53b1b563-912f-431a-b843-5e983f05b710", "price": 9949, "shop": "bjeon01", "claim": "C", "sig_seller": "alq5TPTWsq3qitTqRoGd00jjj0A53JF6DnCG7eoV/HDdPoRqfsLclFwIXAh1qKyttNdjq06dSxxlct/+ViCwCw==", "item": "G8fbdd9c2"}, "stars": null, "review": null}
+11:42:23 [sign] sig_seller ok, sig_buyer added
+11:42:24 [acp] checkout ships unit u-736d779d3c0a, claim C, certificate attached
+11:42:24 [acp] paid 9949 through https://supplies-enhancement-especially-occurred.trycloudflare.com/acp, settled at ledger #2360141: [홍진경 더만두] 전자레인지 찐만두 매운맛 5봉, grade C, 1.7 h of shelf life left
+11:42:32 [buyer] {"buy": []}
+11:42:33 [seller] [seller] e6f3b5ee input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 72443 KRW, a premium unit with the market's certificate, its true grade and our f
+11:42:35 [seller] [seller] e6f3b5ee completed: Deal at 72443 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:42:36 [acp] settled [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS at 72443, ledger #2360201, unit u-3f91d7421b66 grade A
+11:43:01 [seller] [seller] 0c06c814 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:43:07 [seller] [seller] 0c06c814 input_required: For this guaranteed unit I can do 204537 KRW.
+11:43:09 [seller] [seller] 2082f93c input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 225611 KRW, a premium unit with the market's certificate, its true grade and our f
+11:43:12 [seller] [seller] 0c06c814 input_required: For this guaranteed unit I can do 204537 KRW.
+11:43:15 [seller] [seller] 8153c6ae input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:43:16 [seller] [seller] b81448e9 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:43:18 [seller] [seller] 0c06c814 input_required: For this guaranteed unit I can do 204537 KRW.
+11:43:21 [buyer] {"stars": 1, "review": "Paid 9949; the item was worth nothing to the order (spoiled or not usable)."}
+11:43:22 [market] ledger #2360461: G8fbdd9c2 at 9949, stars 1, verified True, review accepted
+11:43:22 [order o-729e99f087f0] 신선야채(부패주의), budget 25060, round 3, use within 12.0 h
+11:43:22 [kit] 50 shops in .market\shops.json, running market_buyer
+11:43:23 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "C", "cert": true, "task": "a738c1f7-70a3-4420-9472-df56a09faac5", "price": 6237, "shop": "lee-sungsoo", "sig_seller": "YunXUkB2xOIth26VvygNliBEjoFCrzshY4haRd2flrwLRiekqFFvNdcHmISMmEgneWILdpljTwpzi4U0oT4GBw==", "item": "G0b0ca441", "unit": "u-34fe8b02c6e3"}, "stars": null, "review": null}
+11:43:23 [seller] [seller] 0c06c814 completed: Deal at 204537 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:43:23 [sign] sig_seller ok, sig_buyer added
+11:43:24 [acp] checkout ships unit u-34fe8b02c6e3, claim C, certificate attached
+11:43:25 [acp] paid 6237 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2360491: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 6.5 h of shelf life left
+11:43:31 [seller] [seller] 937b96ae input_required: [바운티풀] 엘리트코튼 호텔 침구 순면80수 이불커버 SS: 59873 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:43:32 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 204537, ledger #2360536, unit u-a9d9b26c60a7 grade A
+11:43:35 [seller] [seller] 23e017de input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:43:36 [seller] [seller] 937b96ae completed: Deal at 40455 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:43:37 [acp] settled [바운티풀] 엘리트코튼 호텔 침구 순면80수 이불커버 SS at 40455, ledger #2360572, unit u-2b6b319f8780 grade B
+11:43:39 [buyer] {"buy": [{"sku": "G1515d951", "qty": 5}, {"sku": "G07ec17d5", "qty": 7}, {"sku": "G5cd4ffbc", "qty": 1}, {"sku": "G582603b2", "qty": 1}, {"sku": "G9a240832", "qty": 1}]}
+11:43:40 [supply] 5 x 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 for 1108160, balance 12475027
+11:43:50 [supply] 7 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 1076970, balance 11398057
+11:43:51 [buyer] {"stars": 1, "review": "Grade C as labeled, but item arrived spoiled—no value to the order."}
+11:43:51 [market] ledger #2360676: G0b0ca441 at 6237, stars 1, verified True, review accepted
+11:43:51 [order o-ba947f9c7c7a] 신선야채(부패주의), budget 13100, round 3, use within 5.0 h
+11:43:52 [kit] 50 shops in .market\shops.json, running market_buyer
+11:43:53 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "C", "cert": true, "task": "44bed24e-b321-42ce-ad05-cb6b41603364", "price": 6237, "shop": "lee-sungsoo", "sig_seller": "hKcgBRvfYa4hQwt5bQ3QX9vS9MA70/94OIDKmBDdRj2Ztzg38N4dQzJl7SzRytThX1AdsqKdiV7yV62poIv8BQ==", "item": "G0b0ca441", "unit": "u-6d453c00b61f"}, "stars": null, "review": null}
+11:43:53 [sign] sig_seller ok, sig_buyer added
+11:43:54 [acp] checkout ships unit u-6d453c00b61f, claim C, certificate attached
+11:43:54 [acp] paid 6237 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2360695: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 11.2 h of shelf life left
+11:43:57 [seller] [seller] c5af097a input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:44:00 [supply] 1 x 지베딩 라셀 착번 10mm 극세사 이불 풀세트 더블라지킹(DLK) for 126283, balance 11271774
+11:44:10 [seller] [seller] 17a6bc05 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:44:11 [supply] 1 x 건국 무첨가두유 32팩 for 12874, balance 11258900
+11:44:17 [seller] [seller] 681aa029 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:44:20 [seller] [seller] cd5af6d7 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:44:22 [supply] 1 x 펩시콜라 엑스트라 피즈 245ml 15개(업소용) for 7462, balance 11251438
+11:44:23 [seller] [seller] cd5af6d7 input_required: For this guaranteed unit I can do 13067 KRW.
+11:44:28 [seller] [seller] cd5af6d7 completed: Deal at 13067 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:44:36 [seller] [seller] e671fdd3 input_required: [착불]우아미가구 윈4인 코브라스윙 갤럭시 패브릭소파: 420379 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:44:39 [seller] [seller] c7598a18 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:44:44 [buyer] {"buy": []}
+11:44:45 [buyer] {"stars": 4, "review": "Grade C potato from a reliably honest shop with exceptional value and fair dealing."}
+11:44:46 [market] ledger #2361028: G0b0ca441 at 6237, stars 4, verified True, review accepted
+11:44:46 [order o-34e1da641efc] 기타 생활가전, budget 1370, round 3
+11:44:46 [kit] 50 shops in .market\shops.json, running market_buyer
+11:44:48 [seller] [seller] e8e2ef5d input_required: 켈로그 프링글스 2+2+2+1 골라담기 GS단독: 9546 KRW, a premium unit with the market's certificate, its true grade and our full-refund g
+11:44:48 [seller] [seller] e8e2ef5d input_required: For this guaranteed unit I can do 9417 KRW.
+11:44:48 [seller] [seller] e8e2ef5d input_required: For this guaranteed unit I can do 9288 KRW.
+11:44:48 [seller] [seller] e8e2ef5d input_required: For this guaranteed unit I can do 9288 KRW.
+11:44:57 [buyer] {"shop": "https://whatever-shannon-payroll-essentially.trycloudflare.com", "receipt": {"task": "78157d7e-360f-45e7-9202-ce662e8a455b", "item": "G012bf967", "sig_seller": "yj6JnNVQ5jDhqrJxEepGmAkdMJjNIV0OYgU/17c+T4jSXObE1VZZo0I0AY191H8KMmVCY0WiHXsY6Buq3LmOCA==", "cert": true, "unit": "u-6ebfc97297d1", "price": 660, "shop": "tomato&potato"}, "stars": null, "review": null}
+11:44:57 [sign] sig_seller ok, sig_buyer added
+11:44:58 [seller] [seller] 771cd9a0 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:44:58 [acp] checkout ships unit u-6ebfc97297d1, certificate attached
+11:44:59 [acp] paid 660 through https://whatever-shannon-payroll-essentially.trycloudflare.com/acp, settled at ledger #2361120: AQ3301 - USB-C / 2핀 터미널 블록 전원 입력 젠더C-16, grade C
+11:45:09 [seller] [seller] 34c4aff9 input_required: [바운티풀] 엘리트코튼 호텔 침구 순면80수 이불커버 SS: 59873 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:45:09 [seller] [seller] 8795748b input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 65046 KRW, a premium unit with the market's certificate, its true grade and our f
+11:45:10 [seller] [seller] 34c4aff9 completed: Deal at 59873 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:45:11 [seller] [seller] 8795748b input_required: For this guaranteed unit I can do 64167 KRW.
+11:45:11 [acp] settled [바운티풀] 엘리트코튼 호텔 침구 순면80수 이불커버 SS at 59873, ledger #2361194, unit u-a678ee76e797 grade A
+11:45:11 [seller] [seller] 8795748b input_required: For this guaranteed unit I can do 63288 KRW.
+11:45:11 [seller] [seller] 8795748b completed: Deal at 63288 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:45:13 [acp] settled [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS at 63288, ledger #2361215, unit u-2340c42e20d2 grade A
+11:45:20 [seller] [seller] ebd44a62 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:45:21 [seller] [seller] 320357ce input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:45:30 [seller] [seller] 320357ce input_required: For this guaranteed unit I can do 309381 KRW.
+11:45:30 [seller] [seller] 320357ce completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:45:31 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2361319, unit u-512423e3cfd7 grade A
+11:45:37 [buyer] {"stars": 4, "review": "Reliable shop with consistent fair dealing, delivered C-grade product at favorable price."}
+11:45:37 [market] ledger #2361361: G012bf967 at 660, stars 4, verified True, review accepted
+11:45:37 [order o-0c7a0dcc1563] 디저트, budget 15980, round 3, use within 5.0 h
+11:45:38 [kit] 50 shops in .market\shops.json, running market_buyer
+11:45:39 [seller] [seller] 9a0ced67 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:45:40 [buyer] {"shop": "https://stamp-existed-alpine-beads.trycloudflare.com", "receipt": {"task": "a2eb2c61-d125-4e9c-9314-040ac8727b9f", "item": "G11f14ced", "sig_seller": "BCIwGW+MinmVmqgAiNoofLWDEe0dUsiZ8xiSE2BH6Iz9DohJCc9ZJW5/ryQzNM362S3R57QhRpOrXVaZwfOGBw==", "shop": "ddolcom", "claim": "C", "unit": "u-9da72f463ebb", "price": 5632}, "stars": null, "review": null}
+11:45:40 [sign] sig_seller ok, sig_buyer added
+11:45:41 [acp] checkout ships unit u-9da72f463ebb, claim C, certificate attached
+11:45:42 [acp] paid 5632 through https://stamp-existed-alpine-beads.trycloudflare.com/acp, settled at ledger #2361387: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade C, 10.0 h of shelf life left
+11:45:49 [buyer] {"buy": []}
+11:46:11 [forum] post as shop: 200
+11:46:18 [buyer] {"stars": 3, "review": "Grade-C product delivered honestly at fair value by our most consistent food supplier."}
+11:46:18 [market] ledger #2361589: G11f14ced at 5632, stars 3, verified True, review accepted
+11:46:19 [order o-56de28641766] 신선육류, budget 27300, round 3, use within 6.0 h
+11:46:19 [kit] 50 shops in .market\shops.json, running market_buyer
+11:46:28 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+11:46:28 [market] ledger #2361629: no deal, stars None, verified False, review not shown
+11:46:29 [seller] [seller] 99075241 input_required: 외갓집 송탄 서정리 부대찌개 1kg x 2팩 (라면사리 2개): 19092 KRW, a premium unit with the market's certificate, its true grade and our full
+11:46:32 [forum] post as buyer: 200
+11:46:39 [order o-3fa613032ba8] 디저트, budget 19460, round 3, use within 36.0 h
+11:46:39 [seller] [seller] a0f0ef63 input_required: [착불]우아미가구 윈4인 코브라스윙 갤럭시 패브릭소파: 420379 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:46:39 [kit] 50 shops in .market\shops.json, running market_buyer
+11:46:46 [seller] [seller] a0f0ef63 completed: Deal at 420379 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:46:47 [acp] settled [착불]우아미가구 윈4인 코브라스윙 갤럭시 패브릭소파 at 420379, ledger #2361730, unit u-a726a6c44a56 grade B
+11:46:55 [buyer] {"buy": []}
+11:47:05 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "MrNsUTxm1FnOZ5dKmb0nquIBolon5jUZle1RhdSNuJquo707xVSRGgbOGcPCZSHCe4NRwuVUpC0cOzS4W7ZFAA==", "item": "G06a54b11", "unit": "u-727e36fcbd84", "price": 8034, "task": "2caf18a2-753b-44dc-b6a3-294905d59e5f", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+11:47:05 [sign] sig_seller ok, sig_buyer added
+11:47:06 [acp] not paying: 26.24 h of shelf life left, the policy asks for 36.0
+11:47:06 [market] ledger #2361819: G06a54b11 at 8034, stars None, verified False (failed: settled), review not shown
+11:47:06 [order o-78282257e574] 김치, budget 35010, round 3, use within 84.0 h
+11:47:06 [kit] 50 shops in .market\shops.json, running market_buyer
+11:47:08 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "bf8a881c-3da9-47be-ad84-e958fce16035", "price": 22314, "shop": "lee-sungsoo", "sig_seller": "9S9+CWPYBpOvup5/AxmPSWOEMYqrKT8wIbNJshYr+fznw+HblXOslurFOF/pwZVSX9OQJWbmIgudgrIw9XfuCw==", "item": "G200e39a3", "unit": "u-e2a60e6db52d"}, "stars": null, "review": null, "accept": {"min_hours_left": 84.0}}
+11:47:08 [sign] sig_seller ok, sig_buyer added
+11:47:09 [acp] not paying: 82.46 h of shelf life left, the policy asks for 84.0
+11:47:09 [market] ledger #2361835: G200e39a3 at 22314, stars None, verified False (failed: settled), review not shown
+11:47:15 [seller] [seller] 842eb78a input_required: [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS: 65046 KRW, a premium unit with the market's certificate, its true grade and our f
+11:47:17 [seller] [seller] 842eb78a input_required: For this guaranteed unit I can do 64167 KRW.
+11:47:17 [seller] [seller] 842eb78a input_required: For this guaranteed unit I can do 63288 KRW.
+11:47:17 [seller] [seller] 842eb78a input_required: For this guaranteed unit I can do 63288 KRW.
+11:47:18 [seller] [seller] 842eb78a input_required: For this guaranteed unit I can do 63288 KRW.
+11:47:18 [seller] [seller] 842eb78a input_required: For this guaranteed unit I can do 63288 KRW.
+11:47:27 [order o-affb42792796] 신선육류, budget 97630, round 3, use within 18.0 h
+11:47:27 [kit] 50 shops in .market\shops.json, running market_buyer
+11:47:27 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+11:47:28 [market] ledger #2361922: no deal, stars None, verified False, review not shown
+11:47:29 [seller] [seller] d655167b input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:47:32 [seller] [seller] a7e3fc2b input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:47:33 [seller] [seller] d655167b input_required: For this guaranteed unit I can do 309381 KRW.
+11:47:33 [seller] [seller] d655167b completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:47:33 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2361947, unit u-272ed9b07198 grade B
+11:47:43 [seller] [seller] 536e702c input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:47:47 [order o-19cfd096c71b] 디저트, budget 14590, round 3, use within 12.0 h
+11:47:47 [kit] 50 shops in .market\shops.json, running market_buyer
+11:48:01 [buyer] {"buy": []}
+11:48:11 [seller] [seller] 45f99476 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 225611 KRW, a premium unit with the market's certificate, its true grade and our f
+11:48:12 [seller] [seller] 45f99476 input_required: For this guaranteed unit I can do 225611 KRW.
+11:48:12 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "WuNxeX2AcNAvKms9tSDwcg3UFendLkHaYyLTDQt2eIZk777WMRmhpWtz/XFvEl2BpDnsmo/jCPzczLMqyH8bCg==", "item": "G06a54b11", "unit": "u-7e53da64fdee", "price": 8044, "task": "dc30d3e9-68c1-48b2-ad14-e5085a5e85c3", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null}
+11:48:12 [sign] sig_seller ok, sig_buyer added
+11:48:12 [seller] [seller] 45f99476 input_required: For this guaranteed unit I can do 225611 KRW.
+11:48:12 [seller] [seller] 45f99476 input_required: For this guaranteed unit I can do 225611 KRW.
+11:48:13 [seller] [seller] 45f99476 completed: Deal at 225611 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:48:13 [seller] [seller] 7e34e878 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 225611 KRW, a premium unit with the market's certificate, its true grade and our f
+11:48:13 [acp] checkout ships unit u-7e53da64fdee, claim B, certificate attached
+11:48:13 [acp] paid 8044 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2362124: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade B, 27.8 h of shelf life left
+11:48:14 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 225611, ledger #2362128, unit u-6ecaaf467cdb grade A
+11:48:24 [seller] [seller] e671afc0 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:48:28 [buyer] {"stars": 4, "review": "Grade B as described, reliable shop, good value."}
+11:48:29 [market] ledger #2362188: G06a54b11 at 8044, stars 4, verified True, review accepted
+11:48:29 [order o-896d41cc8bdd] 신선육류, budget 27020, round 3, use within 12.0 h
+11:48:29 [kit] 50 shops in .market\shops.json, running market_buyer
+11:48:31 [seller] [seller] 8f452985 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 317335 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:48:36 [seller] [seller] caca10f1 input_required: 엘로디 먼지없는 사계절 차렵이불세트 Q: 29526 KRW, a premium unit with the market's certificate, its true grade and our full-refund guara
+11:48:37 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+11:48:37 [market] ledger #2362248: no deal, stars None, verified False, review not shown
+11:48:38 [seller] [seller] caca10f1 completed: Deal at 29526 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:48:39 [acp] settled 엘로디 먼지없는 사계절 차렵이불세트 Q at 29526, ledger #2362251, unit u-a4d26264726f grade B
+11:48:43 [seller] [seller] e671afc0 completed: Deal at 6840 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks with
+11:48:46 [seller] [seller] e0670808 input_required: 지베딩 라셀 착번 10mm 극세사 이불 풀세트 더블라지킹(DLK): 147260 KRW, a premium unit with the market's certificate, its true grade and our f
+11:48:49 [order o-c5db672a2eab] 신선야채(부패주의), budget 12370, round 3, use within 12.0 h
+11:48:50 [kit] 50 shops in .market\shops.json, running market_buyer
+11:48:59 [seller] [seller] 8f452985 input_required: For this guaranteed unit I can do 317335 KRW.
+11:48:59 [seller] [seller] 8f452985 input_required: For this guaranteed unit I can do 317335 KRW.
+11:48:59 [seller] [seller] 8f452985 input_required: For this guaranteed unit I can do 317335 KRW.
+11:49:00 [seller] [seller] 8f452985 completed: Deal at 317335 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:49:01 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 317335, ledger #2362353, unit u-017ef931fa7f grade A
+11:49:02 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+11:49:02 [market] ledger #2362362: no deal, stars None, verified False, review not shown
+11:49:06 [buyer] {"buy": []}
+11:49:10 [order o-8106aaa232e6] 과자, budget 11610, round 3, use within 540.0 h
+11:49:10 [kit] 50 shops in .market\shops.json, running market_buyer
+11:49:11 [seller] [seller] 921115b7 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:49:12 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "eff52b6b-d6e8-4014-bb2c-eae9f5f37a20", "price": 5240, "shop": "lee-sungsoo", "sig_seller": "AH2NW0Bce7XX273ZVFR63GioZjHYL39gd4s7gN4ym4oh1EapeaSOzJgskwBQNxBVWGzoIMtaiy7R0LeCAjt/CQ==", "item": "G114aefb6", "unit": "u-a31e8328d671"}, "stars": null, "review": null, "accept": {"min_hours_left": 540.0}}
+11:49:12 [sign] sig_seller ok, sig_buyer added
+11:49:13 [acp] not paying: 529.65 h of shelf life left, the policy asks for 540.0
+11:49:13 [market] ledger #2362409: G114aefb6 at 5240, stars None, verified False (failed: settled), review not shown
+11:49:30 [order o-5c22522937a3] 침구, budget 62890, round 3
+11:49:30 [kit] 50 shops in .market\shops.json, running market_buyer
+11:49:31 [seller] [seller] 249bfd17 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:49:33 [buyer] {"shop": "https://stamp-existed-alpine-beads.trycloudflare.com", "receipt": {"task": "d9baf69f-d439-40a0-a66d-2a9c7a05327c", "item": "G0be9ed07", "sig_seller": "ab12W7JNjfgpzzRJaZ9BbVrFYMBkUqWQdHTixF5vTpeVXjWlzxyiIB2fu8uWta4Hq0BJ3r0VX9XP9/1kFuZyCg==", "shop": "ddolcom", "unit": "u-fd12b2570d65", "warranty_hours": 24.0, "price": 29394, "claim": "A"}, "stars": null, "review": null}
+11:49:33 [sign] sig_seller ok, sig_buyer added
+11:49:34 [acp] checkout ships unit u-fd12b2570d65, claim A, warranty 24.0 h, certificate attached
+11:49:34 [seller] [seller] 249bfd17 input_required: For this guaranteed unit I can do 13067 KRW.
+11:49:34 [seller] [seller] 249bfd17 completed: Deal at 13067 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:49:34 [acp] paid 29394 through https://stamp-existed-alpine-beads.trycloudflare.com/acp, settled at ledger #2362512: [샤이닝홈] 모달 소파패드 돌소파용 마인 요릭 85x200 3컬러 쇼파패드, grade A
+11:49:49 [buyer] {"stars": 5, "review": "Grade A confirmed, receipt matched, fair price—a reliable partner delivering honest goods."}
+11:49:49 [market] ledger #2362582: G0be9ed07 at 29394, stars 5, verified True, review accepted
+11:49:51 [order o-5bc3a9852b3a] 냉장/냉동고, budget 584100, round 3
+11:49:51 [kit] 50 shops in .market\shops.json, running market_buyer
+11:49:55 [seller] [seller] b6591d4e rejected: Sorry, we have none of that in stock right now.
+11:49:59 [seller] [seller] 4043da2f input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:50:03 [seller] [seller] 8442e6c9 input_required: [착불]우아미가구 윈4인 코브라스윙 갤럭시 패브릭소파: 420379 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:50:11 [seller] [seller] 8442e6c9 input_required: For this guaranteed unit I can do 414698 KRW.
+11:50:11 [seller] [seller] f5ea1e38 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:50:12 [buyer] {"buy": []}
+11:50:17 [seller] [seller] 145951dc input_required: 지베딩 라셀 착번 10mm 극세사 이불 풀세트 더블라지킹(DLK): 147260 KRW, a premium unit with the market's certificate, its true grade and our f
+11:50:17 [seller] [seller] 145951dc completed: Deal at 143280 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:50:19 [acp] settled 지베딩 라셀 착번 10mm 극세사 이불 풀세트 더블라지킹(DLK) at 143280, ledger #2362728, unit u-007693355e10 grade A
+11:50:19 [seller] [seller] 12369764 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:50:21 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "4ckL4KE2SmoXIFkoiMnUAYcXaW31hJE52WsS3x4NSl3fzIz1Y6KZjhkR1n1cT10R09rnDP5fr33YZVMVjxtSDg==", "warranty_hours": 6.0, "price": 379862, "unit": "u-2d904716c1b0", "shop": "Inextro Market", "item": "G66a93b94", "claim": "A", "task": "47f5a6ea-d8ea-4c16-a58c-0f31dc93af1f"}, "stars": null, "review": null}
+11:50:21 [sign] sig_seller ok, sig_buyer added
+11:50:21 [seller] [seller] f5ea1e38 input_required: For this guaranteed unit I can do 309381 KRW.
+11:50:21 [seller] [seller] f5ea1e38 completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:50:22 [acp] checkout ships unit u-2d904716c1b0, claim A, warranty 6.0 h, certificate attached
+11:50:22 [seller] [seller] 8442e6c9 input_required: For this guaranteed unit I can do 412752 KRW.
+11:50:23 [acp] paid 379862 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2362738: [삼성무료설치] 냉동고 227L 1도어 RZ22CG4000WW 화이트 슬림 인테리어, grade A
+11:50:23 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2362739, unit u-f3801b4a5a71 grade C
+11:50:31 [seller] [seller] f999cc23 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 210778 KRW, a premium unit with the market's certificate, its true grade and our f
+11:50:35 [seller] [seller] 8442e6c9 input_required: For this guaranteed unit I can do 412752 KRW.
+11:50:36 [buyer] {"stars": 5, "review": "Honest grade A, fair price at 67% of list, and consistent reliable service."}
+11:50:37 [market] ledger #2362822: G66a93b94 at 379862, stars 5, verified True, review accepted
+11:50:37 [order o-1d300ef37916] 신선야채(부패주의), budget 20860, round 3, use within 24.0 h
+11:50:37 [kit] 50 shops in .market\shops.json, running market_buyer
+11:50:38 [seller] [seller] f999cc23 input_required: For this guaranteed unit I can do 210778 KRW.
+11:50:42 [buyer] {"shop": "https://stamp-existed-alpine-beads.trycloudflare.com", "receipt": {"task": "e6b06646-f2ee-431d-a8a7-e4f754010abe", "item": "G0b0ca441", "sig_seller": "h7j+loTGV0VyYi156bhA5zWPx0RzREiQHtmMPH0SCN8Awekmwin36PLW1PYrVuraxB+UBfwWu/4BhGn/bLP1Bw==", "shop": "ddolcom", "claim": "A", "unit": "u-71b8e68f1f24", "price": 10299}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+11:50:42 [sign] sig_seller ok, sig_buyer added
+11:50:43 [seller] [seller] f999cc23 input_required: For this guaranteed unit I can do 210778 KRW.
+11:50:43 [seller] [seller] f999cc23 completed: Deal at 210778 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:50:43 [acp] checkout ships unit u-71b8e68f1f24, claim A, certificate attached
+11:50:43 [acp] paid 10299 through https://stamp-existed-alpine-beads.trycloudflare.com/acp, settled at ledger #2362846: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 38.9 h of shelf life left
+11:50:44 [seller] [seller] e3d6807a input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:50:44 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 210778, ledger #2362850, unit u-4946f540c528 grade A
+11:50:49 [seller] [seller] 8442e6c9 input_required: For this guaranteed unit I can do 412752 KRW.
+11:51:00 [seller] [seller] 05c94aea input_required: [LG전자 직영] LG 싸이킹 POWER 청소기 실버 C40SFHT: 144709 KRW, a premium unit with the market's certificate, its true grade and our 
+11:51:02 [seller] [seller] 8442e6c9 completed: Deal at 412752 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:51:02 [buyer] {"stars": 5, "review": "Receipt matched, honest grade A, fair value."}
+11:51:02 [market] ledger #2362923: G0b0ca441 at 10299, stars 5, verified True, review accepted
+11:51:03 [order o-c22ae075af80] 신선야채(부패주의), budget 17130, round 3, use within 5.0 h
+11:51:03 [kit] 50 shops in .market\shops.json, running market_buyer
+11:51:08 [seller] [seller] 05c94aea input_required: For this guaranteed unit I can do 144709 KRW.
+11:51:08 [seller] [seller] 05c94aea input_required: For this guaranteed unit I can do 144709 KRW.
+11:51:08 [seller] [seller] 05c94aea input_required: For this guaranteed unit I can do 144709 KRW.
+11:51:08 [seller] [seller] 05c94aea completed: Deal at 144709 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:51:10 [acp] settled [LG전자 직영] LG 싸이킹 POWER 청소기 실버 C40SFHT at 144709, ledger #2362953, unit u-88b7c865d1d4 grade A
+11:51:12 [seller] [seller] 130ccf2b input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+11:51:14 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+11:51:15 [market] ledger #2362982: no deal, stars None, verified False, review not shown
+11:51:15 [seller] [seller] aab7bca1 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:51:16 [seller] [seller] 130ccf2b input_required: For this guaranteed unit I can do 309381 KRW.
+11:51:16 [seller] [seller] 130ccf2b completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:51:17 [forum] post as shop: 200
+11:51:17 [acp] settled [착불]우아미가구 윈4인 코브라스윙 갤럭시 패브릭소파 at 412752, ledger #2362999, unit u-8579e74dfa17 grade A
+11:51:17 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2363002, unit u-5ca33f4b73ba grade B
+11:51:17 [buyer] {"buy": []}
+11:51:24 [order o-815526560cec] 청정제/탈취제, budget 32370, round 3
+11:51:24 [kit] 50 shops in .market\shops.json, running market_buyer
+11:51:31 [seller] [seller] a435136b input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:51:37 [buyer] {"shop": "https://colorado-narrow-commodity-economies.trycloudflare.com", "receipt": {"task": "b064fd75-449a-4303-9322-9c0404af702e", "item": "G8561bfe2", "sig_seller": "EGRgZ6x0J49BMCJIBf542rSd9J0UtpmEBJedxjs2vsT5WeqAUOJbU/+miW3FzhqWD+oLqDZKLxDURQo+xf+uAw==", "shop": "Arun A2A Seller", "unit": "u-a6c6d235995a", "price": 8120}, "stars": null, "review": null}
+11:51:37 [sign] sig_seller ok, sig_buyer added
+11:51:38 [acp] checkout ships unit u-a6c6d235995a, certificate attached
+11:51:38 [acp] paid 8120 through https://colorado-narrow-commodity-economies.trycloudflare.com/acp, settled at ledger #2363105: 코코도르 섬유 향기 탈취제 500ml X 4개 (룸스프레이 섬유향수), grade B
+11:51:39 [forum] post as buyer: 200
+11:51:53 [seller] [seller] d4ab1551 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:51:57 [buyer] {"stars": 4, "review": "Grade B fabric deodorant at fair value from a reliable, honest shop."}
+11:51:57 [market] ledger #2363194: G8561bfe2 at 8120, stars 4, verified True, review accepted
+11:51:58 [order o-421d3fffa825] 김치, budget 81060, round 3, use within 17.0 h
+11:51:58 [kit] 50 shops in .market\shops.json, running market_buyer
+11:52:00 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "B", "cert": true, "task": "4d307fb8-debf-495f-a1ca-193aeb180646", "price": 22314, "shop": "lee-sungsoo", "sig_seller": "+3W/1p89poiCRHrpbgrUkHUF2dOr7b/U+VWWyZ2DuJL24wN/Mm1uBfJ9beilhZEtt6OD/3fuH6loheTbDw48Aw==", "item": "G200e39a3", "unit": "u-e2a60e6db52d"}, "stars": null, "review": null}
+11:52:00 [sign] sig_seller ok, sig_buyer added
+11:52:01 [acp] checkout ships unit u-e2a60e6db52d, claim B, certificate attached
+11:52:01 [acp] paid 22314 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2363215: [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증), grade B, 82.4 h of shelf life left
+11:52:01 [seller] [seller] 3ed69a8c input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:52:04 [seller] [seller] 3ed69a8c input_required: For this guaranteed unit I can do 7738 KRW.
+11:52:04 [seller] [seller] 3ed69a8c input_required: For this guaranteed unit I can do 7632 KRW.
+11:52:05 [seller] [seller] 3ed69a8c input_required: For this guaranteed unit I can do 7632 KRW.
+11:52:13 [seller] [seller] b8c8bb6b input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 218398 KRW, a premium unit with the market's certificate, its true grade and our f
+11:52:19 [seller] [seller] b8c8bb6b input_required: For this guaranteed unit I can do 218398 KRW.
+11:52:21 [seller] [seller] 82e69b76 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:52:23 [buyer] {"buy": []}
+11:52:25 [seller] [seller] b8c8bb6b input_required: For this guaranteed unit I can do 218398 KRW.
+11:52:25 [seller] [seller] b8c8bb6b completed: Deal at 218398 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:52:27 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 218398, ledger #2363322, unit u-f36a7a1d2511 grade A
+11:52:31 [buyer] {"stars": 4, "review": "Grade B as promised, fair price, from a reliably honest shop with a perfect fairness record."}
+11:52:31 [market] ledger #2363349: G200e39a3 at 22314, stars 4, verified True, review accepted
+11:52:31 [order o-86d44fa90df9] 신선육류, budget 34270, round 3, use within 12.0 h
+11:52:32 [kit] 50 shops in .market\shops.json, running market_buyer
+11:52:38 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+11:52:39 [market] ledger #2363396: no deal, stars None, verified False, review not shown
+11:52:41 [seller] [seller] aa06bf61 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:52:52 [order o-d2f4805cfc2d] 신선야채(부패주의), budget 40460, round 3, use within 12.0 h
+11:52:53 [kit] 50 shops in .market\shops.json, running market_buyer
+11:52:58 [seller] [seller] e962bead input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:53:03 [seller] [seller] 234898b0 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:53:15 [seller] [seller] 2e685f54 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 218720 KRW, a premium unit with the market's certificate, its true grade and our f
+11:53:20 [seller] [seller] e771f614 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:53:24 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "lzNC730Cr/fZRg3b1jrwl838rPFdnS368ksGiCkYpEfWiq3EK/1I54P9cxrVUyB5mcmQxovG8JqRdJC2iOA0Cg==", "item": "G0b0ca441", "unit": "u-d90b3f4d0843", "price": 8514, "task": "3fe43d74-dbf2-4e40-bd99-0088e3bbd7c1", "shop": "Inextro Market", "claim": "C"}, "stars": null, "review": null}
+11:53:24 [sign] sig_seller ok, sig_buyer added
+11:53:25 [acp] checkout ships unit u-d90b3f4d0843, claim C, certificate attached
+11:53:26 [acp] paid 8514 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2363588: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 6.3 h of shelf life left
+11:53:31 [buyer] {"buy": []}
+11:53:45 [seller] [seller] 56be96ee input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 218720 KRW, a premium unit with the market's certificate, its true grade and our f
+11:53:58 [buyer] {"stars": 1, "review": "Accurate grade C claim but the item had no value for the order."}
+11:53:59 [market] ledger #2363757: G0b0ca441 at 8514, stars 1, verified True, review accepted
+11:53:59 [order o-bfa1cd2be861] 신선육류, budget 17550, round 3, use within 6.0 h
+11:53:59 [kit] 50 shops in .market\shops.json, running market_buyer
+11:54:01 [buyer] {"shop": "https://gardening-fig-worker-completely.trycloudflare.com", "receipt": {"price": 9592, "item": "G3ac3f712", "cert": true, "shop": "kimauve", "unit": "u-53c164327036", "warranty_hours": 0.0, "task": "3121dd6f-d81d-4fc7-955e-3b2470f8b4a5", "sig_seller": "P1n9sycduomcog8ZcAujQj7eEIf7XEYneAn1IpjtvSgkhU9l11pH90KCx4zvflNCAbjMbmTSEsBnL1wf6pfyCQ=="}, "stars": null, "review": null}
+11:54:01 [sign] sig_seller ok, sig_buyer added
+11:54:01 [acp] checkout ships unit u-53c164327036, certificate attached
+11:54:02 [acp] paid 9592 through https://gardening-fig-worker-completely.trycloudflare.com/acp, settled at ledger #2363774: [바라던] 편리한 닭다리살 순살 닭정육 2kg 1팩, grade B, 12.7 h of shelf life left
+11:54:36 [buyer] {"stars": 4, "review": "Fair grading from a reliable shop—grade B was accurate, and the buyer paid well under market at 49% of list."}
+11:54:36 [seller] [seller] 706c1dc4 input_required: [본사직영] 바프 먼투썬 하루견과 코코넛 50봉 (20g x 50EA): 22866 KRW, a premium unit with the market's certificate, its true grade and our
+11:54:36 [market] ledger #2363932: G3ac3f712 at 9592, stars 4, verified True, review accepted
+11:54:36 [order o-6784a11660ca] 신선육류, budget 50480, round 3, use within 18.0 h
+11:54:37 [kit] 50 shops in .market\shops.json, running market_buyer
+11:54:37 [buyer] {"buy": []}
+11:54:40 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+11:54:40 [market] ledger #2363955: no deal, stars None, verified False, review not shown
+11:54:57 [order o-99ae3dc924de] 디저트, budget 14590, round 3, use within 12.0 h
+11:54:57 [kit] 50 shops in .market\shops.json, running market_buyer
+11:55:19 [seller] [seller] 71259bf1 input_required: [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증): 28046 KRW, a premium unit with the market's certificate, its true gr
+11:55:19 [seller] [seller] 71259bf1 completed: Deal at 46319 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:55:22 [acp] settled [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증) at 46319, ledger #2364138, unit u-032e17f5ca12 grade B
+11:55:22 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "O3Mt1D7iBeV6b5UMTR111RB4DHCfxYQZek/qQfEc2Rf4Qfjis5ufib9cnL4eBTmRTFBsAeCf0su6ssmjkkX0Dw==", "item": "G06a54b11", "unit": "u-727e36fcbd84", "price": 8034, "task": "a2540b71-a213-427e-9a23-9559d635d913", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null}
+11:55:22 [sign] sig_seller ok, sig_buyer added
+11:55:23 [acp] checkout ships unit u-727e36fcbd84, claim B, certificate attached
+11:55:23 [acp] paid 8034 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2364148: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade B, 26.1 h of shelf life left
+11:55:41 [seller] [seller] d0b443ab input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 218720 KRW, a premium unit with the market's certificate, its true grade and our f
+11:55:42 [seller] [seller] 2d3f6967 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:55:42 [seller] [seller] 2d3f6967 completed: Deal at 7632 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks with
+11:55:42 [seller] [seller] 197a1d8e input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:55:42 [buyer] {"buy": []}
+11:55:43 [acp] settled 펩시콜라 엑스트라 피즈 245ml 15개(업소용) at 7632, ledger #2364231, unit u-2863e613c716 grade B
+11:55:44 [buyer] {"stars": 4, "review": "Grade B as described, fair price, consistently reliable delivery."}
+11:55:44 [market] ledger #2364248: G06a54b11 at 8034, stars 4, verified True, review accepted
+11:55:45 [order o-a4559fa9760b] 디저트, budget 19460, round 3, use within 12.0 h
+11:55:45 [kit] 50 shops in .market\shops.json, running market_buyer
+11:56:02 [seller] [seller] c0583830 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 218720 KRW, a premium unit with the market's certificate, its true grade and our f
+11:56:08 [seller] [seller] c0583830 input_required: For this guaranteed unit I can do 218720 KRW.
+11:56:15 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "NPeon9MtZbaqHDkUAjq9TV0sgHLNmRpQNb7IfbGEPixyMSsZR/3F18msyrmQhpIANHeVBxnQ9/Xo1zQ5P31xBg==", "item": "G06a54b11", "unit": "u-84461ba9beac", "price": 7948, "task": "fbb6c37b-efa3-4679-bdd2-596bae59199e", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null}
+11:56:15 [sign] sig_seller ok, sig_buyer added
+11:56:16 [acp] checkout ships unit u-84461ba9beac, claim B, certificate attached
+11:56:17 [seller] [seller] c0583830 input_required: For this guaranteed unit I can do 218720 KRW.
+11:56:17 [seller] [seller] c0583830 completed: Deal at 218720 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:56:17 [acp] paid 7948 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2364383: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade B, 33.2 h of shelf life left
+11:56:17 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 218720, ledger #2364390, unit u-19f413309689 grade A
+11:56:26 [forum] post as shop: 200
+11:56:40 [buyer] {"stars": 4, "review": "Grade B macarons delivered as claimed, correctly graded and fairly priced from a consistently reliable shop."}
+11:56:40 [market] ledger #2364497: G06a54b11 at 7948, stars 4, verified True, review accepted
+11:56:40 [order o-2b5cfaeaefbf] 신선야채(부패주의), budget 35590, round 3, use within 12.0 h
+11:56:40 [kit] 50 shops in .market\shops.json, running market_buyer
+11:56:42 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": null, "stars": null, "review": null}
+11:56:42 [market] ledger #2364518: no deal, stars None, verified False, review not shown
+11:56:48 [forum] post as buyer: 200
+11:56:49 [buyer] {"buy": []}
+11:57:00 [order o-0b0292e4cc59] 디저트, budget 15520, round 3, use within 5.0 h
+11:57:01 [kit] 50 shops in .market\shops.json, running market_buyer
+11:57:04 [buyer] {"shop": "https://park-decreased-picture-coastal.trycloudflare.com", "receipt": {"price": 6788, "task": "2bb34a19-fb24-4a6e-bbd6-e62d18783567", "sig_seller": "qkMX6PrFSaAqNovvJyyByj3QW00rijHYGi+ps8xsd2zpq+pHEeHiAWA5yxXl8s2anbh3LHzPkJ3eF8HOaURqDA==", "item": "G11f14ced", "shop": "ggari-shop", "unit": "u-53189e7a4263"}, "stars": null, "review": null}
+11:57:04 [sign] sig_seller ok, sig_buyer added
+11:57:05 [acp] checkout ships unit u-53189e7a4263, certificate attached
+11:57:05 [acp] paid 6788 through https://park-decreased-picture-coastal.trycloudflare.com/acp, settled at ledger #2364624: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade B, 36.9 h of shelf life left
+11:57:23 [seller] [seller] 5f659f1a input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 230037 KRW, a premium unit with the market's certificate, its true grade and our f
+11:57:27 [buyer] {"stars": 4, "review": "Reliable shop delivered grade B cookies at fair price with good surplus, consistent with their strict but honest shelf-life standards."}
+11:57:28 [market] ledger #2364724: G11f14ced at 6788, stars 4, verified True, review accepted
+11:57:28 [order o-6b10bfee43c0] 신선야채(부패주의), budget 20580, round 3, use within 12.0 h
+11:57:28 [kit] 49 shops in .market\shops.json, running market_buyer
+11:57:32 [buyer] {"shop": "https://park-decreased-picture-coastal.trycloudflare.com", "receipt": {"price": 6104, "task": "b52d9e79-a138-4c43-a84c-d6bc43a8440f", "sig_seller": "j1BfJlfibYKkoF5Y4pKTO/O4R0m4bt/vofje3VNFnhm0QMmczrmIgEcTonruYWs7Cs7/UG5PbODecL7ro6fiDQ==", "item": "G0b0ca441", "shop": "ggari-shop", "unit": "u-eb96ab414834"}, "stars": null, "review": null}
+11:57:32 [sign] sig_seller ok, sig_buyer added
+11:57:32 [seller] [seller] 5f659f1a input_required: For this guaranteed unit I can do 230037 KRW.
+11:57:32 [acp] checkout ships unit u-eb96ab414834, certificate attached
+11:57:33 [acp] paid 6104 through https://park-decreased-picture-coastal.trycloudflare.com/acp, settled at ledger #2364745: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade C, 11.7 h of shelf life left
+11:57:38 [seller] [seller] 5f659f1a input_required: For this guaranteed unit I can do 230037 KRW.
+11:57:38 [seller] [seller] 5f659f1a completed: Deal at 230037 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:57:39 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 230037, ledger #2364779, unit u-f7861734ebac grade A
+11:57:44 [seller] [seller] 6e7bb355 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:57:44 [seller] [seller] e82600d8 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+11:57:50 [seller] [seller] 6e7bb355 input_required: For this guaranteed unit I can do 203670 KRW.
+11:57:50 [seller] [seller] 6e7bb355 completed: Deal at 203670 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:57:51 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 203670, ledger #2364834, unit u-4814197b76ba grade B
+11:57:54 [buyer] {"buy": []}
+11:57:55 [seller] [seller] 1c946fc8 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:58:01 [seller] [seller] 1c946fc8 input_required: For this guaranteed unit I can do 203670 KRW.
+11:58:01 [buyer] {"stars": 1, "review": "Grade C and arrived spoiled, with no usable value."}
+11:58:02 [market] ledger #2364871: G0b0ca441 at 6104, stars 1, verified True, review accepted
+11:58:02 [order o-5b9ea8b7a6a0] 냉장/냉동고, budget 746350, round 3
+11:58:02 [kit] 49 shops in .market\shops.json, running market_buyer
+11:58:05 [seller] [seller] c39d4186 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:58:06 [seller] [seller] 1c946fc8 input_required: For this guaranteed unit I can do 200880 KRW.
+11:58:11 [seller] [seller] 1c946fc8 input_required: For this guaranteed unit I can do 200880 KRW.
+11:58:17 [seller] [seller] 1c946fc8 completed: Deal at 200880 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:58:22 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "tmgoLAh4ua3UibKT8jQO7fCGXromEhpFTh52qgbJexVoADsvdsj0X0/N87BHF7ksl9wTH1GPKDI6rBWOabifBw==", "warranty_hours": 6.0, "price": 377842, "unit": "u-377176506682", "shop": "Inextro Market", "item": "G66a93b94", "claim": "B", "task": "8f78068b-085d-4f8f-84f7-769fc6205b98"}, "stars": null, "review": null}
+11:58:22 [sign] sig_seller ok, sig_buyer added
+11:58:23 [acp] checkout ships unit u-377176506682, claim B, warranty 6.0 h, certificate attached
+11:58:23 [acp] paid 377842 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2364964: [삼성무료설치] 냉동고 227L 1도어 RZ22CG4000WW 화이트 슬림 인테리어, grade B
+11:58:30 [seller] [seller] 5369ffce input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:58:31 [seller] [seller] fbb874a1 rejected: Sorry, we have none of that in stock right now.
+11:58:31 [seller] [seller] 93865046 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+11:58:31 [seller] [seller] 3c9cc92c input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 221549 KRW, a premium unit with the market's certificate, its true grade and our f
+11:58:36 [seller] [seller] 5369ffce input_required: For this guaranteed unit I can do 203670 KRW.
+11:58:41 [seller] [seller] 3c9cc92c input_required: For this guaranteed unit I can do 221549 KRW.
+11:58:41 [seller] [seller] 5369ffce input_required: For this guaranteed unit I can do 200880 KRW.
+11:58:46 [seller] [seller] 3c9cc92c input_required: For this guaranteed unit I can do 221549 KRW.
+11:58:46 [seller] [seller] 3c9cc92c completed: Deal at 221549 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:58:48 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 221549, ledger #2365074, unit u-58ba0f82941b grade A
+11:58:48 [seller] [seller] 1a802fb9 rejected: Sorry, we have none of that in stock right now.
+11:58:49 [seller] [seller] 1f31f2ce input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:58:51 [seller] [seller] 5369ffce input_required: For this guaranteed unit I can do 200880 KRW.
+11:58:55 [buyer] {"stars": 4, "review": "Grade B as claimed, fairly priced, and delivered as promised."}
+11:58:55 [market] ledger #2365104: G66a93b94 at 377842, stars 4, verified True, review accepted
+11:58:55 [order o-0bc5a7893b15] 즉석조리식품, budget 19430, round 3, use within 2.5 h
+11:58:56 [kit] 49 shops in .market\shops.json, running market_buyer
+11:58:57 [seller] [seller] 5369ffce completed: Deal at 200880 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:58:57 [buyer] {"shop": "https://park-decreased-picture-coastal.trycloudflare.com", "receipt": {"price": 10832, "task": "7662dc95-d18d-422b-9c8c-096aed4ef87e", "sig_seller": "Sj7OL+Sfd4mSRF4EHw2KPe0jWaG5oK7XSr+FxuftOjiBeWYlfH/Br2lY0ILLn8SAL1WosCq5U+Rt+zKEizj8Dw==", "item": "G8fbdd9c2", "shop": "ggari-shop", "unit": "u-02c8e84c3921"}, "stars": null, "review": null}
+11:58:57 [sign] sig_seller ok, sig_buyer added
+11:58:58 [acp] checkout ships unit u-02c8e84c3921, certificate attached
+11:58:59 [acp] paid 10832 through https://park-decreased-picture-coastal.trycloudflare.com/acp, settled at ledger #2365114: [홍진경 더만두] 전자레인지 찐만두 매운맛 5봉, grade C, 8.4 h of shelf life left
+11:58:59 [buyer] {"buy": []}
+11:59:12 [seller] [seller] aa1b7deb input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+11:59:14 [seller] [seller] e43c2452 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:59:22 [seller] [seller] aa1b7deb input_required: For this guaranteed unit I can do 203670 KRW.
+11:59:22 [seller] [seller] aa1b7deb completed: Deal at 203670 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+11:59:22 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 203670, ledger #2365223, unit u-15c1d339ae67 grade C
+11:59:26 [seller] [seller] 43268c52 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:59:28 [buyer] {"stars": 3, "review": "Fair dealer with reliable service, honest grading, and competitive pricing on dumplings."}
+11:59:29 [market] ledger #2365256: G8fbdd9c2 at 10832, stars 3, verified True, review accepted
+11:59:29 [order o-b0b9a5807a23] 디저트, budget 12510, round 3, use within 5.0 h
+11:59:29 [kit] 49 shops in .market\shops.json, running market_buyer
+11:59:32 [seller] [seller] 14eebac1 input_required: 건국 무첨가두유 32팩: 21386 KRW, a premium unit with the market's certificate, its true grade and our full-refund guarantee.
+11:59:32 [buyer] {"shop": "https://ensuring-duck-honors-experts.trycloudflare.com", "receipt": {"claim": "C", "sig_seller": "SwM4jvDjIIXghDZ0AuQhoYCkTw+iGcu757FRtzlFD8Z4ttlP0DctTv265cSYOvLXtqzjlsj+ahX4ZkziAh7kDg==", "task": "91c3bd06-639b-4f5d-81a7-b404bfaed433", "price": 6413, "item": "G06a54b11", "unit": "u-bc2f3f771cb7", "shop": "psyoung82"}, "stars": null, "review": null}
+11:59:33 [sign] sig_seller ok, sig_buyer added
+11:59:33 [acp] checkout ships unit u-bc2f3f771cb7, claim C, certificate attached
+11:59:33 [acp] paid 6413 through https://ensuring-duck-honors-experts.trycloudflare.com/acp, settled at ledger #2365271: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade C, 18.7 h of shelf life left
+11:59:38 [seller] [seller] 14eebac1 input_required: For this guaranteed unit I can do 21097 KRW.
+11:59:38 [seller] [seller] 14eebac1 completed: Deal at 21097 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:59:39 [acp] settled 건국 무첨가두유 32팩 at 21097, ledger #2365299, unit u-fa0c918b3e48 grade A
+11:59:52 [seller] [seller] 3e0c8f6c input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f
+12:00:01 [seller] [seller] e46251b4 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+12:00:02 [seller] [seller] 3e0c8f6c input_required: For this guaranteed unit I can do 203670 KRW.
+12:00:03 [seller] [seller] 3e0c8f6c completed: Deal at 203670 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:00:03 [buyer] {"stars": 3, "review": "Grade C product as claimed; this shop maintains consistent quality and fair dealing with our buyer."}
+12:00:04 [market] ledger #2365401: G06a54b11 at 6413, stars 3, verified True, review accepted
+12:00:04 [order o-11ce92fd7b92] 비스켓/쿠키, budget 13120, round 3, use within 180.0 h
+12:00:04 [acp] settled 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS at 203670, ledger #2365402, unit u-c79134296785 grade A
+12:00:04 [buyer] {"buy": []}
+12:00:04 [kit] 50 shops in .market\shops.json, running market_buyer
+12:00:05 [seller] [seller] e46251b4 input_required: For this guaranteed unit I can do 13067 KRW.
+12:00:08 [seller] [seller] e46251b4 completed: Deal at 13067 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+12:00:09 [acp] settled 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg at 13067, ledger #2365432, unit u-559f452e07ec grade C
+12:00:09 [seller] [seller] 8104a5c9 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:00:15 [seller] [seller] 8104a5c9 input_required: For this guaranteed unit I can do 7738 KRW.
+12:00:15 [seller] [seller] 8104a5c9 input_required: For this guaranteed unit I can do 7632 KRW.
+12:00:15 [seller] [seller] 8104a5c9 input_required: For this guaranteed unit I can do 7632 KRW.
+12:00:29 [seller] [seller] dbe357b5 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:00:33 [seller] [seller] dbe357b5 input_required: For this guaranteed unit I can do 7738 KRW.
+12:00:33 [seller] [seller] dbe357b5 input_required: For this guaranteed unit I can do 7632 KRW.
+12:00:34 [seller] [seller] dbe357b5 input_required: For this guaranteed unit I can do 7632 KRW.
+12:00:35 [seller] [seller] 79bddd2f input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 212369 KRW, a premium unit with the market's certificate, its true grade and our f
+12:00:42 [buyer] {"shop": "https://supplies-enhancement-especially-occurred.trycloudflare.com", "receipt": {"unit": "u-296a6045d476", "task": "de771143-f3f5-40cd-abfd-49bb68301f47", "price": 8850, "shop": "bjeon01", "claim": "B", "sig_seller": "lAIrZjHvs5nvy7ydfrJd6lHSuHdx+8Ca1J4Ep0VafO4RjYtGGCld60YLA2s2l2GMZ4SKgnuM4l67RcRr0TBrAA==", "item": "G08eb3ca2"}, "stars": null, "review": null}
+12:00:42 [sign] sig_seller ok, sig_buyer added
+12:00:42 [acp] checkout ships unit u-296a6045d476, claim B, certificate attached
+12:00:43 [acp] paid 8850 through https://supplies-enhancement-especially-occurred.trycloudflare.com/acp, settled at ledger #2365581: [신라명과] 얀스맘쿠키세트 650g 10개입 선물용쇼핑백, grade B, 352.5 h of shelf life left
+12:00:53 [seller] [seller] fcba688d input_required: 외갓집 송탄 서정리 부대찌개 1kg x 2팩 (라면사리 2개): 19092 KRW, a premium unit with the market's certificate, its true grade and our full
+12:01:02 [buyer] {"stars": 4, "review": "Grade B as claimed, fair food value at 63.6% of list."}
+12:01:02 [market] ledger #2365653: G08eb3ca2 at 8850, stars 4, verified True, review accepted
+12:01:03 [order o-53493b2029a7] 신선야채(부패주의), budget 6210, round 3, use within 12.0 h
+12:01:03 [kit] 49 shops in .market\shops.json, running market_buyer
+12:01:09 [buyer] {"buy": []}
+12:01:10 [seller] [seller] 753b70c3 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:01:15 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+12:01:16 [market] ledger #2365722: no deal, stars None, verified False, review not shown
+12:01:23 [order o-faa7f0b4a8f2] 곡물, budget 8820, round 3, use within 180.0 h
+12:01:23 [kit] 49 shops in .market\shops.json, running market_buyer
+12:01:28 [seller] [seller] d7abd4ef input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+12:01:28 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+12:01:28 [market] ledger #2365784: no deal, stars None, verified False, review not shown
+12:01:43 [order o-f7367d37c3f7] 디저트, budget 17370, round 3, use within 24.0 h
+12:01:43 [kit] 49 shops in .market\shops.json, running market_buyer
+12:01:45 [buyer] {"shop": "https://ensuring-duck-honors-experts.trycloudflare.com", "receipt": {"claim": "A", "sig_seller": "+g2m77Mqkyo09bU4yIFccipLzYO1GPKTZbJPvk+Kxm66qyQaY3ux7ZTFhWB5v748Js+1xCOl0tu/gaKQrj+yDA==", "task": "25b6fd4c-96b0-40af-b9a8-a3c1eef1b8d9", "price": 6413, "item": "G06a54b11", "unit": "u-5dca83c4f733", "shop": "psyoung82"}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+12:01:45 [sign] sig_seller ok, sig_buyer added
+12:01:46 [acp] checkout ships unit u-5dca83c4f733, claim A, certificate attached
+12:01:46 [acp] paid 6413 through https://ensuring-duck-honors-experts.trycloudflare.com/acp, settled at ledger #2365854: [4.5CM] 널담 뚱카롱 고식이섬유 마카롱 8구 1BOX (사랑/감동세트), grade A, 47.6 h of shelf life left
+12:01:51 [forum] post as shop: 200
+12:01:52 [forum] post as buyer: 200
+12:02:12 [seller] [seller] ffda0bd3 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:02:14 [buyer] {"stars": 5, "review": "A-grade product at outstanding value from a consistently fair seller."}
+12:02:14 [market] ledger #2365975: G06a54b11 at 6413, stars 5, verified True, review accepted
+12:02:14 [order o-45c0f425b7e7] 신선야채(부패주의), budget 15250, round 3, use within 5.0 h
+12:02:14 [buyer] {"buy": []}
+12:02:14 [kit] 49 shops in .market\shops.json, running market_buyer
+12:02:30 [seller] [seller] b42408a8 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:02:30 [seller] [seller] e277ee90 rejected: Sorry, we have none of that in stock right now.
+12:02:32 [seller] [seller] a873714a input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 8358 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:02:38 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "I6VRziZSKzQ8H0P8l16On+uXi6PUv3mwZDBcDy3qoWnU7OXmK9lFOmQMgi1szdHvpPqfew9ZZtWiuRA0zeOmAg==", "item": "G0b0ca441", "unit": "u-43659810af84", "price": 8797, "task": "8c36e925-3736-4be0-878c-a87b58cbe9b0", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null}
+12:02:38 [sign] sig_seller ok, sig_buyer added
+12:02:39 [acp] checkout ships unit u-43659810af84, claim B, certificate attached
+12:02:39 [acp] paid 8797 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2366078: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 28.6 h of shelf life left
+12:02:44 [seller] [seller] a873714a input_required: For this guaranteed unit I can do 8358 KRW.
+12:02:51 [seller] [seller] d80d914a input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 212369 KRW, a premium unit with the market's certificate, its true grade and our f
+12:02:53 [seller] [seller] 9a48a461 input_required: 오셀픽 스트라이프 극세사 파자마 여성 남성 잠옷 홈웨어, 번 레드: 20646 KRW, a premium unit with the market's certificate, its true grade and our fu
+12:03:10 [seller] [seller] 7da3ed3d rejected: Sorry, we have none of that in stock right now.
+12:03:13 [seller] [seller] 789fae8f input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 212369 KRW, a premium unit with the market's certificate, its true grade and our f
+12:03:20 [buyer] {"buy": []}
+12:03:22 [buyer] {"stars": 4, "review": "Inextro reliably delivered the promised B-grade potato at fair market price."}
+12:03:22 [market] ledger #2366264: G0b0ca441 at 8797, stars 4, verified True, review accepted
+12:03:22 [order o-37604ffe669d] 신선야채(부패주의), budget 9810, round 3, use within 12.0 h
+12:03:23 [kit] 49 shops in .market\shops.json, running market_buyer
+12:03:31 [seller] [seller] fb119f82 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+12:03:35 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+12:03:35 [market] ledger #2366354: no deal, stars None, verified False, review not shown
+12:03:43 [order o-4839f2c990f1] 신선야채(부패주의), budget 6190, round 3, use within 36.0 h
+12:03:43 [kit] 49 shops in .market\shops.json, running market_buyer
+12:03:48 [seller] [seller] f6ef1f0b rejected: Sorry, we have none of that in stock right now.
+12:03:49 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+12:03:50 [market] ledger #2366459: no deal, stars None, verified False, review not shown
+12:04:02 [seller] [seller] 79e1d19f input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 212369 KRW, a premium unit with the market's certificate, its true grade and our f
+12:04:03 [order o-d009def15d8e] 키보드/입력장치, budget 53750, round 3
+12:04:03 [kit] 49 shops in .market\shops.json, running market_buyer
+12:04:29 [buyer] {"buy": [{"sku": "G1515d951", "qty": 7}, {"sku": "G07ec17d5", "qty": 11}, {"sku": "Ge62449c9", "qty": 2}, {"sku": "G200e39a3", "qty": 1}, {"sku": "G9a240832", "qty": 1}]}
+12:04:30 [supply] 7 x 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 for 1634421, balance 14324631
+12:04:40 [supply] 11 x 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS for 1916526, balance 12408105
+12:04:49 [seller] [seller] d98d24f2 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:04:50 [supply] 2 x [파르페by알레르망] 플레인 80수 호텔식 무봉제 차렵이불 S/SS for 94554, balance 12313551
+12:04:51 [seller] [seller] c9a8c9f3 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:04:55 [seller] [seller] d98d24f2 input_required: For this guaranteed unit I can do 7738 KRW.
+12:04:55 [seller] [seller] d98d24f2 input_required: For this guaranteed unit I can do 7632 KRW.
+12:04:55 [seller] [seller] d98d24f2 input_required: For this guaranteed unit I can do 7632 KRW.
+12:05:01 [supply] 1 x [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증) for 15499, balance 12298052
+12:05:07 [seller] [seller] c9a8c9f3 input_required: For this guaranteed unit I can do 309381 KRW.
+12:05:11 [supply] 1 x 펩시콜라 엑스트라 피즈 245ml 15개(업소용) for 4691, balance 12293361
+12:05:11 [seller] [seller] c9a8c9f3 input_required: For this guaranteed unit I can do 305144 KRW.
+12:05:16 [seller] [seller] c9a8c9f3 input_required: For this guaranteed unit I can do 305144 KRW.
+12:05:18 [buyer] {"shop": "https://izowk-182-222-217-13.free.pinggy.net", "receipt": {"sig_seller": "q9P6C7ew1QbnP9uPR2i0rCOOjYD3UxnMki/6X8ewY8/P7rgUITf47oF75/diPl3/j9bJXvMlakWKbnTbCZqnBw==", "item": "G0e9a5558", "shop": "outseop-26510122", "task": "da0ace4a-9e47-4b31-8644-35ba9609ec6b", "unit": "u-8e7727305096", "price": 29640}, "stars": null, "review": null}
+12:05:18 [sign] sig_seller ok, sig_buyer added
+12:05:20 [acp] checkout ships unit u-8e7727305096, certificate attached
+12:05:20 [acp] paid 29640 through https://izowk-182-222-217-13.free.pinggy.net/acp, settled at ledger #2366999: X-pointer 프리젠터 무선 그린 레이저포인터 XPG105SP, grade A
+12:05:20 [seller] [seller] c9a8c9f3 input_required: For this guaranteed unit I can do 305144 KRW.
+12:05:26 [seller] [seller] c9a8c9f3 input_required: For this guaranteed unit I can do 305144 KRW.
+12:05:27 [seller] [seller] 9a3a222a input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+12:05:29 [seller] [seller] c3da07c3 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:05:31 [seller] [seller] c9a8c9f3 completed: Deal at 305144 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:05:33 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 305144, ledger #2367083, unit u-c1487094c392 grade B
+12:05:34 [buyer] {"buy": []}
+12:05:35 [seller] [seller] c3da07c3 input_required: For this guaranteed unit I can do 7738 KRW.
+12:05:35 [seller] [seller] c3da07c3 input_required: For this guaranteed unit I can do 7632 KRW.
+12:05:36 [seller] [seller] c3da07c3 input_required: For this guaranteed unit I can do 7632 KRW.
+12:05:48 [buyer] {"stars": 5, "review": "Grade A item at fair value from a seller with perfect record of honest dealing"}
+12:05:48 [market] ledger #2367177: G0e9a5558 at 29640, stars 5, verified True, review accepted
+12:05:48 [order o-eedb9495cbd3] 신선야채(부패주의), budget 30510, round 3, use within 12.0 h
+12:05:49 [kit] 49 shops in .market\shops.json, running market_buyer
+12:05:50 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": null, "stars": null, "review": null}
+12:05:51 [market] ledger #2367192: no deal, stars None, verified False, review not shown
+12:05:51 [seller] [seller] 3279593a input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+12:05:57 [seller] [seller] 39d7cc2b input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+12:06:09 [order o-039d1bad48e8] 소파/의자/스툴, budget 3074400, round 3
+12:06:09 [kit] 49 shops in .market\shops.json, running market_buyer
+12:06:09 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+12:06:09 [market] ledger #2367305: no deal, stars None, verified False, review not shown
+12:06:29 [order o-7201d6e73034] 신선야채(부패주의), budget 38980, round 3, use within 36.0 h
+12:06:29 [kit] 49 shops in .market\shops.json, running market_buyer
+12:06:31 [buyer] {"shop": "https://market.ourolabs.ai/shop/corner-store", "receipt": null, "stars": null, "review": null}
+12:06:31 [market] ledger #2367433: no deal, stars None, verified False, review not shown
+12:06:36 [seller] [seller] d883247d input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:06:39 [buyer] {"buy": []}
+12:06:41 [seller] [seller] 058619fd input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:06:41 [seller] [seller] 6582cb5f input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:06:47 [seller] [seller] 6582cb5f input_required: For this guaranteed unit I can do 309381 KRW.
+12:06:49 [order o-2f452d59561d] 가공/조리 육류, budget 18280, round 3, use within 360.0 h
+12:06:50 [kit] 49 shops in .market\shops.json, running market_buyer
+12:06:52 [seller] [seller] 6582cb5f input_required: For this guaranteed unit I can do 305144 KRW.
+12:06:53 [seller] [seller] 058619fd input_required: For this guaranteed unit I can do 309381 KRW.
+12:06:53 [seller] [seller] 058619fd completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:06:54 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2367534, unit u-8b0622b5047f grade B
+12:06:58 [seller] [seller] 6582cb5f input_required: For this guaranteed unit I can do 305144 KRW.
+12:06:59 [seller] [seller] 33e62cb1 input_required: 풀무원 워터루틴 무라벨 생수 500mL X 60병(무라벨/유라벨 랜덤발송): 11248 KRW, a premium unit with the market's certificate, its true grade and o
+12:07:00 [buyer] {"shop": "https://park-decreased-picture-coastal.trycloudflare.com", "receipt": {"price": 10572, "task": "e224cb13-ba25-43de-9a07-7cbd9f5d7287", "sig_seller": "zAw94N7SwWbfsiXNwmubk4LkkGDqa5vxxYzlVB+FyIFn8KAg+5jKtCaGlTvjBRV7dTEqNy9UKlOttYeM+5CECg==", "item": "G2560a8c9", "shop": "ggari-shop", "unit": "u-5db2cca33a0a"}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+12:07:00 [sign] sig_seller ok, sig_buyer added
+12:07:01 [acp] not paying: 150.25 h of shelf life left, the policy asks for 360.0
+12:07:01 [market] ledger #2367554: G2560a8c9 at 10572, stars None, verified False (failed: settled), review not shown
+12:07:01 [seller] [seller] 22d97276 input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 313619 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:07:03 [seller] [seller] 6582cb5f completed: Deal at 305144 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:07:04 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 305144, ledger #2367563, unit u-2326a321dd2f grade B
+12:07:04 [seller] [seller] 22d97276 input_required: For this guaranteed unit I can do 309381 KRW.
+12:07:04 [seller] [seller] 22d97276 completed: Deal at 309381 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:07:05 [seller] [seller] a5bc9322 rejected: Sorry, we have none of that in stock right now.
+12:07:05 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 309381, ledger #2367572, unit u-2508580611f7 grade C
+12:07:09 [order o-b37a6c922010] 신선야채(부패주의), budget 6780, round 3, use within 24.0 h
+12:07:10 [kit] 49 shops in .market\shops.json, running market_buyer
+12:07:11 [forum] post as shop: 200
+12:07:14 [buyer] {"shop": "https://market.ourolabs.ai/shop/willow-goods", "receipt": null, "stars": null, "review": null}
+12:07:15 [market] ledger #2367621: no deal, stars None, verified False, review not shown
+12:07:23 [forum] post as buyer: 200
+12:07:30 [order o-6d9b33ea740c] 신선야채(부패주의), budget 22770, round 3, use within 24.0 h
+12:07:30 [kit] 49 shops in .market\shops.json, running market_buyer
+12:07:45 [buyer] {"buy": []}
+12:08:02 [seller] [seller] 86600eec input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 351310 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:08:03 [seller] [seller] cfc263ae input_required: 024홈 국민토퍼 매트리스 푹신한 8cm 슈퍼싱글: 44015 KRW, a premium unit with the market's certificate, its true grade and our full-refund
+12:08:27 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "VwAyt1EvRaWJfw8vJ2HgPuKGLvOFb/2Y5Sny9nacl+oPd7jA3S3ZIY3cHfTASQlxPxR5rmFC1Dl02PE8BkeFDA==", "item": "G0b0ca441", "unit": "u-421095071b08", "price": 11712, "task": "4bc014e1-d9ba-4f5b-8b5d-6dc7ffca388a", "shop": "Inextro Market", "claim": "A"}, "stars": null, "review": null, "accept": {"min_hours_left": 24.0}}
+12:08:27 [sign] sig_seller ok, sig_buyer added
+12:08:29 [acp] checkout ships unit u-421095071b08, claim A, certificate attached
+12:08:30 [seller] [seller] c2bdbd79 rejected: Sorry, we have none of that in stock right now.
+12:08:30 [acp] paid 11712 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2367921: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade A, 47.5 h of shelf life left
+12:08:44 [buyer] {"stars": 5, "review": "Grade A as promised, fair price for quality potatoes, dependable seller."}
+12:08:44 [market] ledger #2367990: G0b0ca441 at 11712, stars 5, verified True, review accepted
+12:08:44 [order o-f50617eae491] 신선야채(부패주의), budget 27860, round 3, use within 12.0 h
+12:08:44 [kit] 49 shops in .market\shops.json, running market_buyer
+12:08:49 [seller] [seller] c0c8280c input_required: [동원xGS] 양반 김부각 4종 50g x6개 /마늘/새우/김치맛: 13246 KRW, a premium unit with the market's certificate, its true grade and our fu
+12:08:52 [buyer] {"buy": []}
+12:09:22 [seller] [seller] ba9ab786 input_required: 펩시콜라 엑스트라 피즈 245ml 15개(업소용): 7844 KRW, a premium unit with the market's certificate, its true grade and our full-refund 
+12:09:24 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": {"sig_seller": "qAzY8kk7Ok0ucl7q1kpUsmnJqBThy2VJerhWHCjqWrGS93xx9smijjMHzGflGZCoc8mcQWjxI3nx4XISIY9NDA==", "item": "G0b0ca441", "unit": "u-8c5344aa212c", "price": 9488, "task": "b61841be-9122-4cd1-8eda-039d72cc2e40", "shop": "Inextro Market", "claim": "B"}, "stars": null, "review": null}
+12:09:24 [sign] sig_seller ok, sig_buyer added
+12:09:25 [acp] checkout ships unit u-8c5344aa212c, claim B, certificate attached
+12:09:26 [acp] paid 9488 through https://seem-calculation-include-bachelor.trycloudflare.com/acp, settled at ledger #2368184: [산해직송] 해남 포슬포슬 수미감자 특 5kg (130~180g 내외), grade B, 26.3 h of shelf life left
+12:09:40 [seller] [seller] de80a905 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+12:09:42 [seller] [seller] 276ca87f input_required: 국내생산 데님 맞춤 암막커튼 거실형 세로 181~250cm까지: 28479 KRW, a premium unit with the market's certificate, its true grade and our full
+12:09:43 [seller] [seller] de80a905 completed: Deal at 13246 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+12:09:46 [acp] settled 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg at 13246, ledger #2368273, unit u-21f64e986c7e grade C
+12:09:47 [seller] [seller] a9cc045e input_required: 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸: 351310 KRW, a premium unit with the market's certificate, its true grade and our full-r
+12:09:53 [seller] [seller] a9cc045e input_required: For this guaranteed unit I can do 351310 KRW.
+12:09:59 [seller] [seller] a9cc045e input_required: For this guaranteed unit I can do 351310 KRW.
+12:10:03 [buyer] {"buy": []}
+12:10:05 [seller] [seller] a9cc045e input_required: For this guaranteed unit I can do 351310 KRW.
+12:10:06 [buyer] {"stars": 4, "review": "B grade confirmed, fair pricing, reliable seller."}
+12:10:06 [market] ledger #2368354: G0b0ca441 at 9488, stars 4, verified True, review accepted
+12:10:06 [order o-881fbd3f9e45] 신선육류, budget 120250, round 3, use within 6.0 h
+12:10:06 [kit] 49 shops in .market\shops.json, running market_buyer
+12:10:06 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+12:10:07 [market] ledger #2368359: no deal, stars None, verified False, review not shown
+12:10:10 [seller] [seller] a9cc045e input_required: For this guaranteed unit I can do 351310 KRW.
+12:10:15 [seller] [seller] a9cc045e completed: Deal at 351310 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wi
+12:10:20 [acp] settled 지누스 그린티 럭스S 하이브리드 매트리스 20cm Q 퀸 at 351310, ledger #2368391, unit u-1216db4fa25f grade A

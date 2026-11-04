@@ -1,5 +1,11 @@
 # Alerts (newest first)
 
+- 11-04 12:07 **warn** health: 53% of real buyers left at our opening ask
+- 11-04 12:01 **warn** health: 56% of real buyers left at our opening ask
+- 11-04 11:56 **warn** health: 60% of real buyers left at our opening ask
+- 11-04 11:51 **warn** health: 58% of real buyers left at our opening ask
+- 11-04 11:46 **warn** health: 65% of real buyers left at our opening ask
+- 11-04 11:40 **warn** health: 68% of real buyers left at our opening ask
 - 11-04 11:35 **warn** health: 61% of real buyers left at our opening ask
 - 11-04 11:30 **warn** health: 54% of real buyers left at our opening ask
 - 11-04 11:24 **warn** health: 52% of real buyers left at our opening ask

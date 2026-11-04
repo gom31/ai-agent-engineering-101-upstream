@@ -178,7 +178,21 @@ class SellerCore:
         pb = ((ctx.strategy.get("playbook") or {}).get("seller") or {})
         return {"mode": pb.get("mode", "agent"), "open_share": pb.get("open_share", 1.0),
                 "step_share": pb.get("step_share", 0.05), "min_margin": pb.get("min_margin", 0.05),
-                "accept_from_turn": pb.get("accept_from_turn", 4)}
+                "accept_from_turn": pb.get("accept_from_turn", 4),
+                # user 11/4 11:5x (benchmark: dae-yangkim, top profit, sells its scarce high-list goods at 0.85):
+                # SKUs in demand open at hot_open_share - the buy list's top hot_n goods and what visitors asked for
+                # that we lacked in the last 30 min
+                "hot_open_share": pb.get("hot_open_share"), "hot_n": pb.get("hot_n", 5)}
+
+    @staticmethod
+    def hot_skus(ctx, pb):
+        from core import atomic as _a, paths as _p
+        bl = _a.read_json(_p.memory() / "facts" / "buy_list.json", default=None) or {}
+        cat = mf.catalog(ctx)
+        hot = [x["sku"] for x in bl.get("lines", []) if (cat.get(x["sku"]) or {}).get("kind") == "goods"][:pb["hot_n"]]
+        h = _a.read_json(_p.memory() / "facts" / "health.json", default=None) or {}
+        hot += [s for s, _ in ((h.get("seller") or {}).get("missing_skus") or [])]
+        return set(hot)
 
     def rule_decide(self, ctx, st, ex):
         """One move by rule, or None (an exception for the agent): open at open_share of list, come down step_share
@@ -195,7 +209,8 @@ class SellerCore:
             return None
         lp, offer, ask = c["list_price"], st["offer"], st["ask"]
         floor = max(math.ceil(c["cost"] * (1 + pb["min_margin"])), act.unit_floor(ctx, unit, st.get("first_time")))
-        top = max(floor, round(lp * pb["open_share"]))
+        share = pb["hot_open_share"] if pb["hot_open_share"] and c.get("sku") in self.hot_skus(ctx, pb) else pb["open_share"]
+        top = max(floor, round(lp * share))
         new_ask = top if ask is None else max(floor, ask - round(lp * pb["step_share"]))
         last = st["turns"] >= MAX_TURNS - 1
         if offer is not None and (offer >= new_ask or (offer >= floor and (st["turns"] >= pb["accept_from_turn"] or last))):
