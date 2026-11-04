@@ -1,5 +1,7 @@
 # Alerts (newest first)
 
+- 11-04 11:30 **warn** health: 54% of real buyers left at our opening ask
+- 11-04 11:24 **warn** health: 52% of real buyers left at our opening ask
 - 11-04 10:35 **warn** health: the buyer paid nothing in 30 min (52 orders)
 - 11-04 03:02 **warn** strategy: active.json does not fit the strategy schema; using the last good copy
 - 11-04 02:24 **warn** seller-status: active.json does not fit the strategy schema; using the last good copy

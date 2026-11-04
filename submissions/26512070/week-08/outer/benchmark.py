@@ -20,6 +20,7 @@ HOURS = 6
 TOP = 3
 MARKET = "https://market.ourolabs.ai"
 ME = "gom31-certified-goods"
+BANDS = [(0, 30000, "<30k"), (30000, 100000, "30-100k"), (100000, 300000, "100-300k"), (300000, 10 ** 9, "300k+")]
 
 
 def _rows(since):
@@ -103,7 +104,14 @@ def build(now=None, board=None):
         g = [r for r in rows if r["kind"] == "goods"]
         f = [r for r in rows if r["kind"] == "food"]
         sur = [r["list"] - r["paid"] for r in rows]
-        return {"name": name, "deals": len(rows), "deals_per_h": round(len(rows) / HOURS, 1),
+        bands = {}
+        for lo, hi, lab in BANDS:                    # 11/4 11:3x: where the surplus comes from, by list price
+            b = [r for r in rows if lo <= r["list"] < hi]
+            if b:
+                bands[lab] = {"deals": len(b), "goods": sum(1 for r in b if r["kind"] == "goods"),
+                              "paid_share": _med([r["paid"] / r["list"] for r in b]),
+                              "surplus": sum(r["list"] - r["paid"] for r in b)}
+        return {"name": name, "deals": len(rows), "deals_per_h": round(len(rows) / HOURS, 1), "bands": bands,
                 "goods_share": round(len(g) / len(rows), 2) if rows else None,
                 "paid_share_goods": _med([r["paid"] / r["list"] for r in g]),
                 "paid_share_food": _med([r["paid"] / r["list"] for r in f]),
@@ -159,6 +167,14 @@ def render(doc, cat):
     for b in [doc["buyers"]["ours"]] + doc["buyers"]["top"]:
         L.append(f"| {b['name']} | {b['deals_per_h']} | {b['goods_share']} | {b['paid_share_goods']} | "
                  f"{b['paid_share_food']} | {b['surplus_per_deal']:,} | {b['surplus']:,} |")
+    L += ["", "### Buyer surplus by list price band: deals (goods) paid/list surplus", "",
+          "| buyer | " + " | ".join(lab for _, _, lab in BANDS) + " |", "|---|" + "---|" * len(BANDS)]
+    for b in [doc["buyers"]["ours"]] + doc["buyers"]["top"]:
+        cells = []
+        for _, _, lab in BANDS:
+            x = (b.get("bands") or {}).get(lab)
+            cells.append(f"{x['deals']} ({x['goods']}g) {x['paid_share']} {x['surplus']:,}" if x else "-")
+        L.append(f"| {b['name']} | " + " | ".join(cells) + " |")
     return "\n".join(L) + "\n"
 
 

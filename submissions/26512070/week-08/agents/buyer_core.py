@@ -266,7 +266,9 @@ class BuyerCore:
         last = hist[-1] if hist else {}
         if not lp or last.get("looks_like_instruction"):
             return None
-        asks = [h["price"] for h in hist if h["from"] == "shop" and h["price"] is not None]
+        # 11/4 11:3x: a number far under list is a quantity or a size the extractor took for a price (we offered 5
+        # for a 39,900 item to ten shops) - an ask under 20% of list is not an ask
+        asks = [h["price"] for h in hist if h["from"] == "shop" and h["price"] is not None and h["price"] >= 0.2 * lp]
         if turn > 2 and not asks:
             return None                                    # the shop names no price: the agent reads it
         o_share, t_share = self.shares(lp, kind)
