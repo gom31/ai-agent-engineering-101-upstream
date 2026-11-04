@@ -14427,3 +14427,35 @@
 11:38:08 [kit] 48 shops in .market\shops.json, running market_buyer
 11:38:09 [seller] [seller] 03ea0913 input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
 11:38:09 [buyer] {"buy": []}
+11:38:20 [buyer] {"shop": "https://market.ourolabs.ai/shop/grand-furniture", "receipt": null, "stars": null, "review": null}
+11:38:21 [market] ledger #2359036: no deal, stars None, verified False, review not shown
+11:38:21 [seller] [seller] 4aea677d input_required: 아삭하고 깊은맛 국내산 전라도 남도장인 총각김치 3kg: 13246 KRW, a premium unit with the market's certificate, its true grade and our full-ref
+11:38:28 [order o-0e26abeff400] 디저트, budget 14590, round 3, use within 36.0 h
+11:38:29 [kit] 48 shops in .market\shops.json, running market_buyer
+11:38:30 [seller] [seller] b16bfd9f input_required: 코코도르 섬유 향기 탈취제 500ml X 4개 (룸스프레이 섬유향수): 13246 KRW, a premium unit with the market's certificate, its true grade and our 
+11:38:31 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "A", "cert": true, "task": "da8091e4-0e08-452a-b6d6-5b34ded74ba8", "price": 6912, "shop": "lee-sungsoo", "sig_seller": "qs9vwkpkbwH7mZRR3mpgGqisUwyTgRa8uVWoXN+FmriCi9hPvicIM/fVmNetdIadYgufDq0ST7q96NiqF6PICA==", "item": "G11f14ced", "unit": "u-90ee752baacb"}, "stars": null, "review": null, "accept": {"min_hours_left": 36.0}}
+11:38:31 [sign] sig_seller ok, sig_buyer added
+11:38:31 [acp] checkout ships unit u-90ee752baacb, claim A, certificate attached
+11:38:32 [acp] paid 6912 through https://homepage-hood-fitted-delete.trycloudflare.com/acp, settled at ledger #2359089: 널담 저당 고단백 수제 르뱅쿠키 6개입 1BOX, grade A, 45.5 h of shelf life left
+11:38:32 [seller] [seller] b16bfd9f completed: Deal at 13246 KRW. Every unit is guaranteed: the market's certificate, its true grade and a full refund if it breaks wit
+11:38:33 [acp] settled 코코도르 섬유 향기 탈취제 500ml X 4개 (룸스프레이 섬유향수) at 13246, ledger #2359097, unit u-ca0bd72827ab grade A
+11:38:37 [seller] [seller] 9bad96a1 input_required: 외갓집 송탄 서정리 부대찌개 1kg x 2팩 (라면사리 2개): 19092 KRW, a premium unit with the market's certificate, its true grade and our full
+11:38:45 [buyer] {"stars": 5, "review": "Grade A cookies arrived as promised with honest valuation and fair shelf life for our use."}
+11:38:45 [market] ledger #2359155: G11f14ced at 6912, stars 5, verified True, review accepted
+11:38:48 [order o-93672783bb13] 신선육류, budget 153190, round 3, use within 6.0 h
+11:38:49 [kit] 48 shops in .market\shops.json, running market_buyer
+11:38:49 [buyer] {"shop": "", "receipt": null, "stars": null, "review": null}
+11:38:49 [market] ledger #2359177: no deal, stars None, verified False, review not shown
+11:38:50 [seller] [seller] 6ecd4843 input_required: [마음채][한정특가] 포기김치 10kg / 아삭아삭 깔끔한 맛(국내산배추, HACCP인증): 28046 KRW, a premium unit with the market's certificate, its true gr
+11:39:09 [order o-a69a062434da] 신선야채(부패주의), budget 12070, round 3, use within 36.0 h
+11:39:09 [kit] 49 shops in .market\shops.json, running market_buyer
+11:39:15 [buyer] {"buy": []}
+11:39:22 [buyer] {"shop": "https://seem-calculation-include-bachelor.trycloudflare.com", "receipt": null, "stars": null, "review": null}
+11:39:23 [market] ledger #2359324: no deal, stars None, verified False, review not shown
+11:39:29 [order o-c4a226a21854] 조리/가공 견과류, budget 34370, round 3, use within 360.0 h
+11:39:29 [kit] 49 shops in .market\shops.json, running market_buyer
+11:39:31 [buyer] {"shop": "https://homepage-hood-fitted-delete.trycloudflare.com", "receipt": {"claim": "C", "cert": true, "task": "e5d7f5cb-737c-4b0e-8e85-989e46e27474", "price": 18163, "shop": "lee-sungsoo", "sig_seller": "HPJ+UKOnR3naYZrjOS3XIsLLLZsK7DHMST+B/A65+kkbMud1xiZYu/VD8irrUHTLtNmGyNoR+QzVbaFlLjIVDA==", "item": "G010744b7", "unit": "u-f4a9452f0e00"}, "stars": null, "review": null, "accept": {"min_hours_left": 360.0}}
+11:39:32 [sign] sig_seller ok, sig_buyer added
+11:39:32 [acp] not paying: 115.69 h of shelf life left, the policy asks for 360.0
+11:39:33 [market] ledger #2359380: G010744b7 at 18163, stars None, verified False (failed: settled), review not shown
+11:39:34 [seller] [seller] 5315b9b4 input_required: 지누스 얼티마 에어 하이브리드 스프링 침대 매트리스 25cm SS: 206460 KRW, a premium unit with the market's certificate, its true grade and our f

@@ -60,6 +60,8 @@ def build(now=None, board=None):
     except (OSError, ValueError, KeyError):
         pass
     settles, supply = [], []
+    orders_by = collections.Counter()
+    stars_by = collections.defaultdict(list)
     for d in _rows(0):                       # joins from the start, so old tunnel URLs keep their names
         if d["kind"] == "join" and d["data"].get("role") == "shop":
             names[d["data"]["url"].rstrip("/")] = d["data"]["name"]
@@ -67,6 +69,10 @@ def build(now=None, board=None):
             settles.append(d)
         elif d["ts"] >= since and d["kind"] == "supply":
             supply.append(d)
+        elif d["ts"] >= since and d["kind"] == "order":
+            orders_by[d["data"].get("buyer")] += 1
+        elif d["ts"] >= since and d["kind"] == "result" and d["data"].get("stars") is not None:
+            stars_by[d["data"].get("shop") or ""].append(d["data"]["stars"])
 
     def shop_of(x):
         u = x["shop"].rstrip("/")
@@ -79,7 +85,8 @@ def build(now=None, board=None):
         if not c or not c.get("list_price"):
             continue
         row = {"ts": d["ts"], "sku": c["sku"], "kind": c["kind"], "list": c["list_price"], "paid": x["amount"],
-               "shop": shop_of(x), "buyer": x.get("buyer")}
+               "shop": shop_of(x), "buyer": x.get("buyer"), "warranty": x.get("warranty_hours") or 0,
+               "grade": x.get("grade"), "url": x["shop"].rstrip("/")}
         shop_sales[row["shop"]].append(row)
         buyer_deals[row["buyer"]].append(row)
     bought = collections.defaultdict(lambda: {"units": 0, "spend": 0})
@@ -97,6 +104,10 @@ def build(now=None, board=None):
                 "goods_revenue_share": round(sum(r["paid"] for r in rows if r["kind"] == "goods") / rev, 2),
                 "avg_paid": round(rev / len(rows)) if rows else 0,
                 "stock_bought": bought.get(name, {"units": 0, "spend": 0}),
+                "warranty_hours": collections.Counter(r["warranty"] for r in rows).most_common(3),
+                "grades": dict(collections.Counter(r["grade"] for r in rows)),
+                "review_stars": (lambda xs: round(sum(xs) / len(xs), 2) if xs else None)(
+                    sum((stars_by.get(u, []) for u in {r["url"] for r in rows}), [])),
                 "top_skus": [(s, n) for s, n in collections.Counter(r["sku"] for r in rows).most_common(8)]}
 
     def buyer_stats(name):
@@ -111,7 +122,10 @@ def build(now=None, board=None):
                 bands[lab] = {"deals": len(b), "goods": sum(1 for r in b if r["kind"] == "goods"),
                               "paid_share": _med([r["paid"] / r["list"] for r in b]),
                               "surplus": sum(r["list"] - r["paid"] for r in b)}
+        n_orders = orders_by.get(name, 0)
         return {"name": name, "deals": len(rows), "deals_per_h": round(len(rows) / HOURS, 1), "bands": bands,
+                "orders_per_h": round(n_orders / HOURS, 1), "close_rate": round(len(rows) / n_orders, 2) if n_orders else None,
+                "goods_warranty_share": round(sum(1 for r in g if r["warranty"]) / len(g), 2) if g else None,
                 "goods_share": round(len(g) / len(rows), 2) if rows else None,
                 "paid_share_goods": _med([r["paid"] / r["list"] for r in g]),
                 "paid_share_food": _med([r["paid"] / r["list"] for r in f]),
@@ -167,6 +181,12 @@ def render(doc, cat):
     for b in [doc["buyers"]["ours"]] + doc["buyers"]["top"]:
         L.append(f"| {b['name']} | {b['deals_per_h']} | {b['goods_share']} | {b['paid_share_goods']} | "
                  f"{b['paid_share_food']} | {b['surplus_per_deal']:,} | {b['surplus']:,} |")
+    L += ["", "### Behaviour", "", "| player | orders/h | close rate | goods under warranty | shop warranty h | grades | review stars |",
+          "|---|---|---|---|---|---|---|"]
+    for b in [doc["buyers"]["ours"]] + doc["buyers"]["top"]:
+        L.append(f"| buyer {b['name']} | {b.get('orders_per_h')} | {b.get('close_rate')} | {b.get('goods_warranty_share')} | | | |")
+    for x in [doc["shops"]["ours"]] + doc["shops"]["top"]:
+        L.append(f"| shop {x['name']} | | | | {x.get('warranty_hours')} | {x.get('grades')} | {x.get('review_stars')} |")
     L += ["", "### Buyer surplus by list price band: deals (goods) paid/list surplus", "",
           "| buyer | " + " | ".join(lab for _, _, lab in BANDS) + " |", "|---|" + "---|" * len(BANDS)]
     for b in [doc["buyers"]["ours"]] + doc["buyers"]["top"]:
