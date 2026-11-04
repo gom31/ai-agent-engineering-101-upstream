@@ -123,6 +123,14 @@ def strategy_text(ctx):
     for kind in ("market", "self"):
         r = call(ctx, "memory.summary", {"kind": kind})
         lines.append(f"This slice's {kind} summary: {_j(r['result'] if r['ok'] else r['reason'], 2500)}")
+    from core import score
+    sb = atomic.read_json(paths.memory() / "facts" / "scoreboard.json", default=None) or {}
+    sc = sb.get("score") or {}
+    lines.append(score.text() + " Where ALL has the most room (weight x (1 - percentile)): shop "
+                 + _j((sc.get("shop") or {}).get("room"), 200) + ", buyer " + _j((sc.get("buyer") or {}).get("room"), 200)
+                 + "; parts with the next row's value: " + _j({k: {f: {x: p[x] for x in ("value", "percentile", "next_value", "rows_above")}
+                                                                    for f, p in ((sc.get(k) or {}).get("parts") or {}).items()}
+                                                               for k in ("shop", "buyer")}, 1200))
     from outer import benchmark, health
     lines.append("Health (last 30 min, outer/health.py: what the shop, the buyer and restock did, and what crossed a "
                  "threshold): " + health.summary(atomic.read_json(paths.memory() / "facts" / "health.json",

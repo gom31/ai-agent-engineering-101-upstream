@@ -23,7 +23,7 @@ import sys
 import time
 from pathlib import Path
 
-from core import atomic, paths
+from core import atomic, paths, score
 from core.events import EventWriter
 from outer import derive
 from tools.evaluate import events
@@ -227,12 +227,7 @@ def percentiles(rows, mine, fields):
     return out
 
 
-def ranked_buyers(rows):
-    return [r for r in rows or [] if (r.get("deals") or 0) > 0]
-
-
-def ranked_shops(rows):
-    return [r for r in rows or [] if (r.get("deals") or 0) > 0 or (r.get("profit") or 0) != 0]
+from core.score import ranked_buyers, ranked_shops  # noqa: E402  (one rule: core/score.py)
 
 
 def board_snapshot(board, me, now):
@@ -249,7 +244,8 @@ def board_snapshot(board, me, now):
             "buyer_percentiles": percentiles(ranked_buyers(board.get("buyers")), buyer, num(board.get("buyers"))),
             "player_percentiles": percentiles(board.get("players"), player, num(board.get("players"))),
             "counts": {k: len(board.get(k) or []) for k in ("shops", "buyers", "players")},
-            "ranked": {"shops": len(ranked_shops(board.get("shops"))), "buyers": len(ranked_buyers(board.get("buyers")))}}
+            "ranked": {"shops": len(ranked_shops(board.get("shops"))), "buyers": len(ranked_buyers(board.get("buyers")))},
+            "score": score.board_score(board, me["join_name"])}
 
 
 class Collector:

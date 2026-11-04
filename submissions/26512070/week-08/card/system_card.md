@@ -40,7 +40,11 @@ The final score is the board's Players percentile: our shop's ALL plus our buyer
   bankruptcy money. Unsold stock, expired food, storage (goods 1%/day) and warranty refunds are losses.
   Stars come only from reviews of paid deals.
 - Buyer ALL = 0.5 surplus + 0.3 votes on our buyer's forum posts + 0.1 number of deals + 0.1 number of
-  posts our buyer wrote (hidden posts do not count). Surplus = list price of a useful item - price paid
+  posts our buyer wrote (hidden posts do not count).
+- Each part is a percentile among the ranked players only: buyers with a deal, shops with a deal or a
+  purchase (missing values count as 0, ties half; stars are the board's stars_rank). It is our place
+  against them, so the parts with the most weight x (1 - percentile) left are where ALL can grow
+  (eval.score gives each part's value, percentile and the next player's value). Surplus = list price of a useful item - price paid
   (+ warranty refund). Spoiled food or broken goods without a warranty are worth nothing.
 - Hidden demand: each buyer has a few favourite categories most of its orders come from. The market does
   not publish them; they show only in settled deals, our own records and the forum
