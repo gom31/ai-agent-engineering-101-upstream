@@ -142,7 +142,10 @@ def build_buy_list(ctx, now=None):
     for x in lines:
         if x in top:
             x["top"] = True
-            x["target"] = min(lim["max_units_per_sku"], max(x["target"], pb["top_units"]))
+            # 11/4 14:0x: deep as the demand shows - a sixth of what sold or was asked in 6 h, at most top_units
+            # (a flat 20 planned 10 sofas of 568,080 the market had sold 21 of)
+            n = x["value"] / max(1, cat[x["sku"]].get("list_price") or 1)
+            x["target"] = min(lim["max_units_per_sku"], pb["top_units"], max(x["target"], math.ceil(n / 6)))
         else:
             x["target"] = min(x["target"], pb["units_cap"])
     # User 11/4 02:1x: plan within the money we may spend - each line gets what the cash and the stock cap allow

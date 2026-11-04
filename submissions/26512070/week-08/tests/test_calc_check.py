@@ -153,7 +153,7 @@ class CheckTest(Base):
         self.assertLess(r["food_share_after_at_most"], 24000 / 27000)
         # up to 1,685,100 + 3 x 102,675 = 1,993,125 more: the balance stays above the floor, the stock passes 2,000,000
         big = [{"sku": "G00327e80", "qty": 1}, {"sku": "G000f6cda", "qty": 3}]
-        self.assertIn("starting capital", self.refused("check.buy", plan=big)["reason"])
+        self.assertIn("of the capital", self.refused("check.buy", plan=big)["reason"])
         self.assertIn("below the floor", self.refused("check.buy", plan=[{"sku": "G00327e80", "qty": 2}])["reason"])
         self.assertIn("food would be", self.refused("check.buy", plan=[{"sku": "G00200492", "qty": 5}])["reason"])
         self.write_inventory(UNITS, balance=1_510_000)                          # 1,510,000 - 13,500 < 1,500,000

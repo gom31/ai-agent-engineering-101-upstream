@@ -14,6 +14,15 @@ _PRICE = {"type": "integer", "minimum": 0}
 BREAK_WINDOW_H = 6          # agent.md: goods can break up to 6 hours after the sale
 
 
+def stock_base(lim, inv, balance, stock_value):
+    """What max_stock_share is a share of: the starting capital (D31), or with stock_base = equity the balance plus
+    the stock at cost (user 11/4 14:0x: at 15.7M balance the cap of 160% of the 5M start left 2.1M to buy while 9M
+    of cash sat idle and 35 of 86 visits found no stock), so the cap grows with the shop."""
+    if lim.get("stock_base") == "equity" and balance is not None:
+        return balance + stock_value
+    return inv.get("start") or balance or 0
+
+
 def warranty_reserve(ctx):
     """Cash kept for refunds (user 11/3): our sales still inside the warranty, times the strategy's reserve share.
     Returns (reserve, open sales total, open count). The settle time is when the collector saw it (a little late,
@@ -136,7 +145,7 @@ def room(ctx):
     for u in units:
         have[u["sku"]] = have.get(u["sku"], 0) + 1
     reserve = warranty_reserve(ctx)[0]
-    base = inv.get("start") or balance or 0
+    base = stock_base(lim, inv, balance, sum(u["cost"] for u in units))
     return {"cash": None if balance is None else balance - lim["cash_floor"] - reserve,
             "stock": lim["max_stock_share"] * base - sum(u["cost"] for u in units), "have": have,
             "per_sku": lim["max_units_per_sku"], "balance": balance, "reserve": reserve, "floor": lim["cash_floor"],
@@ -184,10 +193,10 @@ def buy(ctx, plan):
                       + (f" plus the warranty reserve {reserve} ({open_n} sales, {open_total}, still in warranty)"
                          if reserve else ""), "buy less, or cheaper SKUs")
     # D31: "40% of the balance (2,000,000)" - of the starting capital, so the cap does not shrink as stock is bought
-    base = inv.get("start") or balance
+    base = stock_base(lim, inv, balance, stock_value)
     cap = lim["max_stock_share"] * base
     if stock_value + spend > cap:
-        raise Refused(f"stock would be up to {stock_value + spend}, over {lim['max_stock_share']:.0%} of the starting "
+        raise Refused(f"stock would be up to {stock_value + spend}, over {lim['max_stock_share']:.0%} of the "
                       f"capital ({round(cap)})", "sell down first or buy less")
     total = stock_value + spend
     share = food_value / total if total else 0
