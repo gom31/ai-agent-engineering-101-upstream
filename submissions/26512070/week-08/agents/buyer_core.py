@@ -80,7 +80,8 @@ class A2A:
     def __init__(self, base, timeout=120):
         import httpx
         self.httpx, self.timeout = httpx, timeout
-        card = httpx.get(base.rstrip("/") + "/.well-known/agent-card.json", headers=HEADERS, timeout=30).json()
+        card = httpx.get(base.rstrip("/") + "/.well-known/agent-card.json", headers=HEADERS,
+                         timeout=min(30, timeout)).json()
         iface = next((i for i in card.get("supportedInterfaces", [])
                       if i.get("protocolBinding") == "JSONRPC" and str(i.get("protocolVersion")) == "1.0"), None)
         if iface is None:
@@ -192,9 +193,11 @@ class BuyerCore:
         tried = {shop["name"]}
         pb = self.playbook()
         most = pb["max_shops_goods"] if kind == "goods" else pb["max_shops_food"]
-        left = 40 if kind == "goods" else 60    # user 11/4 03:2x: goods orders visit as many shops as time allows
+        # user 11/4 10:4x: the market gives the next order about 20 s after this one ends (measured: 20.4 s median),
+        # so a long order costs orders; shops are tried until the kind's time budget is used, not by count alone
+        budget = pb["goods_time_budget"] if kind == "goods" else pb["food_time_budget"]
         while (self.rules() and out.get("receipt") is None and len(tried) < most
-               and self.deadline() - self.clock() > left):
+               and self.clock() - self.t0 < budget and self.deadline() - self.clock() > 40):
             rest = {n: x for n, x in shops.items() if n not in tried}
             if not rest:
                 break
@@ -215,7 +218,9 @@ class BuyerCore:
     def playbook(self):
         pb = ((self.ctx.strategy.get("playbook") or {}).get("buyer") or {})
         return {"mode": pb.get("mode", "agent"), "ceiling_share": pb.get("ceiling_share", 0.8),   # rules when the strategy says so
-                "max_shops_goods": pb.get("max_shops_goods", 10), "max_shops_food": pb.get("max_shops_food", MAX_SHOPS)}
+                "max_shops_goods": pb.get("max_shops_goods", 10), "max_shops_food": pb.get("max_shops_food", MAX_SHOPS),
+                "goods_time_budget": pb.get("goods_time_budget", 120), "food_time_budget": pb.get("food_time_budget", 20),
+                "goods_msg_timeout": pb.get("goods_msg_timeout", 20), "food_msg_timeout": pb.get("food_msg_timeout", 8)}
 
     def rules(self):
         return self.playbook()["mode"] == "rules"
@@ -338,7 +343,11 @@ class BuyerCore:
         c = mf.catalog(ctx).get(sku) or {}
         hist, offers, asks = [], [], []
         try:
-            a = self.connect(shop["url"])
+            t = None
+            if self.rules():                     # a slow shop is left for the next one (11/4: orders of 81-114 s)
+                pb = self.playbook()
+                t = pb["goods_msg_timeout"] if kind == "goods" else pb["food_msg_timeout"]
+            a = self.connect(shop["url"], timeout=t) if (t and self.connect is A2A) else self.connect(shop["url"])
             # 11/4 02:2x: stating the shelf life needed in the first message (01:47) made shops refuse at once -
             # food orders agreed 2 of 26 after it, 44 of 118 before; the kit checks the hours before paying anyway
             state, text, receipt = a.send(f"I want to buy {c.get('name') or sku} ({sku}).")
@@ -381,7 +390,10 @@ class BuyerCore:
                 a.cancel()
                 break
             try:
-                state, text, receipt = a.send(d["say"], timeout=max(10, left - 5))   # act.offer put the price in it
+                wait = max(10, left - 5)
+                if t:
+                    wait = min(wait, t)
+                state, text, receipt = a.send(d["say"], timeout=wait)   # act.offer put the price in it
             except Exception as e:
                 outcome = f"failed ({type(e).__name__})"
                 break

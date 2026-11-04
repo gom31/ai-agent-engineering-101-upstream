@@ -218,7 +218,11 @@ STRATEGY = {
                     "mode": {"type": "string", "enum": ["rules", "agent"]},
                     "ceiling_share": {"type": "number", "minimum": 0.3, "maximum": 1},
                     "max_shops_goods": {"type": "integer", "minimum": 1, "maximum": 30},
-                    "max_shops_food": {"type": "integer", "minimum": 1, "maximum": 30}}}}},
+                    "max_shops_food": {"type": "integer", "minimum": 1, "maximum": 30},
+                    "goods_time_budget": {"type": "number", "minimum": 5, "maximum": 250},
+                    "food_time_budget": {"type": "number", "minimum": 5, "maximum": 250},
+                    "goods_msg_timeout": {"type": "number", "minimum": 3, "maximum": 120},
+                    "food_msg_timeout": {"type": "number", "minimum": 3, "maximum": 120}}}}},
     },
 }
 
