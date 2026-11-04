@@ -77,7 +77,7 @@ class CollectTest(Base):
         self.assertEqual(live["customer"]["kim"]["deals_with_us"], 1)
         self.assertNotIn("elm", [n for n in live["customer"]])
         sb = atomic.read_json(paths.memory() / "facts" / "scoreboard.json")
-        self.assertEqual((sb["shop"]["deals"], sb["player"]["all"], sb["player_percentiles"]["all"]), (1, 120, 100.0))
+        self.assertEqual((sb["shop"]["deals"], sb["player"]["all"], sb["player_percentiles"]["all"]), (1, 120, 75.0))   # 11/4: ties count half (the board ranks so)
         kept = (paths.memory() / "market").glob("ledger-*.jsonl")
         self.assertEqual(sum(len(f.read_text(encoding="utf-8").splitlines()) for f in kept), 4)
 

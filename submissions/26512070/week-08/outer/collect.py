@@ -215,14 +215,24 @@ class Market:
 
 
 def percentiles(rows, mine, fields):
-    """For each numeric field, our percentile among rows that have it (higher is better)."""
+    """For each numeric field, our percentile among rows that have it (higher is better; ties count half).
+    11/4 11:1x: the board ranks only buyers with a deal and shops with a deal or a purchase (agent.md); over all
+    rows our buyer's surplus read 74th percentile while the board's pool put it at 28th - pass the pool."""
     out = {}
     for f in fields:
-        vals = [r[f] for r in rows if isinstance(r.get(f), (int, float))]
+        vals = [r.get(f) if isinstance(r.get(f), (int, float)) else 0 for r in rows]   # missing counts as 0 (board)
         v = mine.get(f) if mine else None
         if isinstance(v, (int, float)) and vals:
-            out[f] = round(100 * sum(1 for x in vals if x <= v) / len(vals), 1)
+            out[f] = round(100 * (sum(1 for x in vals if x < v) + 0.5 * sum(1 for x in vals if x == v)) / len(vals), 1)
     return out
+
+
+def ranked_buyers(rows):
+    return [r for r in rows or [] if (r.get("deals") or 0) > 0]
+
+
+def ranked_shops(rows):
+    return [r for r in rows or [] if (r.get("deals") or 0) > 0 or (r.get("profit") or 0) != 0]
 
 
 def board_snapshot(board, me, now):
@@ -235,10 +245,11 @@ def board_snapshot(board, me, now):
     num = lambda rows: sorted({k for r in rows or [] for k, v in r.items() if isinstance(v, (int, float)) and k not in ("joined",)})
     return {"ts": now, "round": board.get("round"), "totals": board.get("totals"),
             "shop": shop, "buyer": buyer, "player": player,
-            "shop_percentiles": percentiles(board.get("shops"), shop, num(board.get("shops"))),
-            "buyer_percentiles": percentiles(board.get("buyers"), buyer, num(board.get("buyers"))),
+            "shop_percentiles": percentiles(ranked_shops(board.get("shops")), shop, num(board.get("shops"))),
+            "buyer_percentiles": percentiles(ranked_buyers(board.get("buyers")), buyer, num(board.get("buyers"))),
             "player_percentiles": percentiles(board.get("players"), player, num(board.get("players"))),
-            "counts": {k: len(board.get(k) or []) for k in ("shops", "buyers", "players")}}
+            "counts": {k: len(board.get(k) or []) for k in ("shops", "buyers", "players")},
+            "ranked": {"shops": len(ranked_shops(board.get("shops"))), "buyers": len(ranked_buyers(board.get("buyers")))}}
 
 
 class Collector:
